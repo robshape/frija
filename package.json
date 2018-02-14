@@ -11,6 +11,7 @@
     "eslint-plugin-react": "7.6.1",
     "html-webpack-plugin": "2.30.1",
     "node-sass": "4.7.2",
+    "nodemon": "1.14.12",
     "sass-lint": "1.12.1",
     "sass-loader": "6.0.6",
     "style-loader": "0.20.1",
@@ -19,17 +20,21 @@
   },
   "eslintConfig": {
     "env": {
-      "browser": true
+      "browser": true,
+      "node": true
     },
     "extends": "airbnb"
   },
   "private": true,
   "scripts": {
     "install:client": "npm --prefix client install",
-    "lint:js": "eslint --ext .js,.jsx --ignore-pattern '**/node_modules' client",
+    "install:server": "npm --prefix server install",
+    "lint:js": "eslint --ext .js,.jsx --ignore-pattern '**/node_modules' client server",
     "lint:sass": "sass-lint --config .sasslintrc --ignore '**/node_modules/**/*.scss' --verbose 'client/**/*.scss'",
-    "postinstall": "npm run install:client",
-    "start": "webpack-dev-server",
+    "postinstall": "npm run install:client && npm run install:server",
+    "run:client": "webpack-dev-server",
+    "run:server": "nodemon --watch server server/index.js",
+    "start": "npm run run:server & npm run run:client",
     "test:lint": "npm run lint:js && npm run lint:sass"
   }
 }

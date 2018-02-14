@@ -10,6 +10,15 @@ Install [Homebrew](https://brew.sh/) and run the following shell commands:
 brew install node
 ```
 
+Create a file with the name `.env` inside the root directory. Add the following variables inside the file:
+```
+PORT=
+```
+
+|VARIABLE|VALUE                                     |
+|--------|------------------------------------------|
+|PORT    |The port that the server should listen on.|
+
 ### Install Dependencies
 Run `npm install` inside the root directory.
 
