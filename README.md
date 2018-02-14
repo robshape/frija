@@ -10,7 +10,7 @@ Install [Homebrew](https://brew.sh/) and run the following shell commands:
 brew install node
 ```
 
-Create a file with the name `.env` inside the root directory. Add the following variables inside the file:
+Clone this repository. Create a file with the name `.env` inside the root directory. Add the following variables inside the file:
 ```
 PORT=
 ```
