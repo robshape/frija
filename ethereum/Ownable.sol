@@ -1,4 +1,4 @@
-pragma solidity 0.4.19;
+pragma solidity 0.4.20;
 
 
 contract Ownable {
@@ -14,7 +14,7 @@ contract Ownable {
         _;
     }
 
-    function transferOwnership(address newOwner) public onlyOwner {
+    function transferOwnership(address newOwner) external onlyOwner {
         require(newOwner != address(0));
 
         owner = newOwner;

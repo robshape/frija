@@ -1,4 +1,4 @@
-pragma solidity 0.4.19;
+pragma solidity 0.4.20;
 
 
 contract Election {
@@ -19,13 +19,13 @@ contract Election {
         parties.length = numberOfParties;
     }
 
-    function numberOfVotes(uint8 forParty) public view returns (uint256) {
+    function numberOfVotes(uint8 forParty) external view returns (uint256) {
         require(forParty < parties.length);
 
         return parties[forParty].numberOfVotes;
     }
 
-    function vote(uint8 forParty) public {
+    function vote(uint8 forParty) external {
         require(forParty < parties.length);
         Voter storage sender = voters[msg.sender];
         require(sender.hasVoted == false);
