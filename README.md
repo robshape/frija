@@ -1,4 +1,4 @@
-# Frija
+# Frija &middot; [![License](https://img.shields.io/github/license/robshape/frija.svg)](./LICENSE)
 This project implements the Swedish general election system on the Ethereum blockchain.
 
 ## Development
@@ -34,4 +34,4 @@ The following section will help you run the test suites.
 Run `npm run test:lint` inside the root directory.
 
 ## License
-Frija is licensed under the [GNU General Public License v3.0](./LICENSE)
+Frija is licensed under the [GNU General Public License v3.0](./LICENSE). Copyright (C) 2018 Frija contributors.
