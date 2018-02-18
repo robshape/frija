@@ -7,11 +7,11 @@ import "./Ownable.sol";
 contract Migrations is Ownable {
     uint public last_completed_migration;
 
-    function setCompleted(uint completed) external onlyOwner {
-        last_completed_migration = completed;
+    function setCompleted(uint completedMigration) public onlyOwner {
+        last_completed_migration = completedMigration;
     }
 
-    function upgrade(address newAddress) public onlyOwner {
+    function upgrade(address newAddress) external onlyOwner {
         Migrations newMigrations = Migrations(newAddress);
         newMigrations.setCompleted(last_completed_migration);
     }
