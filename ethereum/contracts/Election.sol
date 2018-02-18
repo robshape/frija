@@ -15,7 +15,7 @@ contract Election {
     Party[] public parties;
     mapping(address => Voter) voters;
 
-    function Election(uint8 numberOfParties) public {
+    function addParties(uint8 numberOfParties) external {
         parties.length = numberOfParties;
     }
 

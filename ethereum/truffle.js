@@ -1,5 +1,5 @@
 module.exports = {
-  contracts_build_directory: '../dist/ethereum',
+  // contracts_build_directory: '../dist/ethereum', // TODO: Not compatible with migrations.
   networks: {
     development: {
       host: '127.0.0.1',

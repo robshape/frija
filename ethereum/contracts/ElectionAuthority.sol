@@ -9,7 +9,9 @@ contract ElectionAuthority is Claimable {
     address[] public elections;
 
     function createElection(uint8 numberOfParties) external onlyOwner {
-        Election newElection = new Election(numberOfParties);
+        Election newElection = new Election();
+        newElection.addParties(numberOfParties);
+
         elections.push(newElection);
     }
 }

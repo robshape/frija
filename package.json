@@ -22,9 +22,8 @@
   },
   "private": true,
   "scripts": {
-    "build": "npm run clean && npm run build:ethereum",
-    "build:ethereum": "cd ethereum && truffle compile --all",
-    "clean": "rm -rf dist",
+    "build:ethereum": "(cd ethereum && truffle compile --all)",
+    "deploy:ethereum": "(cd ethereum && truffle migrate --reset)",
     "install:client": "npm --prefix client install",
     "install:server": "npm --prefix server install",
     "lint:js": "eslint --ext .js,.jsx --ignore-pattern '**/node_modules' client ethereum server",
@@ -32,6 +31,7 @@
     "lint:sol": "solium --dir ethereum/contracts",
     "postinstall": "npm run install:client && npm run install:server",
     "run:client": "webpack-dev-server",
+    "run:ethereum": "(cd ethereum && truffle develop)",
     "run:server": "nodemon --watch server server/index.js",
     "start": "npm run run:server & npm run run:client",
     "test:lint": "npm run lint:js && npm run lint:scss && npm run lint:sol"
