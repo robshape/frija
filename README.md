@@ -1,5 +1,5 @@
 # Frija &middot; [![License](https://img.shields.io/github/license/robshape/frija.svg)](./LICENSE)
-This project implements the Swedish general election system on the Ethereum blockchain.
+The Swedish general election system on the Ethereum blockchain.
 
 ## Development
 The following section will help you set up the development environment.
