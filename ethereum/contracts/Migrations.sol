@@ -1,3 +1,24 @@
+/*
+
+  Frija - The Swedish general election system on the Ethereum blockchain.
+  Copyright (C) 2018 Frija contributors.
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see https://www.gnu.org/licenses/.
+
+*/
+
+
 pragma solidity 0.4.19;
 
 
@@ -7,12 +28,12 @@ import "./Ownable.sol";
 contract Migrations is Ownable {
     uint public last_completed_migration;
 
-    function setCompleted(uint completedMigration) public onlyOwner {
-        last_completed_migration = completedMigration;
-    }
-
     function upgrade(address newAddress) external onlyOwner {
         Migrations newMigrations = Migrations(newAddress);
         newMigrations.setCompleted(last_completed_migration);
+    }
+
+    function setCompleted(uint completedMigration) public onlyOwner {
+        last_completed_migration = completedMigration;
     }
 }
