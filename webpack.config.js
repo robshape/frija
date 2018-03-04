@@ -1,33 +1,31 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
-const webpack = require('webpack');
 
 module.exports = {
-  devServer: {
-    contentBase: path.resolve(__dirname, './dist/client'),
-  },
+  entry: path.resolve(__dirname, './client/index.jsx'),
 
-  entry: {
-    app: path.resolve(__dirname, './client/index.jsx'),
-    vendor: [
-      'prop-types',
-      'react',
-      'react-dom',
-    ],
-  },
+  mode: 'development',
 
   module: {
     rules: [
       {
-        loader: 'babel-loader',
-        options: {
-          presets: [
-            'react',
-          ],
-        },
-        test: /\.jsx$/,
+        exclude: /node_modules/,
+        test: /\.js$|\.jsx$/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              compact: true,
+              presets: [
+                'env',
+                'react',
+              ],
+            },
+          },
+        ],
       },
       {
+        exclude: /node_modules/,
         test: /\.scss$/,
         use: [
           {
@@ -44,8 +42,19 @@ module.exports = {
     ],
   },
 
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          chunks: 'all',
+          name: 'vendor',
+          test: /node_modules/,
+        },
+      },
+    },
+  },
+
   output: {
-    filename: '[name].js',
     path: path.resolve(__dirname, './dist/client'),
   },
 
@@ -53,10 +62,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       hash: true,
       template: 'client/index.html',
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      minChunks: Infinity,
-      name: 'vendor',
     }),
   ],
 
