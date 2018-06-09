@@ -19,7 +19,7 @@
 */
 
 
-pragma solidity 0.4.19;
+pragma solidity 0.4.24;
 
 
 import "./Ownable.sol";
@@ -31,7 +31,8 @@ contract Claimable is Ownable {
 
     modifier onlyPendingOwner(bytes32 key) {
         require(msg.sender == pendingOwner);
-        bytes32 keyHash = keccak256(key);
+        bytes memory encodedKey = abi.encodePacked(key);
+        bytes32 keyHash = keccak256(encodedKey);
         require(keyHash == pendingOwnerKeyHash);
 
         _;

@@ -19,13 +19,13 @@
 */
 
 
-pragma solidity 0.4.19;
+pragma solidity 0.4.24;
 
 
 contract Ownable {
     address public owner;
 
-    function Ownable() public {
+    constructor() public {
         owner = msg.sender;
     }
 

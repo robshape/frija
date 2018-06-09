@@ -19,21 +19,21 @@
 */
 
 
-pragma solidity 0.4.19;
+pragma solidity 0.4.24;
 
 
 import "./Ownable.sol";
 
 
 contract Migrations is Ownable {
-    uint public last_completed_migration;
+    uint public lastCompletedMigration;
 
     function upgrade(address newAddress) external onlyOwner {
         Migrations newMigrations = Migrations(newAddress);
-        newMigrations.setCompleted(last_completed_migration);
+        newMigrations.setCompleted(lastCompletedMigration);
     }
 
     function setCompleted(uint completedMigration) public onlyOwner {
-        last_completed_migration = completedMigration;
+        lastCompletedMigration = completedMigration;
     }
 }
