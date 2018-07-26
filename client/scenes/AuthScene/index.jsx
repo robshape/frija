@@ -18,15 +18,6 @@
 
 */
 
-import React from 'react';
-import { render } from 'react-dom';
+import AuthScene from './AuthScene';
 
-import AppScene from './scenes/AppScene';
-
-const app = (
-  <React.StrictMode>
-    <AppScene />
-  </React.StrictMode>
-);
-const node = document.getElementById('index');
-render(app, node);
+export default AuthScene;

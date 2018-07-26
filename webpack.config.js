@@ -35,6 +35,7 @@ module.exports = {
           {
             loader: 'babel-loader',
             options: {
+              cacheDirectory: true,
               compact: true,
               presets: [
                 'env',
@@ -53,6 +54,9 @@ module.exports = {
           },
           {
             loader: 'css-loader',
+            options: {
+              modules: true,
+            },
           },
           {
             loader: 'sass-loader',
@@ -90,7 +94,7 @@ module.exports = {
       '.js',
       '.jsx',
     ],
-    modules: [
+    modules: [ // Because client 'node_modules' are in a seperate folder.
       path.resolve(__dirname, './client/node_modules'),
       path.resolve(__dirname, './node_modules'), // webpack-dev-server modules.
     ],

@@ -19,14 +19,11 @@
 */
 
 import React from 'react';
-import { render } from 'react-dom';
 
-import AppScene from './scenes/AppScene';
+import styles from './AuthScene.scss';
 
-const app = (
-  <React.StrictMode>
-    <AppScene />
-  </React.StrictMode>
+export default () => (
+  <div className={styles.authScene}>
+    Frija
+  </div>
 );
-const node = document.getElementById('index');
-render(app, node);

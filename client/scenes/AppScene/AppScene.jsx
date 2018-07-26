@@ -19,14 +19,15 @@
 */
 
 import React from 'react';
-import { render } from 'react-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 
-import AppScene from './scenes/AppScene';
+import AuthScene from '../AuthScene';
+import styles from './AppScene.scss';
 
-const app = (
-  <React.StrictMode>
-    <AppScene />
-  </React.StrictMode>
+export default () => (
+  <div className={styles.appScene}>
+    <BrowserRouter>
+      <Route component={AuthScene} exact path="/" />
+    </BrowserRouter>
+  </div>
 );
-const node = document.getElementById('index');
-render(app, node);
