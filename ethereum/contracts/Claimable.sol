@@ -30,10 +30,10 @@ contract Claimable is Ownable {
     bytes32 private pendingOwnerKeyHash;
 
     modifier onlyPendingOwner(bytes32 key) {
-        require(msg.sender == pendingOwner);
+        require(msg.sender == pendingOwner, "msg.sender does not equal pendingOwner.");
         bytes memory encodedKey = abi.encodePacked(key);
         bytes32 keyHash = keccak256(encodedKey);
-        require(keyHash == pendingOwnerKeyHash);
+        require(keyHash == pendingOwnerKeyHash, "keyHash does not equal pendingOwnerKeyHash.");
 
         _;
     }

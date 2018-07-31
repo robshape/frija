@@ -41,15 +41,15 @@ contract Election {
     }
 
     function numberOfVotes(uint8 forParty) external view returns (uint256) {
-        require(forParty < parties.length);
+        require(forParty < parties.length, "forParty is not less than parties.length.");
 
         return parties[forParty].numberOfVotes;
     }
 
     function vote(uint8 forParty) external {
-        require(forParty < parties.length);
+        require(forParty < parties.length, "forParty is not less than parties.length.");
         Voter storage sender = voters[msg.sender];
-        require(sender.hasVoted == false);
+        require(sender.hasVoted == false, "sender.hasVoted does not equal false.");
 
         parties[forParty].numberOfVotes += 1;
 

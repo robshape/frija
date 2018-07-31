@@ -30,13 +30,13 @@ contract Ownable {
     }
 
     modifier onlyOwner() {
-        require(msg.sender == owner);
+        require(msg.sender == owner, "msg.sender does not equal owner.");
 
         _;
     }
 
     function transferOwnership(address newOwner) external onlyOwner {
-        require(newOwner != address(0));
+        require(newOwner != address(0), "newOwner does not equal address(0)");
 
         owner = newOwner;
     }

@@ -31,7 +31,12 @@ Visit `http://localhost:8080/`
 The following section will help you run the test suites.
 
 ### Lint Tests
-Run `npm run test:lint` inside the root directory.
+Inside the root directory, run the following commands:
+```
+npm run lint:js
+npm run lint:sass
+npm run lint:sol
+```
 
 ## License
 Frija is licensed under the [GNU General Public License v3.0](./LICENSE). Copyright (C) 2018 Frija contributors.
