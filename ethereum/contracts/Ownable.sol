@@ -36,7 +36,7 @@ contract Ownable {
     }
 
     function transferOwnership(address newOwner) external onlyOwner {
-        require(newOwner != address(0), "newOwner does not equal address(0)");
+        require(newOwner != address(0), "newOwner does not equal address(0).");
 
         owner = newOwner;
     }

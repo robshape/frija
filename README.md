@@ -20,7 +20,7 @@ Run `npm install` inside the root directory.
 ### Start Project
 Run `npm run run:ethereum` inside the root directory. This will start the Truffle development blockchain. Open another shell and run the following commands:
 ```
-npm run build:ethereumn
+npm run build:ethereum
 npm run deploy:ethereum
 npm start
 ```
