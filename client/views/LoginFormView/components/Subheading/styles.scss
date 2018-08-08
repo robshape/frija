@@ -18,14 +18,10 @@
 
 */
 
-import React from 'react';
-import { render } from 'react-dom';
+@import '../../../../styles/colors';
 
-import App from './scenes';
-
-const node = document.getElementById('index');
-render(<App />, node);
-
-if (process.env.NODE_ENV === 'development') {
-  module.hot.accept();
+.subheading {
+  color: $color-gray;
+  font-size: 1.125em;
+  font-weight: 500;
 }

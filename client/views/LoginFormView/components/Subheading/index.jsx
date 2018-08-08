@@ -18,14 +18,19 @@
 
 */
 
+import PropTypes from 'prop-types';
 import React from 'react';
-import { render } from 'react-dom';
 
-import App from './scenes';
+import styles from './styles.scss';
 
-const node = document.getElementById('index');
-render(<App />, node);
+const Subheading = ({ children }) => (
+  <h3 className={styles.subheading}>
+    {children}
+  </h3>
+);
 
-if (process.env.NODE_ENV === 'development') {
-  module.hot.accept();
-}
+Subheading.propTypes = {
+  children: PropTypes.string.isRequired,
+};
+
+export default Subheading;

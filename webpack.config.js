@@ -20,8 +20,13 @@
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
+  devServer: {
+    hot: true,
+  },
+
   entry: path.resolve(__dirname, './client/index.jsx'),
 
   mode: 'development',
@@ -36,7 +41,6 @@ module.exports = {
             loader: 'babel-loader',
             options: {
               cacheDirectory: true,
-              compact: true,
               presets: [
                 'env',
                 'react',
@@ -66,27 +70,11 @@ module.exports = {
     ],
   },
 
-  optimization: {
-    splitChunks: {
-      cacheGroups: {
-        vendor: {
-          chunks: 'all',
-          name: 'vendor',
-          test: /node_modules/,
-        },
-      },
-    },
-  },
-
-  output: {
-    path: path.resolve(__dirname, './dist/client'),
-  },
-
   plugins: [
     new HtmlWebpackPlugin({
-      hash: true,
       template: 'client/index.html',
     }),
+    new webpack.HotModuleReplacementPlugin(),
   ],
 
   resolve: {
@@ -94,8 +82,8 @@ module.exports = {
       '.js',
       '.jsx',
     ],
-    modules: [ // Because client 'node_modules' are in a seperate folder.
-      path.resolve(__dirname, './client/node_modules'),
+    modules: [
+      path.resolve(__dirname, './client/node_modules'), // Because they are in a different folder.
       path.resolve(__dirname, './node_modules'), // webpack-dev-server modules.
     ],
   },

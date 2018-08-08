@@ -25,7 +25,7 @@ npm run deploy:ethereum
 npm start
 ```
 
-Visit `http://localhost:8080/`
+Visit `http://localhost:8080/` using Google Chrome.
 
 ## Testing
 The following section will help you run the test suites.

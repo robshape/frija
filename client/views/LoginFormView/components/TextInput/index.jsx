@@ -18,14 +18,26 @@
 
 */
 
+import PropTypes from 'prop-types';
 import React from 'react';
-import { render } from 'react-dom';
 
-import App from './scenes';
+import styles from './styles.scss';
 
-const node = document.getElementById('index');
-render(<App />, node);
+const TextInput = ({ maxLength, onKeyUp, placeholder }) => (
+  <div className={styles.textInput}>
+    <input
+      className={styles.textInput__input}
+      maxLength={maxLength}
+      onKeyUp={onKeyUp}
+      placeholder={placeholder}
+    />
+  </div>
+);
 
-if (process.env.NODE_ENV === 'development') {
-  module.hot.accept();
-}
+TextInput.propTypes = {
+  maxLength: PropTypes.number.isRequired,
+  onKeyUp: PropTypes.func.isRequired,
+  placeholder: PropTypes.string.isRequired,
+};
+
+export default TextInput;

@@ -18,6 +18,13 @@
 
 */
 
-import AuthScene from './AuthScene';
+import React from 'react';
 
-export default AuthScene;
+import LogInFormView from '../../views/LogInFormView';
+import styles from './styles.scss';
+
+export default () => (
+  <div className={styles.authScene}>
+    <LogInFormView />
+  </div>
+);

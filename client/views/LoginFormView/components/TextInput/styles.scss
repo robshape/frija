@@ -18,14 +18,27 @@
 
 */
 
-import React from 'react';
-import { render } from 'react-dom';
+@import '../../../../styles/colors';
 
-import App from './scenes';
+.textInput {
+  border-bottom: 2px solid $color-gray;
+  padding-bottom: 16px;
+  transition: all 200ms ease-in;
 
-const node = document.getElementById('index');
-render(<App />, node);
+  &:focus-within {
+    border-color: $color-black;
+  }
 
-if (process.env.NODE_ENV === 'development') {
-  module.hot.accept();
+  &__input {
+    border: 0;
+    font-size: 1em;
+    font-weight: 500;
+    outline: 0;
+    width: 100%;
+
+    &::placeholder {
+      color: $color-gray;
+      font-weight: 100;
+    }
+  }
 }

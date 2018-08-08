@@ -18,14 +18,20 @@
 
 */
 
+import { BrowserRouter, Route } from 'react-router-dom';
 import React from 'react';
-import { render } from 'react-dom';
 
-import App from './scenes';
+import AuthScene from './AuthScene';
+import styles from './styles.scss';
 
-const node = document.getElementById('index');
-render(<App />, node);
+export default () => (
+  <React.StrictMode>
+    <div className={styles.scenes}>
+      <BrowserRouter>
 
-if (process.env.NODE_ENV === 'development') {
-  module.hot.accept();
-}
+        <Route component={AuthScene} exact path="/" />
+
+      </BrowserRouter>
+    </div>
+  </React.StrictMode>
+);

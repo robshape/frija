@@ -18,14 +18,14 @@
 
 */
 
-import React from 'react';
-import { render } from 'react-dom';
+.logInFormView {
+  &__form {
+    padding-top: 32px;
+  }
 
-import App from './scenes';
-
-const node = document.getElementById('index');
-render(<App />, node);
-
-if (process.env.NODE_ENV === 'development') {
-  module.hot.accept();
+  &__logIn {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 16px;
+  }
 }

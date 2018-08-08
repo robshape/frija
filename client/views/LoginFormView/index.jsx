@@ -18,6 +18,31 @@
 
 */
 
-import AppScene from './AppScene';
+import React from 'react';
 
-export default AppScene;
+import Button from './components/Button';
+import Heading from './components/Heading';
+import styles from './styles.scss';
+import Subheading from './components/Subheading';
+import TextInput from './components/TextInput';
+
+export default () => (
+  <div className={styles.logInFormView}>
+    <Heading>
+      Hej,
+    </Heading>
+    <Subheading>
+      identifiera dig med Mobilt BankID
+    </Subheading>
+
+    <div className={styles.logInFormView__form}>
+      <TextInput maxLength={13} onKeyUp={() => {}} placeholder="Personnummer" />
+
+      <div className={styles.logInFormView__logIn}>
+        <Button onClick={() => {}}>
+          Fortsätt
+        </Button>
+      </div>
+    </div>
+  </div>
+);

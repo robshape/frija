@@ -18,14 +18,20 @@
 
 */
 
-import React from 'react';
-import { render } from 'react-dom';
+@import '../../../../styles/colors';
 
-import App from './scenes';
+.button {
+  border: 1px solid $color-black;
+  color: $color-black;
+  cursor: pointer;
+  font-size: 1em;
+  height: 36px;
+  outline: 0;
+  transition: all 200ms ease-in;
+  width: 96px;
 
-const node = document.getElementById('index');
-render(<App />, node);
-
-if (process.env.NODE_ENV === 'development') {
-  module.hot.accept();
+  &:hover {
+    background-color: $color-black;
+    color: $color-white;
+  }
 }
