@@ -41,10 +41,6 @@ module.exports = {
             loader: 'babel-loader',
             options: {
               cacheDirectory: true,
-              presets: [
-                'env',
-                'react',
-              ],
             },
           },
         ],
@@ -83,7 +79,7 @@ module.exports = {
       '.jsx',
     ],
     modules: [
-      path.resolve(__dirname, './client/node_modules'), // Because they are in a different folder.
+      path.resolve(__dirname, './client/node_modules'),
       path.resolve(__dirname, './node_modules'), // webpack-dev-server modules.
     ],
   },
