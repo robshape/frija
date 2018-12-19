@@ -22,26 +22,29 @@
 pragma solidity 0.5.0;
 
 
-import "./Bill.sol";
-import "./Claimable.sol";
-import "./Election.sol";
+import "./Ownable.sol";
 
 
-contract ElectionAuthority is Claimable {
-    Bill[] public bills;
-    Election[] public elections;
-
-    function createBill(string calldata withTitle) external {
-        Bill newBill = new Bill();
-        newBill.changeTitle(withTitle);
-
-        bills.push(newBill);
+contract Bill is Ownable {
+    struct Voter {
+        bool hasVoted;
+        bool voted;
+        address voter;
     }
 
-    function createElection(uint8 numberOfParties) external onlyOwner {
-        Election newElection = new Election();
-        newElection.addParties(numberOfParties);
+    string public title;
+    mapping(address => Voter) voters;
 
-        elections.push(newElection);
+    function changeTitle(string calldata toTitle) external {
+        title = toTitle;
+    }
+
+    function vote(bool forBill) external {
+        Voter storage sender = voters[msg.sender];
+
+        require(sender.hasVoted == false, "sender.hasVoted does not equal false.");
+
+        sender.hasVoted = true;
+        sender.voted = forBill;
     }
 }
