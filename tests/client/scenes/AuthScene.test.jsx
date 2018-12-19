@@ -21,7 +21,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import AuthScene from '../../../client/scenes/AuthScene';
+import AuthScene from '../../../src/client/scenes/AuthScene';
 
 describe('<AuthScene />', () => {
   it('should render', () => {

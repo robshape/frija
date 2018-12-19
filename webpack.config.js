@@ -27,7 +27,7 @@ module.exports = {
     hot: true,
   },
 
-  entry: path.resolve(__dirname, './client/index.jsx'),
+  entry: path.resolve(__dirname, './src/client/index.jsx'),
 
   mode: 'development',
 
@@ -68,7 +68,7 @@ module.exports = {
 
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'client/index.html',
+      template: './src/client/index.html',
     }),
     new webpack.HotModuleReplacementPlugin(),
   ],
@@ -79,8 +79,8 @@ module.exports = {
       '.jsx',
     ],
     modules: [
-      path.resolve(__dirname, './client/node_modules'),
-      path.resolve(__dirname, './node_modules'), // webpack-dev-server modules.
+      path.resolve(__dirname, './src/client/node_modules/'),
+      path.resolve(__dirname, './node_modules/'), // webpack-dev-server modules.
     ],
   },
 };
