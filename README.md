@@ -1,5 +1,5 @@
 # Frija &middot; [![License](https://img.shields.io/github/license/robshape/frija.svg)](./LICENSE)
-The Swedish general election system on the Ethereum blockchain.
+The Swedish general election and Riksdag on the Ethereum blockchain.
 
 ## Development
 The following section will help you set up the development environment.
@@ -31,12 +31,7 @@ Visit `http://localhost:8080/` using Google Chrome.
 The following section will help you run the test suites.
 
 ### Lint
-Inside the root directory, run the following commands:
-```
-npm run lint:js
-npm run lint:sass
-npm run lint:sol
-```
+Run `npm run lint` inside the root directory.
 
 ### Test
 Run `npm test` inside the root directory.
