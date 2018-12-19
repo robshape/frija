@@ -19,7 +19,7 @@
 */
 
 
-pragma solidity 0.4.24;
+pragma solidity 0.5.0;
 
 
 import "./Claimable.sol";
@@ -27,7 +27,7 @@ import "./Election.sol";
 
 
 contract ElectionAuthority is Claimable {
-    address[] public elections;
+    Election[] public elections;
 
     function createElection(uint8 numberOfParties) external onlyOwner {
         Election newElection = new Election();

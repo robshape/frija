@@ -22,7 +22,9 @@ module.exports = {
   moduleNameMapper: {
     '\\.scss$': 'identity-obj-proxy',
   },
-  setupTestFrameworkScriptFile: '<rootDir>/jest.setup.js',
+  setupFilesAfterEnv: [
+    '<rootDir>/jest.setup.js',
+  ],
   snapshotSerializers: [
     'enzyme-to-json/serializer',
   ],

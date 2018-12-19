@@ -4,6 +4,6 @@ exports[`<AuthScene /> should render 1`] = `
 <div
   className="authScene"
 >
-  <Component />
+  <_default />
 </div>
 `;
