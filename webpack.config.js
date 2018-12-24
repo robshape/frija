@@ -34,7 +34,7 @@ module.exports = {
   module: {
     rules: [
       {
-        exclude: /node_modules/,
+        exclude: /node_modules\//,
         test: /\.(js|jsx)$/,
         use: [
           {
@@ -46,7 +46,7 @@ module.exports = {
         ],
       },
       {
-        exclude: /node_modules/,
+        exclude: /node_modules\//,
         test: /\.scss$/,
         use: [
           {
