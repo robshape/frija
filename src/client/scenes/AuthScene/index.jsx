@@ -1,6 +1,6 @@
 /*
 
-  Frija - The Swedish general election system on the Ethereum blockchain.
+  Frija - The Swedish general election and Riksdag on the Ethereum blockchain.
   Copyright (C) 2018 Frija contributors.
 
   This program is free software: you can redistribute it and/or modify
