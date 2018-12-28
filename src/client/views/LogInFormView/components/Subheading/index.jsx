@@ -23,11 +23,11 @@ import React from 'react';
 
 import styles from './styles.scss';
 
-const Subheading = ({ children }) => (
+const Subheading = React.memo(({ children }) => (
   <h3 className={styles.subheading}>
     {children}
   </h3>
-);
+));
 
 Subheading.propTypes = {
   children: PropTypes.string.isRequired,

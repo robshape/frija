@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<App /> should render 1`] = `
+<StrictMode>
+  <div
+    className="scenes"
+  >
+    <BrowserRouter>
+      <Route
+        component={
+          Object {
+            "$$typeof": Symbol(react.memo),
+            "compare": null,
+            "type": [Function],
+          }
+        }
+        exact={true}
+        path="/"
+      />
+    </BrowserRouter>
+  </div>
+</StrictMode>
+`;

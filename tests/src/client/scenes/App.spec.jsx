@@ -21,11 +21,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import AuthScene from '../../../../src/client/scenes/AuthScene';
+import App from '../../../../src/client/scenes';
 
-describe('<AuthScene />', () => {
+describe('<App />', () => {
   it('should render', () => {
-    const wrapper = shallow(<AuthScene />);
+    const wrapper = shallow(<App />);
 
     expect(wrapper).toMatchSnapshot();
   });

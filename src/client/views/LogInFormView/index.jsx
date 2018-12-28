@@ -26,7 +26,7 @@ import styles from './styles.scss';
 import Subheading from './components/Subheading';
 import TextInput from './components/TextInput';
 
-export default () => (
+export default React.memo(() => (
   <div className={styles.logInFormView}>
     <Heading>
       Hej,
@@ -45,4 +45,4 @@ export default () => (
       </div>
     </div>
   </div>
-);
+));

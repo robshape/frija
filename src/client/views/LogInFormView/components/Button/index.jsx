@@ -23,11 +23,11 @@ import React from 'react';
 
 import styles from './styles.scss';
 
-const Button = ({ children, onClick }) => (
+const Button = React.memo(({ children, onClick }) => (
   <button className={styles.button} onClick={onClick} type="button">
     {children}
   </button>
-);
+));
 
 Button.propTypes = {
   children: PropTypes.string.isRequired,

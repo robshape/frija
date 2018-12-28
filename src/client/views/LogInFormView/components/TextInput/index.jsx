@@ -23,7 +23,7 @@ import React from 'react';
 
 import styles from './styles.scss';
 
-const TextInput = ({ maxLength, onKeyUp, placeholder }) => (
+const TextInput = React.memo(({ maxLength, onKeyUp, placeholder }) => (
   <div className={styles.textInput}>
     <input
       className={styles.textInput__input}
@@ -32,7 +32,7 @@ const TextInput = ({ maxLength, onKeyUp, placeholder }) => (
       placeholder={placeholder}
     />
   </div>
-);
+));
 
 TextInput.propTypes = {
   maxLength: PropTypes.number.isRequired,
