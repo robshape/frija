@@ -27,6 +27,8 @@ module.exports = {
     hot: true,
   },
 
+  devtool: 'cheap-module-eval-source-map',
+
   entry: path.resolve(__dirname, './src/client/index.jsx'),
 
   mode: 'development',
@@ -34,9 +36,10 @@ module.exports = {
   module: {
     rules: [
       {
-        exclude: /node_modules\//,
+        include: path.resolve(__dirname, './src/client/'),
         test: /\.(js|jsx)$/,
         use: [
+          { loader: 'cache-loader' },
           {
             loader: 'babel-loader',
             options: {
@@ -46,9 +49,10 @@ module.exports = {
         ],
       },
       {
-        exclude: /node_modules\//,
+        include: path.resolve(__dirname, './src/client/'),
         test: /\.scss$/,
         use: [
+          { loader: 'cache-loader' },
           {
             loader: 'style-loader',
           },
@@ -64,6 +68,16 @@ module.exports = {
         ],
       },
     ],
+  },
+
+  optimization: {
+    removeAvailableModules: false,
+    removeEmptyChunks: false,
+    splitChunks: false,
+  },
+
+  output: {
+    pathinfo: false,
   },
 
   plugins: [
