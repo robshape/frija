@@ -37,6 +37,7 @@
   "scripts": {
     "build:ethereum": "(cd ./src/ethereum/ && truffle compile --all)",
     "clean:cache": "rm -fr .cache-loader/",
+    "clean:packages": "./scripts/clean-packages.sh",
     "deploy:ethereum": "(cd ./src/ethereum/ && truffle migrate --reset)",
     "install:client": "npm --prefix ./src/client/ install",
     "install:server": "npm --prefix ./src/server/ install",
