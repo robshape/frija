@@ -23,21 +23,94 @@ import React from 'react';
 
 import styles from './styles.scss';
 
-const TextInput = React.memo(({ maxLength, onKeyUp, placeholder }) => (
-  <div className={styles.textInput}>
-    <input
-      className={styles.textInput__input}
-      maxLength={maxLength}
-      onKeyUp={onKeyUp}
-      placeholder={placeholder}
-    />
-  </div>
-));
+class TextInput extends React.PureComponent {
+  static isNumber(value) {
+    const lastCharacter = value.charAt(value.length - 1);
+    const digit = Number.parseInt(lastCharacter, 10);
+    if (Number.isNaN(digit)) {
+      return false;
+    }
+
+    return true;
+  }
+
+  constructor() {
+    super();
+
+    this.isInputValid = this.isInputValid.bind(this);
+    this.onChange = this.onChange.bind(this);
+
+    this.state = {
+      value: '',
+    };
+  }
+
+  onChange({ target }) {
+    const { onChange } = this.props;
+    const { value } = target;
+
+    if (!this.isInputValid(value)) {
+      return;
+    }
+
+    this.setState({
+      value,
+    }, () => {
+      onChange(value);
+    });
+  }
+
+  isInputValid(value) {
+    const { type } = this.props;
+
+    // 0 probably means that the user has cleared the input.
+    if (value.length === 0) {
+      return true;
+    }
+
+    if (type === 'number'
+    && !TextInput.isNumber(value)) {
+      return false;
+    }
+
+    return true;
+  }
+
+  render() {
+    const { caption, maxLength, placeholder } = this.props;
+    const { value } = this.state;
+
+    return (
+      <div className={styles.textInput}>
+        <div className={styles.textInput__caption}>
+          {caption}
+        </div>
+
+        <input
+          className={styles.textInput__input}
+          maxLength={maxLength}
+          onChange={this.onChange}
+          placeholder={placeholder}
+          value={value}
+        />
+      </div>
+    );
+  }
+}
+
+TextInput.defaultProps = {
+  type: 'text',
+};
 
 TextInput.propTypes = {
+  caption: PropTypes.string.isRequired,
   maxLength: PropTypes.number.isRequired,
-  onKeyUp: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string.isRequired,
+  type: PropTypes.oneOf([
+    'number',
+    'text',
+  ]),
 };
 
 export default TextInput;
