@@ -25,7 +25,7 @@ npm run deploy:ethereum
 npm start
 ```
 
-Visit `http://localhost:8080/` using Google Chrome.
+Visit `http://localhost:8080/` using Google Chrome. Use a [personal identity number](./docs/CREDENTIALS.md) to log in.
 
 ## Testing
 The following section will help you run the test suites.
