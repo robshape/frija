@@ -16,6 +16,6 @@ rm -fr ./node_modules/
 rm -fr ./package-lock.json
 echo
 
-echo "[*] INSTALLING PACKAGES"
+echo "[*] INSTALLING DEPENDENCIES"
 npm install
 echo
