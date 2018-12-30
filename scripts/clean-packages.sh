@@ -15,3 +15,7 @@ echo "[*] CLEANING ./"
 rm -fr ./node_modules/
 rm -fr ./package-lock.json
 echo
+
+echo "[*] INSTALLING PACKAGES"
+npm install
+echo
