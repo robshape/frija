@@ -18,20 +18,19 @@
 
 */
 
-@import '../../../../styles/colors';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-.button {
-  border: 1px solid $color-black;
-  color: $color-black;
-  cursor: pointer;
-  font-size: 1em;
-  height: 36px;
-  outline: 0;
-  transition: all 200ms ease-in;
-  width: 96px;
+import styles from './styles.scss';
 
-  &:hover {
-    background-color: $color-black;
-    color: $color-white;
-  }
-}
+const SubmitButton = React.memo(({ children }) => (
+  <button className={styles.submitButton} type="submit">
+    {children}
+  </button>
+));
+
+SubmitButton.propTypes = {
+  children: PropTypes.string.isRequired,
+};
+
+export default SubmitButton;

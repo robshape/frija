@@ -20,14 +20,13 @@
 
 import React from 'react';
 
-import Button from './components/Button';
+import Form from './components/Form';
 import Heading from './components/Heading';
-import styles from './styles.scss';
+import NumberInput from './components/NumberInput';
 import Subheading from './components/Subheading';
-import TextInput from './components/TextInput';
 
 export default class LoginFormView extends React.PureComponent {
-  static isLuhnNumber(number) {
+  static isLuhnChecksumValid(number) {
     const digits = number
       .split('')
       .reverse()
@@ -45,7 +44,7 @@ export default class LoginFormView extends React.PureComponent {
     return (sum + lastDigit) % 10 === 0;
   }
 
-  static isNationalIdentificationNumber(number) {
+  static isPersonalIdentityNumber(number) {
     // Is it 10 (yymmddxxxx) or 12 (yyyymmddxxxx) digits?
     if (number.length !== 10
     && number.length !== 12) {
@@ -56,16 +55,16 @@ export default class LoginFormView extends React.PureComponent {
     const luhnNumber = number.length === 12 // yymmddxxxx
       ? number.substring(2)
       : number;
-    if (!LoginFormView.isLuhnNumber(luhnNumber)) {
+    if (!LoginFormView.isLuhnChecksumValid(luhnNumber)) {
       return false;
     }
 
-    // Is the date valid? Crude and probably unnecessary if Luhn checksum is valid...
+    // Is the date valid? Crude and probably unnecessary if the Luhn checksum is valid...
     const dateNumber = number.length === 12 // yymmdd
       ? number.substring(2, 8)
       : number.substring(0, 6);
-    const dateString = `${dateNumber.substring(0, 2)}-${dateNumber.substring(2, 4)}-${dateNumber.substring(4, 6)}`; // yy-mm-dd
-    const date = Date.parse(dateString);
+    const dateFormat = `${dateNumber.substring(0, 2)}-${dateNumber.substring(2, 4)}-${dateNumber.substring(4, 6)}`; // yy-mm-dd
+    const date = Date.parse(dateFormat);
     if (Number.isNaN(date)) {
       return false;
     }
@@ -76,30 +75,57 @@ export default class LoginFormView extends React.PureComponent {
   constructor() {
     super();
 
-    this.onTextInputChange = this.onTextInputChange.bind(this);
+    this.onNumberInputBlur = this.onNumberInputBlur.bind(this);
+    this.onNumberInputChange = this.onNumberInputChange.bind(this);
+    this.validationStatus = this.validationStatus.bind(this);
 
     this.state = {
-      isLoginValid: false,
+      isLogInValid: false,
     };
   }
 
-  onTextInputChange(value) {
-    if (!LoginFormView.isNationalIdentificationNumber(value)) {
+  onNumberInputBlur() {
+    const { isLogInValid } = this.state;
+
+    if (!isLogInValid) {
+      this.setState({
+        showError: true,
+      });
+    }
+  }
+
+  onNumberInputChange(value) {
+    if (!LoginFormView.isPersonalIdentityNumber(value)) {
       return this.setState({
-        isLoginValid: false,
+        isLogInValid: false,
       });
     }
 
     return this.setState({
-      isLoginValid: true,
+      isLogInValid: true,
+      showError: false,
     });
   }
 
+  validationStatus() {
+    const { isLogInValid, showError } = this.state;
+
+    if (isLogInValid) {
+      return 'success';
+    }
+
+    if (showError) {
+      return 'error';
+    }
+
+    return 'validating';
+  }
+
   render() {
-    const { isLoginValid } = this.state;
+    const validationStatus = this.validationStatus();
 
     return (
-      <div className={styles.logInFormView}>
+      <div>
         <Heading>
           Hej,
         </Heading>
@@ -107,23 +133,18 @@ export default class LoginFormView extends React.PureComponent {
           identifiera dig med Mobilt BankID
         </Subheading>
 
-        <div className={styles.logInFormView__form}>
-          <TextInput
-            caption="Personnummer"
+        <Form onSubmit={() => {}}>
+          <NumberInput
+            label="Personnummer"
             maxLength={12}
-            onChange={this.onTextInputChange}
+            onBlur={this.onNumberInputBlur}
+            onChange={this.onNumberInputChange}
             placeholder="ååååmmddxxxx"
             type="number"
+            validationError="Ange ett giltig personnummer."
+            validationStatus={validationStatus}
           />
-
-          <div className={styles.logInFormView__logIn}>
-            <Button onClick={() => {}}>
-              Fortsätt
-            </Button>
-          </div>
-        </div>
-
-        {!!isLoginValid && 'VALID!'}
+        </Form>
       </div>
     );
   }

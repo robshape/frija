@@ -3,7 +3,7 @@
 exports[`<App /> should render 1`] = `
 <StrictMode>
   <div
-    className="scenes"
+    className="app"
   >
     <BrowserRouter>
       <Route

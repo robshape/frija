@@ -22,16 +22,43 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import styles from './styles.scss';
+import SubmitButton from '../SubmitButton';
 
-const Button = React.memo(({ children, onClick }) => (
-  <button className={styles.button} onClick={onClick} type="button">
-    {children}
-  </button>
-));
+class Form extends React.PureComponent {
+  constructor() {
+    super();
 
-Button.propTypes = {
-  children: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  onSubmit(e) {
+    const { onSubmit } = this.props;
+
+    e.preventDefault();
+
+    onSubmit();
+  }
+
+  render() {
+    const { children } = this.props;
+
+    return (
+      <form className={styles.form} onSubmit={this.onSubmit}>
+        {children}
+
+        <div className={styles.form__submit}>
+          <SubmitButton>
+            Fortsätt
+          </SubmitButton>
+        </div>
+      </form>
+    );
+  }
+}
+
+Form.propTypes = {
+  children: PropTypes.node.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
 
-export default Button;
+export default Form;

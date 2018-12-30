@@ -20,24 +20,57 @@
 
 @import '../../../../styles/colors';
 
-.textInput {
-  border-bottom: 2px solid $color-gray;
-  padding-bottom: 16px;
-  transition: all 200ms ease-in;
+.numberInput {
+  &__error {
+    color: $color-red;
+    font-size: 0.875rem;
+    margin-top: 4px;
+    opacity: 0;
 
-  &:focus-within {
-    border-color: $color-black;
+    &VISIBLE {
+      animation: pop 250ms ease;
+      opacity: 1;
+    }
   }
 
-  &__caption {
-    font-size: 0.875em;
-    font-weight: 100;
-    margin-bottom: 12px;
+  &__field {
+    border-bottom: 2px solid $color-gray;
+    padding-bottom: 12px;
+    transition: all 250ms ease;
+
+    &:focus-within {
+      border-color: $color-black;
+    }
+  }
+
+  &__icon {
+    display: flex;
+    margin-top: 12px;
+  }
+
+  &__iconCheck {
+    animation: bounce 250ms ease 2 alternate;
+    color: $color-green;
+
+    @keyframes bounce {
+      0% {
+        transform: translateY(0);
+      }
+
+      100% {
+        transform: translateY(-15px);
+      }
+    }
+  }
+
+  &__iconExclamation {
+    animation: pop 250ms ease;
+    color: $color-red;
   }
 
   &__input {
     border: 0;
-    font-size: 1em;
+    font-size: 1rem;
     font-weight: 500;
     outline: 0;
     width: 100%;
@@ -45,6 +78,21 @@
     &::placeholder {
       color: $color-gray;
       font-weight: 100;
+    }
+  }
+
+  &__label {
+    font-size: 0.875rem;
+    font-weight: 100;
+  }
+
+  @keyframes pop {
+    0% {
+      transform: scale(0.5);
+    }
+
+    100% {
+      transform: scale(1);
     }
   }
 }

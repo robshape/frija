@@ -19,19 +19,34 @@
 */
 
 import { BrowserRouter, Route } from 'react-router-dom';
+import { faCheck, faExclamation } from '@fortawesome/free-solid-svg-icons';
+import { library } from '@fortawesome/fontawesome-svg-core';
 import React from 'react';
 
 import AuthScene from './AuthScene';
 import styles from './styles.scss';
 
-export default () => (
-  <React.StrictMode>
-    <div className={styles.scenes}>
-      <BrowserRouter>
+export default class App extends React.PureComponent {
+  constructor() {
+    super();
 
-        <Route component={AuthScene} exact path="/" />
+    library.add(
+      faCheck,
+      faExclamation,
+    );
+  }
 
-      </BrowserRouter>
-    </div>
-  </React.StrictMode>
-);
+  render() {
+    return (
+      <React.StrictMode>
+        <div className={styles.app}>
+          <BrowserRouter>
+
+            <Route component={AuthScene} exact path="/" />
+
+          </BrowserRouter>
+        </div>
+      </React.StrictMode>
+    );
+  }
+}
