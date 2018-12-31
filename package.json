@@ -50,6 +50,7 @@
     "run:ethereum": "(cd ./src/ethereum/ && truffle develop)",
     "run:server": "nodemon --watch server ./src/server/index.js",
     "start": "npm run run:server & npm run run:client",
-    "test": "jest --config ./tests/jest.config.js"
+    "test": "jest --config ./tests/jest.config.js",
+    "test:coverage": "npm test -- --coverage"
   }
 }

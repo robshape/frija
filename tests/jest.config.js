@@ -19,11 +19,17 @@
 */
 
 module.exports = {
+  collectCoverageFrom: [
+    'src/**/*.{js,jsx}',
+    '!src/client/index.jsx',
+    '!src/ethereum/**',
+  ],
   moduleNameMapper: {
     '\\.scss$': 'identity-obj-proxy',
   },
+  rootDir: '../',
   setupFilesAfterEnv: [
-    '<rootDir>/jest.setup.js',
+    '<rootDir>/tests/jest.setup.js',
   ],
   snapshotSerializers: [
     'enzyme-to-json/serializer',
