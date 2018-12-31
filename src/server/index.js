@@ -20,11 +20,17 @@
 
 require('dotenv').config();
 
-const app = require('express')();
-const bodyParser = require('body-parser');
+const Koa = require('koa');
+const Router = require('koa-router');
 
-app.use(bodyParser.json());
+const koa = new Koa();
+const router = new Router();
 
-app.get('/', (req, res) => res.send('Frija'));
+router.get('/health', (ctx) => {
+  ctx.status = 200;
+});
 
-app.listen(process.env.PORT);
+koa.use(router.routes());
+koa.listen(process.env.PORT, () => {
+  console.log(`Server listening on port ${process.env.PORT}!`); // eslint-disable-line no-console
+});
