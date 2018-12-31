@@ -40,7 +40,7 @@ class Form extends React.PureComponent {
   }
 
   render() {
-    const { children } = this.props;
+    const { buttonText, children } = this.props;
 
     return (
       <form className={styles.form} onSubmit={this.onSubmit}>
@@ -48,7 +48,7 @@ class Form extends React.PureComponent {
 
         <div className={styles.form__submit}>
           <SubmitButton>
-            Fortsätt
+            {buttonText}
           </SubmitButton>
         </div>
       </form>
@@ -57,6 +57,7 @@ class Form extends React.PureComponent {
 }
 
 Form.propTypes = {
+  buttonText: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };

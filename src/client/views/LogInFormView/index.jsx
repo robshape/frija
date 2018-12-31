@@ -133,7 +133,7 @@ export default class LoginFormView extends React.PureComponent {
           identifiera dig med Mobilt BankID
         </Subheading>
 
-        <Form onSubmit={() => {}}>
+        <Form buttonText="Fortsätt" onSubmit={() => {}}>
           <NumberInput
             label="Personnummer"
             maxLength={12}
