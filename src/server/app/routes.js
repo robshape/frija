@@ -18,17 +18,11 @@
 
 */
 
-require('dotenv').config();
-const fs = require('fs');
-const http2 = require('http2');
+const Router = require('koa-router');
 
-const app = require('./app');
+const router = new Router();
+router.get('/health', (ctx) => {
+  ctx.status = 200;
+});
 
-http2
-  .createSecureServer({
-    cert: fs.readFileSync(process.env.CERT),
-    key: fs.readFileSync(process.env.KEY),
-  }, app)
-  .listen(process.env.PORT, () => {
-    console.log(`Server listening on port ${process.env.PORT}!`); // eslint-disable-line no-console
-  });
+module.exports = router.routes();

@@ -18,17 +18,11 @@
 
 */
 
-require('dotenv').config();
-const fs = require('fs');
-const http2 = require('http2');
+const Koa = require('koa');
 
-const app = require('./app');
+const routes = require('./routes');
 
-http2
-  .createSecureServer({
-    cert: fs.readFileSync(process.env.CERT),
-    key: fs.readFileSync(process.env.KEY),
-  }, app)
-  .listen(process.env.PORT, () => {
-    console.log(`Server listening on port ${process.env.PORT}!`); // eslint-disable-line no-console
-  });
+const koa = new Koa();
+koa.use(routes);
+
+module.exports = koa.callback();
