@@ -18,11 +18,30 @@
 
 */
 
+const helmet = require('koa-helmet');
 const Koa = require('koa');
 
 const routes = require('./routes');
 
 const koa = new Koa();
+koa.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ['\'self\''],
+    },
+  },
+  dnsPrefetchControl: true,
+  frameguard: true,
+  hidePoweredBy: true,
+  hsts: true,
+  ieNoOpen: true,
+  noSniff: true,
+  permittedCrossDomainPolicies: true,
+  referrerPolicy: {
+    policy: 'no-referrer',
+  },
+  xssFilter: true,
+}));
 koa.use(routes);
 
 module.exports = koa.callback();
