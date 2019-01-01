@@ -24,6 +24,12 @@ const Koa = require('koa');
 const routes = require('./routes');
 
 const koa = new Koa();
+
+koa.use(async (ctx, next) => {
+  console.log(`${ctx.method} ${ctx.url}`); // eslint-disable-line no-console
+  await next();
+});
+
 koa.use(helmet({
   contentSecurityPolicy: {
     directives: {
@@ -42,6 +48,7 @@ koa.use(helmet({
   },
   xssFilter: true,
 }));
+
 koa.use(routes);
 
 module.exports = koa.callback();
