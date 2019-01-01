@@ -1,4 +1,3 @@
 # Credentials
-Fictitious personal identity numbers (personnummer) for testing:
-
+Fictitious personal identity numbers (personnummer):
 * 192311229252
