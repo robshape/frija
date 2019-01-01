@@ -13,7 +13,7 @@ brew install openssl
 
 Clone this repository. Create a file with the name `.env` inside the root directory. Add the following variables inside the file:
 ```
-CERT=./server.cert
+CERT=./server.crt
 KEY=./server.key
 PORT=3000
 ```
