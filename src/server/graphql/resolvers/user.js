@@ -20,7 +20,7 @@
 
 module.exports = {
   Query: {
-    user: (_, args, context) => {
+    user: async (_, args, context) => {
       const { id } = args;
       const { models } = context;
       return models.user.getById(id);

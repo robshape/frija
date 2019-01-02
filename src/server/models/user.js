@@ -20,7 +20,7 @@
 
 const { get } = require('../utils/http');
 
-const getById = id => get('https://bankid.com/')
+const getById = async id => get('https://bankid.com/')
   .then(() => ({
     id,
     name: 'N.N.',
