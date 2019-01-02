@@ -20,12 +20,12 @@
 
 const { get } = require('../utils/http');
 
-const findById = id => get('https://bankid.com/')
+const getById = id => get('https://bankid.com/')
   .then(() => ({
     id,
     name: 'N.N.',
   }));
 
 module.exports = {
-  findById,
+  getById,
 };

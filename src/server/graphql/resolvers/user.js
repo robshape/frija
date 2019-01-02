@@ -23,7 +23,7 @@ module.exports = {
     user: (_, args, context) => {
       const { id } = args;
       const { models } = context;
-      return models.user.findById(id);
+      return models.user.getById(id);
     },
   },
 };
