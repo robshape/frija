@@ -18,10 +18,11 @@
 
 */
 
-const token = require('./token');
-const user = require('./user');
+const health = require('./health');
 
-module.exports = {
-  token,
-  user,
+const configureRoutes = (app) => {
+  app.use(health.allowedMethods());
+  app.use(health.routes());
 };
+
+module.exports = configureRoutes;

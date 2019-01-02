@@ -18,10 +18,14 @@
 
 */
 
-const token = require('./token');
-const user = require('./user');
+const { gql } = require('apollo-server-koa');
 
-module.exports = {
-  token,
-  user,
-};
+module.exports = gql`
+  type Token {
+    token: String!
+  }
+
+  extend type Mutation {
+    logIn(personalNumber: String!): Token!
+  }
+`;

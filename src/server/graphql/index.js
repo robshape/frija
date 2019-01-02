@@ -24,15 +24,21 @@ const models = require('../models');
 const resolvers = require('./resolvers');
 const schemas = require('./schemas');
 
-const apollo = new ApolloServer({
-  context: {
-    models,
-  },
-  resolvers,
-  typeDefs: schemas,
-});
-const configureGraphQL = app => apollo.applyMiddleware({
-  app,
-});
+const configureGraphQL = (app, config) => {
+  const { token } = config;
+
+  const apollo = new ApolloServer({
+    context: {
+      models,
+      tokenOptions: token,
+    },
+    resolvers,
+    typeDefs: schemas,
+  });
+
+  apollo.applyMiddleware({
+    app,
+  });
+};
 
 module.exports = configureGraphQL;

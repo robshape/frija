@@ -18,10 +18,22 @@
 
 */
 
-const token = require('./token');
-const user = require('./user');
+const jwt = require('jsonwebtoken');
+
+const create = (user, options) => {
+  const { expiresIn, secret } = options;
+  const { name } = user;
+
+  const token = jwt.sign({
+    date: new Date(),
+    name,
+  }, secret, {
+    expiresIn,
+  });
+
+  return token;
+};
 
 module.exports = {
-  token,
-  user,
+  create,
 };

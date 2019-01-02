@@ -18,18 +18,21 @@
 
 */
 
-require('dotenv').config();
-const fs = require('fs');
-const https = require('https');
+const https = require('https'); // https://github.com/apollographql/apollo-server/issues/1533/
 
-const app = require('./app');
+const configureApp = require('./app');
+const configureConfig = require('./config');
 
-https // https://github.com/apollographql/apollo-server/issues/1533/
+const config = configureConfig(process.env);
+const app = configureApp(config);
+
+const { port, ssl } = config;
+https
   .createServer({
-    cert: fs.readFileSync(process.env.CERT),
-    key: fs.readFileSync(process.env.KEY),
+    cert: ssl.cert,
+    key: ssl.key,
   }, app)
-  .listen(process.env.PORT, () => {
-    console.log(`Server listening on port ${process.env.PORT}`); // eslint-disable-line no-console
-    console.log(`GraphQL listening on :${process.env.PORT}/graphql/`); // eslint-disable-line no-console
+  .listen(port, () => {
+    console.log(`Server listening on port ${port}`); // eslint-disable-line no-console
+    console.log(`GraphQL listening on :${port}/graphql/`); // eslint-disable-line no-console
   });

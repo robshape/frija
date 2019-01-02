@@ -18,15 +18,18 @@
 
 */
 
-const { gql } = require('apollo-server-koa');
+module.exports = {
+  Mutation: {
+    logIn: async (parent, args, context) => {
+      const { id } = args;
+      const { models, tokenOptions } = context;
 
-module.exports = gql`
-  type User {
-    id: ID!
-    name: String!
-  }
+      const user = await models.user.getById(id);
+      const token = models.token.create(user, tokenOptions);
 
-  extend type Query {
-    user(id: ID!): User
-  }
-`;
+      return {
+        token,
+      };
+    },
+  },
+};

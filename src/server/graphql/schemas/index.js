@@ -20,12 +20,16 @@
 
 const { gql } = require('apollo-server-koa');
 
-const user = require('./user');
+const token = require('./token');
 
-const root = gql`
+const schema = gql`
+  type Mutation {
+    _: Boolean
+  }
+
   type Query {
     _: Boolean
   }
 `;
 
-module.exports = [root, user];
+module.exports = [schema, token];

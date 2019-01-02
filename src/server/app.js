@@ -22,30 +22,34 @@ const helmet = require('koa-helmet');
 const Koa = require('koa');
 
 const configureGraphQL = require('./graphql');
-const routes = require('./routes');
+const configureRoutes = require('./routes');
 
-const koa = new Koa();
-configureGraphQL(koa);
+const configureApp = (config) => {
+  const koa = new Koa();
+  configureGraphQL(koa, config);
 
-koa.use(async (ctx, next) => {
-  console.log(`${ctx.method} ${ctx.url}`); // eslint-disable-line no-console
-  await next();
-});
+  koa.use(async (ctx, next) => {
+    console.log(`${ctx.method} ${ctx.url}`); // eslint-disable-line no-console
+    await next();
+  });
 
-koa.use(helmet({
-  dnsPrefetchControl: true,
-  frameguard: true,
-  hidePoweredBy: true,
-  hsts: true,
-  ieNoOpen: true,
-  noSniff: true,
-  permittedCrossDomainPolicies: true,
-  referrerPolicy: {
-    policy: 'no-referrer',
-  },
-  xssFilter: true,
-}));
+  koa.use(helmet({
+    dnsPrefetchControl: true,
+    frameguard: true,
+    hidePoweredBy: true,
+    hsts: true,
+    ieNoOpen: true,
+    noSniff: true,
+    permittedCrossDomainPolicies: true,
+    referrerPolicy: {
+      policy: 'no-referrer',
+    },
+    xssFilter: true,
+  }));
 
-koa.use(routes);
+  configureRoutes(koa);
 
-module.exports = koa.callback();
+  return koa.callback();
+};
+
+module.exports = configureApp;

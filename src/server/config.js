@@ -18,11 +18,17 @@
 
 */
 
-const Router = require('koa-router');
+require('dotenv').config();
+const fs = require('fs');
 
-const router = new Router();
-router.get('/health', (ctx) => {
-  ctx.status = 200;
+module.exports = env => ({
+  port: env.PORT,
+  ssl: {
+    cert: fs.readFileSync(env.SSL_CERT),
+    key: fs.readFileSync(env.SSL_KEY),
+  },
+  token: {
+    expiresIn: env.TOKEN_EXPIRES_IN,
+    secret: env.TOKEN_SECRET,
+  },
 });
-
-module.exports = router.routes();

@@ -3,6 +3,7 @@
     "apollo-server-koa": "2.3.1",
     "dotenv": "6.2.0",
     "graphql": "14.0.2",
+    "jsonwebtoken": "8.4.0",
     "koa": "2.6.2",
     "koa-helmet": "4.0.0",
     "koa-router": "7.4.0",
