@@ -1,7 +1,7 @@
 /*
 
   Frija - The Swedish general election and Riksdag on the Ethereum blockchain.
-  Copyright (C) 2018 Frija contributors.
+  Copyright (C) 2019 Frija contributors.
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -18,18 +18,34 @@
 
 */
 
-require('dotenv').config();
-const fs = require('fs');
-const https = require('https');
+const helmet = require('koa-helmet');
+const Koa = require('koa');
 
-const app = require('./app');
+const configureGraphQL = require('./graphql');
+const routes = require('./routes');
 
-https // https://github.com/apollographql/apollo-server/issues/1533/
-  .createServer({
-    cert: fs.readFileSync(process.env.CERT),
-    key: fs.readFileSync(process.env.KEY),
-  }, app)
-  .listen(process.env.PORT, () => {
-    console.log(`Server listening on port ${process.env.PORT}`); // eslint-disable-line no-console
-    console.log(`GraphQL listening on :${process.env.PORT}/graphql/`); // eslint-disable-line no-console
-  });
+const koa = new Koa();
+configureGraphQL(koa);
+
+koa.use(async (ctx, next) => {
+  console.log(`${ctx.method} ${ctx.url}`); // eslint-disable-line no-console
+  await next();
+});
+
+koa.use(helmet({
+  dnsPrefetchControl: true,
+  frameguard: true,
+  hidePoweredBy: true,
+  hsts: true,
+  ieNoOpen: true,
+  noSniff: true,
+  permittedCrossDomainPolicies: true,
+  referrerPolicy: {
+    policy: 'no-referrer',
+  },
+  xssFilter: true,
+}));
+
+koa.use(routes);
+
+module.exports = koa.callback();

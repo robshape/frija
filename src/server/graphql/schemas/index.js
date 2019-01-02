@@ -1,7 +1,7 @@
 /*
 
   Frija - The Swedish general election and Riksdag on the Ethereum blockchain.
-  Copyright (C) 2018 Frija contributors.
+  Copyright (C) 2019 Frija contributors.
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -18,18 +18,14 @@
 
 */
 
-require('dotenv').config();
-const fs = require('fs');
-const https = require('https');
+const { gql } = require('apollo-server-koa');
 
-const app = require('./app');
+const user = require('./user');
 
-https // https://github.com/apollographql/apollo-server/issues/1533/
-  .createServer({
-    cert: fs.readFileSync(process.env.CERT),
-    key: fs.readFileSync(process.env.KEY),
-  }, app)
-  .listen(process.env.PORT, () => {
-    console.log(`Server listening on port ${process.env.PORT}`); // eslint-disable-line no-console
-    console.log(`GraphQL listening on :${process.env.PORT}/graphql/`); // eslint-disable-line no-console
-  });
+const root = gql`
+  type Query {
+    _: Boolean
+  }
+`;
+
+module.exports = [root, user];

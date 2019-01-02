@@ -18,37 +18,15 @@
 
 */
 
-const helmet = require('koa-helmet');
-const Koa = require('koa');
+const { gql } = require('apollo-server-koa');
 
-const routes = require('./routes');
+module.exports = gql`
+  type User {
+    id: ID!
+    name: String!
+  }
 
-const koa = new Koa();
-
-koa.use(async (ctx, next) => {
-  console.log(`${ctx.method} ${ctx.url}`); // eslint-disable-line no-console
-  await next();
-});
-
-koa.use(helmet({
-  contentSecurityPolicy: {
-    directives: {
-      defaultSrc: ['\'self\''],
-    },
-  },
-  dnsPrefetchControl: true,
-  frameguard: true,
-  hidePoweredBy: true,
-  hsts: true,
-  ieNoOpen: true,
-  noSniff: true,
-  permittedCrossDomainPolicies: true,
-  referrerPolicy: {
-    policy: 'no-referrer',
-  },
-  xssFilter: true,
-}));
-
-koa.use(routes);
-
-module.exports = koa.callback();
+  extend type Query {
+    user(id: ID!): User
+  }
+`;
