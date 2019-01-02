@@ -18,21 +18,8 @@
 
 */
 
-const { ApolloServer } = require('apollo-server-koa');
+const user = require('./user');
 
-const models = require('./models');
-const resolvers = require('./resolvers');
-const schemas = require('./schemas');
-
-const apollo = new ApolloServer({
-  context: {
-    models,
-  },
-  resolvers,
-  typeDefs: schemas,
-});
-const configureGraphQL = app => apollo.applyMiddleware({
-  app,
-});
-
-module.exports = configureGraphQL;
+module.exports = {
+  user,
+};

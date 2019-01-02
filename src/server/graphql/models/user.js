@@ -18,21 +18,14 @@
 
 */
 
-const { ApolloServer } = require('apollo-server-koa');
+const { get } = require('../../utils/http');
 
-const models = require('./models');
-const resolvers = require('./resolvers');
-const schemas = require('./schemas');
+const findById = id => get('https://bankid.com/')
+  .then(() => ({
+    id,
+    name: 'N.N.',
+  }));
 
-const apollo = new ApolloServer({
-  context: {
-    models,
-  },
-  resolvers,
-  typeDefs: schemas,
-});
-const configureGraphQL = app => apollo.applyMiddleware({
-  app,
-});
-
-module.exports = configureGraphQL;
+module.exports = {
+  findById,
+};

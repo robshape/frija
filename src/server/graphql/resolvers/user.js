@@ -18,17 +18,12 @@
 
 */
 
-const { get } = require('../../utils/http');
-
 module.exports = {
   Query: {
-    user: (_, args) => {
+    user: (_, args, context) => {
       const { id } = args;
-      return get('https://bankid.com/')
-        .then(() => ({
-          id,
-          name: 'N.N.',
-        }));
+      const { models } = context;
+      return models.user.findById(id);
     },
   },
 };
