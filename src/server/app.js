@@ -35,7 +35,9 @@ const configureApp = (config) => {
 
   koa.use(helmet({
     dnsPrefetchControl: true,
-    frameguard: true,
+    frameguard: {
+      action: 'deny',
+    },
     hidePoweredBy: true,
     hsts: true,
     ieNoOpen: true,

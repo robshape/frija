@@ -11,15 +11,15 @@ Checklist of the most important security countermeasures when designing, testing
 ---
 
 ## Authentication
-- [ ] Don't use `Basic Auth`. Use standard authentication (e.g. [JWT](https://jwt.io/), [OAuth](https://oauth.net/)).
+- [x] Don't use `Basic Auth`. Use standard authentication (e.g. [JWT](https://jwt.io/), [OAuth](https://oauth.net/)).
 - [ ] Don't reinvent the wheel in `Authentication`, `token generation`, `password storage`. Use the standards.
 - [ ] Use `Max Retry` and jail features in Login.
 - [ ] Use encryption on all sensitive data.
 
 ### JWT (JSON Web Token)
-- [ ] Use a random complicated key (`JWT Secret`) to make brute forcing the token very hard.
+- [x] Use a random complicated key (`JWT Secret`) to make brute forcing the token very hard.
 - [ ] Don't extract the algorithm from the payload. Force the algorithm in the backend (`HS256` or `RS256`).
-- [ ] Make token expiration (`TTL`, `RTTL`) as short as possible.
+- [x] Make token expiration (`TTL`, `RTTL`) as short as possible.
 - [ ] Don't store sensitive data in the JWT payload, it can be decoded [easily](https://jwt.io/#debugger-io).
 
 ### OAuth
@@ -30,11 +30,11 @@ Checklist of the most important security countermeasures when designing, testing
 
 ## Access
 - [ ] Limit requests (Throttling) to avoid DDoS / brute-force attacks.
-- [ ] Use HTTPS on server side to avoid MITM (Man in the Middle Attack).
-- [ ] Use `HSTS` header with SSL to avoid SSL Strip attack.
+- [x] Use HTTPS on server side to avoid MITM (Man in the Middle Attack).
+- [x] Use `HSTS` header with SSL to avoid SSL Strip attack.
 
 ## Input
-- [ ] Use the proper HTTP method according to the operation: `GET (read)`, `POST (create)`, `PUT/PATCH (replace/update)`, and `DELETE (to delete a record)`, and respond with `405 Method Not Allowed` if the requested method isn't appropriate for the requested resource.
+- [x] Use the proper HTTP method according to the operation: `GET (read)`, `POST (create)`, `PUT/PATCH (replace/update)`, and `DELETE (to delete a record)`, and respond with `405 Method Not Allowed` if the requested method isn't appropriate for the requested resource.
 - [ ] Validate `content-type` on request Accept header (Content Negotiation) to allow only your supported format (e.g. `application/xml`, `application/json`, etc.) and respond with `406 Not Acceptable` response if not matched.
 - [ ] Validate `content-type` of posted data as you accept (e.g. `application/x-www-form-urlencoded`, `multipart/form-data`, `application/json`, etc.).
 - [ ] Validate user input to avoid common vulnerabilities (e.g. `XSS`, `SQL-Injection`, `Remote Code Execution`, etc.).
@@ -52,13 +52,13 @@ Checklist of the most important security countermeasures when designing, testing
 - [ ] Do not forget to turn the DEBUG mode OFF.
 
 ## Output
-- [ ] Send `X-Content-Type-Options: nosniff` header.
-- [ ] Send `X-Frame-Options: deny` header.
+- [x] Send `X-Content-Type-Options: nosniff` header.
+- [x] Send `X-Frame-Options: deny` header.
 - [ ] Send `Content-Security-Policy: default-src 'none'` header.
-- [ ] Remove fingerprinting headers - `X-Powered-By`, `Server`, `X-AspNet-Version`, etc.
+- [x] Remove fingerprinting headers - `X-Powered-By`, `Server`, `X-AspNet-Version`, etc.
 - [ ] Force `content-type` for your response, if you return `application/json` then your response `content-type` is `application/json`.
 - [ ] Don't return sensitive data like `credentials`, `Passwords`, or `security tokens`.
-- [ ] Return the proper status code according to the operation completed. (e.g. `200 OK`, `400 Bad Request`, `401 Unauthorized`, `405 Method Not Allowed`, etc.).
+- [x] Return the proper status code according to the operation completed. (e.g. `200 OK`, `400 Bad Request`, `401 Unauthorized`, `405 Method Not Allowed`, etc.).
 
 ## CI & CD
 - [ ] Audit your design and implementation with unit/integration tests coverage.

@@ -16,7 +16,7 @@ Clone this repository. Create a file with the name `.env` inside the root direct
 PORT=3000
 SSL_CERT=./server.crt
 SSL_KEY=./server.key
-TOKEN_EXPIRES_IN=30m
+TOKEN_EXPIRES_IN=10m
 TOKEN_SECRET=c3e2a70e-ba85-4120-ba4d-1adc9c3d64c9
 ```
 
