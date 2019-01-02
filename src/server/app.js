@@ -26,7 +26,6 @@ const configureRoutes = require('./routes');
 
 const configureApp = (config) => {
   const koa = new Koa();
-  configureGraphQL(koa, config);
 
   koa.use(helmet({
     dnsPrefetchControl: true,
@@ -44,6 +43,7 @@ const configureApp = (config) => {
     xssFilter: true,
   }));
 
+  configureGraphQL(koa, config);
   configureRoutes(koa);
 
   return koa.callback();

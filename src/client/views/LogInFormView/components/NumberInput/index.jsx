@@ -51,18 +51,17 @@ class NumberInput extends React.PureComponent {
 
   onChange({ target }) {
     const { onChange } = this.props;
-    const { value } = target;
 
     // 0 length probably means that the user has cleared the input.
-    if (value.length !== 0
-    && !NumberInput.isNumber(value)) {
+    if (target.value.length !== 0
+    && !NumberInput.isNumber(target.value)) {
       return;
     }
 
     this.setState({
-      value,
+      value: target.value,
     }, () => {
-      onChange(value);
+      onChange(target.value);
     });
   }
 

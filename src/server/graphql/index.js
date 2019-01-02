@@ -24,7 +24,7 @@ const models = require('../models');
 const resolvers = require('./resolvers');
 const schemas = require('./schemas');
 
-const configureGraphQL = (app, config) => {
+module.exports = (app, config) => {
   const { token } = config;
 
   const apollo = new ApolloServer({
@@ -40,5 +40,3 @@ const configureGraphQL = (app, config) => {
     app,
   });
 };
-
-module.exports = configureGraphQL;

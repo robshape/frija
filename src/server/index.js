@@ -25,8 +25,8 @@ const configureConfig = require('./config');
 
 const config = configureConfig(process.env);
 const app = configureApp(config);
-
 const { port, ssl } = config;
+
 https
   .createServer({
     cert: ssl.cert,
