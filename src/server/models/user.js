@@ -18,7 +18,7 @@
 
 */
 
-const { get } = require('../../utils/http');
+const { get } = require('../utils/http');
 
 const findById = id => get('https://bankid.com/')
   .then(() => ({

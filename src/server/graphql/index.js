@@ -20,7 +20,7 @@
 
 const { ApolloServer } = require('apollo-server-koa');
 
-const models = require('./models');
+const models = require('../models');
 const resolvers = require('./resolvers');
 const schemas = require('./schemas');
 
