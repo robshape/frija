@@ -22,7 +22,7 @@ const { gql } = require('apollo-server-koa');
 
 const token = require('./token');
 
-const schema = gql`
+const root = gql`
   type Mutation {
     _: Boolean
   }
@@ -32,4 +32,4 @@ const schema = gql`
   }
 `;
 
-module.exports = [schema, token];
+module.exports = [root, token];

@@ -28,11 +28,6 @@ const configureApp = (config) => {
   const koa = new Koa();
   configureGraphQL(koa, config);
 
-  koa.use(async (ctx, next) => {
-    console.log(`${ctx.method} ${ctx.url}`); // eslint-disable-line no-console
-    await next();
-  });
-
   koa.use(helmet({
     dnsPrefetchControl: true,
     frameguard: {
