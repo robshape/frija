@@ -20,7 +20,7 @@ Checklist of the most important security countermeasures when designing, testing
 - [x] Use a random complicated key (`JWT Secret`) to make brute forcing the token very hard.
 - [ ] Don't extract the algorithm from the payload. Force the algorithm in the backend (`HS256` or `RS256`).
 - [x] Make token expiration (`TTL`, `RTTL`) as short as possible.
-- [ ] Don't store sensitive data in the JWT payload, it can be decoded [easily](https://jwt.io/#debugger-io).
+- [x] Don't store sensitive data in the JWT payload, it can be decoded [easily](https://jwt.io/#debugger-io).
 
 ### OAuth
 - [ ] Always validate `redirect_uri` server-side to allow only whitelisted URLs.
