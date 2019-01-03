@@ -135,14 +135,14 @@ export default class LoginFormView extends React.PureComponent {
 
         <Form buttonText="Fortsätt" onSubmit={() => {}}>
           <NumberInput
-            label="Personnummer"
+            labelText="Personnummer"
             maxLength={12}
             onBlur={this.onNumberInputBlur}
             onChange={this.onNumberInputChange}
             placeholder="ååååmmddxxxx"
             type="number"
-            validationError="Ange ett giltig personnummer."
             validationStatus={validationStatus}
+            validationText="Ange ett giltig personnummer."
           />
         </Form>
       </div>

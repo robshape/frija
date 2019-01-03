@@ -1,7 +1,7 @@
 /*
 
   Frija - The Swedish general election and Riksdag on the Ethereum blockchain.
-  Copyright (C) 2018 Frija contributors.
+  Copyright (C) 2019 Frija contributors.
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -18,23 +18,33 @@
 
 */
 
-@import '../../../../styles/animations';
-@import '../../../../styles/colors';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-.submitButton {
-  @include animation-transition();
+import styles from './styles.scss';
 
-  border: 1px solid $color-black;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
-  color: $color-black;
-  cursor: pointer;
-  font-size: 1rem;
-  height: 36px;
-  outline: 0;
-  width: 96px;
+const InputValidation = React.memo(({ children, status }) => {
+  const isVisible = status === 'error';
 
-  &:hover {
-    background-color: $color-black;
-    color: $color-white;
-  }
-}
+  return (
+    <div className={classNames({
+      [`${styles.inputValidation}`]: true,
+      [`${styles.inputValidationVISIBLE}`]: isVisible,
+    })}
+    >
+      {children}
+    </div>
+  );
+});
+
+InputValidation.propTypes = {
+  children: PropTypes.string.isRequired,
+  status: PropTypes.oneOf([
+    'error',
+    'success',
+    'validating',
+  ]).isRequired,
+};
+
+export default InputValidation;

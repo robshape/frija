@@ -18,12 +18,13 @@
 
 */
 
-import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
 import React from 'react';
 import uuidv4 from 'uuid/v4';
 
+import InputValidation from '../InputValidation';
+import Label from '../Label';
 import styles from './styles.scss';
 
 class NumberInput extends React.PureComponent {
@@ -86,21 +87,20 @@ class NumberInput extends React.PureComponent {
 
   render() {
     const {
-      label,
+      labelText,
       maxLength,
       onBlur,
       placeholder,
-      validationError,
       validationStatus,
+      validationText,
     } = this.props;
     const { id, value } = this.state;
 
     return (
       <div className={styles.numberInput}>
         <div className={styles.numberInput__field}>
-          <label className={styles.numberInput__label} htmlFor={id}>
-            {label}
 
+          <Label forId={id} text={labelText}>
             <div className={styles.numberInput__icon}>
               <input
                 className={styles.numberInput__input}
@@ -114,33 +114,30 @@ class NumberInput extends React.PureComponent {
 
               {this.renderIcon()}
             </div>
-          </label>
+          </Label>
+
         </div>
 
-        <div className={classNames({
-          [`${styles.numberInput__error}`]: true,
-          [`${styles.numberInput__errorVISIBLE}`]: validationStatus === 'error',
-        })}
-        >
-          {validationError}
-        </div>
+        <InputValidation status={validationStatus}>
+          {validationText}
+        </InputValidation>
       </div>
     );
   }
 }
 
 NumberInput.propTypes = {
-  label: PropTypes.string.isRequired,
+  labelText: PropTypes.string.isRequired,
   maxLength: PropTypes.number.isRequired,
   onBlur: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string.isRequired,
-  validationError: PropTypes.string.isRequired,
   validationStatus: PropTypes.oneOf([
     'error',
     'success',
     'validating',
   ]).isRequired,
+  validationText: PropTypes.string.isRequired,
 };
 
 export default NumberInput;
