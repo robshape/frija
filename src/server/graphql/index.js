@@ -25,13 +25,14 @@ const resolvers = require('./resolvers');
 const schemas = require('./schemas');
 
 module.exports = (app, config) => {
-  const { token } = config;
+  const { token: tokenOptions } = config;
 
   const apollo = new ApolloServer({
-    context: {
+    context: ({ ctx }) => ({
+      isAuthenticated: models.token.isAuthenticated(ctx, tokenOptions),
       models,
-      tokenOptions: token,
-    },
+      tokenOptions,
+    }),
     resolvers,
     typeDefs: schemas,
   });

@@ -20,13 +20,11 @@
 
 const jwt = require('jsonwebtoken');
 
-const create = (user, options) => {
+const sign = (options) => {
   const { expiresIn, secret } = options;
-  const { name } = user;
 
   const token = jwt.sign({
-    date: new Date(),
-    name,
+    date: Date.now(),
   }, secret, {
     expiresIn,
   });
@@ -34,6 +32,41 @@ const create = (user, options) => {
   return token;
 };
 
+const verify = (token, options) => {
+  const { expiresIn, secret } = options;
+
+  const payload = jwt.verify(token, secret, {
+    algorithms: [
+      'HS256',
+    ],
+    maxAge: expiresIn,
+  });
+
+  return payload;
+};
+
+const isAuthenticated = (ctx, tokenOptions) => {
+  const token = ctx.header.authorization;
+
+  return !!(
+    token
+    && verify(token, tokenOptions)
+  );
+};
+
+const logIn = (user, tokenOptions) => {
+  if (!user.name) {
+    throw new Error('logIn() error!');
+  }
+
+  const token = sign(tokenOptions);
+
+  return {
+    token,
+  };
+};
+
 module.exports = {
-  create,
+  isAuthenticated,
+  logIn,
 };

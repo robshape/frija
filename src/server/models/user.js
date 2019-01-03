@@ -20,12 +20,12 @@
 
 const { get } = require('../utils/http');
 
-const getById = async id => get('https://bankid.com/')
+const getByPersonalNumber = async personalNumber => get('https://bankid.com/')
   .then(() => ({
-    id,
     name: 'N.N.',
+    personalNumber,
   }));
 
 module.exports = {
-  getById,
+  getByPersonalNumber,
 };
