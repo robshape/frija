@@ -39,7 +39,9 @@ npm run deploy:ethereum
 npm start
 ```
 
-Visit [http://localhost:8080/](http://localhost:8080/) using Google Chrome. Use a [personal identity number](./docs/CREDENTIALS.md) to log in. Visit [https://localhost:3000/graphql](https://localhost:3000/graphql) to open GraphQL Playground.
+Visit [http://localhost:8080/](http://localhost:8080/) using Google Chrome. Use a [personal identity number](./docs/CREDENTIALS.md) to log in.
+
+Visit [https://localhost:3000/graphql](https://localhost:3000/graphql) to open GraphQL Playground.
 
 ## License
 [GNU General Public License v3.0](./LICENSE). Copyright (C) 2018 Frija contributors.
