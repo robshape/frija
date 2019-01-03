@@ -5,13 +5,7 @@ The Swedish general election and Riksdag on the Ethereum blockchain.
 The following section will help you set up the development environment.
 
 ### Prerequisites
-Install [Homebrew](https://brew.sh/) and run the following commands:
-```shell
-brew install node
-brew install openssl
-```
-
-Clone this repository. Create a file with the name `.env` inside the root directory. Add the following variables inside the file:
+Install [Homebrew](https://brew.sh/) and run `brew install node`. Clone this repository. Create a file with the name `.env` inside the root directory. Add the following variables inside the file:
 ```
 PORT=3000
 SSL_CERT=./server.crt
