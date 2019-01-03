@@ -20,11 +20,11 @@
 
 import React from 'react';
 
-import LogInFormView from '../../views/LogInFormView';
+import LogInView from '../../views/LogInView';
 import styles from './styles.scss';
 
 export default React.memo(() => (
   <div className={styles.authScene}>
-    <LogInFormView />
+    <LogInView />
   </div>
 ));

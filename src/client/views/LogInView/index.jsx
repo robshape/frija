@@ -25,7 +25,7 @@ import Heading from './components/Heading';
 import NumberInput from './components/NumberInput';
 import Subheading from './components/Subheading';
 
-export default class LoginFormView extends React.PureComponent {
+export default class LogInView extends React.PureComponent {
   static isLuhnChecksumValid(number) {
     const digits = number
       .split('')
@@ -55,7 +55,7 @@ export default class LoginFormView extends React.PureComponent {
     const luhnNumber = number.length === 12 // yymmddxxxx
       ? number.substring(2)
       : number;
-    if (!LoginFormView.isLuhnChecksumValid(luhnNumber)) {
+    if (!LogInView.isLuhnChecksumValid(luhnNumber)) {
       return false;
     }
 
@@ -95,7 +95,7 @@ export default class LoginFormView extends React.PureComponent {
   }
 
   onNumberInputChange(value) {
-    if (!LoginFormView.isPersonalIdentityNumber(value)) {
+    if (!LogInView.isPersonalIdentityNumber(value)) {
       return this.setState({
         isLogInValid: false,
       });
