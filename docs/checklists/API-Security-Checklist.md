@@ -1,4 +1,4 @@
-2019-01-02: https://github.com/shieldfy/API-Security-Checklist/
+COPIED 2019-01-02 FROM https://github.com/shieldfy/API-Security-Checklist/
 
 ---
 
