@@ -18,6 +18,7 @@
 
 */
 
+const DotenvPlugin = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
@@ -81,6 +82,7 @@ module.exports = {
   },
 
   plugins: [
+    new DotenvPlugin(),
     new HtmlWebpackPlugin({
       template: './src/client/index.html',
     }),

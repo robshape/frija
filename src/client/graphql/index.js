@@ -1,7 +1,7 @@
 /*
 
   Frija - The Swedish general election and Riksdag on the Ethereum blockchain.
-  Copyright (C) 2018 Frija contributors.
+  Copyright (C) 2019 Frija contributors.
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -18,18 +18,22 @@
 
 */
 
-import React from 'react';
-import { render } from 'react-dom';
+import { ApolloClient } from 'apollo-client';
+import { ApolloLink } from 'apollo-link';
+import gql from 'graphql-tag';
+import { HttpLink } from 'apollo-link-http';
+import { InMemoryCache } from 'apollo-cache-inmemory';
 
-import App from './scenes';
-import configureConfig from './config';
+export default ({ graphqlEndpoint }) => {
+  const apollo = new ApolloClient({
+    cache: new InMemoryCache(),
 
-const config = configureConfig({
-  GRAPHQL_ENDPOINT: process.env.GRAPHQL_ENDPOINT,
-});
-const node = document.getElementById('index');
-render(<App config={config} />, node);
+    link: ApolloLink.from([
+      new HttpLink({
+        uri: graphqlEndpoint,
+      }),
+    ]),
+  });
 
-if (process.env.NODE_ENV === 'development') {
-  module.hot.accept();
-}
+  return apollo;
+};

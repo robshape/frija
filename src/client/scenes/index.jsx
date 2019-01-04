@@ -21,14 +21,18 @@
 import { BrowserRouter, Route } from 'react-router-dom';
 import { faCheck, faExclamation } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import AuthScene from './AuthScene';
+import configureGraphQL from '../graphql';
 import styles from './styles.scss';
 
-export default class App extends React.PureComponent {
-  constructor() {
-    super();
+class App extends React.PureComponent {
+  componentDidMount() {
+    const { config } = this.props;
+
+    configureGraphQL(config);
 
     library.add(
       faCheck,
@@ -50,3 +54,11 @@ export default class App extends React.PureComponent {
     );
   }
 }
+
+App.propTypes = {
+  config: PropTypes.shape({
+    graphqlEndpoint: PropTypes.string.isRequired,
+  }).isRequired,
+};
+
+export default App;

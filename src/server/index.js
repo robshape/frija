@@ -18,6 +18,7 @@
 
 */
 
+require('dotenv').config();
 const https = require('https'); // https://github.com/apollographql/apollo-server/issues/1533/
 
 const configureApp = require('./app');
@@ -34,5 +35,5 @@ https
   }, app)
   .listen(port, () => {
     console.log(`Server listening on port ${port}`); // eslint-disable-line no-console
-    console.log(`GraphQL listening on :${port}/graphql/`); // eslint-disable-line no-console
+    console.log(`GraphQL listening on :${port}/graphql`); // eslint-disable-line no-console
   });
