@@ -20,7 +20,6 @@
 
 import { ApolloClient } from 'apollo-client';
 import { ApolloLink } from 'apollo-link';
-import gql from 'graphql-tag';
 import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
