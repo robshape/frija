@@ -18,48 +18,15 @@
 
 */
 
-@mixin animation-bounce() {
-  animation: bounce 250ms ease 2 alternate;
+@import '../../../../styles/animations';
+@import '../../../../styles/colors';
 
-  @keyframes bounce {
-    0% {
-      transform: translateY(0);
-    }
+.loader {
+  @include animation-spin();
 
-    100% {
-      transform: translateY(-15px);
-    }
-  }
-}
-
-@mixin animation-pop() {
-  animation: pop 250ms ease;
-
-  @keyframes pop {
-    0% {
-      transform: scale(0.5);
-    }
-
-    100% {
-      transform: scale(1);
-    }
-  }
-}
-
-@mixin animation-spin() {
-  animation: spin 500ms linear infinite;
-
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-}
-
-@mixin animation-transition() {
-  transition: all 250ms ease;
+  border: 12px solid $color-white;
+  border-radius: 50%;
+  border-top-color: $color-black;
+  height: 32px;
+  width: 32px;
 }

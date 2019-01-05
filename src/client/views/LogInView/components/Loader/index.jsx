@@ -18,48 +18,8 @@
 
 */
 
-@mixin animation-bounce() {
-  animation: bounce 250ms ease 2 alternate;
+import React from 'react';
 
-  @keyframes bounce {
-    0% {
-      transform: translateY(0);
-    }
+import styles from './styles.scss';
 
-    100% {
-      transform: translateY(-15px);
-    }
-  }
-}
-
-@mixin animation-pop() {
-  animation: pop 250ms ease;
-
-  @keyframes pop {
-    0% {
-      transform: scale(0.5);
-    }
-
-    100% {
-      transform: scale(1);
-    }
-  }
-}
-
-@mixin animation-spin() {
-  animation: spin 500ms linear infinite;
-
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-}
-
-@mixin animation-transition() {
-  transition: all 250ms ease;
-}
+export default React.memo(() => <div className={styles.loader} />);
