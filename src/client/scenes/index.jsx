@@ -18,6 +18,7 @@
 
 */
 
+import { ApolloProvider } from 'react-apollo';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { faCheck, faExclamation } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -29,20 +30,39 @@ import configureGraphQL from '../graphql';
 import styles from './styles.scss';
 
 class App extends React.PureComponent {
-  componentDidMount() {
-    const { config } = this.props;
+  constructor() {
+    super();
 
-    configureGraphQL(config);
+    this.configureApp = this.configureApp.bind(this);
+
+    this.state = {
+      client: {},
+    };
+  }
+
+  componentDidMount() {
+    this.configureApp();
+  }
+
+  configureApp() {
+    const { config } = this.props;
 
     library.add(
       faCheck,
       faExclamation,
     );
+
+    const client = configureGraphQL(config);
+    this.setState({
+      client,
+    });
   }
 
   render() {
+    const { client } = this.state;
+
     return (
-      <React.StrictMode>
+      <ApolloProvider client={client}>
         <div className={styles.app}>
           <BrowserRouter>
 
@@ -50,7 +70,7 @@ class App extends React.PureComponent {
 
           </BrowserRouter>
         </div>
-      </React.StrictMode>
+      </ApolloProvider>
     );
   }
 }

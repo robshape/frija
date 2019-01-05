@@ -23,9 +23,15 @@ import { shallow } from 'enzyme';
 
 import App from '../../../../src/client/scenes';
 
+global.fetch = jest.fn();
+
 describe('<App />', () => {
+  const config = {
+    graphqlEndpoint: 'test',
+  };
+
   it('should render', () => {
-    const wrapper = shallow(<App />);
+    const wrapper = shallow(<App config={config} />);
 
     expect(wrapper).toMatchSnapshot();
   });

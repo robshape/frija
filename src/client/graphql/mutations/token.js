@@ -1,7 +1,7 @@
 /*
 
   Frija - The Swedish general election and Riksdag on the Ethereum blockchain.
-  Copyright (C) 2018 Frija contributors.
+  Copyright (C) 2019 Frija contributors.
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -18,11 +18,18 @@
 
 */
 
-module.exports = {
-  presets: [
-    ['@babel/preset-env', {
-      useBuiltIns: 'entry',
-    }],
-    '@babel/preset-react',
-  ],
-};
+import gql from 'graphql-tag';
+
+export const LOG_IN = gql`
+  mutation LogIn($personalNumber: String!) {
+    logIn(personalNumber: $personalNumber) {
+      token
+    }
+  }
+`;
+
+export const LOG_OUT = gql`
+  mutation LogOut {
+    logOut
+  }
+`;
