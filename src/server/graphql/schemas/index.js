@@ -32,4 +32,7 @@ const root = gql`
   }
 `;
 
-module.exports = [root, token];
+module.exports = [
+  root,
+  token,
+];
