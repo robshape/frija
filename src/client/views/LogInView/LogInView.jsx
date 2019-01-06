@@ -26,6 +26,7 @@ import Form from './components/Form';
 import Heading from './components/Heading';
 import Loader from './components/Loader';
 import NumberInput from './components/NumberInput';
+import styles from './styles.scss';
 import Subheading from './components/Subheading';
 
 class LogInView extends React.PureComponent {
@@ -81,6 +82,8 @@ class LogInView extends React.PureComponent {
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.onNumberInputBlur = this.onNumberInputBlur.bind(this);
     this.onNumberInputChange = this.onNumberInputChange.bind(this);
+    this.renderForm = this.renderForm.bind(this);
+    this.renderLoader = this.renderLoader.bind(this);
     this.saveToken = this.saveToken.bind(this);
     this.validationStatus = this.validationStatus.bind(this);
 
@@ -165,11 +168,11 @@ class LogInView extends React.PureComponent {
     return 'validating';
   }
 
-  renderView() {
+  renderForm() {
     const validationStatus = this.validationStatus();
 
     return (
-      <div>
+      <React.Fragment>
         <Heading>
           Hej,
         </Heading>
@@ -189,18 +192,35 @@ class LogInView extends React.PureComponent {
             validationText="Ange ett giltig personnummer."
           />
         </Form>
-      </div>
+      </React.Fragment>
+    );
+  }
+
+  renderLoader() {
+    const { isLoading } = this.state;
+
+    if (!isLoading) {
+      return null;
+    }
+
+    return (
+      <Loader>
+        Väntar på svar från BankID... Vänligen starta BankID-appen i din mobila enhet.
+      </Loader>
     );
   }
 
   render() {
-    const { isLoading } = this.state;
-
-    if (isLoading) {
-      return <Loader />;
+    let view = this.renderLoader();
+    if (!view) {
+      view = this.renderForm();
     }
 
-    return this.renderView();
+    return (
+      <div className={styles.logInView}>
+        {view}
+      </div>
+    );
   }
 }
 
