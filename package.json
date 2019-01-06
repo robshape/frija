@@ -41,7 +41,7 @@
     "build:ethereum": "(cd ./src/ethereum/ && truffle compile --all)",
     "clean:cache": "rm -fr .cache-loader/",
     "deploy:ethereum": "(cd ./src/ethereum/ && truffle migrate --reset)",
-    "install:certificate": "./scripts/install-certificate.sh",
+    "install:certificate": "openssl req -keyout server.key -new -nodes -out server.crt -subj \"/CN=localhost\" -x509",
     "install:client": "npm install --prefix ./src/client/",
     "install:server": "npm install --prefix ./src/server/",
     "lint": "npm run lint:js && npm run lint:sass && npm run lint:sol",

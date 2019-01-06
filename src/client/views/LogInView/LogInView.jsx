@@ -21,6 +21,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import { CONSTANTS } from '../../utils/enums';
 import Form from './components/Form';
 import Heading from './components/Heading';
 import Loader from './components/Loader';
@@ -80,6 +81,7 @@ class LogInView extends React.PureComponent {
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.onNumberInputBlur = this.onNumberInputBlur.bind(this);
     this.onNumberInputChange = this.onNumberInputChange.bind(this);
+    this.saveToken = this.saveToken.bind(this);
     this.validationStatus = this.validationStatus.bind(this);
 
     this.state = {
@@ -100,11 +102,13 @@ class LogInView extends React.PureComponent {
     this.setState({
       isLoading: true,
     }, async () => {
-      await logIn({
+      const response = await logIn({
         variables: {
           personalNumber,
         },
       });
+
+      this.saveToken(response);
 
       this.setState({
         isLoading: false,
@@ -132,6 +136,18 @@ class LogInView extends React.PureComponent {
     return this.setState({
       personalNumber: value,
       showValidationError: false,
+    });
+  }
+
+  saveToken({ data }) {
+    const { client } = this.props;
+
+    sessionStorage.setItem(CONSTANTS.SESSION_STORAGE_KEY_NAME_TOKEN, data.logIn.token);
+
+    client.writeData({
+      data: {
+        isAuthenticated: true,
+      },
     });
   }
 
@@ -189,6 +205,9 @@ class LogInView extends React.PureComponent {
 }
 
 LogInView.propTypes = {
+  client: PropTypes.shape({
+    writeData: PropTypes.func,
+  }).isRequired,
   logIn: PropTypes.func.isRequired,
 };
 

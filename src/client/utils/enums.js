@@ -18,14 +18,6 @@
 
 */
 
-import { compose, graphql, withApollo } from 'react-apollo';
-
-import { LOG_IN } from '../../graphql/mutations/token';
-import LogInView from './LogInView';
-
-export default compose(
-  graphql(LOG_IN, {
-    name: 'logIn',
-  }),
-  withApollo,
-)(LogInView);
+export const CONSTANTS = Object.freeze({
+  SESSION_STORAGE_KEY_NAME_TOKEN: 'token',
+});

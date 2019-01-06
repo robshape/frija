@@ -22,12 +22,26 @@ import { ApolloClient } from 'apollo-client';
 import { ApolloLink } from 'apollo-link';
 import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
+import { setContext } from 'apollo-link-context';
 
-export default ({ graphqlEndpoint }) => {
+import { CONSTANTS } from '../utils/enums';
+
+const authLink = setContext(() => {
+  const token = sessionStorage.getItem(CONSTANTS.SESSION_STORAGE_KEY_NAME_TOKEN);
+
+  return {
+    headers: {
+      authorization: token || '',
+    },
+  };
+});
+
+const configureGraphQL = ({ graphqlEndpoint }) => {
   const apollo = new ApolloClient({
     cache: new InMemoryCache(),
 
     link: ApolloLink.from([
+      authLink,
       new HttpLink({
         uri: graphqlEndpoint,
       }),
@@ -36,3 +50,5 @@ export default ({ graphqlEndpoint }) => {
 
   return apollo;
 };
+
+export default configureGraphQL;
