@@ -189,7 +189,6 @@ class LogInView extends React.PureComponent {
             onBlur={this.onNumberInputBlur}
             onChange={this.onNumberInputChange}
             placeholder="ååååmmddxxxx"
-            type="number"
             validationStatus={validationStatus}
             validationText="Ange ett giltig personnummer."
           />

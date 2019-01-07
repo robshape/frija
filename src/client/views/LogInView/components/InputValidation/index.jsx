@@ -28,13 +28,13 @@ const InputValidation = React.memo(({ children, status }) => {
   const isVisible = status === 'error';
 
   return (
-    <div className={classNames({
+    <p className={classNames({
       [`${styles.inputValidation}`]: true,
       [`${styles.inputValidationVISIBLE}`]: isVisible,
     })}
     >
       {children}
-    </div>
+    </p>
   );
 });
 
