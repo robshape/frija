@@ -18,20 +18,6 @@
 
 */
 
-@mixin animation-bounce() {
-  animation: bounce 250ms ease 2 alternate;
-
-  @keyframes bounce {
-    0% {
-      transform: translateY(0);
-    }
-
-    100% {
-      transform: translateY(-15px);
-    }
-  }
-}
-
 @mixin animation-pop() {
   animation: pop 250ms ease;
 

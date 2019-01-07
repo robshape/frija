@@ -39,7 +39,7 @@
   }
 
   &__iconCheck {
-    @include animation-bounce();
+    @include animation-pop();
 
     color: $color-green;
   }
