@@ -18,8 +18,7 @@
 
 */
 
-export const CONSTANTS = Object.freeze({
-  REACT_ROUTER_PATH_AUTH: '/auth',
-  REACT_ROUTER_PATH_HOME: '/',
-  SESSION_STORAGE_KEY_NAME_TOKEN: 'token',
-});
+// Default values for local state management in client.
+export default {
+  isAuthenticated: false,
+};

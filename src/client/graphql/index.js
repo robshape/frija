@@ -23,7 +23,9 @@ import { ApolloLink } from 'apollo-link';
 import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { setContext } from 'apollo-link-context';
+import { withClientState } from 'apollo-link-state';
 
+import clientState from './client-state';
 import { CONSTANTS } from '../utils/enums';
 
 const authLink = setContext(() => {
@@ -36,12 +38,20 @@ const authLink = setContext(() => {
   };
 });
 
+const cache = new InMemoryCache();
+
+const stateLink = withClientState({
+  cache,
+  defaults: clientState,
+});
+
 const configureGraphQL = ({ graphqlEndpoint }) => {
   const apollo = new ApolloClient({
-    cache: new InMemoryCache(),
+    cache,
 
     link: ApolloLink.from([
       authLink,
+      stateLink,
       new HttpLink({
         uri: graphqlEndpoint,
       }),

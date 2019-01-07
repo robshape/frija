@@ -18,8 +18,10 @@
 
 */
 
-export const CONSTANTS = Object.freeze({
-  REACT_ROUTER_PATH_AUTH: '/auth',
-  REACT_ROUTER_PATH_HOME: '/',
-  SESSION_STORAGE_KEY_NAME_TOKEN: 'token',
-});
+import gql from 'graphql-tag';
+
+export const IS_AUTHENTICATED = gql`
+  query IsAuthenticated {
+    isAuthenticated @client
+  }
+`;

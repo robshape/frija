@@ -25,6 +25,7 @@ const webpack = require('webpack');
 
 module.exports = {
   devServer: {
+    historyApiFallback: true,
     hot: true,
   },
 
@@ -91,12 +92,13 @@ module.exports = {
 
   resolve: {
     extensions: [
+      '.mjs', // Used by 'graphql' dependency.
       '.js',
       '.jsx',
     ],
     modules: [
       path.resolve(__dirname, './src/client/node_modules/'),
-      path.resolve(__dirname, './node_modules/'), // webpack-dev-server modules.
+      path.resolve(__dirname, './node_modules/'), // Used by 'webpack-dev-server' dependency.
     ],
   },
 };

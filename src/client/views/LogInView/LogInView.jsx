@@ -20,6 +20,7 @@
 
 import PropTypes from 'prop-types';
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 
 import { CONSTANTS } from '../../utils/enums';
 import Form from './components/Form';
@@ -83,14 +84,14 @@ class LogInView extends React.PureComponent {
     this.onNumberInputBlur = this.onNumberInputBlur.bind(this);
     this.onNumberInputChange = this.onNumberInputChange.bind(this);
     this.renderForm = this.renderForm.bind(this);
-    this.renderLoader = this.renderLoader.bind(this);
     this.saveToken = this.saveToken.bind(this);
     this.validationStatus = this.validationStatus.bind(this);
 
     this.state = {
+      isAuthenticated: false,
       isLoading: false,
       personalNumber: '',
-      showValidationError: false,
+      showError: false,
     };
   }
 
@@ -114,6 +115,7 @@ class LogInView extends React.PureComponent {
       this.saveToken(response);
 
       this.setState({
+        isAuthenticated: true,
         isLoading: false,
       });
     });
@@ -124,7 +126,7 @@ class LogInView extends React.PureComponent {
 
     if (!personalNumber) {
       this.setState({
-        showValidationError: true,
+        showError: true,
       });
     }
   }
@@ -138,7 +140,7 @@ class LogInView extends React.PureComponent {
 
     return this.setState({
       personalNumber: value,
-      showValidationError: false,
+      showError: false,
     });
   }
 
@@ -155,13 +157,13 @@ class LogInView extends React.PureComponent {
   }
 
   validationStatus() {
-    const { personalNumber, showValidationError } = this.state;
+    const { personalNumber, showError } = this.state;
 
     if (personalNumber) {
       return 'success';
     }
 
-    if (showValidationError) {
+    if (showError) {
       return 'error';
     }
 
@@ -172,7 +174,7 @@ class LogInView extends React.PureComponent {
     const validationStatus = this.validationStatus();
 
     return (
-      <React.Fragment>
+      <div className={styles.logInView}>
         <Heading>
           Hej,
         </Heading>
@@ -192,41 +194,34 @@ class LogInView extends React.PureComponent {
             validationText="Ange ett giltig personnummer."
           />
         </Form>
-      </React.Fragment>
-    );
-  }
-
-  renderLoader() {
-    const { isLoading } = this.state;
-
-    if (!isLoading) {
-      return null;
-    }
-
-    return (
-      <Loader>
-        Väntar på svar från BankID... Vänligen starta BankID-appen i din mobila enhet.
-      </Loader>
+      </div>
     );
   }
 
   render() {
-    let view = this.renderLoader();
-    if (!view) {
-      view = this.renderForm();
+    const { isAuthenticated, isLoading } = this.state;
+
+    if (isAuthenticated) {
+      return <Redirect to={CONSTANTS.REACT_ROUTER_PATH_HOME} />;
     }
 
-    return (
-      <div className={styles.logInView}>
-        {view}
-      </div>
-    );
+    if (isLoading) {
+      return (
+        <div className={styles.logInView}>
+          <Loader>
+            Väntar på svar från BankID... Vänligen starta BankID-appen i din mobila enhet.
+          </Loader>
+        </div>
+      );
+    }
+
+    return this.renderForm();
   }
 }
 
 LogInView.propTypes = {
   client: PropTypes.shape({
-    writeData: PropTypes.func,
+    writeData: PropTypes.func.isRequired,
   }).isRequired,
   logIn: PropTypes.func.isRequired,
 };

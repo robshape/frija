@@ -17,7 +17,11 @@ exports[`<App /> should render 1`] = `
           "resultCaching": true,
         },
         "data": DepTrackingCache {
-          "data": Object {},
+          "data": Object {
+            "ROOT_QUERY": Object {
+              "isAuthenticated": false,
+            },
+          },
           "depend": [Function],
         },
         "maybeBroadcastWatch": [Function],
@@ -39,7 +43,106 @@ exports[`<App /> should render 1`] = `
           },
         },
         "storeWriter": StoreWriter {},
-        "typenameDocumentCache": Map {},
+        "typenameDocumentCache": Map {
+          Object {
+            "definitions": Array [
+              Object {
+                "kind": "OperationDefinition",
+                "name": Object {
+                  "kind": "Name",
+                  "value": "GeneratedClientQuery",
+                },
+                "operation": "query",
+                "selectionSet": Object {
+                  "kind": "SelectionSet",
+                  "selections": Array [
+                    Object {
+                      "kind": "Field",
+                      "name": Object {
+                        "kind": "Name",
+                        "value": "isAuthenticated",
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            "kind": "Document",
+          } => Object {
+            "definitions": Array [
+              Object {
+                "kind": "OperationDefinition",
+                "name": Object {
+                  "kind": "Name",
+                  "value": "GeneratedClientQuery",
+                },
+                "operation": "query",
+                "selectionSet": Object {
+                  "kind": "SelectionSet",
+                  "selections": Array [
+                    Object {
+                      "kind": "Field",
+                      "name": Object {
+                        "kind": "Name",
+                        "value": "isAuthenticated",
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            "kind": "Document",
+          },
+          Object {
+            "definitions": Array [
+              Object {
+                "kind": "OperationDefinition",
+                "name": Object {
+                  "kind": "Name",
+                  "value": "GeneratedClientQuery",
+                },
+                "operation": "query",
+                "selectionSet": Object {
+                  "kind": "SelectionSet",
+                  "selections": Array [
+                    Object {
+                      "kind": "Field",
+                      "name": Object {
+                        "kind": "Name",
+                        "value": "isAuthenticated",
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            "kind": "Document",
+          } => Object {
+            "definitions": Array [
+              Object {
+                "kind": "OperationDefinition",
+                "name": Object {
+                  "kind": "Name",
+                  "value": "GeneratedClientQuery",
+                },
+                "operation": "query",
+                "selectionSet": Object {
+                  "kind": "SelectionSet",
+                  "selections": Array [
+                    Object {
+                      "kind": "Field",
+                      "name": Object {
+                        "kind": "Name",
+                        "value": "isAuthenticated",
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            "kind": "Document",
+          },
+        },
         "watches": Set {},
       },
       "clientAwareness": Object {},
@@ -69,7 +172,11 @@ exports[`<App /> should render 1`] = `
             "resultCaching": true,
           },
           "data": DepTrackingCache {
-            "data": Object {},
+            "data": Object {
+              "ROOT_QUERY": Object {
+                "isAuthenticated": false,
+              },
+            },
             "depend": [Function],
           },
           "maybeBroadcastWatch": [Function],
@@ -91,7 +198,106 @@ exports[`<App /> should render 1`] = `
             },
           },
           "storeWriter": StoreWriter {},
-          "typenameDocumentCache": Map {},
+          "typenameDocumentCache": Map {
+            Object {
+              "definitions": Array [
+                Object {
+                  "kind": "OperationDefinition",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "GeneratedClientQuery",
+                  },
+                  "operation": "query",
+                  "selectionSet": Object {
+                    "kind": "SelectionSet",
+                    "selections": Array [
+                      Object {
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "isAuthenticated",
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+              "kind": "Document",
+            } => Object {
+              "definitions": Array [
+                Object {
+                  "kind": "OperationDefinition",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "GeneratedClientQuery",
+                  },
+                  "operation": "query",
+                  "selectionSet": Object {
+                    "kind": "SelectionSet",
+                    "selections": Array [
+                      Object {
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "isAuthenticated",
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+              "kind": "Document",
+            },
+            Object {
+              "definitions": Array [
+                Object {
+                  "kind": "OperationDefinition",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "GeneratedClientQuery",
+                  },
+                  "operation": "query",
+                  "selectionSet": Object {
+                    "kind": "SelectionSet",
+                    "selections": Array [
+                      Object {
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "isAuthenticated",
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+              "kind": "Document",
+            } => Object {
+              "definitions": Array [
+                Object {
+                  "kind": "OperationDefinition",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "GeneratedClientQuery",
+                  },
+                  "operation": "query",
+                  "selectionSet": Object {
+                    "kind": "SelectionSet",
+                    "selections": Array [
+                      Object {
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "isAuthenticated",
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+              "kind": "Document",
+            },
+          },
           "watches": Set {},
         },
       },
@@ -113,7 +319,17 @@ exports[`<App /> should render 1`] = `
           }
         }
         exact={true}
-        path="/"
+        path="/auth"
+      />
+      <Apollo(PrivateRoute)
+        component={
+          Object {
+            "$$typeof": Symbol(react.memo),
+            "compare": null,
+            "type": [Function],
+          }
+        }
+        path="*"
       />
     </BrowserRouter>
   </div>

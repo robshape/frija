@@ -18,8 +18,14 @@
 
 */
 
-export const CONSTANTS = Object.freeze({
-  REACT_ROUTER_PATH_AUTH: '/auth',
-  REACT_ROUTER_PATH_HOME: '/',
-  SESSION_STORAGE_KEY_NAME_TOKEN: 'token',
-});
+import React from 'react';
+
+import styles from './styles.scss';
+
+export default React.memo(() => (
+  <div className={styles.homeScene}>
+    <p>
+      Välkommen till Frija.
+    </p>
+  </div>
+));

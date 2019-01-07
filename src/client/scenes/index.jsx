@@ -27,6 +27,9 @@ import React from 'react';
 
 import AuthScene from './AuthScene';
 import configureGraphQL from '../graphql';
+import { CONSTANTS } from '../utils/enums';
+import HomeScene from './HomeScene';
+import PrivateRoute from '../components/PrivateRoute';
 import styles from './styles.scss';
 
 class App extends React.PureComponent {
@@ -61,12 +64,17 @@ class App extends React.PureComponent {
   render() {
     const { client } = this.state;
 
+    if (!Object.keys(client).length) {
+      return null;
+    }
+
     return (
       <ApolloProvider client={client}>
         <div className={styles.app}>
           <BrowserRouter>
 
-            <Route component={AuthScene} exact path="/" />
+            <Route component={AuthScene} exact path={CONSTANTS.REACT_ROUTER_PATH_AUTH} />
+            <PrivateRoute component={HomeScene} path="*" />
 
           </BrowserRouter>
         </div>
