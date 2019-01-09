@@ -80,6 +80,7 @@ class LogInView extends React.PureComponent {
   constructor() {
     super();
 
+    this.getToken = this.getToken.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.onNumberInputBlur = this.onNumberInputBlur.bind(this);
     this.onNumberInputChange = this.onNumberInputChange.bind(this);
@@ -96,7 +97,6 @@ class LogInView extends React.PureComponent {
   }
 
   async onFormSubmit() {
-    const { logIn } = this.props;
     const { personalNumber } = this.state;
 
     if (!personalNumber) {
@@ -105,20 +105,7 @@ class LogInView extends React.PureComponent {
 
     this.setState({
       isLoading: true,
-    }, async () => {
-      const response = await logIn({
-        variables: {
-          personalNumber,
-        },
-      });
-
-      this.saveToken(response);
-
-      this.setState({
-        isAuthenticated: true,
-        isLoading: false,
-      });
-    });
+    }, this.getToken);
   }
 
   onNumberInputBlur() {
@@ -141,6 +128,24 @@ class LogInView extends React.PureComponent {
     return this.setState({
       personalNumber: value,
       showError: false,
+    });
+  }
+
+  async getToken() {
+    const { logIn } = this.props;
+    const { personalNumber } = this.state;
+
+    const response = await logIn({
+      variables: {
+        personalNumber,
+      },
+    });
+
+    this.saveToken(response);
+
+    this.setState({
+      isAuthenticated: true,
+      isLoading: false,
     });
   }
 
