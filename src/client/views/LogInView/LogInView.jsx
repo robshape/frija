@@ -213,7 +213,7 @@ class LogInView extends React.PureComponent {
       return (
         <div className={styles.logInView}>
           <Loader>
-            Väntar på svar från BankID... Vänligen starta BankID-appen i din mobila enhet.
+            Väntar på svar från Mobilt BankID... Vänligen starta BankID-appen i din mobila enhet.
           </Loader>
         </div>
       );
