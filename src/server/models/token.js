@@ -20,11 +20,21 @@
 
 const jwt = require('jsonwebtoken');
 
-const sign = (options) => {
+const AES = require('../utils/aes');
+
+const sign = (id, options) => {
   const { expiresIn, secret } = options;
 
-  const token = jwt.sign({
+  const data = JSON.stringify({
     date: Date.now(),
+    id,
+  });
+
+  const aes = new AES();
+  const encryptedData = aes.encrypt(data, secret);
+
+  const token = jwt.sign({
+    data: encryptedData,
   }, secret, {
     expiresIn,
   });
@@ -42,6 +52,9 @@ const verify = (token, options) => {
     maxAge: expiresIn,
   });
 
+  // const aes = new AES();
+  // const decryptedData = aes.decrypt(payload.data, secret);
+
   return payload;
 };
 
@@ -55,11 +68,13 @@ const isAuthenticated = (ctx, tokenOptions) => {
 };
 
 const logIn = (user, tokenOptions) => {
-  if (!user.name) {
+  const { name, personalNumber } = user;
+
+  if (!name) {
     throw new Error('logIn() error!');
   }
 
-  const token = sign(tokenOptions);
+  const token = sign(personalNumber, tokenOptions);
 
   return {
     token,
