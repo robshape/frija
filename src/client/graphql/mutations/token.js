@@ -20,9 +20,9 @@
 
 import gql from 'graphql-tag';
 
-export const LOG_IN = gql`
-  mutation LogIn($personalNumber: String!) {
-    logIn(personalNumber: $personalNumber) {
+export const AUTHENTICATE = gql`
+  mutation Authenticate($personalNumber: String!) {
+    authenticate(personalNumber: $personalNumber) {
       token
     }
   }

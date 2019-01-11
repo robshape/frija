@@ -20,12 +20,12 @@
 
 import { compose, graphql, withApollo } from 'react-apollo';
 
-import { LOG_IN } from '../../graphql/mutations/token';
+import { AUTHENTICATE } from '../../graphql/mutations/token';
 import LogInView from './LogInView';
 
 export default compose(
-  graphql(LOG_IN, {
-    name: 'logIn',
+  graphql(AUTHENTICATE, {
+    name: 'authenticate',
   }),
   withApollo,
 )(LogInView);

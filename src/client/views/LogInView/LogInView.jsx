@@ -132,10 +132,10 @@ class LogInView extends React.PureComponent {
   }
 
   async getToken() {
-    const { logIn } = this.props;
+    const { authenticate } = this.props;
     const { personalNumber } = this.state;
 
-    const response = await logIn({
+    const response = await authenticate({
       variables: {
         personalNumber,
       },
@@ -152,7 +152,7 @@ class LogInView extends React.PureComponent {
   saveToken({ data }) {
     const { client } = this.props;
 
-    sessionStorage.setItem(CONSTANTS.SESSION_STORAGE_KEY_NAME_TOKEN, data.logIn.token);
+    sessionStorage.setItem(CONSTANTS.SESSION_STORAGE_KEY_NAME_TOKEN, data.authenticate.token);
 
     client.writeData({
       data: {
@@ -224,10 +224,10 @@ class LogInView extends React.PureComponent {
 }
 
 LogInView.propTypes = {
+  authenticate: PropTypes.func.isRequired,
   client: PropTypes.shape({
     writeData: PropTypes.func.isRequired,
   }).isRequired,
-  logIn: PropTypes.func.isRequired,
 };
 
 export default LogInView;

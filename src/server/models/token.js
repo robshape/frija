@@ -58,20 +58,11 @@ const verify = (token, options) => {
   return payload;
 };
 
-const isAuthenticated = (ctx, tokenOptions) => {
-  const token = ctx.header.authorization;
-
-  return !!(
-    token
-    && verify(token, tokenOptions)
-  );
-};
-
-const logIn = (user, tokenOptions) => {
+const authenticate = (user, tokenOptions) => {
   const { name, personalNumber } = user;
 
   if (!name) {
-    throw new Error('logIn() error!');
+    throw new Error('authenticate() error!');
   }
 
   const token = sign(personalNumber, tokenOptions);
@@ -81,7 +72,29 @@ const logIn = (user, tokenOptions) => {
   };
 };
 
+const isAuthenticated = (ctx, tokenOptions) => {
+  const token = ctx.header.authorization;
+
+  return !!(
+    token
+    && verify(token, tokenOptions)
+  );
+};
+
+const validate = (token, tokenOptions) => {
+  let isValid = false;
+
+  try {
+    isValid = !!verify(token, tokenOptions);
+  } catch (error) {
+    isValid = false;
+  }
+
+  return isValid;
+};
+
 module.exports = {
+  authenticate,
   isAuthenticated,
-  logIn,
+  validate,
 };

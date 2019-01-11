@@ -20,14 +20,19 @@
 
 module.exports = {
   Mutation: {
-    async logIn(_, args, context) {
+    async authenticate(_, args, context) {
       const { models, tokenOptions } = context;
       const { personalNumber } = args;
 
       const user = await models.user.getByPersonalNumber(personalNumber);
-      const token = models.token.logIn(user, tokenOptions);
+      return models.token.authenticate(user, tokenOptions);
+    },
 
-      return token;
+    validate(_, args, context) {
+      const { models, tokenOptions } = context;
+      const { token } = args;
+
+      return models.token.validate(token, tokenOptions);
     },
   },
 };
