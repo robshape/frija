@@ -20,7 +20,7 @@
 
 module.exports = {
   Mutation: {
-    logIn: async (_, args, context) => {
+    async logIn(_, args, context) {
       const { models, tokenOptions } = context;
       const { personalNumber } = args;
 

@@ -31,7 +31,7 @@ module.exports = class AES {
   decrypt(data, password) {
     const { iterationCount, keyLength } = this.options;
 
-    const [ciphertext64, iv64, salt64] = data.split(',');
+    const [ciphertext64, iv64, salt64] = data.split('.');
 
     const ciphertext = forge.util.decode64(ciphertext64);
     const buffer = forge.util.createBuffer(ciphertext);
@@ -71,6 +71,6 @@ module.exports = class AES {
     const ciphertext64 = forge.util.encode64(ciphertext);
     const iv64 = forge.util.encode64(iv);
     const salt64 = forge.util.encode64(salt);
-    return `${ciphertext64},${iv64},${salt64}`;
+    return `${ciphertext64}.${iv64}.${salt64}`;
   }
 };

@@ -28,11 +28,13 @@ module.exports = (app, config) => {
   const { token: tokenOptions } = config;
 
   const apollo = new ApolloServer({
-    context: ({ ctx }) => ({
-      isAuthenticated: models.token.isAuthenticated(ctx, tokenOptions),
-      models,
-      tokenOptions,
-    }),
+    context({ ctx }) {
+      return {
+        isAuthenticated: models.token.isAuthenticated(ctx, tokenOptions),
+        models,
+        tokenOptions,
+      };
+    },
     resolvers,
     typeDefs: schemas,
   });
