@@ -32,7 +32,7 @@
     "stylelint-scss": "3.4.4",
     "truffle": "5.0.1",
     "uuid": "3.3.2",
-    "webpack": "4.28.3",
+    "webpack": "4.28.4",
     "webpack-cli": "3.2.1",
     "webpack-dev-server": "3.1.14"
   },
