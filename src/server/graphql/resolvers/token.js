@@ -27,7 +27,9 @@ module.exports = {
       const user = await models.user.getByPersonalNumber(personalNumber);
       return models.token.authenticate(user, tokenOptions);
     },
+  },
 
+  Query: {
     validate(_, args, context) {
       const { models, tokenOptions } = context;
       const { token } = args;

@@ -27,6 +27,9 @@ module.exports = gql`
 
   extend type Mutation {
     authenticate(personalNumber: String!): Token!
+  }
+
+  extend type Query {
     validate(token: String!): Boolean!
   }
 `;

@@ -85,11 +85,9 @@ class LogInView extends React.PureComponent {
     this.onNumberInputBlur = this.onNumberInputBlur.bind(this);
     this.onNumberInputChange = this.onNumberInputChange.bind(this);
     this.renderForm = this.renderForm.bind(this);
-    this.saveToken = this.saveToken.bind(this);
     this.validationStatus = this.validationStatus.bind(this);
 
     this.state = {
-      isAuthenticated: false,
       isLoading: false,
       personalNumber: '',
       showError: false,
@@ -132,7 +130,7 @@ class LogInView extends React.PureComponent {
   }
 
   async getToken() {
-    const { authenticate } = this.props;
+    const { authenticate, client } = this.props;
     const { personalNumber } = this.state;
 
     const response = await authenticate({
@@ -141,18 +139,10 @@ class LogInView extends React.PureComponent {
       },
     });
 
-    this.saveToken(response);
-
-    this.setState({
-      isAuthenticated: true,
-      isLoading: false,
-    });
-  }
-
-  saveToken({ data }) {
-    const { client } = this.props;
-
-    sessionStorage.setItem(CONSTANTS.SESSION_STORAGE_KEY_NAME_TOKEN, data.authenticate.token);
+    sessionStorage.setItem(
+      CONSTANTS.SESSION_STORAGE_KEY_NAME_TOKEN,
+      response.data.authenticate.token,
+    );
 
     client.writeData({
       data: {
@@ -203,9 +193,10 @@ class LogInView extends React.PureComponent {
   }
 
   render() {
-    const { isAuthenticated, isLoading } = this.state;
+    const { data } = this.props;
+    const { isLoading } = this.state;
 
-    if (isAuthenticated) {
+    if (data.isAuthenticated) {
       return <Redirect to={CONSTANTS.REACT_ROUTER_PATH_HOME} />;
     }
 
@@ -227,6 +218,9 @@ LogInView.propTypes = {
   authenticate: PropTypes.func.isRequired,
   client: PropTypes.shape({
     writeData: PropTypes.func.isRequired,
+  }).isRequired,
+  data: PropTypes.shape({
+    isAuthenticated: PropTypes.bool.isRequired,
   }).isRequired,
 };
 

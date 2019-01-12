@@ -21,11 +21,13 @@
 import { compose, graphql, withApollo } from 'react-apollo';
 
 import { AUTHENTICATE } from '../../graphql/mutations/token';
+import { IS_AUTHENTICATED } from '../../graphql/queries/client';
 import LogInView from './LogInView';
 
 export default compose(
   graphql(AUTHENTICATE, {
     name: 'authenticate',
   }),
+  graphql(IS_AUTHENTICATED),
   withApollo,
 )(LogInView);
