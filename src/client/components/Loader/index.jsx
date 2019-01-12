@@ -18,27 +18,27 @@
 
 */
 
-@import '../../../../styles/animations';
-@import '../../../../styles/colors';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-.loader {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
+import styles from './styles.scss';
 
-  &__spinner {
-    @include animation-spin();
+const Loader = React.memo(({ children }) => (
+  <div className={styles.loader}>
+    <div className={styles.loader__spinner} />
 
-    border: 12px solid $color-white;
-    border-radius: 50%;
-    border-top-color: $color-black;
-    height: 32px;
-    width: 32px;
-  }
+    <p className={styles.loader__text}>
+      {children}
+    </p>
+  </div>
+));
 
-  &__text {
-    font-size: 0.875rem;
-    margin-top: 16px;
-    text-align: center;
-  }
-}
+Loader.defaultProps = {
+  children: '',
+};
+
+Loader.propTypes = {
+  children: PropTypes.string,
+};
+
+export default Loader;

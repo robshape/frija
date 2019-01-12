@@ -20,9 +20,9 @@
 
 import { compose, graphql } from 'react-apollo';
 
-import { IS_AUTHENTICATED } from '../../graphql/queries/client';
+import { IS_AUTHENTICATED_QUERY } from '../../graphql/queries/client';
 import PrivateRoute from './PrivateRoute';
 
 export default compose(
-  graphql(IS_AUTHENTICATED),
+  graphql(IS_AUTHENTICATED_QUERY),
 )(PrivateRoute);

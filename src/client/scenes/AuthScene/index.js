@@ -1,7 +1,7 @@
 /*
 
   Frija - The Swedish general election and Riksdag on the Ethereum blockchain.
-  Copyright (C) 2018 Frija contributors.
+  Copyright (C) 2019 Frija contributors.
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -18,13 +18,12 @@
 
 */
 
-import React from 'react';
+import { compose, graphql, withApollo } from 'react-apollo';
 
-import LogInView from '../../views/LogInView';
-import styles from './styles.scss';
+import AuthScene from './AuthScene';
+import { IS_AUTHENTICATED_QUERY } from '../../graphql/queries/client';
 
-export default React.memo(() => (
-  <div className={styles.authScene}>
-    <LogInView />
-  </div>
-));
+export default compose(
+  graphql(IS_AUTHENTICATED_QUERY),
+  withApollo,
+)(AuthScene);

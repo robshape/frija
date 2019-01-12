@@ -18,10 +18,27 @@
 
 */
 
-import gql from 'graphql-tag';
+@import '../../styles/animations';
+@import '../../styles/colors';
 
-export const IS_AUTHENTICATED_QUERY = gql`
-  query IsAuthenticated {
-    isAuthenticated @client
+.loader {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+
+  &__spinner {
+    @include animation-spin();
+
+    border: 12px solid $color-white;
+    border-radius: 50%;
+    border-top-color: $color-black;
+    height: 32px;
+    width: 32px;
   }
-`;
+
+  &__text {
+    font-size: 0.875rem;
+    margin-top: 16px;
+    text-align: center;
+  }
+}

@@ -50,8 +50,8 @@ const configureGraphQL = ({ graphqlEndpoint }) => {
     cache,
 
     link: ApolloLink.from([
-      authLink,
       stateLink,
+      authLink,
       new HttpLink({
         uri: graphqlEndpoint,
       }),

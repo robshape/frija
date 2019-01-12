@@ -19,7 +19,7 @@
 */
 
 import { ApolloProvider } from 'react-apollo';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import { faCheck, faExclamation } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import PropTypes from 'prop-types';
@@ -72,10 +72,13 @@ class App extends React.PureComponent {
       <ApolloProvider client={client}>
         <div className={styles.app}>
           <BrowserRouter>
+            <Switch>
 
-            <Route component={AuthScene} exact path={CONSTANTS.REACT_ROUTER_PATH_AUTH} />
-            <PrivateRoute component={HomeScene} path="*" />
+              <PrivateRoute component={HomeScene} exact path={CONSTANTS.REACT_ROUTER_PATH_HOME} />
+              <Route component={AuthScene} exact path={CONSTANTS.REACT_ROUTER_PATH_AUTH} />
+              <Redirect to={CONSTANTS.REACT_ROUTER_PATH_HOME} />
 
+            </Switch>
           </BrowserRouter>
         </div>
       </ApolloProvider>

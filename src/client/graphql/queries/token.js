@@ -18,23 +18,10 @@
 
 */
 
-import PropTypes from 'prop-types';
-import React from 'react';
+import gql from 'graphql-tag';
 
-import styles from './styles.scss';
-
-const Loader = React.memo(({ children }) => (
-  <div className={styles.loader}>
-    <div className={styles.loader__spinner} />
-
-    <p className={styles.loader__text}>
-      {children}
-    </p>
-  </div>
-));
-
-Loader.propTypes = {
-  children: PropTypes.string.isRequired,
-};
-
-export default Loader;
+export const VALIDATE_QUERY = gql`
+  query Validate($token: String!) {
+    validate(token: $token)
+  }
+`;

@@ -25,7 +25,7 @@ import { Redirect } from 'react-router-dom';
 import { CONSTANTS } from '../../utils/enums';
 import Form from './components/Form';
 import Heading from './components/Heading';
-import Loader from './components/Loader';
+import Loader from '../../components/Loader';
 import NumberInput from './components/NumberInput';
 import styles from './styles.scss';
 import Subheading from './components/Subheading';
@@ -133,7 +133,7 @@ class LogInView extends React.PureComponent {
     const { authenticate, client } = this.props;
     const { personalNumber } = this.state;
 
-    const response = await authenticate({
+    const { data } = await authenticate({
       variables: {
         personalNumber,
       },
@@ -141,7 +141,7 @@ class LogInView extends React.PureComponent {
 
     sessionStorage.setItem(
       CONSTANTS.SESSION_STORAGE_KEY_NAME_TOKEN,
-      response.data.authenticate.token,
+      data.authenticate.token,
     );
 
     client.writeData({

@@ -20,7 +20,7 @@
 
 import gql from 'graphql-tag';
 
-export const AUTHENTICATE = gql`
+export const AUTHENTICATE_MUTATION = gql`
   mutation Authenticate($personalNumber: String!) {
     authenticate(personalNumber: $personalNumber) {
       token
