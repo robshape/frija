@@ -24,14 +24,14 @@ import { Redirect } from 'react-router-dom';
 
 import { CONSTANTS } from '../../utils/enums';
 import Loader from '../../components/Loader';
-import LogInView from '../../views/LogInView';
+import LogInView from '../../containers/LogInView';
 import styles from './styles.scss';
 import { VALIDATE_QUERY } from '../../graphql/queries/token';
 
 class AuthScene extends React.PureComponent {
   static decodeTokenPayload(token) {
-    const payload64 = token.split('.')[1];
-    const payload = atob(payload64);
+    const encodedPayload = token.split('.')[1];
+    const payload = atob(encodedPayload);
     return JSON.parse(payload);
   }
 

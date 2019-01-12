@@ -31,16 +31,16 @@ module.exports = class AES {
   decrypt(data, password) {
     const { iterationCount, keyLength } = this.options;
 
-    const [ciphertext64, iv64, salt64] = data.split('.');
+    const [encodedCiphertext, encodedIv, encodedSalt] = data.split('.');
 
-    const ciphertext = forge.util.decode64(ciphertext64);
+    const ciphertext = forge.util.decode64(encodedCiphertext);
     const buffer = forge.util.createBuffer(ciphertext);
 
-    const salt = forge.util.decode64(salt64);
+    const salt = forge.util.decode64(encodedSalt);
     const key = forge.pkcs5.pbkdf2(password, salt, iterationCount, keyLength);
 
     const decipher = forge.cipher.createDecipher('AES-CBC', key);
-    const iv = forge.util.decode64(iv64);
+    const iv = forge.util.decode64(encodedIv);
     decipher.start({
       iv,
     });
@@ -68,9 +68,9 @@ module.exports = class AES {
 
     const ciphertext = cipher.output.getBytes();
 
-    const ciphertext64 = forge.util.encode64(ciphertext);
-    const iv64 = forge.util.encode64(iv);
-    const salt64 = forge.util.encode64(salt);
-    return `${ciphertext64}.${iv64}.${salt64}`;
+    const encodedCiphertext = forge.util.encode64(ciphertext);
+    const encodedIv = forge.util.encode64(iv);
+    const encodedSalt = forge.util.encode64(salt);
+    return `${encodedCiphertext}.${encodedIv}.${encodedSalt}`;
   }
 };

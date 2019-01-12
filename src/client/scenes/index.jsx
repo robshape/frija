@@ -29,7 +29,7 @@ import AuthScene from './AuthScene';
 import configureGraphQL from '../graphql';
 import { CONSTANTS } from '../utils/enums';
 import HomeScene from './HomeScene';
-import PrivateRoute from '../components/PrivateRoute';
+import PrivateRoute from '../containers/PrivateRoute';
 import styles from './styles.scss';
 
 class App extends React.PureComponent {
