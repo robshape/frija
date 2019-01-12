@@ -310,27 +310,28 @@ exports[`<App /> should render 1`] = `
     className="app"
   >
     <BrowserRouter>
-      <Route
-        component={
-          Object {
-            "$$typeof": Symbol(react.memo),
-            "compare": null,
-            "type": [Function],
+      <Switch>
+        <Apollo(PrivateRoute)
+          component={
+            Object {
+              "$$typeof": Symbol(react.memo),
+              "compare": null,
+              "type": [Function],
+            }
           }
-        }
-        exact={true}
-        path="/auth"
-      />
-      <Apollo(PrivateRoute)
-        component={
-          Object {
-            "$$typeof": Symbol(react.memo),
-            "compare": null,
-            "type": [Function],
-          }
-        }
-        path="*"
-      />
+          exact={true}
+          path="/"
+        />
+        <Route
+          component={[Function]}
+          exact={true}
+          path="/auth"
+        />
+        <Redirect
+          push={false}
+          to="/"
+        />
+      </Switch>
     </BrowserRouter>
   </div>
 </ApolloProvider>

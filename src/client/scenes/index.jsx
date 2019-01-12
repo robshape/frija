@@ -19,7 +19,12 @@
 */
 
 import { ApolloProvider } from 'react-apollo';
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import {
+  BrowserRouter,
+  Redirect,
+  Route,
+  Switch,
+} from 'react-router-dom';
 import { faCheck, faExclamation } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import PropTypes from 'prop-types';
