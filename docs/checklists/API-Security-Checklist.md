@@ -12,13 +12,13 @@ Checklist of the most important security countermeasures when designing, testing
 
 ## Authentication
 - [x] Don't use `Basic Auth`. Use standard authentication (e.g. [JWT](https://jwt.io/), [OAuth](https://oauth.net/)).
-- [ ] Don't reinvent the wheel in `Authentication`, `token generation`, `password storage`. Use the standards.
+- [x] Don't reinvent the wheel in `Authentication`, `token generation`, `password storage`. Use the standards.
 - [ ] Use `Max Retry` and jail features in Login.
-- [ ] Use encryption on all sensitive data.
+- [x] Use encryption on all sensitive data.
 
 ### JWT (JSON Web Token)
 - [x] Use a random complicated key (`JWT Secret`) to make brute forcing the token very hard.
-- [ ] Don't extract the algorithm from the payload. Force the algorithm in the backend (`HS256` or `RS256`).
+- [x] Don't extract the algorithm from the payload. Force the algorithm in the backend (`HS256` or `RS256`).
 - [x] Make token expiration (`TTL`, `RTTL`) as short as possible.
 - [x] Don't store sensitive data in the JWT payload, it can be decoded [easily](https://jwt.io/#debugger-io).
 
@@ -38,7 +38,7 @@ Checklist of the most important security countermeasures when designing, testing
 - [ ] Validate `content-type` on request Accept header (Content Negotiation) to allow only your supported format (e.g. `application/xml`, `application/json`, etc.) and respond with `406 Not Acceptable` response if not matched.
 - [ ] Validate `content-type` of posted data as you accept (e.g. `application/x-www-form-urlencoded`, `multipart/form-data`, `application/json`, etc.).
 - [ ] Validate user input to avoid common vulnerabilities (e.g. `XSS`, `SQL-Injection`, `Remote Code Execution`, etc.).
-- [ ] Don't use any sensitive data (`credentials`, `Passwords`, `security tokens`, or `API keys`) in the URL, but use standard Authorization header.
+- [x] Don't use any sensitive data (`credentials`, `Passwords`, `security tokens`, or `API keys`) in the URL, but use standard Authorization header.
 - [ ] Use an API Gateway service to enable caching, Rate Limit policies (e.g. `Quota`, `Spike Arrest`, or `Concurrent Rate Limit`) and deploy APIs resources dynamically.
 
 ## Processing
