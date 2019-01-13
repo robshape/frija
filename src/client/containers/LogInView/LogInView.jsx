@@ -27,6 +27,7 @@ import Form from './components/Form';
 import Heading from './components/Heading';
 import Loader from '../../components/Loader';
 import NumberInput from './components/NumberInput';
+import { setStoredToken } from '../../utils/token';
 import styles from './styles.scss';
 import Subheading from './components/Subheading';
 
@@ -139,10 +140,7 @@ class LogInView extends React.PureComponent {
       },
     });
 
-    sessionStorage.setItem(
-      CONSTANTS.SESSION_STORAGE_KEY_NAME_TOKEN,
-      data.authenticate.token,
-    );
+    setStoredToken(data.authenticate.token);
 
     client.writeData({
       data: {

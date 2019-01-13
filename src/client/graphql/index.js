@@ -26,14 +26,20 @@ import { setContext } from 'apollo-link-context';
 import { withClientState } from 'apollo-link-state';
 
 import clientState from './client-state';
-import { CONSTANTS } from '../utils/enums';
+import { getStoredToken, isTokenValid } from '../utils/token';
 
 const authLink = setContext(() => {
-  const token = sessionStorage.getItem(CONSTANTS.SESSION_STORAGE_KEY_NAME_TOKEN);
+  let authorization = '';
+
+  const token = getStoredToken();
+  const isValidToken = isTokenValid(token);
+  if (isValidToken) {
+    authorization = token;
+  }
 
   return {
     headers: {
-      authorization: token || '',
+      authorization,
     },
   };
 });

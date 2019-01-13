@@ -23,28 +23,13 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 
 import { CONSTANTS } from '../../utils/enums';
+import { getStoredToken, isTokenValid, removeStoredToken } from '../../utils/token';
 import Loader from '../../components/Loader';
 import LogInView from '../../containers/LogInView';
 import styles from './styles.scss';
 import { VALIDATE_QUERY } from '../../graphql/queries/token';
 
 class AuthScene extends React.PureComponent {
-  static decodeTokenPayload(token) {
-    const encodedPayload = token.split('.')[1];
-    const payload = atob(encodedPayload);
-    return JSON.parse(payload);
-  }
-
-  static isTokenDateValid(token) {
-    const date = Date.now() / 1000;
-    const { exp } = AuthScene.decodeTokenPayload(token);
-    if (date > exp) {
-      return false;
-    }
-
-    return true;
-  }
-
   constructor() {
     super();
 
@@ -62,10 +47,10 @@ class AuthScene extends React.PureComponent {
   validateToken() {
     const { client } = this.props;
 
-    const token = sessionStorage.getItem(CONSTANTS.SESSION_STORAGE_KEY_NAME_TOKEN);
-    if (!token
-    || !AuthScene.isTokenDateValid(token)) {
-      sessionStorage.removeItem(CONSTANTS.SESSION_STORAGE_KEY_NAME_TOKEN);
+    const token = getStoredToken();
+    const isValidToken = isTokenValid(token);
+    if (!isValidToken) {
+      removeStoredToken();
       return;
     }
 
@@ -83,7 +68,7 @@ class AuthScene extends React.PureComponent {
         isLoading: false,
       }, () => {
         if (!data.validate) {
-          sessionStorage.removeItem(CONSTANTS.SESSION_STORAGE_KEY_NAME_TOKEN);
+          removeStoredToken();
           return;
         }
 

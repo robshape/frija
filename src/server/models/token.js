@@ -73,24 +73,30 @@ const authenticate = (user, tokenOptions) => {
 };
 
 const isAuthenticated = (ctx, tokenOptions) => {
-  const token = ctx.header.authorization;
+  let isTokenValid = false;
 
-  return !!(
-    token
-    && verify(token, tokenOptions)
-  );
+  const token = ctx.header.authorization;
+  if (token) {
+    try {
+      isTokenValid = !!verify(token, tokenOptions);
+    } catch (error) {
+      isTokenValid = false;
+    }
+  }
+
+  return isTokenValid;
 };
 
 const validate = (token, tokenOptions) => {
-  let isValid = false;
+  let isTokenValid = false;
 
   try {
-    isValid = !!verify(token, tokenOptions);
+    isTokenValid = !!verify(token, tokenOptions);
   } catch (error) {
-    isValid = false;
+    isTokenValid = false;
   }
 
-  return isValid;
+  return isTokenValid;
 };
 
 module.exports = {
