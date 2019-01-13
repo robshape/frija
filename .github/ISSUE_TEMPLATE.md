@@ -1,6 +1,6 @@
 ## Description
-_What is the problem? How can it be solved? Provide screenshots when suitable._
+_What is the problem? Provide screenshots when suitable. Do you know how it can be solved?_
 
 ## Tasks
-_Break the solution down to tasks when possible._
+_Break the solution down to tasks if possible._
 - [ ] Task.

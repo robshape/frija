@@ -51,7 +51,7 @@ const stateLink = withClientState({
   defaults: clientState,
 });
 
-const configureGraphQL = ({ graphqlEndpoint }) => {
+const configureGraphQL = ({ graphqlUrl }) => {
   const apollo = new ApolloClient({
     cache,
 
@@ -59,7 +59,7 @@ const configureGraphQL = ({ graphqlEndpoint }) => {
       stateLink,
       authLink,
       new HttpLink({
-        uri: graphqlEndpoint,
+        uri: graphqlUrl,
       }),
     ]),
   });

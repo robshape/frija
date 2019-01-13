@@ -23,7 +23,7 @@ const jwt = require('jsonwebtoken');
 const AES = require('../utils/aes');
 
 const sign = (id, options) => {
-  const { expiresIn, secret } = options;
+  const { secret, time } = options;
 
   const data = JSON.stringify({
     date: Date.now(),
@@ -36,20 +36,20 @@ const sign = (id, options) => {
   const token = jwt.sign({
     data: encryptedData,
   }, secret, {
-    expiresIn,
+    expiresIn: time,
   });
 
   return token;
 };
 
 const verify = (token, options) => {
-  const { expiresIn, secret } = options;
+  const { secret, time } = options;
 
   const payload = jwt.verify(token, secret, {
     algorithms: [
       'HS256',
     ],
-    maxAge: expiresIn,
+    maxAge: time,
   });
 
   // const aes = new AES();

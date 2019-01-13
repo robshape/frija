@@ -93,7 +93,7 @@ class App extends React.PureComponent {
 
 App.propTypes = {
   config: PropTypes.shape({
-    graphqlEndpoint: PropTypes.string.isRequired,
+    graphqlUrl: PropTypes.string.isRequired,
   }).isRequired,
 };
 

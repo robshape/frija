@@ -26,7 +26,7 @@ import App from './scenes';
 import configureConfig from './config';
 
 const config = configureConfig({
-  GRAPHQL_ENDPOINT: process.env.GRAPHQL_ENDPOINT,
+  GRAPHQL_URL: process.env.GRAPHQL_URL,
 });
 const node = document.getElementById('index');
 render(<App config={config} />, node);

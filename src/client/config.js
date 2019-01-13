@@ -20,5 +20,5 @@
 
 
 export default env => ({
-  graphqlEndpoint: env.GRAPHQL_ENDPOINT,
+  graphqlUrl: env.GRAPHQL_URL,
 });

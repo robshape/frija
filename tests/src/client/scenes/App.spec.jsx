@@ -27,7 +27,7 @@ global.fetch = jest.fn();
 
 describe('<App />', () => {
   const config = {
-    graphqlEndpoint: 'test',
+    graphqlUrl: 'test',
   };
 
   it('should render', () => {

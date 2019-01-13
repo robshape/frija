@@ -27,7 +27,7 @@ module.exports = env => ({
     key: fs.readFileSync(env.SSL_KEY),
   },
   token: {
-    expiresIn: env.TOKEN_EXPIRES_IN,
     secret: env.TOKEN_SECRET,
+    time: env.TOKEN_TIME,
   },
 });
