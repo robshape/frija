@@ -89,7 +89,7 @@ class LogInView extends React.PureComponent {
     this.validationStatus = this.validationStatus.bind(this);
 
     this.state = {
-      isLoading: false,
+      isAuthenticating: false,
       personalNumber: '',
       showError: false,
     };
@@ -103,7 +103,7 @@ class LogInView extends React.PureComponent {
     }
 
     this.setState({
-      isLoading: true,
+      isAuthenticating: true,
     }, this.getToken);
   }
 
@@ -192,13 +192,13 @@ class LogInView extends React.PureComponent {
 
   render() {
     const { data } = this.props;
-    const { isLoading } = this.state;
+    const { isAuthenticating } = this.state;
 
     if (data.isAuthenticated) {
       return <Redirect to={CONSTANTS.REACT_ROUTER_PATH_HOME} />;
     }
 
-    if (isLoading) {
+    if (isAuthenticating) {
       return (
         <div className={styles.logInView}>
           <Loader>
