@@ -18,6 +18,7 @@
 
 */
 
+const compress = require('koa-compress');
 const helmet = require('koa-helmet');
 const Koa = require('koa');
 
@@ -42,6 +43,8 @@ const configureApp = (config) => {
     },
     xssFilter: true,
   }));
+
+  koa.use(compress());
 
   configureGraphQL(koa, config);
   configureRoutes(koa);
