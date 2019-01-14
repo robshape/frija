@@ -28,7 +28,7 @@
   opacity: 0;
 
   &VISIBLE {
-    @include animation-pop();
+    @include animation-pop;
 
     opacity: 1;
   }

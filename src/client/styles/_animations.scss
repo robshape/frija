@@ -18,7 +18,7 @@
 
 */
 
-@mixin animation-pop() {
+@mixin animation-pop {
   animation: pop 250ms ease;
 
   @keyframes pop {
@@ -32,7 +32,7 @@
   }
 }
 
-@mixin animation-spin() {
+@mixin animation-spin {
   animation: spin 500ms linear infinite;
 
   @keyframes spin {
@@ -46,6 +46,6 @@
   }
 }
 
-@mixin animation-transition() {
+@mixin animation-transition {
   transition: all 250ms ease;
 }

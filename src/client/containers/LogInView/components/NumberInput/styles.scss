@@ -23,7 +23,7 @@
 
 .numberInput {
   &__field {
-    @include animation-transition();
+    @include animation-transition;
 
     border-bottom: 2px solid $color-gray;
     padding-bottom: 12px;
@@ -39,13 +39,13 @@
   }
 
   &__iconCheck {
-    @include animation-pop();
+    @include animation-pop;
 
     color: $color-green;
   }
 
   &__iconExclamation {
-    @include animation-pop();
+    @include animation-pop;
 
     color: $color-red;
   }

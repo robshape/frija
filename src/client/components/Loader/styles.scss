@@ -27,7 +27,7 @@
   flex-direction: column;
 
   &__spinner {
-    @include animation-spin();
+    @include animation-spin;
 
     border: 12px solid $color-white;
     border-radius: 50%;
