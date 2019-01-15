@@ -39,6 +39,7 @@ const authLink = setContext(() => {
 
   return {
     headers: {
+      accept: 'application/json',
       authorization,
     },
   };
