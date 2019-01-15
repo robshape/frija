@@ -41,8 +41,6 @@ class App extends React.PureComponent {
   constructor() {
     super();
 
-    this.configureApp = this.configureApp.bind(this);
-
     this.state = {
       client: {},
     };

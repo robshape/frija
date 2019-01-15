@@ -42,7 +42,6 @@ class NumberInput extends React.PureComponent {
     super();
 
     this.onChange = this.onChange.bind(this);
-    this.renderIcon = this.renderIcon.bind(this);
 
     this.state = {
       id: uuidv4(),

@@ -33,8 +33,6 @@ class AuthScene extends React.PureComponent {
   constructor() {
     super();
 
-    this.validateToken = this.validateToken.bind(this);
-
     this.state = {
       isValidating: true,
     };

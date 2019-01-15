@@ -28,10 +28,10 @@ class PrivateRoute extends React.PureComponent {
   constructor() {
     super();
 
-    this.renderComponent = this.renderComponent.bind(this);
+    this.onRouteRender = this.onRouteRender.bind(this);
   }
 
-  renderComponent(props) {
+  onRouteRender(props) {
     const { component: Component, data } = this.props;
 
     if (!data.isAuthenticated) {
@@ -44,7 +44,7 @@ class PrivateRoute extends React.PureComponent {
   render() {
     const { component, ...props } = this.props;
 
-    return <Route {...props} render={this.renderComponent} />;
+    return <Route {...props} render={this.onRouteRender} />;
   }
 }
 

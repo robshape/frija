@@ -81,12 +81,9 @@ class LogInView extends React.PureComponent {
   constructor() {
     super();
 
-    this.getToken = this.getToken.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.onNumberInputBlur = this.onNumberInputBlur.bind(this);
     this.onNumberInputChange = this.onNumberInputChange.bind(this);
-    this.renderForm = this.renderForm.bind(this);
-    this.validationStatus = this.validationStatus.bind(this);
 
     this.state = {
       isAuthenticating: false,
