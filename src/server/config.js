@@ -21,7 +21,7 @@
 const fs = require('fs');
 
 module.exports = env => ({
-  port: env.PORT,
+  graphqlPort: env.GRAPHQL_PORT,
   ssl: {
     cert: fs.readFileSync(env.SSL_CERT),
     key: fs.readFileSync(env.SSL_KEY),
