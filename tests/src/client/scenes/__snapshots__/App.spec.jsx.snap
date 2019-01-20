@@ -25,7 +25,14 @@ exports[`<App /> should render 1`] = `
           "depend": [Function],
         },
         "maybeBroadcastWatch": [Function],
-        "optimistic": Array [],
+        "optimisticData": DepTrackingCache {
+          "data": Object {
+            "ROOT_QUERY": Object {
+              "isAuthenticated": false,
+            },
+          },
+          "depend": [Function],
+        },
         "silenceBroadcast": false,
         "storeReader": StoreReader {
           "cacheKeyRoot": CacheKeyNode {
@@ -34,13 +41,6 @@ exports[`<App /> should render 1`] = `
           },
           "executeSelectionSet": [Function],
           "executeStoreQuery": [Function],
-          "keyMaker": QueryKeyMaker {
-            "cacheKeyRoot": CacheKeyNode {
-              "children": null,
-              "key": null,
-            },
-            "perQueryKeyMakers": Map {},
-          },
         },
         "storeWriter": StoreWriter {},
         "typenameDocumentCache": Map {
@@ -62,6 +62,7 @@ exports[`<App /> should render 1`] = `
                         "kind": "Name",
                         "value": "isAuthenticated",
                       },
+                      "selectionSet": undefined,
                     },
                   ],
                 },
@@ -86,55 +87,7 @@ exports[`<App /> should render 1`] = `
                         "kind": "Name",
                         "value": "isAuthenticated",
                       },
-                    },
-                  ],
-                },
-              },
-            ],
-            "kind": "Document",
-          },
-          Object {
-            "definitions": Array [
-              Object {
-                "kind": "OperationDefinition",
-                "name": Object {
-                  "kind": "Name",
-                  "value": "GeneratedClientQuery",
-                },
-                "operation": "query",
-                "selectionSet": Object {
-                  "kind": "SelectionSet",
-                  "selections": Array [
-                    Object {
-                      "kind": "Field",
-                      "name": Object {
-                        "kind": "Name",
-                        "value": "isAuthenticated",
-                      },
-                    },
-                  ],
-                },
-              },
-            ],
-            "kind": "Document",
-          } => Object {
-            "definitions": Array [
-              Object {
-                "kind": "OperationDefinition",
-                "name": Object {
-                  "kind": "Name",
-                  "value": "GeneratedClientQuery",
-                },
-                "operation": "query",
-                "selectionSet": Object {
-                  "kind": "SelectionSet",
-                  "selections": Array [
-                    Object {
-                      "kind": "Field",
-                      "name": Object {
-                        "kind": "Name",
-                        "value": "isAuthenticated",
-                      },
+                      "selectionSet": undefined,
                     },
                   ],
                 },
@@ -145,6 +98,7 @@ exports[`<App /> should render 1`] = `
         },
         "watches": Set {},
       },
+      "clearStoreCallbacks": Array [],
       "clientAwareness": Object {},
       "defaultOptions": Object {},
       "disableNetworkFetches": false,
@@ -180,7 +134,14 @@ exports[`<App /> should render 1`] = `
             "depend": [Function],
           },
           "maybeBroadcastWatch": [Function],
-          "optimistic": Array [],
+          "optimisticData": DepTrackingCache {
+            "data": Object {
+              "ROOT_QUERY": Object {
+                "isAuthenticated": false,
+              },
+            },
+            "depend": [Function],
+          },
           "silenceBroadcast": false,
           "storeReader": StoreReader {
             "cacheKeyRoot": CacheKeyNode {
@@ -189,13 +150,6 @@ exports[`<App /> should render 1`] = `
             },
             "executeSelectionSet": [Function],
             "executeStoreQuery": [Function],
-            "keyMaker": QueryKeyMaker {
-              "cacheKeyRoot": CacheKeyNode {
-                "children": null,
-                "key": null,
-              },
-              "perQueryKeyMakers": Map {},
-            },
           },
           "storeWriter": StoreWriter {},
           "typenameDocumentCache": Map {
@@ -217,6 +171,7 @@ exports[`<App /> should render 1`] = `
                           "kind": "Name",
                           "value": "isAuthenticated",
                         },
+                        "selectionSet": undefined,
                       },
                     ],
                   },
@@ -241,55 +196,7 @@ exports[`<App /> should render 1`] = `
                           "kind": "Name",
                           "value": "isAuthenticated",
                         },
-                      },
-                    ],
-                  },
-                },
-              ],
-              "kind": "Document",
-            },
-            Object {
-              "definitions": Array [
-                Object {
-                  "kind": "OperationDefinition",
-                  "name": Object {
-                    "kind": "Name",
-                    "value": "GeneratedClientQuery",
-                  },
-                  "operation": "query",
-                  "selectionSet": Object {
-                    "kind": "SelectionSet",
-                    "selections": Array [
-                      Object {
-                        "kind": "Field",
-                        "name": Object {
-                          "kind": "Name",
-                          "value": "isAuthenticated",
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-              "kind": "Document",
-            } => Object {
-              "definitions": Array [
-                Object {
-                  "kind": "OperationDefinition",
-                  "name": Object {
-                    "kind": "Name",
-                    "value": "GeneratedClientQuery",
-                  },
-                  "operation": "query",
-                  "selectionSet": Object {
-                    "kind": "SelectionSet",
-                    "selections": Array [
-                      Object {
-                        "kind": "Field",
-                        "name": Object {
-                          "kind": "Name",
-                          "value": "isAuthenticated",
-                        },
+                        "selectionSet": undefined,
                       },
                     ],
                   },
@@ -301,7 +208,7 @@ exports[`<App /> should render 1`] = `
           "watches": Set {},
         },
       },
-      "version": "2.4.8",
+      "version": "2.4.12",
       "watchQuery": [Function],
     }
   }
