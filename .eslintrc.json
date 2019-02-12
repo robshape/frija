@@ -8,10 +8,14 @@
   "globals": {
     "artifacts": true
   },
+  "plugins": [
+    "react-hooks"
+  ],
   "rules": {
     "import/prefer-default-export": "off",
     "jsx-a11y/label-has-for": {
       "allowChildren": true
-    }
+    },
+    "react-hooks/rules-of-hooks": "error"
   }
 }
