@@ -18,21 +18,12 @@
 
 */
 
-const { gql } = require('apollo-server-koa');
+const rootSchema = require('./root');
+const tokenSchema = require('./token');
 
-const token = require('./token');
-
-const root = gql`
-  type Mutation {
-    _: Boolean
-  }
-
-  type Query {
-    _: Boolean
-  }
-`;
-
-module.exports = [
-  root,
-  token,
+const schemas = [
+  rootSchema,
+  tokenSchema,
 ];
+
+module.exports = schemas;

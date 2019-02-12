@@ -18,10 +18,12 @@
 
 */
 
-const token = require('./token');
-const user = require('./user');
+const tokenModel = require('./token');
+const userModel = require('./user');
 
-module.exports = {
-  token,
-  user,
+const models = {
+  tokenModel,
+  userModel,
 };
+
+module.exports = models;

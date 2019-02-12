@@ -20,7 +20,7 @@
 
 const { gql } = require('apollo-server-koa');
 
-module.exports = gql`
+const tokenSchema = gql`
   type Token {
     token: String!
   }
@@ -33,3 +33,5 @@ module.exports = gql`
     validate(token: String!): Boolean!
   }
 `;
+
+module.exports = tokenSchema;

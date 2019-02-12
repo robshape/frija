@@ -20,7 +20,7 @@
 
 const forge = require('node-forge');
 
-module.exports = class AES {
+class AES {
   constructor() {
     this.options = {
       iterationCount: 10000,
@@ -73,4 +73,6 @@ module.exports = class AES {
     const encodedSalt = forge.util.encode64(salt);
     return `${encodedCiphertext}.${encodedIv}.${encodedSalt}`;
   }
-};
+}
+
+module.exports = AES;

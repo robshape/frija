@@ -18,7 +18,7 @@
 
 */
 
-module.exports = {
+const config = {
   contracts_build_directory: '../../dist/ethereum/',
   networks: {
     development: {
@@ -28,3 +28,5 @@ module.exports = {
     },
   },
 };
+
+module.exports = config;

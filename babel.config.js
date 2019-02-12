@@ -18,7 +18,7 @@
 
 */
 
-module.exports = {
+const config = {
   presets: [
     ['@babel/preset-env', {
       useBuiltIns: 'entry',
@@ -26,3 +26,5 @@ module.exports = {
     '@babel/preset-react',
   ],
 };
+
+module.exports = config;

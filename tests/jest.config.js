@@ -18,7 +18,7 @@
 
 */
 
-module.exports = {
+const config = {
   collectCoverageFrom: [
     'src/**/*.{js,jsx}',
     '!src/client/index.jsx',
@@ -36,3 +36,5 @@ module.exports = {
   ],
   testRegex: 'tests/src/.+\\.spec\\.(js|jsx)$',
 };
+
+module.exports = config;

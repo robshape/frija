@@ -23,7 +23,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
 
-module.exports = {
+const config = {
   devServer: {
     historyApiFallback: true,
     hot: true,
@@ -102,3 +102,5 @@ module.exports = {
     ],
   },
 };
+
+module.exports = config;

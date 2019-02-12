@@ -20,12 +20,12 @@
 
 const Router = require('koa-router');
 
-const router = new Router({
+const healthRouter = new Router({
   prefix: '/health',
 });
 
-router.get('/', (ctx) => {
+healthRouter.get('/', (ctx) => {
   ctx.status = 200;
 });
 
-module.exports = router;
+module.exports = healthRouter;

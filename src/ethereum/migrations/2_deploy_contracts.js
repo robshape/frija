@@ -24,7 +24,7 @@ const Election = artifacts.require('Election');
 const ElectionAuthority = artifacts.require('ElectionAuthority');
 const Ownable = artifacts.require('Ownable');
 
-module.exports = (deployer) => {
+const deployContracts = (deployer) => {
   deployer.deploy(Ownable);
   deployer.deploy(Claimable);
 
@@ -33,3 +33,5 @@ module.exports = (deployer) => {
 
   deployer.deploy(ElectionAuthority);
 };
+
+module.exports = deployContracts;

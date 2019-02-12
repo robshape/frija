@@ -19,6 +19,8 @@
 */
 
 // Default values for local state management in client.
-export default {
+const clientState = {
   isAuthenticated: false,
 };
+
+export default clientState;

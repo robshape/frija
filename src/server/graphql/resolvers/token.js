@@ -18,14 +18,14 @@
 
 */
 
-module.exports = {
+const tokenResolver = {
   Mutation: {
     async authenticate(_, args, context) {
       const { models, tokenOptions } = context;
       const { personalNumber } = args;
 
-      const user = await models.user.getByPersonalNumber(personalNumber);
-      return models.token.authenticate(user, tokenOptions);
+      const user = await models.userModel.getByPersonalNumber(personalNumber);
+      return models.tokenModel.authenticate(user, tokenOptions);
     },
   },
 
@@ -34,7 +34,9 @@ module.exports = {
       const { models, tokenOptions } = context;
       const { token } = args;
 
-      return models.token.validate(token, tokenOptions);
+      return models.tokenModel.validate(token, tokenOptions);
     },
   },
 };
+
+module.exports = tokenResolver;

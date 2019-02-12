@@ -22,10 +22,12 @@ import React from 'react';
 
 import styles from './styles.scss';
 
-export default React.memo(() => (
+const HomeScene = React.memo(() => (
   <div className={styles.homeScene}>
     <p>
       Välkommen till Frija.
     </p>
   </div>
 ));
+
+export default HomeScene;

@@ -99,8 +99,10 @@ const validate = (token, tokenOptions) => {
   return isTokenValid;
 };
 
-module.exports = {
+const tokenModel = {
   authenticate,
   isAuthenticated,
   validate,
 };
+
+module.exports = tokenModel;

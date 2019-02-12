@@ -23,7 +23,9 @@ import { compose, graphql, withApollo } from 'react-apollo';
 import AuthScene from './AuthScene';
 import { IS_AUTHENTICATED_QUERY } from '../../graphql/queries/client';
 
-export default compose(
+const AuthSceneWithApollo = compose(
   graphql(IS_AUTHENTICATED_QUERY),
   withApollo,
 )(AuthScene);
+
+export default AuthSceneWithApollo;

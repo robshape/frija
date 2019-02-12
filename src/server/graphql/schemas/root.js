@@ -18,18 +18,16 @@
 
 */
 
-const fs = require('fs');
+const { gql } = require('apollo-server-koa');
 
-const config = env => ({
-  graphqlPort: env.GRAPHQL_PORT,
-  ssl: {
-    cert: fs.readFileSync(env.SSL_CERT),
-    key: fs.readFileSync(env.SSL_KEY),
-  },
-  token: {
-    secret: env.TOKEN_SECRET,
-    time: env.TOKEN_TIME,
-  },
-});
+const rootSchema = gql`
+  type Mutation {
+    _: Boolean
+  }
 
-module.exports = config;
+  type Query {
+    _: Boolean
+  }
+`;
+
+module.exports = rootSchema;

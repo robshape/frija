@@ -26,6 +26,8 @@ const getByPersonalNumber = async personalNumber => get('https://bankid.com/')
     personalNumber,
   }));
 
-module.exports = {
+const userModel = {
   getByPersonalNumber,
 };
+
+module.exports = userModel;

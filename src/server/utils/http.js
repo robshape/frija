@@ -26,6 +26,8 @@ const get = async url => fetch(url, {
   },
 });
 
-module.exports = {
+const http = {
   get,
 };
+
+module.exports = http;

@@ -18,7 +18,8 @@
 
 */
 
-
-export default env => ({
+const config = env => ({
   graphqlUrl: env.GRAPHQL_URL,
 });
+
+export default config;

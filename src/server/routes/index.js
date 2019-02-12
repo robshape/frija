@@ -18,9 +18,11 @@
 
 */
 
-const health = require('./health');
+const healthRouter = require('./health');
 
-module.exports = (app) => {
-  app.use(health.routes());
-  app.use(health.allowedMethods());
+const routes = (app) => {
+  app.use(healthRouter.routes());
+  app.use(healthRouter.allowedMethods());
 };
+
+module.exports = routes;

@@ -18,8 +18,10 @@
 
 */
 
-const token = require('./token');
+const tokenResolver = require('./token');
 
-module.exports = [
-  token,
+const resolvers = [
+  tokenResolver,
 ];
+
+module.exports = resolvers;
