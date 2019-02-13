@@ -18,11 +18,11 @@
 
 */
 
-import React from 'react';
+import React, { memo } from 'react';
 
 import styles from './styles.scss';
 
-const HomeScene = React.memo(() => (
+const HomeScene = memo(() => (
   <div className={styles.homeScene}>
     <p>
       Välkommen till Frija.

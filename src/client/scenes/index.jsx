@@ -28,7 +28,7 @@ import {
 import { faCheck, faExclamation } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { memo, useEffect, useState } from 'react';
 
 import AuthScene from './AuthScene';
 import configureGraphQL from '../graphql';
@@ -37,57 +37,45 @@ import HomeScene from './HomeScene';
 import PrivateRoute from '../containers/PrivateRoute';
 import styles from './styles.scss';
 
-class App extends React.PureComponent {
-  constructor() {
-    super();
+const useConfigureApp = (config) => {
+  const [client, setClient] = useState({});
 
-    this.state = {
-      client: {},
-    };
-  }
-
-  componentDidMount() {
-    this.configureApp();
-  }
-
-  configureApp() {
-    const { config } = this.props;
-
+  useEffect(() => {
     library.add(
       faCheck,
       faExclamation,
     );
 
-    const client = configureGraphQL(config);
-    this.setState({
-      client,
-    });
+    const graphQLClient = configureGraphQL(config);
+    setClient(graphQLClient);
+  }, [config]);
+
+  return client;
+};
+
+const App = memo(({ config }) => {
+  const client = useConfigureApp(config);
+
+  if (!Object.keys(client).length) {
+    return null;
   }
 
-  render() {
-    const { client } = this.state;
+  return (
+    <ApolloProvider client={client}>
+      <div className={styles.app}>
+        <BrowserRouter>
+          <Switch>
 
-    if (!Object.keys(client).length) {
-      return null;
-    }
+            <PrivateRoute component={HomeScene} exact path={CONSTANTS.REACT_ROUTER_PATH_HOME} />
+            <Route component={AuthScene} exact path={CONSTANTS.REACT_ROUTER_PATH_AUTH} />
+            <Redirect to={CONSTANTS.REACT_ROUTER_PATH_HOME} />
 
-    return (
-      <ApolloProvider client={client}>
-        <div className={styles.app}>
-          <BrowserRouter>
-            <Switch>
-
-              <PrivateRoute component={HomeScene} exact path={CONSTANTS.REACT_ROUTER_PATH_HOME} />
-              <Route component={AuthScene} exact path={CONSTANTS.REACT_ROUTER_PATH_AUTH} />
-              <Redirect to={CONSTANTS.REACT_ROUTER_PATH_HOME} />
-
-            </Switch>
-          </BrowserRouter>
-        </div>
-      </ApolloProvider>
-    );
-  }
-}
+          </Switch>
+        </BrowserRouter>
+      </div>
+    </ApolloProvider>
+  );
+});
 
 App.propTypes = {
   config: PropTypes.shape({

@@ -19,11 +19,11 @@
 */
 
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { memo } from 'react';
 
 import styles from './styles.scss';
 
-const Loader = React.memo(({ children }) => (
+const Loader = memo(({ children }) => (
   <div className={styles.loader}>
     <div className={styles.loader__spinner} />
 

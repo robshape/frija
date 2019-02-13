@@ -19,7 +19,7 @@
 */
 
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 
 import { CONSTANTS } from '../../utils/enums';
@@ -29,80 +29,65 @@ import LogInView from '../../containers/LogInView';
 import styles from './styles.scss';
 import { VALIDATE_QUERY } from '../../graphql/queries/token';
 
-class AuthScene extends React.PureComponent {
-  constructor() {
-    super();
+const validateToken = async (client, setIsValidating) => {
+  const token = getStoredToken();
+  const isValidToken = isTokenValid(token);
+  if (!isValidToken) {
+    removeStoredToken();
 
-    this.state = {
-      isValidating: true,
-    };
+    setIsValidating(false);
+    return;
   }
 
-  componentDidMount() {
-    this.validateToken();
+  const { data } = await client.query({
+    query: VALIDATE_QUERY,
+    variables: {
+      token,
+    },
+  });
+
+  setIsValidating(false);
+
+  if (!data.validate) {
+    removeStoredToken();
+    return;
   }
 
-  async validateToken() {
-    const { client } = this.props;
+  client.writeData({
+    data: {
+      isAuthenticated: true,
+    },
+  });
+};
 
-    const token = getStoredToken();
-    const isValidToken = isTokenValid(token);
-    if (!isValidToken) {
-      removeStoredToken();
+const useValidateToken = (client) => {
+  const [isValidating, setIsValidating] = useState(true);
 
-      this.setState({
-        isValidating: false,
-      });
+  useEffect(() => {
+    validateToken(client, setIsValidating);
+  }, [client]);
 
-      return;
-    }
+  return isValidating;
+};
 
-    const { data } = await client.query({
-      query: VALIDATE_QUERY,
-      variables: {
-        token,
-      },
-    });
+const AuthScene = memo(({ client, data }) => {
+  const isValidating = useValidateToken(client);
 
-    this.setState({
-      isValidating: false,
-    }, () => {
-      if (!data.validate) {
-        removeStoredToken();
-        return;
-      }
-
-      client.writeData({
-        data: {
-          isAuthenticated: true,
-        },
-      });
-    });
+  if (data.isAuthenticated) {
+    return <Redirect to={CONSTANTS.REACT_ROUTER_PATH_HOME} />;
   }
 
-  render() {
-    const { data } = this.props;
-    const { isValidating } = this.state;
-
-    if (data.isAuthenticated) {
-      return <Redirect to={CONSTANTS.REACT_ROUTER_PATH_HOME} />;
-    }
-
-    if (isValidating) {
-      return (
-        <div className={styles.authScene}>
-          <Loader />
-        </div>
-      );
-    }
-
-    return (
-      <div className={styles.authScene}>
-        <LogInView />
-      </div>
-    );
+  let child = <LogInView />;
+  if (isValidating) {
+    child = <Loader />;
   }
-}
+
+  return (
+    <div className={styles.authScene}>
+      {child}
+    </div>
+  );
+});
 
 AuthScene.propTypes = {
   client: PropTypes.shape({
