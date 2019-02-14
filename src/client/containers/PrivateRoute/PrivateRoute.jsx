@@ -19,40 +19,29 @@
 */
 
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { memo, useCallback } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 
 import { CONSTANTS } from '../../utils/enums';
 
-class PrivateRoute extends React.PureComponent {
-  constructor() {
-    super();
-
-    this.onRouteRender = this.onRouteRender.bind(this);
+const useOnRouteRender = (Component, data) => useCallback((props) => {
+  if (!data.isAuthenticated) {
+    return <Redirect to={CONSTANTS.REACT_ROUTER_PATH_AUTH} />;
   }
 
-  onRouteRender(props) {
-    const { component: Component, data } = this.props;
+  return <Component {...props} />;
+}, [Component, data]);
 
-    if (!data.isAuthenticated) {
-      return <Redirect to={CONSTANTS.REACT_ROUTER_PATH_AUTH} />;
-    }
+const PrivateRoute = memo(({ component, data, ...props }) => {
+  const onRouteRender = useOnRouteRender(component, data);
 
-    return <Component {...props} />;
-  }
-
-  render() {
-    const { component, ...props } = this.props;
-
-    return <Route {...props} render={this.onRouteRender} />;
-  }
-}
+  return (
+    <Route {...props} render={onRouteRender} />
+  );
+});
 
 PrivateRoute.propTypes = {
-  component: PropTypes.oneOfType([
-    PropTypes.func, // Function and class components.
-    PropTypes.shape({}), // React.memo() components.
-  ]).isRequired,
+  component: PropTypes.shape({}).isRequired,
   data: PropTypes.shape({
     isAuthenticated: PropTypes.bool.isRequired,
   }).isRequired,
