@@ -62,6 +62,9 @@ const validateToken = async (client, setIsValidating) => {
   });
 };
 
+// TODO: Use Suspense for Data Fetching when released.
+// https://github.com/facebook/react/issues/14326
+// https://reactjs.org/blog/2018/11/27/react-16-roadmap.html
 const useValidateToken = (client) => {
   const [isValidating, setIsValidating] = useState(null);
 
