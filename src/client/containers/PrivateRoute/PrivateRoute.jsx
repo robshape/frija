@@ -24,16 +24,14 @@ import { Redirect, Route } from 'react-router-dom';
 
 import { CONSTANTS } from '../../utils/enums';
 
-const useOnRouteRender = (Component, data) => useCallback((props) => {
-  if (!data.isAuthenticated) {
-    return <Redirect to={CONSTANTS.REACT_ROUTER_PATH_AUTH} />;
-  }
+const PrivateRoute = memo(({ component: Component, data, ...props }) => {
+  const onRouteRender = useCallback((routeProps) => {
+    if (!data.isAuthenticated) {
+      return <Redirect to={CONSTANTS.REACT_ROUTER_PATH_AUTH} />;
+    }
 
-  return <Component {...props} />;
-}, [Component, data]);
-
-const PrivateRoute = memo(({ component, data, ...props }) => {
-  const onRouteRender = useOnRouteRender(component, data);
+    return <Component {...routeProps} />;
+  }, [Component, data]);
 
   return (
     <Route {...props} render={onRouteRender} />
