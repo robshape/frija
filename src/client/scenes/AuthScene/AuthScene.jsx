@@ -39,6 +39,8 @@ const validateToken = async (client, setIsValidating) => {
     return;
   }
 
+  setIsValidating(true);
+
   const { data } = await client.query({
     query: VALIDATE_QUERY,
     variables: {
@@ -61,7 +63,7 @@ const validateToken = async (client, setIsValidating) => {
 };
 
 const useValidateToken = (client) => {
-  const [isValidating, setIsValidating] = useState(true);
+  const [isValidating, setIsValidating] = useState(null);
 
   useEffect(() => {
     validateToken(client, setIsValidating);
@@ -72,6 +74,11 @@ const useValidateToken = (client) => {
 
 const AuthScene = memo(({ client, data }) => {
   const isValidating = useValidateToken(client);
+
+  // Prevent flashing {child}, depending on stored token availability.
+  if (isValidating === null) {
+    return null;
+  }
 
   if (data.isAuthenticated) {
     return <Redirect to={CONSTANTS.REACT_ROUTER_PATH_HOME} />;
