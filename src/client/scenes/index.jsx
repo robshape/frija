@@ -48,6 +48,10 @@ const useConfigureApp = (config) => {
 
     const graphQLClient = configureGraphQL(config);
     setClient(graphQLClient);
+
+    return () => {
+      library.reset();
+    };
   }, [config]);
 
   return client;

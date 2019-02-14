@@ -19,11 +19,11 @@
 */
 
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { memo } from 'react';
 
 import styles from './styles.scss';
 
-const Subheading = React.memo(({ children }) => (
+const Subheading = memo(({ children }) => (
   <h3 className={styles.subheading}>
     {children}
   </h3>

@@ -19,11 +19,11 @@
 */
 
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { memo } from 'react';
 
 import styles from './styles.scss';
 
-const Label = React.memo(({ children, forId, text }) => (
+const Label = memo(({ children, forId, text }) => (
   <label className={styles.label} htmlFor={forId}>
     {text}
 

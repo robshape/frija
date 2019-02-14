@@ -19,42 +19,30 @@
 */
 
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { memo, useCallback } from 'react';
 
 import styles from './styles.scss';
 import SubmitButton from '../SubmitButton';
 
-class Form extends React.PureComponent {
-  constructor() {
-    super();
-
-    this.onSubmit = this.onSubmit.bind(this);
-  }
-
-  onSubmit(e) {
-    const { onSubmit } = this.props;
-
+const Form = memo(({ buttonText, children, onSubmit }) => {
+  const onFormSubmit = useCallback((e) => {
     e.preventDefault();
 
     onSubmit();
-  }
+  }, [onSubmit]);
 
-  render() {
-    const { buttonText, children } = this.props;
+  return (
+    <form className={styles.form} onSubmit={onFormSubmit}>
+      {children}
 
-    return (
-      <form className={styles.form} onSubmit={this.onSubmit}>
-        {children}
-
-        <div className={styles.form__submit}>
-          <SubmitButton>
-            {buttonText}
-          </SubmitButton>
-        </div>
-      </form>
-    );
-  }
-}
+      <div className={styles.form__submit}>
+        <SubmitButton>
+          {buttonText}
+        </SubmitButton>
+      </div>
+    </form>
+  );
+});
 
 Form.propTypes = {
   buttonText: PropTypes.string.isRequired,

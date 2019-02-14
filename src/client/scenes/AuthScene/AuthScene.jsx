@@ -29,54 +29,54 @@ import LogInView from '../../containers/LogInView';
 import styles from './styles.scss';
 import { VALIDATE_QUERY } from '../../graphql/queries/token';
 
-const validateToken = async (client, setIsValidating) => {
-  const token = getStoredToken();
-  const isValidToken = isTokenValid(token);
-  if (!isValidToken) {
-    removeStoredToken();
-
-    setIsValidating(false);
-    return;
-  }
-
-  setIsValidating(true);
-
-  const { data } = await client.query({
-    query: VALIDATE_QUERY,
-    variables: {
-      token,
-    },
-  });
-
-  setIsValidating(false);
-
-  if (!data.validate) {
-    removeStoredToken();
-    return;
-  }
-
-  client.writeData({
-    data: {
-      isAuthenticated: true,
-    },
-  });
-};
-
 // TODO: Use Suspense for Data Fetching when released.
 // https://github.com/facebook/react/issues/14326
 // https://reactjs.org/blog/2018/11/27/react-16-roadmap.html
-const useValidateToken = (client) => {
+const useValidateStoredToken = (client) => {
   const [isValidating, setIsValidating] = useState(null);
 
+  const validateStoredToken = async () => {
+    const token = getStoredToken();
+    const isValidToken = isTokenValid(token);
+    if (!isValidToken) {
+      removeStoredToken();
+
+      setIsValidating(false);
+      return;
+    }
+
+    setIsValidating(true);
+
+    const { data } = await client.query({
+      query: VALIDATE_QUERY,
+      variables: {
+        token,
+      },
+    });
+
+    setIsValidating(false);
+
+    if (!data.validate) {
+      removeStoredToken();
+      return;
+    }
+
+    client.writeData({
+      data: {
+        isAuthenticated: true,
+      },
+    });
+  };
+
   useEffect(() => {
-    validateToken(client, setIsValidating);
+    validateStoredToken();
   }, [client]);
 
   return isValidating;
 };
 
 const AuthScene = memo(({ client, data }) => {
-  const isValidating = useValidateToken(client);
+  const isValidating = useValidateStoredToken(client);
 
   // Prevent flashing {child}, depending on stored token availability.
   if (isValidating === null) {

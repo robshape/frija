@@ -19,11 +19,11 @@
 */
 
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { memo } from 'react';
 
 import styles from './styles.scss';
 
-const SubmitButton = React.memo(({ children }) => (
+const SubmitButton = memo(({ children }) => (
   <button className={styles.submitButton} type="submit">
     {children}
   </button>

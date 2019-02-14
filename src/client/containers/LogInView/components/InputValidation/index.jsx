@@ -20,11 +20,11 @@
 
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { memo } from 'react';
 
 import styles from './styles.scss';
 
-const InputValidation = React.memo(({ children, status }) => {
+const InputValidation = memo(({ children, status }) => {
   const isVisible = status === 'error';
 
   return (

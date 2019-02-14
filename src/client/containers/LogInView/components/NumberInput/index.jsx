@@ -20,54 +20,67 @@
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, {
+  memo,
+  useCallback,
+  useMemo,
+  useState,
+} from 'react';
 import uuidv4 from 'uuid/v4';
 
 import InputValidation from '../InputValidation';
 import Label from '../Label';
 import styles from './styles.scss';
 
-class NumberInput extends React.PureComponent {
-  static isNumber(value) {
-    const lastCharacter = value.charAt(value.length - 1);
+const useNumberInput = (onChangeCallback) => {
+  const [value, setValue] = useState('');
+
+  const id = useMemo(
+    () => uuidv4(),
+    [],
+  );
+
+  const isNumber = (input) => {
+    const lastCharacter = input.charAt(input.length - 1);
     const digit = Number.parseInt(lastCharacter, 10);
     if (Number.isNaN(digit)) {
       return false;
     }
 
     return true;
-  }
+  };
 
-  constructor() {
-    super();
-
-    this.onChange = this.onChange.bind(this);
-
-    this.state = {
-      id: uuidv4(),
-      value: '',
-    };
-  }
-
-  onChange({ target }) {
-    const { onChange } = this.props;
-
+  const onChange = useCallback(({ target }) => {
     // 0 length probably means that the user has cleared the input.
     if (target.value.length !== 0
-    && !NumberInput.isNumber(target.value)) {
+    && !isNumber(target.value)) {
       return;
     }
 
-    this.setState({
-      value: target.value,
-    }, () => {
-      onChange(target.value);
-    });
-  }
+    setValue(target.value);
 
-  renderIcon() {
-    const { validationStatus } = this.props;
+    onChangeCallback(target.value);
+  }, [onChangeCallback]);
 
+  return {
+    id,
+    onChange,
+    value,
+  };
+};
+
+const NumberInput = memo(({
+  labelText,
+  maxLength,
+  onBlur,
+  onChange,
+  placeholder,
+  validationStatus,
+  validationText,
+}) => {
+  const { id, onChange: onInputChange, value } = useNumberInput(onChange);
+
+  const renderIcon = useMemo(() => {
     if (validationStatus === 'error') {
       return (
         <FontAwesomeIcon
@@ -82,48 +95,36 @@ class NumberInput extends React.PureComponent {
     }
 
     return null;
-  }
+  }, [validationStatus]);
 
-  render() {
-    const {
-      labelText,
-      maxLength,
-      onBlur,
-      placeholder,
-      validationStatus,
-      validationText,
-    } = this.props;
-    const { id, value } = this.state;
+  return (
+    <div className={styles.numberInput}>
+      <div className={styles.numberInput__field}>
 
-    return (
-      <div className={styles.numberInput}>
-        <div className={styles.numberInput__field}>
+        <Label forId={id} text={labelText}>
+          <div className={styles.numberInput__icon}>
+            <input
+              className={styles.numberInput__input}
+              id={id}
+              maxLength={maxLength}
+              onBlur={onBlur}
+              onChange={onInputChange}
+              placeholder={placeholder}
+              value={value}
+            />
 
-          <Label forId={id} text={labelText}>
-            <div className={styles.numberInput__icon}>
-              <input
-                className={styles.numberInput__input}
-                id={id}
-                maxLength={maxLength}
-                onBlur={onBlur}
-                onChange={this.onChange}
-                placeholder={placeholder}
-                value={value}
-              />
+            {renderIcon}
+          </div>
+        </Label>
 
-              {this.renderIcon()}
-            </div>
-          </Label>
-
-        </div>
-
-        <InputValidation status={validationStatus}>
-          {validationText}
-        </InputValidation>
       </div>
-    );
-  }
-}
+
+      <InputValidation status={validationStatus}>
+        {validationText}
+      </InputValidation>
+    </div>
+  );
+});
 
 NumberInput.propTypes = {
   labelText: PropTypes.string.isRequired,
