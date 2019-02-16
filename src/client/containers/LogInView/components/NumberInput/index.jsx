@@ -20,54 +20,12 @@
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
-import React, {
-  memo,
-  useCallback,
-  useMemo,
-  useState,
-} from 'react';
-import uuidv4 from 'uuid/v4';
+import React, { memo, useMemo } from 'react';
 
 import InputValidation from '../InputValidation';
 import Label from '../Label';
 import styles from './styles.scss';
-
-const useNumberInput = (onChangeCallback) => {
-  const [value, setValue] = useState('');
-
-  const id = useMemo(
-    () => uuidv4(),
-    [],
-  );
-
-  const isNumber = (input) => {
-    const lastCharacter = input.charAt(input.length - 1);
-    const digit = Number.parseInt(lastCharacter, 10);
-    if (Number.isNaN(digit)) {
-      return false;
-    }
-
-    return true;
-  };
-
-  const onChange = useCallback(({ target }) => {
-    // 0 length probably means that the user has cleared the input.
-    if (target.value.length !== 0
-    && !isNumber(target.value)) {
-      return;
-    }
-
-    setValue(target.value);
-
-    onChangeCallback(target.value);
-  }, [onChangeCallback]);
-
-  return {
-    id,
-    onChange,
-    value,
-  };
-};
+import { useId, useNumberInput } from './hooks';
 
 const NumberInput = memo(({
   labelText,
@@ -78,7 +36,8 @@ const NumberInput = memo(({
   validationStatus,
   validationText,
 }) => {
-  const { id, onChange: onInputChange, value } = useNumberInput(onChange);
+  const id = useId();
+  const { onChange: onInputChange, value } = useNumberInput(onChange);
 
   const renderIcon = useMemo(() => {
     if (validationStatus === 'error') {

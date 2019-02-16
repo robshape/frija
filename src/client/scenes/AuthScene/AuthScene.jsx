@@ -19,61 +19,14 @@
 */
 
 import PropTypes from 'prop-types';
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo } from 'react';
 import { Redirect } from 'react-router-dom';
 
 import { CONSTANTS } from '../../utils/enums';
-import { getStoredToken, isTokenValid, removeStoredToken } from '../../utils/token';
 import Loader from '../../components/Loader';
 import LogInView from '../../containers/LogInView';
 import styles from './styles.scss';
-import { VALIDATE_QUERY } from '../../graphql/queries/token';
-
-// TODO: Use Suspense for Data Fetching when released.
-// https://github.com/facebook/react/issues/14326
-// https://reactjs.org/blog/2018/11/27/react-16-roadmap.html
-const useValidateStoredToken = (client) => {
-  const [isValidating, setIsValidating] = useState(null);
-
-  const validateStoredToken = async () => {
-    const token = getStoredToken();
-    const isValidToken = isTokenValid(token);
-    if (!isValidToken) {
-      removeStoredToken();
-
-      setIsValidating(false);
-      return;
-    }
-
-    setIsValidating(true);
-
-    const { data } = await client.query({
-      query: VALIDATE_QUERY,
-      variables: {
-        token,
-      },
-    });
-
-    setIsValidating(false);
-
-    if (!data.validate) {
-      removeStoredToken();
-      return;
-    }
-
-    client.writeData({
-      data: {
-        isAuthenticated: true,
-      },
-    });
-  };
-
-  useEffect(() => {
-    validateStoredToken();
-  }, [client]);
-
-  return isValidating;
-};
+import useValidateStoredToken from './hooks';
 
 const AuthScene = memo(({ client, data }) => {
   const isValidating = useValidateStoredToken(client);

@@ -25,40 +25,19 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
-import { faCheck, faExclamation } from '@fortawesome/free-solid-svg-icons';
-import { library } from '@fortawesome/fontawesome-svg-core';
 import PropTypes from 'prop-types';
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo } from 'react';
 
 import AuthScene from './AuthScene';
-import configureGraphQL from '../graphql';
 import { CONSTANTS } from '../utils/enums';
 import HomeScene from './HomeScene';
 import PrivateRoute from '../containers/PrivateRoute';
 import styles from './styles.scss';
-
-const useConfigureApp = (config) => {
-  const [client, setClient] = useState({});
-
-  useEffect(() => {
-    library.add(
-      faCheck,
-      faExclamation,
-    );
-
-    const graphQLClient = configureGraphQL(config);
-    setClient(graphQLClient);
-
-    return () => {
-      library.reset();
-    };
-  }, [config]);
-
-  return client;
-};
+import { useConfigureFontAwesome, useConfigureGraphQL } from './hooks';
 
 const App = memo(({ config }) => {
-  const client = useConfigureApp(config);
+  useConfigureFontAwesome();
+  const client = useConfigureGraphQL(config);
 
   if (!Object.keys(client).length) {
     return null;
