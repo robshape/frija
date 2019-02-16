@@ -24,7 +24,7 @@ import { AUTHENTICATE_MUTATION } from '../../graphql/mutations/token';
 import { IS_AUTHENTICATED_QUERY } from '../../graphql/queries/client';
 import LogInView from './LogInView';
 
-const LogInViewWithApollo = compose(
+const LogInViewWithGraphQL = compose(
   graphql(AUTHENTICATE_MUTATION, {
     name: 'authenticate',
   }),
@@ -32,4 +32,4 @@ const LogInViewWithApollo = compose(
   withApollo,
 )(LogInView);
 
-export default LogInViewWithApollo;
+export default LogInViewWithGraphQL;
