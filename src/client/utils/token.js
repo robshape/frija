@@ -18,7 +18,7 @@
 
 */
 
-import { CONSTANTS } from './enums';
+import { CONSTANTS } from './enum';
 
 const decodeTokenPayload = (token) => {
   const encodedPayload = token.split('.')[1];

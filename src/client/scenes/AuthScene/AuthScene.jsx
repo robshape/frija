@@ -22,7 +22,7 @@ import PropTypes from 'prop-types';
 import React, { memo } from 'react';
 import { Redirect } from 'react-router-dom';
 
-import { CONSTANTS } from '../../utils/enums';
+import { CONSTANTS } from '../../utils/enum';
 import Loader from '../../components/Loader';
 import LogInView from '../../containers/LogInView';
 import styles from './styles.scss';

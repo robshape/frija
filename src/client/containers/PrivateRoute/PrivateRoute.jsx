@@ -22,7 +22,7 @@ import PropTypes from 'prop-types';
 import React, { memo, useCallback } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 
-import { CONSTANTS } from '../../utils/enums';
+import { CONSTANTS } from '../../utils/enum';
 
 const PrivateRoute = memo(({ component: Component, data, ...props }) => {
   const onRouteRender = useCallback((routeProps) => {
