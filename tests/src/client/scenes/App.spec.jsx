@@ -31,6 +31,7 @@ describe('<App />', () => {
   };
 
   it('should render', () => {
+    // TODO: https://github.com/airbnb/enzyme/issues/1875/
     const wrapper = shallow(<App config={config} />);
 
     expect(wrapper).toMatchSnapshot();
