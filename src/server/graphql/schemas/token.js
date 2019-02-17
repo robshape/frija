@@ -26,7 +26,7 @@ const tokenSchema = gql`
   }
 
   extend type Mutation {
-    authenticate(personalNumber: String!): Token!
+    authenticate(personalIdentityNumber: String!): Token!
   }
 
   extend type Query {

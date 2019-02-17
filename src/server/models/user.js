@@ -20,14 +20,14 @@
 
 const { get } = require('../utils/http');
 
-const getByPersonalNumber = async personalNumber => get('https://bankid.com/')
+const getByPersonalIdentityNumber = async personalIdentityNumber => get('https://bankid.com/')
   .then(() => ({
     name: 'N.N.',
-    personalNumber,
+    personalIdentityNumber,
   }));
 
 const userModel = {
-  getByPersonalNumber,
+  getByPersonalIdentityNumber,
 };
 
 module.exports = userModel;

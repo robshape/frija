@@ -22,9 +22,9 @@ const tokenResolver = {
   Mutation: {
     async authenticate(_, args, context) {
       const { models, tokenOptions } = context;
-      const { personalNumber } = args;
+      const { personalIdentityNumber } = args;
 
-      const user = await models.userModel.getByPersonalNumber(personalNumber);
+      const user = await models.userModel.getByPersonalIdentityNumber(personalIdentityNumber);
       return models.tokenModel.authenticate(user, tokenOptions);
     },
   },

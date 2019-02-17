@@ -31,7 +31,7 @@ import useValidateStoredToken from './hooks';
 const AuthScene = memo(({ client, data }) => {
   const isValidating = useValidateStoredToken(client);
 
-  // Prevent flashing {child}, depending on stored token availability.
+  // Prevent flashing <Loader /> / <LogInView />, depending on stored token availability.
   if (isValidating === null) {
     return null;
   }
@@ -40,14 +40,17 @@ const AuthScene = memo(({ client, data }) => {
     return <Redirect to={CONSTANTS.REACT_ROUTER_PATH_HOME} />;
   }
 
-  let child = <LogInView />;
   if (isValidating) {
-    child = <Loader />;
+    return (
+      <div className={styles.authScene}>
+        <Loader />
+      </div>
+    );
   }
 
   return (
     <div className={styles.authScene}>
-      {child}
+      <LogInView />
     </div>
   );
 });

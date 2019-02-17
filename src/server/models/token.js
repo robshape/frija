@@ -59,13 +59,13 @@ const verify = (token, options) => {
 };
 
 const authenticate = (user, tokenOptions) => {
-  const { name, personalNumber } = user;
+  const { name, personalIdentityNumber } = user;
 
   if (!name) {
     throw new Error('authenticate() error!');
   }
 
-  const token = sign(personalNumber, tokenOptions);
+  const token = sign(personalIdentityNumber, tokenOptions);
 
   return {
     token,

@@ -21,6 +21,8 @@
 import { useCallback, useMemo, useState } from 'react';
 import uuidv4 from 'uuid/v4';
 
+import { isNumber } from '../../../../utils/number';
+
 export const useId = () => {
   const id = useMemo(
     () => uuidv4(),
@@ -31,16 +33,6 @@ export const useId = () => {
 
 export const useNumberInput = (onChangeCallback) => {
   const [value, setValue] = useState('');
-
-  const isNumber = (input) => {
-    const lastCharacter = input.charAt(input.length - 1);
-    const digit = Number.parseInt(lastCharacter, 10);
-    if (Number.isNaN(digit)) {
-      return false;
-    }
-
-    return true;
-  };
 
   const onChange = useCallback(({ target }) => {
     // 0 length probably means that the user has cleared the input.
