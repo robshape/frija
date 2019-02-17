@@ -18,13 +18,22 @@
 
 */
 
-const { get } = require('../utils/http');
+const { UserInputError } = require('apollo-server-koa');
 
-const getByPersonalIdentityNumber = async personalIdentityNumber => get('https://bankid.com/')
-  .then(() => ({
-    name: 'N.N.',
-    personalIdentityNumber,
-  }));
+const { get } = require('../utils/http');
+const { isPersonalIdentityNumber } = require('../utils/number');
+
+const getByPersonalIdentityNumber = async (personalIdentityNumber) => {
+  if (!isPersonalIdentityNumber(personalIdentityNumber)) {
+    throw new UserInputError('Invalid personal identity number.');
+  }
+
+  return get('https://bankid.com/')
+    .then(() => ({
+      name: 'N.N.',
+      personalIdentityNumber,
+    }));
+};
 
 const userModel = {
   getByPersonalIdentityNumber,
