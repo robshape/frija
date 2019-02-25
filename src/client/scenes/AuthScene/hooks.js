@@ -61,7 +61,7 @@ const useValidateStoredToken = (client) => {
 
   useEffect(() => {
     validateStoredToken();
-  }, [client]);
+  }, [validateStoredToken]);
 
   return isValidating;
 };

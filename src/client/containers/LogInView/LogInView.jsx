@@ -49,7 +49,7 @@ const LogInView = memo(({ authenticate, client, data }) => {
     }
 
     authenticatePersonalIdentityNumber(personalIdentityNumber);
-  }, [personalIdentityNumber, validationStatus]);
+  }, [authenticatePersonalIdentityNumber, personalIdentityNumber, validationStatus]);
 
   if (data.isAuthenticated) {
     return <Redirect to={CONSTANTS.REACT_ROUTER_PATH_HOME} />;

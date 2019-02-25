@@ -31,7 +31,7 @@ const PrivateRoute = memo(({ component: Component, data, ...props }) => {
     }
 
     return <Component {...routeProps} />;
-  }, [Component, data]);
+  }, [data]);
 
   return (
     <Route {...props} render={onRouteRender} />
