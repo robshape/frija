@@ -41,7 +41,9 @@ const config = {
         include: path.resolve(__dirname, './src/client/'),
         test: /\.(js|jsx)$/,
         use: [
-          { loader: 'cache-loader' },
+          {
+            loader: 'cache-loader',
+          },
           {
             loader: 'babel-loader',
             options: {
@@ -54,7 +56,9 @@ const config = {
         include: path.resolve(__dirname, './src/client/'),
         test: /\.scss$/,
         use: [
-          { loader: 'cache-loader' },
+          {
+            loader: 'cache-loader',
+          },
           {
             loader: 'style-loader',
           },
@@ -97,8 +101,8 @@ const config = {
       '.jsx',
     ],
     modules: [
-      path.resolve(__dirname, './src/client/node_modules/'),
       path.resolve(__dirname, './node_modules/'), // Used by 'webpack-dev-server' dependency.
+      path.resolve(__dirname, './src/client/node_modules/'),
     ],
   },
 };
