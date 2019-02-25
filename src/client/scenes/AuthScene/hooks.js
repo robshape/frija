@@ -23,45 +23,45 @@ import { useEffect, useState } from 'react';
 import { getStoredToken, isTokenValid, removeStoredToken } from '../../utils/token';
 import { VALIDATE_QUERY } from '../../graphql/queries/token';
 
+const validateStoredToken = async (client, setIsValidating) => {
+  const token = getStoredToken();
+  const isValidToken = isTokenValid(token);
+  if (!isValidToken) {
+    removeStoredToken();
+
+    setIsValidating(false);
+    return;
+  }
+
+  setIsValidating(true);
+
+  const { data } = await client.query({
+    query: VALIDATE_QUERY,
+    variables: {
+      token,
+    },
+  });
+
+  setIsValidating(false);
+
+  if (!data.validate) {
+    removeStoredToken();
+    return;
+  }
+
+  client.writeData({
+    data: {
+      isAuthenticated: true,
+    },
+  });
+};
+
 const useValidateStoredToken = (client) => {
   const [isValidating, setIsValidating] = useState(null);
 
-  const validateStoredToken = async () => {
-    const token = getStoredToken();
-    const isValidToken = isTokenValid(token);
-    if (!isValidToken) {
-      removeStoredToken();
-
-      setIsValidating(false);
-      return;
-    }
-
-    setIsValidating(true);
-
-    const { data } = await client.query({
-      query: VALIDATE_QUERY,
-      variables: {
-        token,
-      },
-    });
-
-    setIsValidating(false);
-
-    if (!data.validate) {
-      removeStoredToken();
-      return;
-    }
-
-    client.writeData({
-      data: {
-        isAuthenticated: true,
-      },
-    });
-  };
-
   useEffect(() => {
-    validateStoredToken();
-  }, [validateStoredToken]);
+    validateStoredToken(client, setIsValidating);
+  }, [client]);
 
   return isValidating;
 };
