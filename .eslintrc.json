@@ -16,6 +16,7 @@
     "jsx-a11y/label-has-for": {
       "allowChildren": true
     },
+    "react-hooks/exhaustive-deps": "warn",
     "react-hooks/rules-of-hooks": "error"
   }
 }
