@@ -12,7 +12,6 @@
     "react-hooks"
   ],
   "rules": {
-    "import/prefer-default-export": "off",
     "jsx-a11y/label-has-for": {
       "allowChildren": true
     },

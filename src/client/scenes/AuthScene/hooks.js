@@ -21,7 +21,7 @@
 import { useEffect, useState } from 'react';
 
 import { getStoredToken, isTokenValid, removeStoredToken } from '../../utils/token';
-import { VALIDATE_QUERY } from '../../graphql/queries/token';
+import VALIDATE_QUERY from '../../graphql/queries/token';
 
 const useValidateStoredToken = (client) => {
   const [isValidating, setIsValidating] = useState(null);

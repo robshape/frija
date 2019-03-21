@@ -29,7 +29,7 @@ import PropTypes from 'prop-types';
 import React, { memo } from 'react';
 
 import AuthScene from './AuthScene';
-import { CONSTANTS } from '../utils/enum';
+import CONSTANTS from '../utils/enum';
 import HomeScene from './HomeScene';
 import PrivateRoute from '../containers/PrivateRoute';
 import styles from './styles.scss';

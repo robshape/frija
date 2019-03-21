@@ -20,8 +20,10 @@
 
 import gql from 'graphql-tag';
 
-export const VALIDATE_QUERY = gql`
+const VALIDATE_QUERY = gql`
   query Validate($token: String!) {
     validate(token: $token)
   }
 `;
+
+export default VALIDATE_QUERY;

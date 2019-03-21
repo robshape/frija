@@ -18,8 +18,10 @@
 
 */
 
-export const CONSTANTS = Object.freeze({
+const CONSTANTS = Object.freeze({
   REACT_ROUTER_PATH_AUTH: '/auth',
   REACT_ROUTER_PATH_HOME: '/',
   SESSION_STORAGE_KEY_NAME_TOKEN: 'token',
 });
+
+export default CONSTANTS;

@@ -20,8 +20,10 @@
 
 import gql from 'graphql-tag';
 
-export const IS_AUTHENTICATED_QUERY = gql`
+const IS_AUTHENTICATED_QUERY = gql`
   query IsAuthenticated {
     isAuthenticated @client
   }
 `;
+
+export default IS_AUTHENTICATED_QUERY;
