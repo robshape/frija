@@ -1,15 +1,15 @@
 {
   "dependencies": {
-    "apollo-server-koa": "2.4.8",
-    "dotenv": "7.0.0",
-    "graphql": "14.1.1",
+    "apollo-server-koa": "2.5.0",
+    "dotenv": "8.0.0",
+    "graphql": "14.3.0",
     "jsonwebtoken": "8.5.1",
     "koa": "2.7.0",
     "koa-compress": "3.0.0",
     "koa-helmet": "4.1.0",
     "koa-router": "7.4.0",
-    "node-fetch": "2.3.0",
-    "node-forge": "0.8.2"
+    "node-fetch": "2.6.0",
+    "node-forge": "0.8.3"
   },
   "private": true
 }
