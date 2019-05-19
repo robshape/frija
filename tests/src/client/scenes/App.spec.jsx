@@ -30,7 +30,7 @@ describe('<App />', () => {
     graphqlUrl: 'test',
   };
 
-  it('should render', () => {
+  it('should render', () => { // TODO: https://github.com/airbnb/enzyme/issues/2011/
     const wrapper = shallow(<App config={config} />);
 
     expect(wrapper).toMatchSnapshot();
