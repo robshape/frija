@@ -63,6 +63,8 @@ const configureGraphQL = ({ graphqlUrl }) => {
         uri: graphqlUrl,
       }),
     ]),
+
+    resolvers: {},
   });
 
   return apollo;
