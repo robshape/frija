@@ -23,13 +23,7 @@ import uuidv4 from 'uuid/v4';
 
 import { isNumber } from '../../../../utils/number';
 
-export const useId = () => {
-  const id = useMemo(
-    () => uuidv4(),
-    [],
-  );
-  return id;
-};
+export const useId = () => useMemo(() => uuidv4(), []);
 
 export const useInputNumber = (onChangeCallback) => {
   const [value, setValue] = useState('');

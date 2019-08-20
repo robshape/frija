@@ -18,10 +18,10 @@
 
 */
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
-import React, { memo, useMemo } from 'react';
+import React, { memo } from 'react';
 
+import Icon from '../Icon';
 import InputValidation from '../InputValidation';
 import Label from '../Label';
 import styles from './styles.scss';
@@ -39,23 +39,6 @@ const NumberInput = memo(({
   const id = useId();
   const { onChange: onInputChange, value } = useInputNumber(onChange);
 
-  const renderIcon = useMemo(() => {
-    if (validationStatus === 'error') {
-      return (
-        <FontAwesomeIcon
-          className={styles.numberInput__iconExclamation}
-          icon="exclamation"
-        />
-      );
-    }
-
-    if (validationStatus === 'success') {
-      return <FontAwesomeIcon className={styles.numberInput__iconCheck} icon="check" />;
-    }
-
-    return null;
-  }, [validationStatus]);
-
   return (
     <div className={styles.numberInput}>
       <div className={styles.numberInput__field}>
@@ -72,7 +55,7 @@ const NumberInput = memo(({
               value={value}
             />
 
-            {renderIcon}
+            <Icon icon={validationStatus} />
           </div>
         </Label>
 

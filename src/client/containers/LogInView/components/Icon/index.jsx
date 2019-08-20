@@ -1,7 +1,7 @@
 /*
 
   Frija - The Swedish general election and Riksdag on the Ethereum blockchain.
-  Copyright (C) 2018 Frija contributors.
+  Copyright (C) 2019 Frija contributors.
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -18,36 +18,27 @@
 
 */
 
-@import '../../../../styles/animations';
-@import '../../../../styles/colors';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-.numberInput {
-  &__field {
-    @include animation-transition;
+import styles from './styles.scss';
 
-    border-bottom: 2px solid $color-gray;
-    padding-bottom: 12px;
+const Icon = ({ icon }) => {
+  switch (icon) {
+    case 'error':
+      return <FontAwesomeIcon className={styles.icon__error} icon="exclamation" />;
 
-    &:focus-within {
-      border-color: $color-black;
-    }
+    case 'success':
+      return <FontAwesomeIcon className={styles.icon__success} icon="check" />;
+
+    default:
+      return null;
   }
+};
 
-  &__icon {
-    display: flex;
-    margin-top: 12px;
-  }
+Icon.propTypes = {
+  icon: PropTypes.string.isRequired,
+};
 
-  &__input {
-    border: 0;
-    font-size: 1rem;
-    font-weight: 500;
-    outline: 0;
-    width: 100%;
-
-    &::placeholder {
-      color: $color-gray;
-      font-weight: 100;
-    }
-  }
-}
+export default Icon;
