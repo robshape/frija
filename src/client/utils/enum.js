@@ -22,3 +22,5 @@ export const ROUTER_PATH = Object.freeze({
   AUTH: '/auth',
   HOME: '/',
 });
+
+export const TODO_REPLACE_ME = 'import/prefer-default-export';

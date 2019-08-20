@@ -19,3 +19,4 @@
 */
 
 export const SESSION_STORAGE_KEY_NAME_TOKEN = 'token';
+export const TODO_REPLACE_ME = 'import/prefer-default-export';

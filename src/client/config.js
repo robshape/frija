@@ -18,7 +18,7 @@
 
 */
 
-const configureConfig = env => ({
+const configureConfig = (env) => ({
   graphqlUrl: env.GRAPHQL_URL,
 });
 

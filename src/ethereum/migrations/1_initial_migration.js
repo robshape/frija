@@ -20,6 +20,6 @@
 
 const Migrations = artifacts.require('Migrations');
 
-const initialMigration = deployer => deployer.deploy(Migrations);
+const initialMigration = (deployer) => deployer.deploy(Migrations);
 
 module.exports = initialMigration;

@@ -55,5 +55,5 @@ export const isTokenValid = (token) => {
 export const removeStoredToken = () => sessionStorage
   .removeItem(SESSION_STORAGE_KEY_NAME_TOKEN);
 
-export const setStoredToken = token => sessionStorage
+export const setStoredToken = (token) => sessionStorage
   .setItem(SESSION_STORAGE_KEY_NAME_TOKEN, token);

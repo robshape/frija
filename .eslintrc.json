@@ -21,10 +21,13 @@
     "react-hooks"
   ],
   "rules": {
-    "jsx-a11y/label-has-for": {
-      "allowChildren": true
-    },
     "react-hooks/exhaustive-deps": "warn",
-    "react-hooks/rules-of-hooks": "error"
+    "react-hooks/rules-of-hooks": "error",
+    "react/jsx-props-no-spreading": ["error", {
+      "exceptions": [
+        "Component",
+        "Route"
+      ]
+    }]
   }
 }

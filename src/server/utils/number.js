@@ -22,7 +22,7 @@ const isLuhnChecksumValid = (number) => {
   const digits = number
     .split('')
     .reverse()
-    .map(digit => Number.parseInt(digit, 10));
+    .map((digit) => Number.parseInt(digit, 10));
   const lastDigit = digits.splice(0, 1)[0];
 
   const sum = digits.reduce((acc, cur, idx) => {

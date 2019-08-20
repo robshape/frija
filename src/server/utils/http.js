@@ -20,7 +20,7 @@
 
 const fetch = require('node-fetch');
 
-const get = async url => fetch(url, {
+const get = async (url) => fetch(url, {
   headers: {
     Accept: 'application/json',
   },
