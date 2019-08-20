@@ -31,7 +31,7 @@ export const useId = () => {
   return id;
 };
 
-export const useNumberInput = (onChangeCallback) => {
+export const useInputNumber = (onChangeCallback) => {
   const [value, setValue] = useState('');
 
   const onChange = useCallback(({ target }) => {

@@ -29,7 +29,7 @@ import NumberInput from './components/NumberInput';
 import { ROUTER_PATH } from '../../utils/enum';
 import styles from './styles.scss';
 import Subheading from './components/Subheading';
-import { useAuthenticatePersonalIdentityNumber, usePersonalIdentityNumberInput } from './hooks';
+import { useAuthenticatePersonalIdentityNumber, useInputPersonalIdentityNumber } from './hooks';
 
 const LogInView = memo(({ authenticate, client, data }) => {
   const {
@@ -41,7 +41,7 @@ const LogInView = memo(({ authenticate, client, data }) => {
     onChange: onNumberInputChange,
     personalIdentityNumber,
     validationStatus,
-  } = usePersonalIdentityNumberInput();
+  } = useInputPersonalIdentityNumber();
 
   const onFormSubmit = useCallback(() => {
     if (validationStatus !== 'success') {

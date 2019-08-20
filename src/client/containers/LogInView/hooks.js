@@ -51,7 +51,7 @@ export const useAuthenticatePersonalIdentityNumber = (client, mutation) => {
   };
 };
 
-export const usePersonalIdentityNumberInput = () => {
+export const useInputPersonalIdentityNumber = () => {
   const [personalIdentityNumber, setPersonalIdentityNumber] = useState('');
   const [validationStatus, setValidationStatus] = useState('validating');
 

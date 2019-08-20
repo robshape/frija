@@ -25,7 +25,7 @@ import React, { memo, useMemo } from 'react';
 import InputValidation from '../InputValidation';
 import Label from '../Label';
 import styles from './styles.scss';
-import { useId, useNumberInput } from './hooks';
+import { useId, useInputNumber } from './hooks';
 
 const NumberInput = memo(({
   labelText,
@@ -37,7 +37,7 @@ const NumberInput = memo(({
   validationText,
 }) => {
   const id = useId();
-  const { onChange: onInputChange, value } = useNumberInput(onChange);
+  const { onChange: onInputChange, value } = useInputNumber(onChange);
 
   const renderIcon = useMemo(() => {
     if (validationStatus === 'error') {
