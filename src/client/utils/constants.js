@@ -18,7 +18,4 @@
 
 */
 
-export const ROUTER_PATH = Object.freeze({
-  AUTH: '/auth',
-  HOME: '/',
-});
+export const SESSION_STORAGE_KEY_NAME_TOKEN = 'token';

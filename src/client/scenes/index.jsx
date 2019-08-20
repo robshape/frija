@@ -29,9 +29,9 @@ import PropTypes from 'prop-types';
 import React, { memo } from 'react';
 
 import AuthScene from './AuthScene';
-import CONSTANTS from '../utils/enum';
 import HomeScene from './HomeScene';
 import PrivateRoute from '../containers/PrivateRoute';
+import { ROUTER_PATH } from '../utils/enum';
 import styles from './styles.scss';
 import { useConfigureFontAwesome, useConfigureGraphQL } from './hooks';
 
@@ -49,9 +49,9 @@ const App = memo(({ config }) => {
         <BrowserRouter>
           <Switch>
 
-            <PrivateRoute component={HomeScene} exact path={CONSTANTS.REACT_ROUTER_PATH_HOME} />
-            <Route component={AuthScene} exact path={CONSTANTS.REACT_ROUTER_PATH_AUTH} />
-            <Redirect to={CONSTANTS.REACT_ROUTER_PATH_HOME} />
+            <PrivateRoute component={HomeScene} exact path={ROUTER_PATH.HOME} />
+            <Route component={AuthScene} exact path={ROUTER_PATH.AUTH} />
+            <Redirect to={ROUTER_PATH.HOME} />
 
           </Switch>
         </BrowserRouter>

@@ -22,9 +22,9 @@ import PropTypes from 'prop-types';
 import React, { memo } from 'react';
 import { Redirect } from 'react-router-dom';
 
-import CONSTANTS from '../../utils/enum';
 import Loader from '../../components/Loader';
 import LogInView from '../../containers/LogInView';
+import { ROUTER_PATH } from '../../utils/enum';
 import styles from './styles.scss';
 import useValidateStoredToken from './hooks';
 
@@ -37,7 +37,7 @@ const AuthScene = memo(({ client, data }) => {
   }
 
   if (data.isAuthenticated) {
-    return <Redirect to={CONSTANTS.REACT_ROUTER_PATH_HOME} />;
+    return <Redirect to={ROUTER_PATH.HOME} />;
   }
 
   if (isValidating) {

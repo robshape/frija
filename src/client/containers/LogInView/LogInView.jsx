@@ -22,11 +22,11 @@ import PropTypes from 'prop-types';
 import React, { memo, useCallback } from 'react';
 import { Redirect } from 'react-router-dom';
 
-import CONSTANTS from '../../utils/enum';
 import Form from './components/Form';
 import Heading from './components/Heading';
 import Loader from '../../components/Loader';
 import NumberInput from './components/NumberInput';
+import { ROUTER_PATH } from '../../utils/enum';
 import styles from './styles.scss';
 import Subheading from './components/Subheading';
 import { useAuthenticatePersonalIdentityNumber, usePersonalIdentityNumberInput } from './hooks';
@@ -52,7 +52,7 @@ const LogInView = memo(({ authenticate, client, data }) => {
   }, [authenticatePersonalIdentityNumber, personalIdentityNumber, validationStatus]);
 
   if (data.isAuthenticated) {
-    return <Redirect to={CONSTANTS.REACT_ROUTER_PATH_HOME} />;
+    return <Redirect to={ROUTER_PATH.HOME} />;
   }
 
   if (isAuthenticating) {

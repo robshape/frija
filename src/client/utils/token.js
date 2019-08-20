@@ -18,7 +18,7 @@
 
 */
 
-import CONSTANTS from './enum';
+import { SESSION_STORAGE_KEY_NAME_TOKEN } from './constants';
 
 const decodeTokenPayload = (token) => {
   const encodedPayload = token.split('.')[1];
@@ -27,7 +27,7 @@ const decodeTokenPayload = (token) => {
 };
 
 export const getStoredToken = () => sessionStorage
-  .getItem(CONSTANTS.SESSION_STORAGE_KEY_NAME_TOKEN);
+  .getItem(SESSION_STORAGE_KEY_NAME_TOKEN);
 
 const isTokenDateValid = (token) => {
   const date = Date.now() / 1000;
@@ -53,7 +53,7 @@ export const isTokenValid = (token) => {
 };
 
 export const removeStoredToken = () => sessionStorage
-  .removeItem(CONSTANTS.SESSION_STORAGE_KEY_NAME_TOKEN);
+  .removeItem(SESSION_STORAGE_KEY_NAME_TOKEN);
 
 export const setStoredToken = token => sessionStorage
-  .setItem(CONSTANTS.SESSION_STORAGE_KEY_NAME_TOKEN, token);
+  .setItem(SESSION_STORAGE_KEY_NAME_TOKEN, token);
