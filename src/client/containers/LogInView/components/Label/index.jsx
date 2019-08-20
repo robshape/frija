@@ -19,17 +19,17 @@
 */
 
 import PropTypes from 'prop-types';
-import React, { memo } from 'react';
+import React from 'react';
 
 import styles from './styles.scss';
 
-const Label = memo(({ children, forId, text }) => (
+const Label = ({ children, forId, text }) => (
   <label className={styles.label} htmlFor={forId}>
     {text}
 
     {children}
   </label>
-));
+);
 
 Label.propTypes = {
   children: PropTypes.node.isRequired,

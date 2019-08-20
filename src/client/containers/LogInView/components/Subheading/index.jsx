@@ -19,15 +19,15 @@
 */
 
 import PropTypes from 'prop-types';
-import React, { memo } from 'react';
+import React from 'react';
 
 import styles from './styles.scss';
 
-const Subheading = memo(({ children }) => (
+const Subheading = ({ children }) => (
   <h3 className={styles.subheading}>
     {children}
   </h3>
-));
+);
 
 Subheading.propTypes = {
   children: PropTypes.string.isRequired,

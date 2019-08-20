@@ -18,7 +18,7 @@
 
 */
 
-import { useCallback, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import uuidv4 from 'uuid/v4';
 
 import { isNumber } from '../../../../utils/number';
@@ -28,7 +28,7 @@ export const useId = () => useMemo(() => uuidv4(), []);
 export const useInputNumber = (onChangeCallback) => {
   const [value, setValue] = useState('');
 
-  const onChange = useCallback(({ target }) => {
+  const onChange = ({ target }) => {
     // 0 length probably means that the user has cleared the input.
     if (target.value.length !== 0
     && !isNumber(target.value)) {
@@ -38,7 +38,7 @@ export const useInputNumber = (onChangeCallback) => {
     setValue(target.value);
 
     onChangeCallback(target.value);
-  }, [onChangeCallback]);
+  };
 
   return {
     onChange,

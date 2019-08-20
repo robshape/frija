@@ -26,7 +26,7 @@ import {
   Switch,
 } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import React, { memo } from 'react';
+import React from 'react';
 
 import AuthScene from './AuthScene';
 import HomeScene from './HomeScene';
@@ -35,7 +35,7 @@ import { ROUTER_PATH } from '../utils/enum';
 import styles from './styles.scss';
 import { useConfigureFontAwesome, useConfigureGraphQL } from './hooks';
 
-const App = memo(({ config }) => {
+const App = ({ config }) => {
   useConfigureFontAwesome();
   const client = useConfigureGraphQL(config);
 
@@ -58,7 +58,7 @@ const App = memo(({ config }) => {
       </div>
     </ApolloProvider>
   );
-});
+};
 
 App.propTypes = {
   config: PropTypes.shape({

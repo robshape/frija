@@ -19,17 +19,17 @@
 */
 
 import PropTypes from 'prop-types';
-import React, { memo, useCallback } from 'react';
+import React from 'react';
 
 import styles from './styles.scss';
 import SubmitButton from '../SubmitButton';
 
-const Form = memo(({ buttonText, children, onSubmit }) => {
-  const onFormSubmit = useCallback((e) => {
+const Form = ({ buttonText, children, onSubmit }) => {
+  const onFormSubmit = (e) => {
     e.preventDefault();
 
     onSubmit();
-  }, [onSubmit]);
+  };
 
   return (
     <form className={styles.form} onSubmit={onFormSubmit}>
@@ -42,7 +42,7 @@ const Form = memo(({ buttonText, children, onSubmit }) => {
       </div>
     </form>
   );
-});
+};
 
 Form.propTypes = {
   buttonText: PropTypes.string.isRequired,

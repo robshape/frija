@@ -18,7 +18,7 @@
 
 */
 
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 
 import { isPersonalIdentityNumber } from '../../utils/number';
 import { setStoredToken } from '../../utils/token';
@@ -26,7 +26,7 @@ import { setStoredToken } from '../../utils/token';
 export const useAuthenticatePersonalIdentityNumber = (client, mutation) => {
   const [isAuthenticating, setIsAuthenticating] = useState(false);
 
-  const authenticatePersonalIdentityNumber = useCallback(async (personalIdentityNumber) => {
+  const authenticatePersonalIdentityNumber = async (personalIdentityNumber) => {
     setIsAuthenticating(true);
 
     const { data } = await mutation({
@@ -43,7 +43,7 @@ export const useAuthenticatePersonalIdentityNumber = (client, mutation) => {
         isAuthenticated: true,
       },
     });
-  }, [client, mutation]);
+  };
 
   return {
     authenticatePersonalIdentityNumber,
@@ -55,13 +55,13 @@ export const useInputPersonalIdentityNumber = () => {
   const [personalIdentityNumber, setPersonalIdentityNumber] = useState('');
   const [validationStatus, setValidationStatus] = useState('validating');
 
-  const onBlur = useCallback(() => {
+  const onBlur = () => {
     if (!isPersonalIdentityNumber(personalIdentityNumber)) {
       setValidationStatus('error');
     }
-  }, [personalIdentityNumber]);
+  };
 
-  const onChange = useCallback((value) => {
+  const onChange = (value) => {
     if (!isPersonalIdentityNumber(value)) {
       setValidationStatus('validating');
     } else {
@@ -69,7 +69,7 @@ export const useInputPersonalIdentityNumber = () => {
     }
 
     setPersonalIdentityNumber(value);
-  }, []);
+  };
 
   return {
     onBlur,

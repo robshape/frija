@@ -19,11 +19,11 @@
 */
 
 import PropTypes from 'prop-types';
-import React, { memo } from 'react';
+import React from 'react';
 
 import styles from './styles.scss';
 
-const Loader = memo(({ children }) => (
+const Loader = ({ children }) => (
   <div className={styles.loader}>
     <div className={styles.loader__spinner} />
 
@@ -31,7 +31,7 @@ const Loader = memo(({ children }) => (
       {children}
     </p>
   </div>
-));
+);
 
 Loader.defaultProps = {
   children: '',

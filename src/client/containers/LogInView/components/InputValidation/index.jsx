@@ -20,11 +20,11 @@
 
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import React, { memo } from 'react';
+import React from 'react';
 
 import styles from './styles.scss';
 
-const InputValidation = memo(({ children, status }) => {
+const InputValidation = ({ children, status }) => {
   const isVisible = status === 'error';
 
   return (
@@ -36,7 +36,7 @@ const InputValidation = memo(({ children, status }) => {
       {children}
     </p>
   );
-});
+};
 
 InputValidation.propTypes = {
   children: PropTypes.string.isRequired,

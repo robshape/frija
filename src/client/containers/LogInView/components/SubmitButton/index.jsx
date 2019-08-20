@@ -19,15 +19,15 @@
 */
 
 import PropTypes from 'prop-types';
-import React, { memo } from 'react';
+import React from 'react';
 
 import styles from './styles.scss';
 
-const SubmitButton = memo(({ children }) => (
+const SubmitButton = ({ children }) => (
   <button className={styles.submitButton} type="submit">
     {children}
   </button>
-));
+);
 
 SubmitButton.propTypes = {
   children: PropTypes.string.isRequired,

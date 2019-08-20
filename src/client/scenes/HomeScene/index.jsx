@@ -18,16 +18,16 @@
 
 */
 
-import React, { memo } from 'react';
+import React from 'react';
 
 import styles from './styles.scss';
 
-const HomeScene = memo(() => (
+const HomeScene = () => (
   <div className={styles.homeScene}>
     <p>
       Välkommen till Frija.
     </p>
   </div>
-));
+);
 
 export default HomeScene;

@@ -19,7 +19,7 @@
 */
 
 import PropTypes from 'prop-types';
-import React, { memo } from 'react';
+import React from 'react';
 
 import Icon from '../Icon';
 import InputValidation from '../InputValidation';
@@ -27,7 +27,7 @@ import Label from '../Label';
 import styles from './styles.scss';
 import { useId, useInputNumber } from './hooks';
 
-const NumberInput = memo(({
+const NumberInput = ({
   labelText,
   maxLength,
   onBlur,
@@ -66,7 +66,7 @@ const NumberInput = memo(({
       </InputValidation>
     </div>
   );
-});
+};
 
 NumberInput.propTypes = {
   labelText: PropTypes.string.isRequired,

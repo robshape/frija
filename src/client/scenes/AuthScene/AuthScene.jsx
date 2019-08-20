@@ -19,7 +19,7 @@
 */
 
 import PropTypes from 'prop-types';
-import React, { memo } from 'react';
+import React from 'react';
 import { Redirect } from 'react-router-dom';
 
 import Loader from '../../components/Loader';
@@ -28,7 +28,7 @@ import { ROUTER_PATH } from '../../utils/enum';
 import styles from './styles.scss';
 import useValidateStoredToken from './hooks';
 
-const AuthScene = memo(({ client, data }) => {
+const AuthScene = ({ client, data }) => {
   const isValidating = useValidateStoredToken(client);
 
   // Prevent flashing <Loader /> / <LogInView />, depending on stored token availability.
@@ -53,7 +53,7 @@ const AuthScene = memo(({ client, data }) => {
       <LogInView />
     </div>
   );
-});
+};
 
 AuthScene.propTypes = {
   client: PropTypes.shape({

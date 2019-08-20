@@ -19,7 +19,7 @@
 */
 
 import PropTypes from 'prop-types';
-import React, { memo, useCallback } from 'react';
+import React from 'react';
 import { Redirect } from 'react-router-dom';
 
 import Form from './components/Form';
@@ -31,7 +31,7 @@ import styles from './styles.scss';
 import Subheading from './components/Subheading';
 import { useAuthenticatePersonalIdentityNumber, useInputPersonalIdentityNumber } from './hooks';
 
-const LogInView = memo(({ authenticate, client, data }) => {
+const LogInView = ({ authenticate, client, data }) => {
   const {
     authenticatePersonalIdentityNumber,
     isAuthenticating,
@@ -43,13 +43,13 @@ const LogInView = memo(({ authenticate, client, data }) => {
     validationStatus,
   } = useInputPersonalIdentityNumber();
 
-  const onFormSubmit = useCallback(() => {
+  const onFormSubmit = () => {
     if (validationStatus !== 'success') {
       return;
     }
 
     authenticatePersonalIdentityNumber(personalIdentityNumber);
-  }, [authenticatePersonalIdentityNumber, personalIdentityNumber, validationStatus]);
+  };
 
   if (data.isAuthenticated) {
     return <Redirect to={ROUTER_PATH.HOME} />;
@@ -87,7 +87,7 @@ const LogInView = memo(({ authenticate, client, data }) => {
       </Form>
     </div>
   );
-});
+};
 
 LogInView.propTypes = {
   authenticate: PropTypes.func.isRequired,
