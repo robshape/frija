@@ -12,10 +12,14 @@ rm -fr ./src/server/package-lock.json
 echo
 
 echo "[*] CLEANING ./"
+rm -fr ./.cache-loader/
+rm -fr ./dist/
 rm -fr ./node_modules/
 rm -fr ./package-lock.json
 echo
 
-echo "[*] INSTALLING DEPENDENCIES"
+echo "[*] UPDATING DEPENDENCIES"
+npm install --prefix ./src/client/
+npm install --prefix ./src/server/
 npm install
 echo
