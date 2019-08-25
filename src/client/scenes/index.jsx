@@ -31,7 +31,7 @@ import React from 'react';
 import AuthScene from './AuthScene';
 import HomeScene from './HomeScene';
 import PrivateRoute from '../containers/PrivateRoute';
-import { ROUTER_PATH } from '../utils/enums';
+import ROUTER_PATH from '../enums/router-path';
 import styles from './styles.scss';
 import useConfigureFontAwesome from '../hooks/useConfigureFontAwesome';
 import useConfigureGraphQL from '../hooks/useConfigureGraphQL';
@@ -51,7 +51,7 @@ const App = ({ config }) => {
           <Switch>
 
             <PrivateRoute component={HomeScene} exact path={ROUTER_PATH.HOME} />
-            <Route component={AuthScene} exact path={ROUTER_PATH.AUTH} />
+            <Route component={AuthScene} exact path={ROUTER_PATH.AUTHENTICATE} />
             <Redirect to={ROUTER_PATH.HOME} />
 
           </Switch>

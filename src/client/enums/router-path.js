@@ -18,18 +18,9 @@
 
 */
 
-export const ICON = Object.freeze({
-  ERROR: 'error',
-  SUCCESS: 'success',
-});
-
-export const ROUTER_PATH = Object.freeze({
-  AUTH: '/auth',
+const ROUTER_PATH = Object.freeze({
+  AUTHENTICATE: '/authenticate',
   HOME: '/',
 });
 
-export const VALIDATION_STATUS = Object.freeze({
-  ERROR: 'error',
-  SUCCESS: 'success',
-  VALIDATING: 'validating',
-});
+export default ROUTER_PATH;

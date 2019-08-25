@@ -18,34 +18,9 @@
 
 */
 
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import React from 'react';
+const ICON = Object.freeze({
+  ERROR: 'error',
+  SUCCESS: 'success',
+});
 
-import styles from './styles.scss';
-import VALIDATION_STATUS from '../../../../enums/validation-status';
-
-const InputValidation = ({ children, status }) => {
-  const isVisible = status === VALIDATION_STATUS.ERROR;
-
-  return (
-    <p className={classNames({
-      [`${styles.inputValidation}`]: true,
-      [`${styles.inputValidationVISIBLE}`]: isVisible,
-    })}
-    >
-      {children}
-    </p>
-  );
-};
-
-InputValidation.propTypes = {
-  children: PropTypes.string.isRequired,
-  status: PropTypes.oneOf([
-    VALIDATION_STATUS.ERROR,
-    VALIDATION_STATUS.SUCCESS,
-    VALIDATION_STATUS.VALIDATING,
-  ]).isRequired,
-};
-
-export default InputValidation;
+export default ICON;

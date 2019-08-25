@@ -21,7 +21,7 @@
 import { useState } from 'react';
 
 import { isPersonalIdentityNumber } from '../utils/number';
-import { VALIDATION_STATUS } from '../utils/enums';
+import VALIDATION_STATUS from '../enums/validation-status';
 
 const useInputPersonalIdentityNumber = () => {
   const [personalIdentityNumber, setPersonalIdentityNumber] = useState('');
