@@ -1,8 +1,6 @@
-COPIED 2019-01-02 FROM https://github.com/shieldfy/API-Security-Checklist/
+https://github.com/shieldfy/API-Security-Checklist/
 
----
-
-[繁中版](./README-tw.md) | [簡中版](./README-zh.md) | [Português (Brasil)](./README-pt_BR.md) | [Français](./README-fr.md) | [한국어](./README-ko.md) | [Nederlands](./README-nl.md) | [Indonesia](./README-id.md) | [ไทย](./README-th.md) | [Русский](./README-ru.md) | [Українська](./README-uk.md) | [Español](./README-es.md) | [Italiano](./README-it.md) | [日本語](./README-ja.md) | [Deutsch](./README-de.md) | [Türkçe](./README-tr.md) | [Tiếng Việt](./README-vi.md) | [Монгол](./README-mn.md) | [हिंदी](./README-hi.md) | [العربية](./README-ar.md) | [Polski](./README-pl.md) | [Македонски](./README-mk.md) | [ລາວ](./README-lo.md)
+[繁中版](./README-tw.md) | [简中版](./README-zh.md) | [Português (Brasil)](./README-pt_BR.md) | [Français](./README-fr.md) | [한국어](./README-ko.md) | [Nederlands](./README-nl.md) | [Indonesia](./README-id.md) | [ไทย](./README-th.md) | [Русский](./README-ru.md) | [Українська](./README-uk.md) | [Español](./README-es.md) | [Italiano](./README-it.md) | [日本語](./README-ja.md) | [Deutsch](./README-de.md) | [Türkçe](./README-tr.md) | [Tiếng Việt](./README-vi.md) | [Монгол](./README-mn.md) | [हिंदी](./README-hi.md) | [العربية](./README-ar.md) | [Polski](./README-pl.md) | [Македонски](./README-mk.md) | [ລາວ](./README-lo.md) | [Ελληνικά](./README-el.md)
 
 # API Security Checklist
 Checklist of the most important security countermeasures when designing, testing, and releasing your API.
@@ -18,7 +16,7 @@ Checklist of the most important security countermeasures when designing, testing
 
 ### JWT (JSON Web Token)
 - [x] Use a random complicated key (`JWT Secret`) to make brute forcing the token very hard.
-- [x] Don't extract the algorithm from the payload. Force the algorithm in the backend (`HS256` or `RS256`).
+- [x] Don't extract the algorithm from the header. Force the algorithm in the backend (`HS256` or `RS256`).
 - [x] Make token expiration (`TTL`, `RTTL`) as short as possible.
 - [x] Don't store sensitive data in the JWT payload, it can be decoded [easily](https://jwt.io/#debugger-io).
 
