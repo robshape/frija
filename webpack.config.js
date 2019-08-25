@@ -27,7 +27,6 @@ const config = {
   devServer: {
     historyApiFallback: true,
     hot: true,
-    port: 8080,
   },
 
   devtool: 'cheap-module-eval-source-map',

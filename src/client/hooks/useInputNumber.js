@@ -18,34 +18,28 @@
 
 */
 
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import React from 'react';
+import { useState } from 'react';
 
-import styles from './styles.scss';
-import { VALIDATION_STATUS } from '../../../../utils/enums';
+import { isNumber } from '../utils/number';
 
-const InputValidation = ({ children, status }) => {
-  const isVisible = status === VALIDATION_STATUS.ERROR;
+const useInputNumber = (onChangeCallback) => {
+  const [value, setValue] = useState('');
 
-  return (
-    <p className={classNames({
-      [`${styles.inputValidation}`]: true,
-      [`${styles.inputValidationVISIBLE}`]: isVisible,
-    })}
-    >
-      {children}
-    </p>
-  );
+  const onChange = ({ target }) => {
+    if (target.value.length !== 0 // 0 length probably means that the user has cleared the input.
+    && !isNumber(target.value)) {
+      return;
+    }
+
+    setValue(target.value);
+
+    onChangeCallback(target.value);
+  };
+
+  return {
+    onChange,
+    value,
+  };
 };
 
-InputValidation.propTypes = {
-  children: PropTypes.string.isRequired,
-  status: PropTypes.oneOf([
-    VALIDATION_STATUS.ERROR,
-    VALIDATION_STATUS.SUCCESS,
-    VALIDATION_STATUS.VALIDATING,
-  ]).isRequired,
-};
-
-export default InputValidation;
+export default useInputNumber;

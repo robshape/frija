@@ -31,9 +31,10 @@ import React from 'react';
 import AuthScene from './AuthScene';
 import HomeScene from './HomeScene';
 import PrivateRoute from '../containers/PrivateRoute';
-import { ROUTER_PATH } from '../utils/enum';
+import { ROUTER_PATH } from '../utils/enums';
 import styles from './styles.scss';
-import { useConfigureFontAwesome, useConfigureGraphQL } from './hooks';
+import useConfigureFontAwesome from '../hooks/useConfigureFontAwesome';
+import useConfigureGraphQL from '../hooks/useConfigureGraphQL';
 
 const App = ({ config }) => {
   useConfigureFontAwesome();

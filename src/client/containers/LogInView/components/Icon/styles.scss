@@ -22,15 +22,16 @@
 @import '../../../../styles/colors';
 
 .icon {
-  &__error {
+  &__error,
+  &__success {
     @include animation-pop;
+  }
 
+  &__error {
     color: $color-red;
   }
 
   &__success {
-    @include animation-pop;
-
     color: $color-green;
   }
 }

@@ -18,6 +18,18 @@
 
 */
 
-.logInView {
-  max-width: 300px;
-}
+export const ICON = Object.freeze({
+  ERROR: 'error',
+  SUCCESS: 'success',
+});
+
+export const ROUTER_PATH = Object.freeze({
+  AUTH: '/auth',
+  HOME: '/',
+});
+
+export const VALIDATION_STATUS = Object.freeze({
+  ERROR: 'error',
+  SUCCESS: 'success',
+  VALIDATING: 'validating',
+});

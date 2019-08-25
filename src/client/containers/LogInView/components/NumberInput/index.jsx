@@ -25,7 +25,9 @@ import Icon from '../Icon';
 import InputValidation from '../InputValidation';
 import Label from '../Label';
 import styles from './styles.scss';
-import { useId, useInputNumber } from './hooks';
+import useId from '../../../../hooks/useId';
+import useInputNumber from '../../../../hooks/useInputNumber';
+import { VALIDATION_STATUS } from '../../../../utils/enums';
 
 const NumberInput = ({
   labelText,
@@ -37,7 +39,7 @@ const NumberInput = ({
   validationText,
 }) => {
   const id = useId();
-  const { onChange: onInputChange, value } = useInputNumber(onChange);
+  const { onChange: onInputNumberChange, value } = useInputNumber(onChange);
 
   return (
     <div className={styles.numberInput}>
@@ -50,7 +52,7 @@ const NumberInput = ({
               id={id}
               maxLength={maxLength}
               onBlur={onBlur}
-              onChange={onInputChange}
+              onChange={onInputNumberChange}
               placeholder={placeholder}
               value={value}
             />
@@ -75,9 +77,9 @@ NumberInput.propTypes = {
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string.isRequired,
   validationStatus: PropTypes.oneOf([
-    'error',
-    'success',
-    'validating',
+    VALIDATION_STATUS.ERROR,
+    VALIDATION_STATUS.SUCCESS,
+    VALIDATION_STATUS.VALIDATING,
   ]).isRequired,
   validationText: PropTypes.string.isRequired,
 };

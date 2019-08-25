@@ -18,33 +18,9 @@
 
 */
 
-import { faCheck, faExclamation } from '@fortawesome/free-solid-svg-icons';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { useEffect, useState } from 'react';
-
-import configureGraphQL from '../graphql';
-
-export const useConfigureFontAwesome = () => {
-  useEffect(() => {
-    library.add(
-      faCheck,
-      faExclamation,
-    );
-
-    const cleanupUseEffect = () => {
-      library.reset();
-    };
-    return cleanupUseEffect;
-  }, []);
-};
-
-export const useConfigureGraphQL = (config) => {
-  const [client, setClient] = useState({});
-
-  useEffect(() => {
-    const graphQLClient = configureGraphQL(config);
-    setClient(graphQLClient);
-  }, [config]);
-
-  return client;
-};
+.authSceneLoader {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}

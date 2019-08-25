@@ -18,9 +18,36 @@
 
 */
 
-export const ROUTER_PATH = Object.freeze({
-  AUTH: '/auth',
-  HOME: '/',
-});
+import { useState } from 'react';
 
-export const TODO_REPLACE_ME = 'import/prefer-default-export';
+import { setStoredToken } from '../utils/token';
+
+const useAuthenticatePersonalIdentityNumber = (client, mutation) => {
+  const [isAuthenticating, setIsAuthenticating] = useState(false);
+
+  const authenticatePersonalIdentityNumber = async (personalIdentityNumber) => {
+    setIsAuthenticating(true);
+
+    const { data } = await mutation({
+      variables: {
+        personalIdentityNumber,
+      },
+    });
+    setStoredToken(data.authenticate.token);
+
+    setIsAuthenticating(false);
+
+    client.writeData({
+      data: {
+        isAuthenticated: true,
+      },
+    });
+  };
+
+  return {
+    authenticatePersonalIdentityNumber,
+    isAuthenticating,
+  };
+};
+
+export default useAuthenticatePersonalIdentityNumber;

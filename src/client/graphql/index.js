@@ -25,8 +25,11 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { setContext } from 'apollo-link-context';
 import { withClientState } from 'apollo-link-state';
 
-import clientState from './client-state';
 import { getStoredToken, isTokenValid } from '../utils/token';
+
+const INITIAL_STATE = {
+  isAuthenticated: false,
+};
 
 const authLink = setContext(() => {
   let authorization = '';
@@ -49,25 +52,19 @@ const cache = new InMemoryCache();
 
 const stateLink = withClientState({
   cache,
-  defaults: clientState,
+  defaults: INITIAL_STATE,
 });
 
-const configureGraphQL = ({ graphqlUrl }) => {
-  const apollo = new ApolloClient({
-    cache,
-
-    link: ApolloLink.from([
-      stateLink,
-      authLink,
-      new HttpLink({
-        uri: graphqlUrl,
-      }),
-    ]),
-
-    resolvers: {},
-  });
-
-  return apollo;
-};
+const configureGraphQL = ({ graphqlUrl }) => new ApolloClient({
+  cache,
+  link: ApolloLink.from([
+    stateLink,
+    authLink,
+    new HttpLink({
+      uri: graphqlUrl,
+    }),
+  ]),
+  resolvers: {},
+});
 
 export default configureGraphQL;

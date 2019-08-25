@@ -18,34 +18,19 @@
 
 */
 
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import React from 'react';
+import { useEffect, useState } from 'react';
 
-import styles from './styles.scss';
-import { VALIDATION_STATUS } from '../../../../utils/enums';
+import configureGraphQL from '../graphql';
 
-const InputValidation = ({ children, status }) => {
-  const isVisible = status === VALIDATION_STATUS.ERROR;
+const useConfigureGraphQL = (config) => {
+  const [client, setClient] = useState({});
 
-  return (
-    <p className={classNames({
-      [`${styles.inputValidation}`]: true,
-      [`${styles.inputValidationVISIBLE}`]: isVisible,
-    })}
-    >
-      {children}
-    </p>
-  );
+  useEffect(() => {
+    const graphQLClient = configureGraphQL(config);
+    setClient(graphQLClient);
+  }, [config]);
+
+  return client;
 };
 
-InputValidation.propTypes = {
-  children: PropTypes.string.isRequired,
-  status: PropTypes.oneOf([
-    VALIDATION_STATUS.ERROR,
-    VALIDATION_STATUS.SUCCESS,
-    VALIDATION_STATUS.VALIDATING,
-  ]).isRequired,
-};
-
-export default InputValidation;
+export default useConfigureGraphQL;

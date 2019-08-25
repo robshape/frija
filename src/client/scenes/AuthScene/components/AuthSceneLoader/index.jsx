@@ -18,34 +18,15 @@
 
 */
 
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
 import React from 'react';
 
+import Loader from '../../../../components/Loader';
 import styles from './styles.scss';
-import { VALIDATION_STATUS } from '../../../../utils/enums';
 
-const InputValidation = ({ children, status }) => {
-  const isVisible = status === VALIDATION_STATUS.ERROR;
+const AuthSceneLoader = () => (
+  <div className={styles.authSceneLoader}>
+    <Loader />
+  </div>
+);
 
-  return (
-    <p className={classNames({
-      [`${styles.inputValidation}`]: true,
-      [`${styles.inputValidationVISIBLE}`]: isVisible,
-    })}
-    >
-      {children}
-    </p>
-  );
-};
-
-InputValidation.propTypes = {
-  children: PropTypes.string.isRequired,
-  status: PropTypes.oneOf([
-    VALIDATION_STATUS.ERROR,
-    VALIDATION_STATUS.SUCCESS,
-    VALIDATION_STATUS.VALIDATING,
-  ]).isRequired,
-};
-
-export default InputValidation;
+export default AuthSceneLoader;

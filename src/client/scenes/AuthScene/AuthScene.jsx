@@ -22,29 +22,24 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 
-import Loader from '../../components/Loader';
+import AuthSceneLoader from './components/AuthSceneLoader';
 import LogInView from '../../containers/LogInView';
-import { ROUTER_PATH } from '../../utils/enum';
+import { ROUTER_PATH } from '../../utils/enums';
 import styles from './styles.scss';
-import useValidateStoredToken from './hooks';
+import useValidateStoredToken from '../../hooks/useValidateStoredToken';
 
 const AuthScene = ({ client, data }) => {
   const isValidating = useValidateStoredToken(client);
 
-  // Prevent flashing <Loader /> / <LogInView />, depending on stored token availability.
-  if (isValidating === null) {
-    return null;
-  }
-
   if (data.isAuthenticated) {
-    return <Redirect to={ROUTER_PATH.HOME} />;
+    return (
+      <Redirect to={ROUTER_PATH.HOME} />
+    );
   }
 
   if (isValidating) {
     return (
-      <div className={styles.authScene}>
-        <Loader />
-      </div>
+      <AuthSceneLoader />
     );
   }
 

@@ -18,5 +18,9 @@
 
 */
 
-export const SESSION_STORAGE_KEY_NAME_TOKEN = 'token';
-export const TODO_REPLACE_ME = 'import/prefer-default-export';
+import { useMemo } from 'react';
+import uuidv4 from 'uuid/v4';
+
+const useId = () => useMemo(() => uuidv4(), []);
+
+export default useId;

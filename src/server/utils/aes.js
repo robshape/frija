@@ -20,59 +20,60 @@
 
 const forge = require('node-forge');
 
-class AES {
-  constructor() {
-    this.options = {
-      iterationCount: 10000,
-      keyLength: 16, // 16 will use AES-128. 32 will use AES-256.
-    };
-  }
+const options = {
+  iterationCount: 10000,
+  keyLength: 16, // 16 will use AES-128. 32 will use AES-256.
+};
 
-  decrypt(data, password) {
-    const { iterationCount, keyLength } = this.options;
+const decrypt = (data, password) => {
+  const { iterationCount, keyLength } = options;
 
-    const [encodedCiphertext, encodedIv, encodedSalt] = data.split('.');
+  const [encodedCiphertext, encodedIv, encodedSalt] = data.split('.');
 
-    const ciphertext = forge.util.decode64(encodedCiphertext);
-    const buffer = forge.util.createBuffer(ciphertext);
+  const ciphertext = forge.util.decode64(encodedCiphertext);
+  const buffer = forge.util.createBuffer(ciphertext);
 
-    const salt = forge.util.decode64(encodedSalt);
-    const key = forge.pkcs5.pbkdf2(password, salt, iterationCount, keyLength);
+  const salt = forge.util.decode64(encodedSalt);
+  const key = forge.pkcs5.pbkdf2(password, salt, iterationCount, keyLength);
 
-    const decipher = forge.cipher.createDecipher('AES-CBC', key);
-    const iv = forge.util.decode64(encodedIv);
-    decipher.start({
-      iv,
-    });
-    decipher.update(buffer);
-    decipher.finish();
+  const decipher = forge.cipher.createDecipher('AES-CBC', key);
+  const iv = forge.util.decode64(encodedIv);
+  decipher.start({
+    iv,
+  });
+  decipher.update(buffer);
+  decipher.finish();
 
-    return decipher.output.toString('utf8');
-  }
+  return decipher.output.toString('utf8');
+};
 
-  encrypt(plaintext, password) {
-    const { iterationCount, keyLength } = this.options;
+const encrypt = (plaintext, password) => {
+  const { iterationCount, keyLength } = options;
 
-    const buffer = forge.util.createBuffer(plaintext, 'utf8');
+  const buffer = forge.util.createBuffer(plaintext, 'utf8');
 
-    const salt = forge.random.getBytesSync(16);
-    const key = forge.pkcs5.pbkdf2(password, salt, iterationCount, keyLength);
+  const salt = forge.random.getBytesSync(16);
+  const key = forge.pkcs5.pbkdf2(password, salt, iterationCount, keyLength);
 
-    const cipher = forge.cipher.createCipher('AES-CBC', key);
-    const iv = forge.random.getBytesSync(16);
-    cipher.start({
-      iv,
-    });
-    cipher.update(buffer);
-    cipher.finish();
+  const cipher = forge.cipher.createCipher('AES-CBC', key);
+  const iv = forge.random.getBytesSync(16);
+  cipher.start({
+    iv,
+  });
+  cipher.update(buffer);
+  cipher.finish();
 
-    const ciphertext = cipher.output.getBytes();
+  const ciphertext = cipher.output.getBytes();
 
-    const encodedCiphertext = forge.util.encode64(ciphertext);
-    const encodedIv = forge.util.encode64(iv);
-    const encodedSalt = forge.util.encode64(salt);
-    return `${encodedCiphertext}.${encodedIv}.${encodedSalt}`;
-  }
-}
+  const encodedCiphertext = forge.util.encode64(ciphertext);
+  const encodedIv = forge.util.encode64(iv);
+  const encodedSalt = forge.util.encode64(salt);
+  return `${encodedCiphertext}.${encodedIv}.${encodedSalt}`;
+};
 
-module.exports = AES;
+const aes = {
+  decrypt,
+  encrypt,
+};
+
+module.exports = aes;

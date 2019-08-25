@@ -2,15 +2,11 @@
 set -euo pipefail
 
 echo "[*] INSTALLING CLIENT DEPENDENCIES"
-cd ./src/client/
-npm ci
-cd ../../
+npm ci --prefix ./src/client/
 echo
 
 echo "[*] INSTALLING SERVER DEPENDENCIES"
-cd ./src/server/
-npm ci
-cd ../../
+npm ci --prefix ./src/server/
 echo
 
 echo "[*] INSTALLING DEVELOPMENT DEPENDENCIES"

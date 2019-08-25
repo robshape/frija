@@ -18,9 +18,19 @@
 
 */
 
-// Default values for local state management in client.
-const clientState = {
-  isAuthenticated: false,
+import { faCheck, faExclamation } from '@fortawesome/free-solid-svg-icons';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { useEffect } from 'react';
+
+const useConfigureFontAwesome = () => {
+  useEffect(() => {
+    library.add(
+      faCheck,
+      faExclamation,
+    );
+
+    return () => library.reset();
+  }, []);
 };
 
-export default clientState;
+export default useConfigureFontAwesome;

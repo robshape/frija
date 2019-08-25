@@ -24,12 +24,12 @@ import { Redirect } from 'react-router-dom';
 
 import Form from './components/Form';
 import Heading from './components/Heading';
-import Loader from '../../components/Loader';
+import LogInViewLoader from './components/LogInViewLoader';
 import NumberInput from './components/NumberInput';
-import { ROUTER_PATH } from '../../utils/enum';
-import styles from './styles.scss';
+import { ROUTER_PATH, VALIDATION_STATUS } from '../../utils/enums';
 import Subheading from './components/Subheading';
-import { useAuthenticatePersonalIdentityNumber, useInputPersonalIdentityNumber } from './hooks';
+import useAuthenticatePersonalIdentityNumber from '../../hooks/useAuthenticatePersonalIdentityNumber';
+import useInputPersonalIdentityNumber from '../../hooks/useInputPersonalIdentityNumber';
 
 const LogInView = ({ authenticate, client, data }) => {
   const {
@@ -37,14 +37,14 @@ const LogInView = ({ authenticate, client, data }) => {
     isAuthenticating,
   } = useAuthenticatePersonalIdentityNumber(client, authenticate);
   const {
-    onBlur: onNumberInputBlur,
-    onChange: onNumberInputChange,
+    onBlur,
+    onChange,
     personalIdentityNumber,
     validationStatus,
   } = useInputPersonalIdentityNumber();
 
   const onFormSubmit = () => {
-    if (validationStatus !== 'success') {
+    if (validationStatus !== VALIDATION_STATUS.SUCCESS) {
       return;
     }
 
@@ -52,21 +52,19 @@ const LogInView = ({ authenticate, client, data }) => {
   };
 
   if (data.isAuthenticated) {
-    return <Redirect to={ROUTER_PATH.HOME} />;
+    return (
+      <Redirect to={ROUTER_PATH.HOME} />
+    );
   }
 
   if (isAuthenticating) {
     return (
-      <div className={styles.logInView}>
-        <Loader>
-          Väntar på svar från Mobilt BankID... Vänligen starta BankID-appen i din mobila enhet.
-        </Loader>
-      </div>
+      <LogInViewLoader />
     );
   }
 
   return (
-    <div className={styles.logInView}>
+    <div>
       <Heading>
         Hej,
       </Heading>
@@ -78,8 +76,8 @@ const LogInView = ({ authenticate, client, data }) => {
         <NumberInput
           labelText="Personnummer"
           maxLength={12}
-          onBlur={onNumberInputBlur}
-          onChange={onNumberInputChange}
+          onBlur={onBlur}
+          onChange={onChange}
           placeholder="ååååmmddxxxx"
           validationStatus={validationStatus}
           validationText="Ange ett giltig personnummer."

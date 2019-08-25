@@ -20,52 +20,24 @@
 
 import { useState } from 'react';
 
-import { isPersonalIdentityNumber } from '../../utils/number';
-import { setStoredToken } from '../../utils/token';
+import { isPersonalIdentityNumber } from '../utils/number';
+import { VALIDATION_STATUS } from '../utils/enums';
 
-export const useAuthenticatePersonalIdentityNumber = (client, mutation) => {
-  const [isAuthenticating, setIsAuthenticating] = useState(false);
-
-  const authenticatePersonalIdentityNumber = async (personalIdentityNumber) => {
-    setIsAuthenticating(true);
-
-    const { data } = await mutation({
-      variables: {
-        personalIdentityNumber,
-      },
-    });
-    setStoredToken(data.authenticate.token);
-
-    setIsAuthenticating(false);
-
-    client.writeData({
-      data: {
-        isAuthenticated: true,
-      },
-    });
-  };
-
-  return {
-    authenticatePersonalIdentityNumber,
-    isAuthenticating,
-  };
-};
-
-export const useInputPersonalIdentityNumber = () => {
+const useInputPersonalIdentityNumber = () => {
   const [personalIdentityNumber, setPersonalIdentityNumber] = useState('');
-  const [validationStatus, setValidationStatus] = useState('validating');
+  const [validationStatus, setValidationStatus] = useState(VALIDATION_STATUS.VALIDATING);
 
   const onBlur = () => {
     if (!isPersonalIdentityNumber(personalIdentityNumber)) {
-      setValidationStatus('error');
+      setValidationStatus(VALIDATION_STATUS.ERROR);
     }
   };
 
   const onChange = (value) => {
     if (!isPersonalIdentityNumber(value)) {
-      setValidationStatus('validating');
+      setValidationStatus(VALIDATION_STATUS.VALIDATING);
     } else {
-      setValidationStatus('success');
+      setValidationStatus(VALIDATION_STATUS.SUCCESS);
     }
 
     setPersonalIdentityNumber(value);
@@ -78,3 +50,5 @@ export const useInputPersonalIdentityNumber = () => {
     validationStatus,
   };
 };
+
+export default useInputPersonalIdentityNumber;

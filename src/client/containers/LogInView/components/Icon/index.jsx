@@ -22,15 +22,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import { ICON } from '../../../../utils/enums';
 import styles from './styles.scss';
 
 const Icon = ({ icon }) => {
   switch (icon) {
-    case 'error':
-      return <FontAwesomeIcon className={styles.icon__error} icon="exclamation" />;
+    case ICON.ERROR:
+      return (
+        <FontAwesomeIcon className={styles.icon__error} icon="exclamation" />
+      );
 
-    case 'success':
-      return <FontAwesomeIcon className={styles.icon__success} icon="check" />;
+    case ICON.SUCCESS:
+      return (
+        <FontAwesomeIcon className={styles.icon__success} icon="check" />
+      );
 
     default:
       return null;

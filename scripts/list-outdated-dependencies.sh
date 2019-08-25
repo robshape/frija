@@ -1,14 +1,14 @@
 #!/bin/bash
 set -euo pipefail
 
-echo "[*] LISTING OUTDATED DEPENDENCIES IN ./src/client/"
+echo "[*] LISTING OUTDATED CLIENT DEPENDENCIES"
 npm outdated --prefix ./src/client/ || true
 echo
 
-echo "[*] LISTING OUTDATED DEPENDENCIES IN ./src/server/"
+echo "[*] LISTING OUTDATED SERVER DEPENDENCIES"
 npm outdated --prefix ./src/server/ || true
 echo
 
-echo "[*] LISTING OUTDATED DEPENDENCIES IN ./"
+echo "[*] LISTING OUTDATED DEVELOPMENT DEPENDENCIES"
 npm outdated || true
 echo

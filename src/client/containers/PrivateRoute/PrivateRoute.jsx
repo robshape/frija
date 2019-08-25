@@ -22,18 +22,24 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 
-import { ROUTER_PATH } from '../../utils/enum';
+import { ROUTER_PATH } from '../../utils/enums';
 
 const PrivateRoute = ({ component: Component, data, ...props }) => {
   const onRouteRender = (routeProps) => {
     if (!data.isAuthenticated) {
-      return <Redirect to={ROUTER_PATH.AUTH} />;
+      return (
+        <Redirect to={ROUTER_PATH.AUTH} />
+      );
     }
 
-    return <Component {...routeProps} />;
+    return (
+      <Component {...routeProps} />
+    );
   };
 
-  return <Route {...props} render={onRouteRender} />;
+  return (
+    <Route {...props} render={onRouteRender} />
+  );
 };
 
 PrivateRoute.propTypes = {

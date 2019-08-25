@@ -53,21 +53,21 @@ export const isPersonalIdentityNumber = (number) => {
     return false;
   }
 
-  // Is the Luhn checksum valid?
-  const luhnNumber = number.length === 12 // yymmddxxxx
-    ? number.substring(2)
-    : number;
-  if (!isLuhnChecksumValid(luhnNumber)) {
-    return false;
-  }
-
-  // Is the date valid? (Crude and probably unnecessary if the Luhn checksum is valid...)
+  // Is the date valid?
   const dateNumber = number.length === 12 // yymmdd
     ? number.substring(2, 8)
     : number.substring(0, 6);
   const dateFormat = `${dateNumber.substring(0, 2)}-${dateNumber.substring(2, 4)}-${dateNumber.substring(4, 6)}`; // yy-mm-dd
   const date = Date.parse(dateFormat);
   if (Number.isNaN(date)) {
+    return false;
+  }
+
+  // Is the Luhn checksum valid?
+  const luhnNumber = number.length === 12 // yymmddxxxx
+    ? number.substring(2)
+    : number;
+  if (!isLuhnChecksumValid(luhnNumber)) {
     return false;
   }
 

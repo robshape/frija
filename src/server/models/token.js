@@ -20,7 +20,7 @@
 
 const jwt = require('jsonwebtoken');
 
-const AES = require('../utils/aes');
+const { encrypt } = require('../utils/aes');
 
 const sign = (id, options) => {
   const { secret, time } = options;
@@ -29,9 +29,7 @@ const sign = (id, options) => {
     date: Date.now(),
     id,
   });
-
-  const aes = new AES();
-  const encryptedData = aes.encrypt(data, secret);
+  const encryptedData = encrypt(data, secret);
 
   const token = jwt.sign({
     data: encryptedData,
@@ -52,8 +50,7 @@ const verify = (token, options) => {
     maxAge: time,
   });
 
-  // const aes = new AES();
-  // const decryptedData = aes.decrypt(payload.data, secret);
+  // const decryptedData = decrypt(payload.data, secret);
 
   return payload;
 };
