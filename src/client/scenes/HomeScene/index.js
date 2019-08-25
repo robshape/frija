@@ -18,15 +18,6 @@
 
 */
 
-import React from 'react';
+import HomeScene from './HomeScene';
 
-import Loader from '../../../../components/Loader';
-import styles from './styles.scss';
-
-const AuthSceneLoader = () => (
-  <div className={styles.authSceneLoader}>
-    <Loader />
-  </div>
-);
-
-export default AuthSceneLoader;
+export default HomeScene;

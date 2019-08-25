@@ -1,7 +1,7 @@
 /*
 
   Frija - The Swedish general election and Riksdag on the Ethereum blockchain.
-  Copyright (C) 2018 Frija contributors.
+  Copyright (C) 2019 Frija contributors.
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -18,21 +18,32 @@
 
 */
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import PropTypes from 'prop-types';
 import React from 'react';
-import { shallow } from 'enzyme';
 
-import App from '../../../../src/client/scenes';
+import ICON from '../../../../enums/icon';
+import styles from './Icon.scss';
 
-global.fetch = jest.fn();
+const Icon = ({ icon }) => {
+  switch (icon) {
+    case ICON.ERROR:
+      return (
+        <FontAwesomeIcon className={styles.icon__error} icon="exclamation" />
+      );
 
-describe('<App />', () => {
-  const config = {
-    graphqlUrl: 'test',
-  };
+    case ICON.SUCCESS:
+      return (
+        <FontAwesomeIcon className={styles.icon__success} icon="check" />
+      );
 
-  it('should render', () => { // TODO: https://github.com/airbnb/enzyme/issues/2011/
-    const wrapper = shallow(<App config={config} />);
+    default:
+      return null;
+  }
+};
 
-    expect(wrapper).toMatchSnapshot();
-  });
-});
+Icon.propTypes = {
+  icon: PropTypes.string.isRequired,
+};
+
+export default Icon;

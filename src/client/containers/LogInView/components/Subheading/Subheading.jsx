@@ -18,20 +18,19 @@
 
 */
 
-import './polyfills';
-
+import PropTypes from 'prop-types';
 import React from 'react';
-import { render } from 'react-dom';
 
-import App from './scenes/App';
-import configureConfig from './config';
+import styles from './Subheading.scss';
 
-const config = configureConfig({
-  GRAPHQL_URL: process.env.GRAPHQL_URL,
-});
-const node = document.getElementById('index');
-render(<App config={config} />, node);
+const Subheading = ({ children }) => (
+  <h3 className={styles.subheading}>
+    {children}
+  </h3>
+);
 
-if (process.env.NODE_ENV === 'development') {
-  module.hot.accept();
-}
+Subheading.propTypes = {
+  children: PropTypes.string.isRequired,
+};
+
+export default Subheading;

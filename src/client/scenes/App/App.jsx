@@ -28,13 +28,13 @@ import {
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import AuthScene from './AuthScene';
-import HomeScene from './HomeScene';
-import PrivateRoute from '../containers/PrivateRoute';
-import ROUTER_PATH from '../enums/router-path';
-import styles from './styles.scss';
-import useConfigureFontAwesome from '../hooks/useConfigureFontAwesome';
-import useConfigureGraphQL from '../hooks/useConfigureGraphQL';
+import AuthScene from '../AuthScene';
+import HomeScene from '../HomeScene';
+import PrivateRoute from '../../containers/PrivateRoute';
+import ROUTER_PATH from '../../enums/router-path';
+import styles from './App.scss';
+import useConfigureFontAwesome from '../../hooks/useConfigureFontAwesome';
+import useConfigureGraphQL from '../../hooks/useConfigureGraphQL';
 
 const App = ({ config }) => {
   useConfigureFontAwesome();

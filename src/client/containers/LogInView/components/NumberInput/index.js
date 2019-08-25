@@ -18,32 +18,6 @@
 
 */
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import PropTypes from 'prop-types';
-import React from 'react';
+import NumberInput from './NumberInput';
 
-import ICON from '../../../../enums/icon';
-import styles from './styles.scss';
-
-const Icon = ({ icon }) => {
-  switch (icon) {
-    case ICON.ERROR:
-      return (
-        <FontAwesomeIcon className={styles.icon__error} icon="exclamation" />
-      );
-
-    case ICON.SUCCESS:
-      return (
-        <FontAwesomeIcon className={styles.icon__success} icon="check" />
-      );
-
-    default:
-      return null;
-  }
-};
-
-Icon.propTypes = {
-  icon: PropTypes.string.isRequired,
-};
-
-export default Icon;
+export default NumberInput;

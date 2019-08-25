@@ -1,7 +1,7 @@
 /*
 
   Frija - The Swedish general election and Riksdag on the Ethereum blockchain.
-  Copyright (C) 2018 Frija contributors.
+  Copyright (C) 2019 Frija contributors.
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -18,36 +18,6 @@
 
 */
 
-import PropTypes from 'prop-types';
-import React from 'react';
+import Heading from './Heading';
 
-import styles from './styles.scss';
-import SubmitButton from '../SubmitButton';
-
-const Form = ({ buttonText, children, onSubmit }) => {
-  const onFormSubmit = (e) => {
-    e.preventDefault();
-
-    onSubmit();
-  };
-
-  return (
-    <form className={styles.form} onSubmit={onFormSubmit}>
-      {children}
-
-      <div className={styles.form__submit}>
-        <SubmitButton>
-          {buttonText}
-        </SubmitButton>
-      </div>
-    </form>
-  );
-};
-
-Form.propTypes = {
-  buttonText: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-};
-
-export default Form;
+export default Heading;

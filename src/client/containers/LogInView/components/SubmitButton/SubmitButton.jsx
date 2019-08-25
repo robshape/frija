@@ -18,20 +18,19 @@
 
 */
 
-import './polyfills';
-
+import PropTypes from 'prop-types';
 import React from 'react';
-import { render } from 'react-dom';
 
-import App from './scenes/App';
-import configureConfig from './config';
+import styles from './SubmitButton.scss';
 
-const config = configureConfig({
-  GRAPHQL_URL: process.env.GRAPHQL_URL,
-});
-const node = document.getElementById('index');
-render(<App config={config} />, node);
+const SubmitButton = ({ children }) => (
+  <button className={styles.submitButton} type="submit">
+    {children}
+  </button>
+);
 
-if (process.env.NODE_ENV === 'development') {
-  module.hot.accept();
-}
+SubmitButton.propTypes = {
+  children: PropTypes.string.isRequired,
+};
+
+export default SubmitButton;

@@ -25,7 +25,7 @@ import { Redirect } from 'react-router-dom';
 import AuthSceneLoader from './components/AuthSceneLoader';
 import LogInView from '../../containers/LogInView';
 import ROUTER_PATH from '../../enums/router-path';
-import styles from './styles.scss';
+import styles from './AuthScene.scss';
 import useValidateStoredToken from '../../hooks/useValidateStoredToken';
 
 const AuthScene = ({ client, data }) => {

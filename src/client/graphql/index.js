@@ -27,6 +27,7 @@ import { withClientState } from 'apollo-link-state';
 
 import { getStoredToken, isTokenValid } from '../utils/token';
 
+// Used with @client queries.
 const INITIAL_STATE = {
   isAuthenticated: false,
 };

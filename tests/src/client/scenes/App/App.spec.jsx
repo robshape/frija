@@ -1,7 +1,7 @@
 /*
 
   Frija - The Swedish general election and Riksdag on the Ethereum blockchain.
-  Copyright (C) 2019 Frija contributors.
+  Copyright (C) 2018 Frija contributors.
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -19,15 +19,20 @@
 */
 
 import React from 'react';
+import { shallow } from 'enzyme';
 
-import styles from './styles.scss';
+import App from '../../../../../src/client/scenes/App';
 
-const HomeScene = () => (
-  <div className={styles.homeScene}>
-    <p>
-      Välkommen till Frija.
-    </p>
-  </div>
-);
+global.fetch = jest.fn();
 
-export default HomeScene;
+describe('<App />', () => {
+  const config = {
+    graphqlUrl: 'test',
+  };
+
+  it('should render', () => { // TODO: https://github.com/airbnb/enzyme/issues/2011/
+    const wrapper = shallow(<App config={config} />);
+
+    expect(wrapper).toMatchSnapshot();
+  });
+});

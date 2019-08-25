@@ -1,7 +1,7 @@
 /*
 
   Frija - The Swedish general election and Riksdag on the Ethereum blockchain.
-  Copyright (C) 2018 Frija contributors.
+  Copyright (C) 2019 Frija contributors.
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -18,20 +18,23 @@
 
 */
 
-import './polyfills';
-
+import PropTypes from 'prop-types';
 import React from 'react';
-import { render } from 'react-dom';
 
-import App from './scenes/App';
-import configureConfig from './config';
+import styles from './Label.scss';
 
-const config = configureConfig({
-  GRAPHQL_URL: process.env.GRAPHQL_URL,
-});
-const node = document.getElementById('index');
-render(<App config={config} />, node);
+const Label = ({ children, forId, text }) => (
+  <label className={styles.label} htmlFor={forId}>
+    {text}
 
-if (process.env.NODE_ENV === 'development') {
-  module.hot.accept();
-}
+    {children}
+  </label>
+);
+
+Label.propTypes = {
+  children: PropTypes.node.isRequired,
+  forId: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+};
+
+export default Label;

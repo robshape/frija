@@ -1,7 +1,7 @@
 /*
 
   Frija - The Swedish general election and Riksdag on the Ethereum blockchain.
-  Copyright (C) 2018 Frija contributors.
+  Copyright (C) 2019 Frija contributors.
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -18,19 +18,27 @@
 
 */
 
-@import '../styles/colors';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+import styles from './Loader.scss';
 
-.app {
-  color: $color-black;
-  display: flex;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-size: 16px;
-  min-height: 100vh;
-  padding: 14px;
-}
+const Loader = ({ children }) => (
+  <div className={styles.loader}>
+    <div className={styles.loader__spinner} />
+
+    <p className={styles.loader__text}>
+      {children}
+    </p>
+  </div>
+);
+
+Loader.defaultProps = {
+  children: '',
+};
+
+Loader.propTypes = {
+  children: PropTypes.string,
+};
+
+export default Loader;

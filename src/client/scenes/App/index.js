@@ -18,23 +18,6 @@
 
 */
 
-import PropTypes from 'prop-types';
-import React from 'react';
+import App from './App';
 
-import styles from './styles.scss';
-
-const Label = ({ children, forId, text }) => (
-  <label className={styles.label} htmlFor={forId}>
-    {text}
-
-    {children}
-  </label>
-);
-
-Label.propTypes = {
-  children: PropTypes.node.isRequired,
-  forId: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
-};
-
-export default Label;
+export default App;

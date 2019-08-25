@@ -18,20 +18,36 @@
 
 */
 
-import './polyfills';
-
+import PropTypes from 'prop-types';
 import React from 'react';
-import { render } from 'react-dom';
 
-import App from './scenes/App';
-import configureConfig from './config';
+import styles from './Form.scss';
+import SubmitButton from '../SubmitButton';
 
-const config = configureConfig({
-  GRAPHQL_URL: process.env.GRAPHQL_URL,
-});
-const node = document.getElementById('index');
-render(<App config={config} />, node);
+const Form = ({ buttonText, children, onSubmit }) => {
+  const onFormSubmit = (e) => {
+    e.preventDefault();
 
-if (process.env.NODE_ENV === 'development') {
-  module.hot.accept();
-}
+    onSubmit();
+  };
+
+  return (
+    <form className={styles.form} onSubmit={onFormSubmit}>
+      {children}
+
+      <div className={styles.form__submit}>
+        <SubmitButton>
+          {buttonText}
+        </SubmitButton>
+      </div>
+    </form>
+  );
+};
+
+Form.propTypes = {
+  buttonText: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+};
+
+export default Form;

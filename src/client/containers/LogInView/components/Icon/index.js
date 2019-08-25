@@ -1,7 +1,7 @@
 /*
 
   Frija - The Swedish general election and Riksdag on the Ethereum blockchain.
-  Copyright (C) 2018 Frija contributors.
+  Copyright (C) 2019 Frija contributors.
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -18,19 +18,6 @@
 
 */
 
-import PropTypes from 'prop-types';
-import React from 'react';
+import Icon from './Icon';
 
-import styles from './styles.scss';
-
-const Heading = ({ children }) => (
-  <h2 className={styles.heading}>
-    {children}
-  </h2>
-);
-
-Heading.propTypes = {
-  children: PropTypes.string.isRequired,
-};
-
-export default Heading;
+export default Icon;

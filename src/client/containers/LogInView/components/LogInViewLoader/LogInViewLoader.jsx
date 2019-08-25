@@ -1,7 +1,7 @@
 /*
 
   Frija - The Swedish general election and Riksdag on the Ethereum blockchain.
-  Copyright (C) 2018 Frija contributors.
+  Copyright (C) 2019 Frija contributors.
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -18,20 +18,17 @@
 
 */
 
-import './polyfills';
-
 import React from 'react';
-import { render } from 'react-dom';
 
-import App from './scenes/App';
-import configureConfig from './config';
+import Loader from '../../../../components/Loader';
+import styles from './LogInViewLoader.scss';
 
-const config = configureConfig({
-  GRAPHQL_URL: process.env.GRAPHQL_URL,
-});
-const node = document.getElementById('index');
-render(<App config={config} />, node);
+const LogInViewLoader = () => (
+  <div className={styles.logInViewLoader}>
+    <Loader>
+      Väntar på svar från Mobilt BankID... Vänligen starta BankID-appen i din mobila enhet.
+    </Loader>
+  </div>
+);
 
-if (process.env.NODE_ENV === 'development') {
-  module.hot.accept();
-}
+export default LogInViewLoader;
