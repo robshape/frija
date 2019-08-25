@@ -29,7 +29,7 @@ const authenticate = async (obj, args, context) => {
 const validate = (obj, args, context) => context
   .models
   .tokenModel
-  .validate(context.token, context.tokenOptions);
+  .validate(args.token, context.tokenOptions);
 
 const tokenResolver = {
   Mutation: {
