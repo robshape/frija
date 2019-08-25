@@ -36,17 +36,7 @@ const isLuhnChecksumValid = (number) => {
   return (sum + lastDigit) % 10 === 0;
 };
 
-export const isNumber = (value) => {
-  const lastCharacter = value.charAt(value.length - 1);
-  const digit = Number.parseInt(lastCharacter, 10);
-  if (Number.isNaN(digit)) {
-    return false;
-  }
-
-  return true;
-};
-
-export const isPersonalIdentityNumber = (number) => {
+const isPersonalIdentityNumber = (number) => {
   // Is it 10 (yymmddxxxx) or 12 (yyyymmddxxxx) digits?
   if (number.length !== 10
   && number.length !== 12) {
@@ -73,3 +63,5 @@ export const isPersonalIdentityNumber = (number) => {
 
   return true;
 };
+
+export default isPersonalIdentityNumber;

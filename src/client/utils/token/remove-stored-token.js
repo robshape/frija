@@ -18,34 +18,8 @@
 
 */
 
-@mixin animation-pop {
-  animation: pop 250ms ease;
+import { SESSION_STORAGE_KEY_NAME } from '../constants';
 
-  @keyframes pop {
-    0% {
-      transform: scale(0.5);
-    }
+const removeStoredToken = () => sessionStorage.removeItem(SESSION_STORAGE_KEY_NAME);
 
-    100% {
-      transform: scale(1);
-    }
-  }
-}
-
-@mixin animation-spin {
-  animation: spin 500ms linear infinite;
-
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-}
-
-@mixin animation-transition {
-  transition: all 250ms ease;
-}
+export default removeStoredToken;

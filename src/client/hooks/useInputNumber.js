@@ -20,7 +20,7 @@
 
 import { useState } from 'react';
 
-import { isNumber } from '../utils/number';
+import isNumber from '../utils/number/is-number';
 
 const useInputNumber = (onChangeCallback) => {
   const [value, setValue] = useState('');

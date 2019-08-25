@@ -20,7 +20,7 @@
 
 import { useState } from 'react';
 
-import { setStoredToken } from '../utils/token';
+import setStoredToken from '../utils/token/set-stored-token';
 
 const useAuthenticatePersonalIdentityNumber = (client, mutation) => {
   const [isAuthenticating, setIsAuthenticating] = useState(false);

@@ -44,7 +44,7 @@ const LogInView = ({ authenticate, client, data }) => {
     validationStatus,
   } = useInputPersonalIdentityNumber();
 
-  const onFormSubmit = () => {
+  const onSubmit = () => {
     if (validationStatus !== VALIDATION_STATUS.SUCCESS) {
       return;
     }
@@ -73,7 +73,7 @@ const LogInView = ({ authenticate, client, data }) => {
         identifiera dig med Mobilt BankID
       </Subheading>
 
-      <Form buttonText="Fortsätt" onSubmit={onFormSubmit}>
+      <Form buttonText="Fortsätt" onSubmit={onSubmit}>
         <NumberInput
           labelText="Personnummer"
           maxLength={12}

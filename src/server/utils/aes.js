@@ -26,15 +26,13 @@ const options = {
 };
 
 const decrypt = (data, password) => {
-  const { iterationCount, keyLength } = options;
-
   const [encodedCiphertext, encodedIv, encodedSalt] = data.split('.');
 
   const ciphertext = forge.util.decode64(encodedCiphertext);
   const buffer = forge.util.createBuffer(ciphertext);
 
   const salt = forge.util.decode64(encodedSalt);
-  const key = forge.pkcs5.pbkdf2(password, salt, iterationCount, keyLength);
+  const key = forge.pkcs5.pbkdf2(password, salt, options.iterationCount, options.keyLength);
 
   const decipher = forge.cipher.createDecipher('AES-CBC', key);
   const iv = forge.util.decode64(encodedIv);
@@ -48,12 +46,10 @@ const decrypt = (data, password) => {
 };
 
 const encrypt = (plaintext, password) => {
-  const { iterationCount, keyLength } = options;
-
   const buffer = forge.util.createBuffer(plaintext, 'utf8');
 
   const salt = forge.random.getBytesSync(16);
-  const key = forge.pkcs5.pbkdf2(password, salt, iterationCount, keyLength);
+  const key = forge.pkcs5.pbkdf2(password, salt, options.iterationCount, options.keyLength);
 
   const cipher = forge.cipher.createCipher('AES-CBC', key);
   const iv = forge.random.getBytesSync(16);

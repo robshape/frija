@@ -18,16 +18,11 @@
 
 */
 
-const SESSION_STORAGE_KEY_NAME = 'token';
-
 const decodeTokenPayload = (token) => {
   const encodedPayload = token.split('.')[1];
   const payload = atob(encodedPayload);
   return JSON.parse(payload);
 };
-
-export const getStoredToken = () => sessionStorage
-  .getItem(SESSION_STORAGE_KEY_NAME);
 
 const isTokenDateValid = (token) => {
   const date = Date.now() / 1000;
@@ -39,7 +34,7 @@ const isTokenDateValid = (token) => {
   return true;
 };
 
-export const isTokenValid = (token) => {
+const isTokenValid = (token) => {
   if (!token) {
     return false;
   }
@@ -52,8 +47,4 @@ export const isTokenValid = (token) => {
   return true;
 };
 
-export const removeStoredToken = () => sessionStorage
-  .removeItem(SESSION_STORAGE_KEY_NAME);
-
-export const setStoredToken = (token) => sessionStorage
-  .setItem(SESSION_STORAGE_KEY_NAME, token);
+export default isTokenValid;

@@ -21,8 +21,8 @@
 import * as compose from 'lodash.flowright';
 import { graphql, withApollo } from 'react-apollo';
 
-import AUTHENTICATE_MUTATION from '../../graphql/mutations/token';
-import IS_AUTHENTICATED_QUERY from '../../graphql/queries/client';
+import AUTHENTICATE_MUTATION from '../../graphql/mutations/authenticate';
+import IS_AUTHENTICATED_QUERY from '../../graphql/queries/is-authenticated';
 import LogInView from './LogInView';
 
 const LogInViewWithGraphQL = compose(

@@ -64,8 +64,4 @@ const isPersonalIdentityNumber = (number) => {
   return true;
 };
 
-const number = {
-  isPersonalIdentityNumber,
-};
-
-module.exports = number;
+module.exports = isPersonalIdentityNumber;

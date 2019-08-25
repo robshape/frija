@@ -18,8 +18,8 @@
 
 */
 
-@import '../../../../styles/animations';
-@import '../../../../styles/colors';
+@import '../../../../styles/animations/transition';
+@import '../../../../styles/variables/colors';
 
 .numberInput {
   &__field {

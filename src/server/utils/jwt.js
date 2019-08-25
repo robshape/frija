@@ -18,27 +18,41 @@
 
 */
 
-@import '../../styles/animations/spin';
-@import '../../styles/variables/colors';
+const jsonWebToken = require('jsonwebtoken');
 
-.loader {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
+const aes = require('./aes');
 
-  &__spinner {
-    @include animation-spin;
+const sign = (id, options) => {
+  const data = JSON.stringify({
+    date: Date.now(),
+    id,
+  });
+  const encryptedData = aes.encrypt(data, options.secret);
 
-    border: 12px solid $color-white;
-    border-radius: 50%;
-    border-top-color: $color-black;
-    height: 32px;
-    width: 32px;
-  }
+  const token = jsonWebToken.sign({
+    data: encryptedData,
+  }, options.secret, {
+    expiresIn: options.time,
+  });
 
-  &__text {
-    font-size: 0.875rem;
-    margin-top: 16px;
-    text-align: center;
-  }
-}
+  return token;
+};
+
+const verify = (token, options) => {
+  const payload = jsonWebToken.verify(token, options.secret, {
+    algorithms: [
+      'HS256',
+    ],
+    maxAge: options.time,
+  });
+  // const decryptedData = aes.decrypt(payload.data, secret);
+
+  return payload;
+};
+
+const jwt = {
+  sign,
+  verify,
+};
+
+module.exports = jwt;

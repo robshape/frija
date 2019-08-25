@@ -25,14 +25,12 @@ const resolvers = require('./resolvers');
 const schemas = require('./schemas');
 
 const configureGraphQL = (app, config) => {
-  const { token: tokenOptions } = config;
-
   const apollo = new ApolloServer({
     context({ ctx }) {
       return {
-        isAuthenticated: models.tokenModel.isAuthenticated(ctx, tokenOptions),
+        isAuthenticated: models.tokenModel.isAuthenticated(ctx, config.token),
         models,
-        tokenOptions,
+        tokenOptions: config.token,
       };
     },
     resolvers,

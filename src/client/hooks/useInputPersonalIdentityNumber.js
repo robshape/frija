@@ -20,7 +20,7 @@
 
 import { useState } from 'react';
 
-import { isPersonalIdentityNumber } from '../utils/number';
+import isPersonalIdentityNumber from '../utils/number/is-personal-identity-number';
 import VALIDATION_STATUS from '../enums/validation-status';
 
 const useInputPersonalIdentityNumber = () => {

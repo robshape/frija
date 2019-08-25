@@ -21,7 +21,7 @@
 import * as compose from 'lodash.flowright';
 import { graphql } from 'react-apollo';
 
-import IS_AUTHENTICATED_QUERY from '../../graphql/queries/client';
+import IS_AUTHENTICATED_QUERY from '../../graphql/queries/is-authenticated';
 import PrivateRoute from './PrivateRoute';
 
 const PrivateRouteWithGraphQL = compose(

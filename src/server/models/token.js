@@ -18,52 +18,11 @@
 
 */
 
-const jwt = require('jsonwebtoken');
+const jwt = require('../utils/jwt');
 
-const { encrypt } = require('../utils/aes');
-
-const sign = (id, options) => {
-  const { secret, time } = options;
-
-  const data = JSON.stringify({
-    date: Date.now(),
-    id,
-  });
-  const encryptedData = encrypt(data, secret);
-
-  const token = jwt.sign({
-    data: encryptedData,
-  }, secret, {
-    expiresIn: time,
-  });
-
-  return token;
-};
-
-const verify = (token, options) => {
-  const { secret, time } = options;
-
-  const payload = jwt.verify(token, secret, {
-    algorithms: [
-      'HS256',
-    ],
-    maxAge: time,
-  });
-
-  // const decryptedData = decrypt(payload.data, secret);
-
-  return payload;
-};
-
-const authenticate = (user, tokenOptions) => {
-  const { personalIdentityNumber } = user;
-
-  const token = sign(personalIdentityNumber, tokenOptions);
-
-  return {
-    token,
-  };
-};
+const authenticate = (user, tokenOptions) => ({
+  token: jwt.sign(user.personalIdentityNumber, tokenOptions),
+});
 
 const isAuthenticated = (ctx, tokenOptions) => {
   let isTokenValid = false;
@@ -71,7 +30,7 @@ const isAuthenticated = (ctx, tokenOptions) => {
   const token = ctx.header.authorization;
   if (token) {
     try {
-      isTokenValid = !!verify(token, tokenOptions);
+      isTokenValid = !!jwt.verify(token, tokenOptions);
     } catch (error) {
       isTokenValid = false;
     }
@@ -84,7 +43,7 @@ const validate = (token, tokenOptions) => {
   let isTokenValid = false;
 
   try {
-    isTokenValid = !!verify(token, tokenOptions);
+    isTokenValid = !!jwt.verify(token, tokenOptions);
   } catch (error) {
     isTokenValid = false;
   }

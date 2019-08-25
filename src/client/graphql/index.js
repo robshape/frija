@@ -25,7 +25,8 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { setContext } from 'apollo-link-context';
 import { withClientState } from 'apollo-link-state';
 
-import { getStoredToken, isTokenValid } from '../utils/token';
+import getStoredToken from '../utils/token/get-stored-token';
+import isTokenValid from '../utils/token/is-token-valid';
 
 // Used with @client queries.
 const INITIAL_STATE = {

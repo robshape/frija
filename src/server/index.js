@@ -26,14 +26,13 @@ const configureConfig = require('./config');
 
 const config = configureConfig(process.env);
 const app = configureApp(config);
-const { graphqlPort, ssl } = config;
 
 https
   .createServer({
-    cert: ssl.cert,
-    key: ssl.key,
+    cert: config.ssl.cert,
+    key: config.ssl.key,
   }, app)
-  .listen(graphqlPort, () => {
-    console.log(`Server listening on port ${graphqlPort}`); // eslint-disable-line no-console
-    console.log(`GraphQL listening on :${graphqlPort}/graphql`); // eslint-disable-line no-console
+  .listen(config.graphqlPort, () => {
+    console.log(`Server listening on port ${config.graphqlPort}`); // eslint-disable-line no-console
+    console.log(`GraphQL listening on :${config.graphqlPort}/graphql`); // eslint-disable-line no-console
   });
