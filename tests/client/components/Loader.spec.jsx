@@ -18,27 +18,30 @@
 
 */
 
-import PropTypes from 'prop-types';
 import React from 'react';
+import { render } from '@testing-library/react';
 
-import styles from './Loader.scss';
+import Loader from '../../../src/client/components/Loader';
 
-const Loader = ({ children }) => (
-  <div className={styles.loader}>
-    <div data-testid="loader__spinner" className={styles.loader__spinner} />
+it('shows a spinner with no text', () => {
+  const { queryByTestId } = render(
+    <Loader />,
+  );
 
-    <p data-testid="loader__text" className={styles.loader__text}>
-      {children}
-    </p>
-  </div>
-);
+  expect(queryByTestId('loader__spinner')).toHaveClass('loader__spinner');
+  expect(queryByTestId('loader__text')).toBeEmpty();
+});
 
-Loader.defaultProps = {
-  children: '',
-};
+it('shows a spinner with text', () => {
+  const { queryByTestId, queryByText } = render(
+    <Loader>
+      Loading...
+    </Loader>,
+  );
 
-Loader.propTypes = {
-  children: PropTypes.string,
-};
-
-export default Loader;
+  expect(queryByTestId('loader__spinner')).toHaveClass('loader__spinner');
+  expect(queryByTestId('loader__text'))
+    .not
+    .toBeEmpty();
+  expect(queryByText('Loading...')).toBeInTheDocument();
+});

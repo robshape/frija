@@ -1,7 +1,7 @@
 {
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "1.2.21",
-    "@fortawesome/free-solid-svg-icons": "5.10.1",
+    "@fortawesome/fontawesome-svg-core": "1.2.22",
+    "@fortawesome/free-solid-svg-icons": "5.10.2",
     "@fortawesome/react-fontawesome": "0.1.4",
     "apollo-cache-inmemory": "1.6.3",
     "apollo-client": "2.6.4",
@@ -11,7 +11,7 @@
     "apollo-link-state": "0.4.2",
     "classnames": "2.2.6",
     "core-js": "3.2.1",
-    "graphql": "14.4.2",
+    "graphql": "14.5.3",
     "graphql-tag": "2.10.1",
     "lodash.flowright": "3.5.0",
     "prop-types": "15.7.2",

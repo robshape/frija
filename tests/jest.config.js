@@ -23,6 +23,7 @@ const config = {
     'src/**/*.{js,jsx}',
     '!src/client/index.jsx',
     '!src/ethereum/**',
+    '!src/server/index.js',
   ],
   moduleNameMapper: {
     '\\.scss$': 'identity-obj-proxy',
@@ -31,10 +32,7 @@ const config = {
   setupFilesAfterEnv: [
     '<rootDir>/tests/jest.setup.js',
   ],
-  snapshotSerializers: [
-    'enzyme-to-json/serializer',
-  ],
-  testRegex: 'tests/src/.+\\.spec\\.(js|jsx)$',
+  testRegex: 'tests/.+\\.spec\\.(js|jsx)$',
 };
 
 module.exports = config;
