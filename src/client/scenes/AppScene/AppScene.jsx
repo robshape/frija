@@ -32,7 +32,7 @@ import AuthScene from '../AuthScene';
 import HomeScene from '../HomeScene';
 import PrivateRoute from '../../containers/PrivateRoute';
 import ROUTER_PATH from '../../enums/router-path';
-import styles from './App.scss';
+import styles from './AppScene.scss';
 import useConfigureGraphQL from '../../hooks/useConfigureGraphQL';
 
 const App = ({ config }) => {

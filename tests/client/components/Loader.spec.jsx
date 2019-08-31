@@ -34,14 +34,14 @@ const renderComponent = (props) => {
   );
 };
 
-it('shows a spinner with no text', () => {
+it('shows a spinner without a message', () => {
   const { queryByTestId } = renderComponent();
 
   expect(queryByTestId('loader__spinner')).toHaveClass('loader__spinner');
   expect(queryByTestId('loader__text')).toBeEmpty();
 });
 
-it('shows a spinner with text', () => {
+it('shows a spinner with a message', () => {
   const { queryByTestId } = renderComponent({
     children: 'Loading...',
   });

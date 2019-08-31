@@ -18,6 +18,17 @@
 
 */
 
-import App from './App';
+import React from 'react';
+import { render } from '@testing-library/react';
 
-export default App;
+import HomeScene from '../../../src/client/scenes/HomeScene';
+
+const renderComponent = () => render(
+  <HomeScene />,
+);
+
+it('shows a welcome message', () => {
+  const { queryByText } = renderComponent();
+
+  expect(queryByText('Välkommen till Frija.')).toBeInTheDocument();
+});
