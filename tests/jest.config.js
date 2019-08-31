@@ -20,13 +20,16 @@
 
 const config = {
   collectCoverageFrom: [
-    'src/**/*.{js,jsx}',
-    '!src/client/index.jsx',
-    '!src/ethereum/**',
-    '!src/server/index.js',
+    './src/**/*.{js,jsx}',
+    '!./src/client/index.jsx',
+    '!./src/ethereum/**',
+    '!./src/server/index.js',
   ],
   moduleNameMapper: {
     '\\.scss$': 'identity-obj-proxy',
+    // Map to exact same copy of these dependencies.
+    '^react$': '<rootDir>/src/client/node_modules/react/',
+    '^react-router$': '<rootDir>/src/client/node_modules/react-router/',
   },
   rootDir: '../',
   setupFilesAfterEnv: [

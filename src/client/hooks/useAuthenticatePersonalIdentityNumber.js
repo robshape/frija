@@ -22,13 +22,13 @@ import { useState } from 'react';
 
 import setStoredToken from '../utils/token/set-stored-token';
 
-const useAuthenticatePersonalIdentityNumber = (client, mutation) => {
+const useAuthenticatePersonalIdentityNumber = (client, authenticate) => {
   const [isAuthenticating, setIsAuthenticating] = useState(false);
 
   const authenticatePersonalIdentityNumber = async (personalIdentityNumber) => {
     setIsAuthenticating(true);
 
-    const { data } = await mutation({
+    const { data } = await authenticate({
       variables: {
         personalIdentityNumber,
       },

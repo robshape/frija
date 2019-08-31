@@ -18,19 +18,14 @@
 
 */
 
-import { faCheck, faExclamation } from '@fortawesome/free-solid-svg-icons';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { useEffect } from 'react';
+import { MemoryRouter } from 'react-router-dom';
+import React from 'react';
+import { render } from '@testing-library/react';
 
-const useConfigureFontAwesome = () => {
-  useEffect(() => {
-    library.add(
-      faCheck,
-      faExclamation,
-    );
+const renderWithRouter = (ui) => render(
+  <MemoryRouter>
+    {ui}
+  </MemoryRouter>,
+);
 
-    return () => library.reset();
-  }, []);
-};
-
-export default useConfigureFontAwesome;
+export default renderWithRouter;

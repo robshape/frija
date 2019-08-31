@@ -33,11 +33,9 @@ import HomeScene from '../HomeScene';
 import PrivateRoute from '../../containers/PrivateRoute';
 import ROUTER_PATH from '../../enums/router-path';
 import styles from './App.scss';
-import useConfigureFontAwesome from '../../hooks/useConfigureFontAwesome';
 import useConfigureGraphQL from '../../hooks/useConfigureGraphQL';
 
 const App = ({ config }) => {
-  useConfigureFontAwesome();
   const client = useConfigureGraphQL(config);
 
   if (!Object.keys(client).length) {

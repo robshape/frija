@@ -18,6 +18,7 @@
 
 */
 
+import { faCheck, faExclamation } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -29,12 +30,20 @@ const Icon = ({ icon }) => {
   switch (icon) {
     case ICON.ERROR:
       return (
-        <FontAwesomeIcon className={styles.icon__error} icon="exclamation" />
+        <FontAwesomeIcon
+          className={styles.icon__error}
+          data-testid="icon__error"
+          icon={faExclamation}
+        />
       );
 
     case ICON.SUCCESS:
       return (
-        <FontAwesomeIcon className={styles.icon__success} icon="check" />
+        <FontAwesomeIcon
+          className={styles.icon__success}
+          data-testid="icon__success"
+          icon={faCheck}
+        />
       );
 
     default:

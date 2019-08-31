@@ -19,33 +19,44 @@
 */
 
 import React from 'react';
-import { render } from '@testing-library/react';
 
-import Loader from '../../../src/client/components/Loader';
+import PrivateRoute from '../../../src/client/containers/PrivateRoute/PrivateRoute';
+import renderWithRouter from '../../utils/render-with-router';
 
 const renderComponent = (props) => {
   const defaultProps = {
+    component: () => (
+      <div>
+        componentMock
+      </div>
+    ),
+    data: {
+      isAuthenticated: false,
+    },
     ...props,
   };
-  return render(
-    <Loader>
-      {defaultProps.children}
-    </Loader>,
+  return renderWithRouter(
+    <PrivateRoute
+      component={defaultProps.component}
+      data={defaultProps.data}
+    />,
   );
 };
 
-it('shows a spinner with no text', () => {
-  const { queryByTestId } = renderComponent();
+it('does not show the route if the user is not authenticated', () => {
+  const { queryByText } = renderComponent();
 
-  expect(queryByTestId('loader__spinner')).toHaveClass('loader__spinner');
-  expect(queryByTestId('loader__text')).toBeEmpty();
+  expect(queryByText('componentMock'))
+    .not
+    .toBeInTheDocument();
 });
 
-it('shows a spinner with text', () => {
-  const { queryByTestId } = renderComponent({
-    children: 'Loading...',
+it('shows the route if the user is authenticated', () => {
+  const { queryByText } = renderComponent({
+    data: {
+      isAuthenticated: true,
+    },
   });
 
-  expect(queryByTestId('loader__spinner')).toHaveClass('loader__spinner');
-  expect(queryByTestId('loader__text')).toHaveTextContent('Loading...');
+  expect(queryByText('componentMock')).toBeInTheDocument();
 });

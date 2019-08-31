@@ -49,6 +49,7 @@ const NumberInput = ({
           <div className={styles.numberInput__icon}>
             <input
               className={styles.numberInput__input}
+              data-testid="numberInput__input"
               id={id}
               maxLength={maxLength}
               onBlur={onBlur}
