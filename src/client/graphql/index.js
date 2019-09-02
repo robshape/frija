@@ -18,11 +18,7 @@
 
 */
 
-import { ApolloClient } from 'apollo-client';
-import { ApolloLink } from 'apollo-link';
-import { HttpLink } from 'apollo-link-http';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { setContext } from 'apollo-link-context';
+import ApolloClient from 'apollo-boost';
 
 import getStoredToken from '../utils/token/get-stored-token';
 import isTokenValid from '../utils/token/is-token-valid';
@@ -32,7 +28,7 @@ const INITIAL_STATE = {
   isAuthenticated: false,
 };
 
-const authLink = setContext(() => {
+const addAuthorizationHeader = (operation) => {
   let authorization = '';
 
   const token = getStoredToken();
@@ -41,33 +37,21 @@ const authLink = setContext(() => {
     authorization = token;
   }
 
-  return {
+  operation.setContext({
     headers: {
       accept: 'application/json',
       authorization,
     },
-  };
-});
-
-const cache = new InMemoryCache();
-
-const configureGraphQL = ({ graphqlUrl }) => {
-  const client = new ApolloClient({
-    cache,
-    link: ApolloLink.from([
-      authLink,
-      new HttpLink({
-        uri: graphqlUrl,
-      }),
-    ]),
-    resolvers: {},
   });
-
-  cache.writeData({
-    data: INITIAL_STATE,
-  });
-
-  return client;
 };
+
+const configureGraphQL = ({ graphqlUrl }) => new ApolloClient({
+  clientState: {
+    defaults: INITIAL_STATE,
+    resolvers: {},
+  },
+  request: addAuthorizationHeader,
+  uri: graphqlUrl,
+});
 
 export default configureGraphQL;
