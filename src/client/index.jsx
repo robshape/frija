@@ -20,6 +20,8 @@
 
 import './polyfills';
 
+import 'react-hot-loader'; // Import before 'react' and 'react-dom'.
+import { hot } from 'react-hot-loader/root';
 import React from 'react';
 import { render } from 'react-dom';
 
@@ -29,8 +31,9 @@ import configureConfig from './config';
 const config = configureConfig({
   GRAPHQL_URL: process.env.GRAPHQL_URL,
 });
+const App = hot(() => <AppScene config={config} />);
 const node = document.getElementById('index');
-render(<AppScene config={config} />, node);
+render(<App />, node);
 
 if (process.env.NODE_ENV === 'development') {
   module.hot.accept();

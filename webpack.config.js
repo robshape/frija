@@ -96,6 +96,9 @@ const config = {
   ],
 
   resolve: {
+    alias: {
+      'react-dom': '@hot-loader/react-dom',
+    },
     extensions: [
       '.mjs', // Used by 'graphql' dependency.
       '.js',
