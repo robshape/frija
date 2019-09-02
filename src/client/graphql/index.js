@@ -23,12 +23,11 @@ import { ApolloLink } from 'apollo-link';
 import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { setContext } from 'apollo-link-context';
-import { withClientState } from 'apollo-link-state';
 
 import getStoredToken from '../utils/token/get-stored-token';
 import isTokenValid from '../utils/token/is-token-valid';
 
-// Used with @client queries.
+// Used for local state management @client queries.
 const INITIAL_STATE = {
   isAuthenticated: false,
 };
@@ -52,21 +51,23 @@ const authLink = setContext(() => {
 
 const cache = new InMemoryCache();
 
-const stateLink = withClientState({
-  cache,
-  defaults: INITIAL_STATE,
-});
+const configureGraphQL = ({ graphqlUrl }) => {
+  const client = new ApolloClient({
+    cache,
+    link: ApolloLink.from([
+      authLink,
+      new HttpLink({
+        uri: graphqlUrl,
+      }),
+    ]),
+    resolvers: {},
+  });
 
-const configureGraphQL = ({ graphqlUrl }) => new ApolloClient({
-  cache,
-  link: ApolloLink.from([
-    stateLink,
-    authLink,
-    new HttpLink({
-      uri: graphqlUrl,
-    }),
-  ]),
-  resolvers: {},
-});
+  cache.writeData({
+    data: INITIAL_STATE,
+  });
+
+  return client;
+};
 
 export default configureGraphQL;
