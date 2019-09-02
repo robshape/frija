@@ -44,7 +44,7 @@ const App = ({ config }) => {
 
   return (
     <ApolloProvider client={client}>
-      <div className={styles.app}>
+      <div className={styles.app} data-testid="app">
         <BrowserRouter>
           <Switch>
 

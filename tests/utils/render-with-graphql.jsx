@@ -18,14 +18,18 @@
 
 */
 
-import compose from 'lodash.flowright';
-import { graphql } from 'react-apollo';
+import { MockedProvider } from '@apollo/react-testing';
+import React from 'react';
+import { render } from '@testing-library/react';
 
-import IS_AUTHENTICATED_QUERY from '../../graphql/queries/is-authenticated';
-import PrivateRoute from './PrivateRoute';
+const renderWithGraphQL = (ui) => {
+  global.fetch = jest.fn();
 
-const PrivateRouteWithGraphQL = compose(
-  graphql(IS_AUTHENTICATED_QUERY),
-)(PrivateRoute);
+  return render(
+    <MockedProvider addTypename={false} mocks={[]}>
+      {ui}
+    </MockedProvider>,
+  );
+};
 
-export default PrivateRouteWithGraphQL;
+export default renderWithGraphQL;

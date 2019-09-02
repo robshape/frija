@@ -18,7 +18,7 @@
 
 */
 
-import * as compose from 'lodash.flowright';
+import compose from 'lodash.flowright';
 import { graphql, withApollo } from 'react-apollo';
 
 import AUTHENTICATE_MUTATION from '../../graphql/mutations/authenticate';

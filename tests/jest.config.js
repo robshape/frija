@@ -25,17 +25,19 @@ const config = {
     '!./src/ethereum/**',
     '!./src/server/index.js',
   ],
+  moduleDirectories: [
+    '<rootDir>/node_modules/',
+    '<rootDir>/src/client/node_modules/',
+    '<rootDir>/src/server/node_modules/',
+  ],
   moduleNameMapper: {
     '\\.scss$': 'identity-obj-proxy',
-    // Map to exact same copy of these dependencies.
-    '^react$': '<rootDir>/src/client/node_modules/react/',
-    '^react-router$': '<rootDir>/src/client/node_modules/react-router/',
   },
   rootDir: '../',
   setupFilesAfterEnv: [
     '<rootDir>/tests/jest.setup.js',
   ],
-  testRegex: 'tests/.+\\.spec\\.(js|jsx)$',
+  testRegex: './tests/.+\\.spec\\.(js|jsx)$',
 };
 
 module.exports = config;
