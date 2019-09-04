@@ -32,11 +32,11 @@ import useAuthenticatePersonalIdentityNumber from '../../hooks/useAuthenticatePe
 import useInputPersonalIdentityNumber from '../../hooks/useInputPersonalIdentityNumber';
 import VALIDATION_STATUS from '../../enums/validation-status';
 
-const LogInView = ({ authenticate, client, data }) => {
+const LogInView = ({ graphql }) => {
   const {
     authenticatePersonalIdentityNumber,
     isAuthenticating,
-  } = useAuthenticatePersonalIdentityNumber(client, authenticate);
+  } = useAuthenticatePersonalIdentityNumber(graphql);
   const {
     onBlur,
     onChange,
@@ -52,7 +52,7 @@ const LogInView = ({ authenticate, client, data }) => {
     authenticatePersonalIdentityNumber(personalIdentityNumber);
   };
 
-  if (data.isAuthenticated) {
+  if (graphql.data.isAuthenticated) {
     return (
       <Redirect to={ROUTER_PATH.HOME} />
     );
@@ -89,12 +89,13 @@ const LogInView = ({ authenticate, client, data }) => {
 };
 
 LogInView.propTypes = {
-  authenticate: PropTypes.func.isRequired,
-  client: PropTypes.shape({
-    writeData: PropTypes.func.isRequired,
-  }).isRequired,
-  data: PropTypes.shape({
-    isAuthenticated: PropTypes.bool.isRequired,
+  graphql: PropTypes.shape({
+    client: PropTypes.shape({
+      mutate: PropTypes.func.isRequired,
+    }).isRequired,
+    data: PropTypes.shape({
+      isAuthenticated: PropTypes.bool.isRequired,
+    }).isRequired,
   }).isRequired,
 };
 

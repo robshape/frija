@@ -20,15 +20,18 @@
 
 import { useState } from 'react';
 
+import AUTHENTICATE_MUTATION from '../graphql/mutations/authenticate';
+import IS_AUTHENTICATED_MUTATION from '../graphql/mutations/is-authenticated';
 import setStoredToken from '../utils/token/set-stored-token';
 
-const useAuthenticatePersonalIdentityNumber = (client, authenticate) => {
+const useAuthenticatePersonalIdentityNumber = ({ client }) => {
   const [isAuthenticating, setIsAuthenticating] = useState(false);
 
   const authenticatePersonalIdentityNumber = async (personalIdentityNumber) => {
     setIsAuthenticating(true);
 
-    const { data } = await authenticate({
+    const { data } = await client.mutate({
+      mutation: AUTHENTICATE_MUTATION,
       variables: {
         personalIdentityNumber,
       },
@@ -37,8 +40,9 @@ const useAuthenticatePersonalIdentityNumber = (client, authenticate) => {
 
     setIsAuthenticating(false);
 
-    client.writeData({
-      data: {
+    client.mutate({
+      mutation: IS_AUTHENTICATED_MUTATION,
+      variables: {
         isAuthenticated: true,
       },
     });

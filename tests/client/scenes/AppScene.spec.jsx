@@ -18,6 +18,7 @@
 
 */
 
+import merge from 'lodash.merge';
 import React from 'react';
 
 import AppScene from '../../../src/client/scenes/AppScene';
@@ -25,15 +26,14 @@ import configureConfig from '../../../src/client/config';
 import * as configureGraphQL from '../../../src/client/graphql/index';
 import renderWithGraphQL from '../../utils/render-with-graphql';
 
-const renderComponent = (props) => {
-  const defaultProps = {
+const renderComponent = (testProps) => {
+  const props = merge({}, {
     config: configureConfig({
       GRAPHQL_URL: '',
     }),
-    ...props,
-  };
+  }, testProps);
   return renderWithGraphQL(
-    <AppScene config={defaultProps.config} />,
+    <AppScene config={props.config} />,
   );
 };
 

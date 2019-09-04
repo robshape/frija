@@ -24,9 +24,9 @@ import { Redirect, Route } from 'react-router-dom';
 
 import ROUTER_PATH from '../../enums/router-path';
 
-const PrivateRoute = ({ component: Component, data, ...props }) => {
+const PrivateRoute = ({ component: Component, graphql, ...props }) => {
   const onRouteRender = (routeProps) => {
-    if (!data.isAuthenticated) {
+    if (!graphql.data.isAuthenticated) {
       return (
         <Redirect to={ROUTER_PATH.AUTHENTICATE} />
       );
@@ -44,8 +44,10 @@ const PrivateRoute = ({ component: Component, data, ...props }) => {
 
 PrivateRoute.propTypes = {
   component: PropTypes.func.isRequired,
-  data: PropTypes.shape({
-    isAuthenticated: PropTypes.bool.isRequired,
+  graphql: PropTypes.shape({
+    data: PropTypes.shape({
+      isAuthenticated: PropTypes.bool.isRequired,
+    }).isRequired,
   }).isRequired,
 };
 

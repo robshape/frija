@@ -21,11 +21,12 @@
 import { useEffect, useState } from 'react';
 
 import getStoredToken from '../utils/token/get-stored-token';
+import IS_AUTHENTICATED_MUTATION from '../graphql/mutations/is-authenticated';
 import isTokenValid from '../utils/token/is-token-valid';
 import removeStoredToken from '../utils/token/remove-stored-token';
 import VALIDATE_QUERY from '../graphql/queries/validate';
 
-const useValidateStoredToken = (client) => {
+const useValidateStoredToken = ({ client }) => {
   const [isValidating, setIsValidating] = useState(true);
 
   useEffect(() => {
@@ -55,8 +56,9 @@ const useValidateStoredToken = (client) => {
         return;
       }
 
-      client.writeData({
-        data: {
+      client.mutate({
+        mutation: IS_AUTHENTICATED_MUTATION,
+        variables: {
           isAuthenticated: true,
         },
       });

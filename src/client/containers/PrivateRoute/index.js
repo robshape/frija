@@ -25,7 +25,13 @@ import IS_AUTHENTICATED_QUERY from '../../graphql/queries/is-authenticated';
 import PrivateRoute from './PrivateRoute';
 
 const PrivateRouteWithGraphQL = compose(
-  graphql(IS_AUTHENTICATED_QUERY),
+  graphql(IS_AUTHENTICATED_QUERY, {
+    props: ({ data }) => ({
+      graphql: {
+        data,
+      },
+    }),
+  }),
 )(PrivateRoute);
 
 export default PrivateRouteWithGraphQL;

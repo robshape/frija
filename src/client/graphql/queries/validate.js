@@ -18,7 +18,7 @@
 
 */
 
-import gql from 'graphql-tag';
+import { gql } from 'apollo-boost';
 
 const VALIDATE_QUERY = gql`
   query Validate($token: String!) {

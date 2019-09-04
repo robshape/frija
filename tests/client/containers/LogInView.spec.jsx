@@ -19,35 +19,35 @@
 */
 
 import { fireEvent, waitForDomChange } from '@testing-library/react';
+import merge from 'lodash.merge';
 import React from 'react';
 
+import AUTHENTICATE_MUTATION from '../../../src/client/graphql/mutations/authenticate';
 import LogInView from '../../../src/client/containers/LogInView/LogInView';
 import renderWithRouter from '../../utils/render-with-router';
 
-const renderComponent = (props) => {
-  const defaultProps = {
-    authenticate: () => {},
-    client: {
-      writeData: () => {},
+const renderComponent = (testProps) => {
+  const props = merge({}, {
+    graphql: {
+      client: {
+        mutate: () => {},
+      },
+      data: {
+        isAuthenticated: false,
+      },
     },
-    data: {
-      isAuthenticated: false,
-    },
-    ...props,
-  };
+  }, testProps);
   return renderWithRouter(
-    <LogInView
-      authenticate={defaultProps.authenticate}
-      client={defaultProps.client}
-      data={defaultProps.data}
-    />,
+    <LogInView graphql={props.graphql} />,
   );
 };
 
 it('does not show a form if the user is authenticated', async () => {
   const { queryByPlaceholderText, queryByText } = renderComponent({
-    data: {
-      isAuthenticated: true,
+    graphql: {
+      data: {
+        isAuthenticated: true,
+      },
     },
   });
 
@@ -131,7 +131,7 @@ it('shows a success message when the credentials are valid', async () => {
 });
 
 it('does not try to authenticate invalid credentials', async () => {
-  const authenticateMock = jest.fn().mockResolvedValue({
+  const mutateMock = jest.fn().mockResolvedValue({
     data: {
       authenticate: {
         token: '',
@@ -140,7 +140,11 @@ it('does not try to authenticate invalid credentials', async () => {
   });
 
   const { getByPlaceholderText, getByText } = renderComponent({
-    authenticate: authenticateMock,
+    graphql: {
+      client: {
+        mutate: mutateMock,
+      },
+    },
   });
   fireEvent.change(getByPlaceholderText('ååååmmddxxxx'), {
     target: {
@@ -149,13 +153,13 @@ it('does not try to authenticate invalid credentials', async () => {
   });
   fireEvent.click(getByText('Fortsätt'));
 
-  expect(authenticateMock)
+  expect(mutateMock)
     .not
     .toHaveBeenCalled();
 });
 
 it('tries to authenticate valid credentials', async () => {
-  const authenticateMock = jest.fn().mockResolvedValue({
+  const mutateMock = jest.fn().mockResolvedValue({
     data: {
       authenticate: {
         token: '',
@@ -164,7 +168,11 @@ it('tries to authenticate valid credentials', async () => {
   });
 
   const { getByPlaceholderText, getByText } = renderComponent({
-    authenticate: authenticateMock,
+    graphql: {
+      client: {
+        mutate: mutateMock,
+      },
+    },
   });
   fireEvent.change(getByPlaceholderText('ååååmmddxxxx'), {
     target: {
@@ -176,7 +184,8 @@ it('tries to authenticate valid credentials', async () => {
   await waitForDomChange(() => {
     expect(getByText('Väntar på svar från Mobilt BankID... Vänligen starta BankID-appen i din mobila enhet.')).toBeInTheDocument();
   });
-  expect(authenticateMock).toHaveBeenCalledWith({
+  expect(mutateMock).toHaveBeenCalledWith({
+    mutation: AUTHENTICATE_MUTATION,
     variables: {
       personalIdentityNumber: '190001012020',
     },

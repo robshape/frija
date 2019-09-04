@@ -18,18 +18,17 @@
 
 */
 
+import merge from 'lodash.merge';
 import React from 'react';
 import { render } from '@testing-library/react';
 
 import Loader from '../../../src/client/components/Loader';
 
-const renderComponent = (props) => {
-  const defaultProps = {
-    ...props,
-  };
+const renderComponent = (testProps) => {
+  const props = merge({}, testProps);
   return render(
     <Loader>
-      {defaultProps.children}
+      {props.children}
     </Loader>,
   );
 };

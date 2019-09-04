@@ -18,7 +18,7 @@
 
 */
 
-import gql from 'graphql-tag';
+import { gql } from 'apollo-boost';
 
 const IS_AUTHENTICATED_QUERY = gql`
   query IsAuthenticated {

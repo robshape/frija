@@ -25,8 +25,15 @@ import AuthScene from './AuthScene';
 import IS_AUTHENTICATED_QUERY from '../../graphql/queries/is-authenticated';
 
 const AuthSceneWithGraphQL = compose(
-  graphql(IS_AUTHENTICATED_QUERY),
   withApollo,
+  graphql(IS_AUTHENTICATED_QUERY, {
+    props: ({ data, ownProps }) => ({
+      graphql: {
+        ...ownProps,
+        data,
+      },
+    }),
+  }),
 )(AuthScene);
 
 export default AuthSceneWithGraphQL;

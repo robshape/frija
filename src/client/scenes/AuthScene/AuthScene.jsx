@@ -28,10 +28,10 @@ import ROUTER_PATH from '../../enums/router-path';
 import styles from './AuthScene.scss';
 import useValidateStoredToken from '../../hooks/useValidateStoredToken';
 
-const AuthScene = ({ client, data }) => {
-  const isValidating = useValidateStoredToken(client);
+const AuthScene = ({ graphql }) => {
+  const isValidating = useValidateStoredToken(graphql);
 
-  if (data.isAuthenticated) {
+  if (graphql.data.isAuthenticated) {
     return (
       <Redirect to={ROUTER_PATH.HOME} />
     );
@@ -51,11 +51,13 @@ const AuthScene = ({ client, data }) => {
 };
 
 AuthScene.propTypes = {
-  client: PropTypes.shape({
-    writeData: PropTypes.func.isRequired,
-  }).isRequired,
-  data: PropTypes.shape({
-    isAuthenticated: PropTypes.bool.isRequired,
+  graphql: PropTypes.shape({
+    client: PropTypes.shape({
+      query: PropTypes.func.isRequired,
+    }).isRequired,
+    data: PropTypes.shape({
+      isAuthenticated: PropTypes.bool.isRequired,
+    }).isRequired,
   }).isRequired,
 };
 

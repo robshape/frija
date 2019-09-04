@@ -18,28 +18,27 @@
 
 */
 
+import merge from 'lodash.merge';
 import React from 'react';
 
 import PrivateRoute from '../../../src/client/containers/PrivateRoute/PrivateRoute';
 import renderWithRouter from '../../utils/render-with-router';
 
-const renderComponent = (props) => {
-  const defaultProps = {
+const renderComponent = (testProps) => {
+  const props = merge({}, {
     component: () => (
       <div>
         componentMock
       </div>
     ),
-    data: {
-      isAuthenticated: false,
+    graphql: {
+      data: {
+        isAuthenticated: false,
+      },
     },
-    ...props,
-  };
+  }, testProps);
   return renderWithRouter(
-    <PrivateRoute
-      component={defaultProps.component}
-      data={defaultProps.data}
-    />,
+    <PrivateRoute component={props.component} graphql={props.graphql} />,
   );
 };
 
@@ -53,8 +52,10 @@ it('does not show the route if the user is not authenticated', () => {
 
 it('shows the route if the user is authenticated', () => {
   const { queryByText } = renderComponent({
-    data: {
-      isAuthenticated: true,
+    graphql: {
+      data: {
+        isAuthenticated: true,
+      },
     },
   });
 

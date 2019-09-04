@@ -18,7 +18,7 @@
 
 */
 
-import gql from 'graphql-tag';
+import { gql } from 'apollo-boost';
 
 const AUTHENTICATE_MUTATION = gql`
   mutation Authenticate($personalIdentityNumber: String!) {
