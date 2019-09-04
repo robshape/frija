@@ -30,20 +30,12 @@ const Icon = ({ icon }) => {
   switch (icon) {
     case ICON.ERROR:
       return (
-        <FontAwesomeIcon
-          className={styles.icon__error}
-          data-testid="icon__error"
-          icon={faExclamation}
-        />
+        <FontAwesomeIcon className={styles.icon__error} data-testid="icon__error" icon={faExclamation} />
       );
 
     case ICON.SUCCESS:
       return (
-        <FontAwesomeIcon
-          className={styles.icon__success}
-          data-testid="icon__success"
-          icon={faCheck}
-        />
+        <FontAwesomeIcon className={styles.icon__success} data-testid="icon__success" icon={faCheck} />
       );
 
     default:
