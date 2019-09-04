@@ -24,7 +24,7 @@ import React from 'react';
 import AppScene from '../../../src/client/scenes/AppScene';
 import configureConfig from '../../../src/client/config';
 import * as configureGraphQL from '../../../src/client/graphql/index';
-import renderWithGraphQL from '../../utils/render-with-graphql';
+import renderWithGraphQL from '../../utils/renderWithGraphQL';
 
 const renderComponent = (testProps) => {
   const props = merge({}, {

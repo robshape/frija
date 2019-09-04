@@ -20,11 +20,11 @@
 
 import { useEffect, useState } from 'react';
 
-import getStoredToken from '../utils/token/get-stored-token';
-import IS_AUTHENTICATED_MUTATION from '../graphql/mutations/is-authenticated';
-import isTokenValid from '../utils/token/is-token-valid';
-import removeStoredToken from '../utils/token/remove-stored-token';
-import VALIDATE_QUERY from '../graphql/queries/validate';
+import getStoredToken from '../utils/token/getStoredToken';
+import IS_AUTHENTICATED_MUTATION from '../graphql/mutations/IS_AUTHENTICATED_MUTATION';
+import isTokenValid from '../utils/token/isTokenValid';
+import removeStoredToken from '../utils/token/removeStoredToken';
+import VALIDATE_QUERY from '../graphql/queries/VALIDATE_QUERY';
 
 const useValidateStoredToken = ({ client }) => {
   const [isValidating, setIsValidating] = useState(true);

@@ -26,11 +26,11 @@ import Form from './components/Form';
 import Heading from './components/Heading';
 import LogInViewLoader from './components/LogInViewLoader';
 import NumberInput from './components/NumberInput';
-import ROUTER_PATH from '../../enums/router-path';
+import ROUTER_PATH from '../../enums/ROUTER_PATH';
 import Subheading from './components/Subheading';
 import useAuthenticatePersonalIdentityNumber from '../../hooks/useAuthenticatePersonalIdentityNumber';
 import useInputPersonalIdentityNumber from '../../hooks/useInputPersonalIdentityNumber';
-import VALIDATION_STATUS from '../../enums/validation-status';
+import VALIDATION_STATUS from '../../enums/VALIDATION_STATUS';
 
 const LogInView = ({ graphql }) => {
   const {

@@ -20,9 +20,9 @@
 
 import { useState } from 'react';
 
-import AUTHENTICATE_MUTATION from '../graphql/mutations/authenticate';
-import IS_AUTHENTICATED_MUTATION from '../graphql/mutations/is-authenticated';
-import setStoredToken from '../utils/token/set-stored-token';
+import AUTHENTICATE_MUTATION from '../graphql/mutations/AUTHENTICATE_MUTATION';
+import IS_AUTHENTICATED_MUTATION from '../graphql/mutations/IS_AUTHENTICATED_MUTATION';
+import setStoredToken from '../utils/token/setStoredToken';
 
 const useAuthenticatePersonalIdentityNumber = ({ client }) => {
   const [isAuthenticating, setIsAuthenticating] = useState(false);

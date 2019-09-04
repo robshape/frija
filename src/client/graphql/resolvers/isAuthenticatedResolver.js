@@ -18,7 +18,7 @@
 
 */
 
-const isAuthenticated = (obj, args, context) => context
+const isAuthenticatedResolver = (obj, args, context) => context
   .cache
   .writeData({
     data: {
@@ -26,4 +26,4 @@ const isAuthenticated = (obj, args, context) => context
     },
   });
 
-export default isAuthenticated;
+export default isAuthenticatedResolver;

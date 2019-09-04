@@ -21,7 +21,7 @@
 const { UserInputError } = require('apollo-server-koa');
 
 const http = require('../utils/http');
-const isPersonalIdentityNumber = require('../utils/is-personal-identity-number');
+const isPersonalIdentityNumber = require('../utils/isPersonalIdentityNumber');
 
 const getByPersonalIdentityNumber = async (personalIdentityNumber) => {
   if (!isPersonalIdentityNumber(personalIdentityNumber)) {

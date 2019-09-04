@@ -22,7 +22,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 
-import ROUTER_PATH from '../../enums/router-path';
+import ROUTER_PATH from '../../enums/ROUTER_PATH';
 
 const PrivateRoute = ({ component: Component, graphql, ...props }) => {
   const onRouteRender = (routeProps) => {

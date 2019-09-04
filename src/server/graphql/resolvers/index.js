@@ -18,7 +18,7 @@
 
 */
 
-const tokenResolver = require('./token');
+const tokenResolver = require('./tokenResolver');
 
 const resolvers = [
   tokenResolver,

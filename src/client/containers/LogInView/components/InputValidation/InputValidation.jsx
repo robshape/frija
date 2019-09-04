@@ -23,7 +23,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import styles from './InputValidation.scss';
-import VALIDATION_STATUS from '../../../../enums/validation-status';
+import VALIDATION_STATUS from '../../../../enums/VALIDATION_STATUS';
 
 const InputValidation = ({ children, status }) => {
   const isVisible = status === VALIDATION_STATUS.ERROR;

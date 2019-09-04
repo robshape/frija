@@ -18,8 +18,8 @@
 
 */
 
-const tokenModel = require('./token');
-const userModel = require('./user');
+const tokenModel = require('./tokenModel');
+const userModel = require('./userModel');
 
 const models = {
   tokenModel,

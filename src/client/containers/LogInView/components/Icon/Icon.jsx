@@ -23,7 +23,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import ICON from '../../../../enums/icon';
+import ICON from '../../../../enums/ICON';
 import styles from './Icon.scss';
 
 const Icon = ({ icon }) => {

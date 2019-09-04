@@ -31,7 +31,7 @@ import React from 'react';
 import AuthScene from '../AuthScene';
 import HomeScene from '../HomeScene';
 import PrivateRoute from '../../containers/PrivateRoute';
-import ROUTER_PATH from '../../enums/router-path';
+import ROUTER_PATH from '../../enums/ROUTER_PATH';
 import styles from './AppScene.scss';
 import useConfigureGraphQL from '../../hooks/useConfigureGraphQL';
 

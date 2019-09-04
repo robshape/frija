@@ -22,7 +22,7 @@ import compose from 'lodash.flowright';
 import { graphql, withApollo } from 'react-apollo';
 
 import AuthScene from './AuthScene';
-import IS_AUTHENTICATED_QUERY from '../../graphql/queries/is-authenticated';
+import IS_AUTHENTICATED_QUERY from '../../graphql/queries/IS_AUTHENTICATED_QUERY';
 
 const AuthSceneWithGraphQL = compose(
   withApollo,

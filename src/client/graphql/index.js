@@ -20,9 +20,9 @@
 
 import ApolloClient from 'apollo-boost';
 
-import getStoredToken from '../utils/token/get-stored-token';
-import isAuthenticated from './resolvers/is-authenticated';
-import isTokenValid from '../utils/token/is-token-valid';
+import getStoredToken from '../utils/token/getStoredToken';
+import isAuthenticatedResolver from './resolvers/isAuthenticatedResolver';
+import isTokenValid from '../utils/token/isTokenValid';
 
 // For local state management @client.
 const INITIAL_STATE = {
@@ -51,7 +51,7 @@ const configureGraphQL = ({ graphqlUrl }) => new ApolloClient({
     defaults: INITIAL_STATE,
     resolvers: {
       Mutation: {
-        isAuthenticated,
+        isAuthenticated: isAuthenticatedResolver,
       },
     },
   },

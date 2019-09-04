@@ -18,7 +18,7 @@
 
 */
 
-const healthRouter = require('./health');
+const healthRouter = require('./healthRouter');
 
 const configureRoutes = (app) => {
   app.use(healthRouter.routes());

@@ -18,8 +18,8 @@
 
 */
 
-const rootSchema = require('./root');
-const tokenSchema = require('./token');
+const rootSchema = require('./rootSchema');
+const tokenSchema = require('./tokenSchema');
 
 const schemas = [
   rootSchema,
