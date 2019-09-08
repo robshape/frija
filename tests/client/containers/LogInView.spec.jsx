@@ -24,7 +24,7 @@ import React from 'react';
 
 import AUTHENTICATE_MUTATION from '../../../src/client/graphql/mutations/AUTHENTICATE_MUTATION';
 import LogInView from '../../../src/client/containers/LogInView/LogInView';
-import renderWithRouter from '../../utils/renderWithRouter';
+import renderWithProviders from '../../utils/renderWithProviders';
 
 const renderComponent = (testProps) => {
   const props = merge({}, {
@@ -37,7 +37,7 @@ const renderComponent = (testProps) => {
       },
     },
   }, testProps);
-  return renderWithRouter(
+  return renderWithProviders(
     <LogInView graphql={props.graphql} />,
   );
 };

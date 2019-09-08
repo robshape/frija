@@ -40,19 +40,16 @@ const useValidateStoredToken = ({ client }) => {
         return;
       }
 
-      setIsValidating(true);
-
       const { data } = await client.query({
         query: VALIDATE_QUERY,
         variables: {
           token,
         },
       });
-
-      setIsValidating(false);
-
       if (!data.validate) {
         removeStoredToken();
+
+        setIsValidating(false);
         return;
       }
 
@@ -62,6 +59,8 @@ const useValidateStoredToken = ({ client }) => {
           isAuthenticated: true,
         },
       });
+
+      setIsValidating(false);
     };
 
     validateStoredToken();

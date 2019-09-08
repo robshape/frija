@@ -18,18 +18,12 @@
 
 */
 
-import { MockedProvider } from '@apollo/react-testing';
-import React from 'react';
-import { render } from '@testing-library/react';
+import isAuthenticatedResolver from './isAuthenticatedResolver';
 
-const renderWithGraphQL = (ui) => {
-  global.fetch = jest.fn();
-
-  return render(
-    <MockedProvider addTypename={false} mocks={[]}>
-      {ui}
-    </MockedProvider>,
-  );
+const resolvers = {
+  Mutation: {
+    isAuthenticated: isAuthenticatedResolver,
+  },
 };
 
-export default renderWithGraphQL;
+export default resolvers;

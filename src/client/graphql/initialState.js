@@ -18,14 +18,9 @@
 
 */
 
-import { MemoryRouter } from 'react-router-dom';
-import React from 'react';
-import { render } from '@testing-library/react';
+// For local state management @client.
+const initialState = {
+  isAuthenticated: false,
+};
 
-const renderWithRouter = (ui) => render(
-  <MemoryRouter>
-    {ui}
-  </MemoryRouter>,
-);
-
-export default renderWithRouter;
+export default initialState;

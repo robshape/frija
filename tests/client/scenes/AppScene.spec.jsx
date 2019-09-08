@@ -24,7 +24,7 @@ import React from 'react';
 import AppScene from '../../../src/client/scenes/AppScene';
 import configureConfig from '../../../src/client/config';
 import * as configureGraphQL from '../../../src/client/graphql/index';
-import renderWithGraphQL from '../../utils/renderWithGraphQL';
+import renderWithProviders from '../../utils/renderWithProviders';
 
 const renderComponent = (testProps) => {
   const props = merge({}, {
@@ -32,13 +32,15 @@ const renderComponent = (testProps) => {
       GRAPHQL_URL: '',
     }),
   }, testProps);
-  return renderWithGraphQL(
+  return renderWithProviders(
     <AppScene config={props.config} />,
   );
 };
 
+beforeEach(() => jest.restoreAllMocks());
+
 it('does not load the app if the config is empty', () => {
-  const configureGraphQLSpy = jest
+  jest
     .spyOn(configureGraphQL, 'default')
     .mockImplementation(() => ({}));
 
@@ -47,8 +49,6 @@ it('does not load the app if the config is empty', () => {
   expect(queryByTestId('app'))
     .not
     .toBeInTheDocument();
-
-  configureGraphQLSpy.mockRestore();
 });
 
 it('loads the app', () => {

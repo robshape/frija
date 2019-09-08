@@ -22,7 +22,7 @@ import merge from 'lodash.merge';
 import React from 'react';
 
 import PrivateRoute from '../../../src/client/containers/PrivateRoute/PrivateRoute';
-import renderWithRouter from '../../utils/renderWithRouter';
+import renderWithProviders from '../../utils/renderWithProviders';
 
 const renderComponent = (testProps) => {
   const props = merge({}, {
@@ -37,7 +37,7 @@ const renderComponent = (testProps) => {
       },
     },
   }, testProps);
-  return renderWithRouter(
+  return renderWithProviders(
     <PrivateRoute component={props.component} graphql={props.graphql} />,
   );
 };
