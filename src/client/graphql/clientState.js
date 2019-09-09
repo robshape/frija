@@ -18,12 +18,9 @@
 
 */
 
-const tokenModel = require('./tokenModel');
-const userModel = require('./userModel');
-
-const models = {
-  tokenModel,
-  userModel,
+// Initial state for local state management @client.
+const clientState = {
+  isAuthenticated: false,
 };
 
-module.exports = models;
+export default clientState;

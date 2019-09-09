@@ -18,43 +18,12 @@
 
 */
 
-const jwt = require('../utils/jwt');
+const TokenDataSource = require('./TokenDataSource');
+const UserDataSource = require('./UserDataSource');
 
-const authenticate = (user, tokenOptions) => ({
-  token: jwt.sign(user.personalIdentityNumber, tokenOptions),
+const dataSources = (config) => () => ({
+  tokenDataSource: new TokenDataSource(config),
+  userDataSource: new UserDataSource(),
 });
 
-const isAuthenticated = (ctx, tokenOptions) => {
-  let isTokenValid = false;
-
-  const token = ctx.header.authorization;
-  if (token) {
-    try {
-      isTokenValid = !!jwt.verify(token, tokenOptions);
-    } catch (error) {
-      isTokenValid = false;
-    }
-  }
-
-  return isTokenValid;
-};
-
-const validate = (token, tokenOptions) => {
-  let isTokenValid = false;
-
-  try {
-    isTokenValid = !!jwt.verify(token, tokenOptions);
-  } catch (error) {
-    isTokenValid = false;
-  }
-
-  return isTokenValid;
-};
-
-const tokenModel = {
-  authenticate,
-  isAuthenticated,
-  validate,
-};
-
-module.exports = tokenModel;
+module.exports = dataSources;

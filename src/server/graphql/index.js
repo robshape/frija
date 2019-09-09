@@ -20,19 +20,21 @@
 
 const { ApolloServer } = require('apollo-server-koa');
 
-const models = require('../models');
+const dataSources = require('./dataSources');
 const resolvers = require('./resolvers');
 const schemas = require('./schemas');
 
 const configureGraphQL = (app, config) => {
   const apollo = new ApolloServer({
     context({ ctx }) {
+      const configuredDataSources = dataSources(config);
       return {
-        isAuthenticated: models.tokenModel.isAuthenticated(ctx, config.token),
-        models,
-        tokenOptions: config.token,
+        isAuthenticated: configuredDataSources()
+          .tokenDataSource
+          .isAuthenticated(ctx),
       };
     },
+    dataSources: dataSources(config),
     resolvers,
     typeDefs: schemas,
   });

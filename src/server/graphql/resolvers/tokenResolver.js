@@ -18,18 +18,18 @@
 
 */
 
-const authenticate = async (obj, args, context) => {
-  const user = await context
-    .models
-    .userModel
+const authenticate = async (obj, args, ctx) => {
+  const user = await ctx
+    .dataSources
+    .userDataSource
     .getByPersonalIdentityNumber(args.personalIdentityNumber);
-  return context.models.tokenModel.authenticate(user, context.tokenOptions);
+  return ctx.dataSources.tokenDataSource.authenticate(user);
 };
 
-const validate = (obj, args, context) => context
-  .models
-  .tokenModel
-  .validate(args.token, context.tokenOptions);
+const validate = (obj, args, ctx) => ctx
+  .dataSources
+  .tokenDataSource
+  .validate(args.token);
 
 const tokenResolver = {
   Mutation: {

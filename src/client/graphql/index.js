@@ -20,8 +20,8 @@
 
 import ApolloClient from 'apollo-boost';
 
+import clientState from './clientState';
 import getStoredToken from '../utils/token/getStoredToken';
-import initialState from './initialState';
 import isTokenValid from '../utils/token/isTokenValid';
 import resolvers from './resolvers';
 
@@ -44,7 +44,7 @@ const addAuthorizationHeader = (operation) => {
 
 const configureGraphQL = ({ graphqlUrl }) => new ApolloClient({
   clientState: {
-    defaults: initialState,
+    defaults: clientState,
     resolvers,
   },
   request: addAuthorizationHeader,

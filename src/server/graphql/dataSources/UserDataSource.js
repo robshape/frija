@@ -18,16 +18,29 @@
 
 */
 
-const fetch = require('node-fetch');
+const { RESTDataSource } = require('apollo-datasource-rest');
+const { UserInputError } = require('apollo-server-koa');
 
-const get = async (url) => fetch(url, {
-  headers: {
-    Accept: 'application/json',
-  },
-});
+const isPersonalIdentityNumber = require('../../utils/isPersonalIdentityNumber');
 
-const http = {
-  get,
-};
+class UserDataSource extends RESTDataSource {
+  constructor() {
+    super();
 
-module.exports = http;
+    this.baseURL = 'https://bankid.com/';
+  }
+
+  async getByPersonalIdentityNumber(personalIdentityNumber) {
+    if (!isPersonalIdentityNumber(personalIdentityNumber)) {
+      throw new UserInputError('Invalid personal identity number.');
+    }
+
+    await this.get('');
+    return {
+      name: 'N.N.',
+      personalIdentityNumber,
+    };
+  }
+}
+
+module.exports = UserDataSource;

@@ -18,7 +18,7 @@
 
 */
 
-const isAuthenticatedResolver = (obj, args, context) => context
+const isAuthenticated = (obj, args, ctx) => ctx
   .cache
   .writeData({
     data: {
@@ -26,4 +26,10 @@ const isAuthenticatedResolver = (obj, args, context) => context
     },
   });
 
-export default isAuthenticatedResolver;
+const clientStateResolver = {
+  Mutation: {
+    isAuthenticated,
+  },
+};
+
+export default clientStateResolver;

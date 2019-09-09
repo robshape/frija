@@ -24,7 +24,7 @@ import { MockedProvider } from '@apollo/react-testing';
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import initialState from '../../src/client/graphql/initialState';
+import clientState from '../../src/client/graphql/clientState';
 import resolvers from '../../src/client/graphql/resolvers';
 
 const renderWithProviders = (ui, {
@@ -33,7 +33,7 @@ const renderWithProviders = (ui, {
 } = {}) => {
   const cache = new InMemoryCache();
   cache.writeData({
-    data: initialState,
+    data: clientState,
   });
 
   return render(

@@ -18,12 +18,10 @@
 
 */
 
-import isAuthenticatedResolver from './isAuthenticatedResolver';
+import clientStateResolver from './clientStateResolver';
 
-const resolvers = {
-  Mutation: {
-    isAuthenticated: isAuthenticatedResolver,
-  },
-};
+const resolvers = [
+  clientStateResolver,
+];
 
 export default resolvers;
