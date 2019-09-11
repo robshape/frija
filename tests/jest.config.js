@@ -37,7 +37,7 @@ const config = {
   setupFilesAfterEnv: [
     '<rootDir>/tests/jest.setup.js',
   ],
-  testRegex: './tests/.+\\.spec\\.(js|jsx)$',
+  testRegex: './tests/src/.+\\.spec\\.(js|jsx)$',
 };
 
 module.exports = config;

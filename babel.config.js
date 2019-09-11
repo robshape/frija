@@ -19,6 +19,17 @@
 */
 
 const config = {
+  env: {
+    test: {
+      presets: [
+        ['@babel/preset-env', {
+          targets: {
+            node: 'current',
+          },
+        }],
+      ],
+    },
+  },
   plugins: [
     'react-hot-loader/babel',
   ],

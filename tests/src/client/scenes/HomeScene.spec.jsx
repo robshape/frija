@@ -18,18 +18,17 @@
 
 */
 
-const fs = require('fs');
+import React from 'react';
+import { render } from '@testing-library/react';
 
-const configureConfig = (env) => ({
-  graphqlPort: env.GRAPHQL_PORT,
-  ssl: {
-    cert: env.SSL_CERT && fs.readFileSync(env.SSL_CERT),
-    key: env.SSL_KEY && fs.readFileSync(env.SSL_KEY),
-  },
-  token: {
-    secret: env.TOKEN_SECRET,
-    time: env.TOKEN_TIME,
-  },
+import HomeScene from '../../../../src/client/scenes/HomeScene';
+
+const renderComponent = () => render(
+  <HomeScene />,
+);
+
+it('shows a welcome message', () => {
+  const { queryByText } = renderComponent();
+
+  expect(queryByText('Välkommen till Frija.')).toBeInTheDocument();
 });
-
-module.exports = configureConfig;

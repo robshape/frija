@@ -18,18 +18,18 @@
 
 */
 
-const fs = require('fs');
+import serverTestClient from '../../../utils/serverTestClient';
 
-const configureConfig = (env) => ({
-  graphqlPort: env.GRAPHQL_PORT,
-  ssl: {
-    cert: env.SSL_CERT && fs.readFileSync(env.SSL_CERT),
-    key: env.SSL_KEY && fs.readFileSync(env.SSL_KEY),
-  },
-  token: {
-    secret: env.TOKEN_SECRET,
-    time: env.TOKEN_TIME,
-  },
+it('sets security headers', async () => {
+  const { request } = serverTestClient();
+  const { header } = await request.get('/');
+
+  expect(header['referrer-policy']).toBe('no-referrer');
+  expect(header['strict-transport-security']).toBe('max-age=15552000; includeSubDomains');
+  expect(header['x-content-type-options']).toBe('nosniff');
+  expect(header['x-dns-prefetch-control']).toBe('off');
+  expect(header['x-download-options']).toBe('noopen');
+  expect(header['x-frame-options']).toBe('DENY');
+  expect(header['x-permitted-cross-domain-policies']).toBe('none');
+  expect(header['x-xss-protection']).toBe('1; mode=block');
 });
-
-module.exports = configureConfig;

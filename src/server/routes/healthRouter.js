@@ -18,6 +18,7 @@
 
 */
 
+const HttpStatus = require('http-status-codes');
 const Router = require('koa-router');
 
 const healthRouter = new Router({
@@ -25,7 +26,7 @@ const healthRouter = new Router({
 });
 
 healthRouter.get('/', (ctx) => {
-  ctx.status = 200;
+  ctx.status = HttpStatus.OK;
 });
 
 module.exports = healthRouter;

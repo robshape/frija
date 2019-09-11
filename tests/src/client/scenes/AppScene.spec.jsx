@@ -20,31 +20,39 @@
 
 import merge from 'lodash.merge';
 import React from 'react';
-import { render } from '@testing-library/react';
 
-import Loader from '../../../src/client/components/Loader';
+import AppScene from '../../../../src/client/scenes/AppScene';
+import configureConfig from '../../../../src/client/config';
+import * as configureGraphQL from '../../../../src/client/graphql/index';
+import renderWithProviders from '../../../utils/renderWithProviders';
 
 const renderComponent = (testProps) => {
-  const props = merge({}, testProps);
-  return render(
-    <Loader>
-      {props.children}
-    </Loader>,
+  const props = merge({}, {
+    config: configureConfig({
+      GRAPHQL_URL: '',
+    }),
+  }, testProps);
+  return renderWithProviders(
+    <AppScene config={props.config} />,
   );
 };
 
-it('shows a spinner without a message', () => {
+beforeEach(() => jest.restoreAllMocks());
+
+it('does not load the app if the config is empty', () => {
+  jest
+    .spyOn(configureGraphQL, 'default')
+    .mockImplementation(() => ({}));
+
   const { queryByTestId } = renderComponent();
 
-  expect(queryByTestId('loader__spinner')).toHaveClass('loader__spinner');
-  expect(queryByTestId('loader__text')).toBeEmpty();
+  expect(queryByTestId('app'))
+    .not
+    .toBeInTheDocument();
 });
 
-it('shows a spinner with a message', () => {
-  const { queryByTestId } = renderComponent({
-    children: 'Loading...',
-  });
+it('loads the app', () => {
+  const { queryByTestId } = renderComponent();
 
-  expect(queryByTestId('loader__spinner')).toHaveClass('loader__spinner');
-  expect(queryByTestId('loader__text')).toHaveTextContent('Loading...');
+  expect(queryByTestId('app')).toBeInTheDocument();
 });

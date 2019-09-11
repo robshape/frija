@@ -22,9 +22,9 @@ import { fireEvent, waitForDomChange } from '@testing-library/react';
 import merge from 'lodash.merge';
 import React from 'react';
 
-import AUTHENTICATE_MUTATION from '../../../src/client/graphql/mutations/AUTHENTICATE_MUTATION';
-import LogInView from '../../../src/client/containers/LogInView/LogInView';
-import renderWithProviders from '../../utils/renderWithProviders';
+import AUTHENTICATE_MUTATION from '../../../../src/client/graphql/mutations/AUTHENTICATE_MUTATION';
+import LogInView from '../../../../src/client/containers/LogInView/LogInView';
+import renderWithProviders from '../../../utils/renderWithProviders';
 
 const renderComponent = (testProps) => {
   const props = merge({}, {
@@ -192,7 +192,7 @@ it('tries to authenticate valid credentials', async () => {
   });
 });
 
-it('allows shorthand credentials', () => {
+it('accepts shorthand credentials', () => {
   const { getByPlaceholderText, queryByTestId, queryByText } = renderComponent();
 
   fireEvent.change(getByPlaceholderText('ååååmmddxxxx'), {

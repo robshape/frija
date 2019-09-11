@@ -18,17 +18,13 @@
 
 */
 
-import React from 'react';
-import { render } from '@testing-library/react';
+import HttpStatus from 'http-status-codes';
 
-import HomeScene from '../../../src/client/scenes/HomeScene';
+import serverTestClient from '../../../utils/serverTestClient';
 
-const renderComponent = () => render(
-  <HomeScene />,
-);
+it('reports health status', async () => {
+  const { request } = serverTestClient();
+  const { status } = await request.get('/health/');
 
-it('shows a welcome message', () => {
-  const { queryByText } = renderComponent();
-
-  expect(queryByText('Välkommen till Frija.')).toBeInTheDocument();
+  expect(status).toBe(HttpStatus.OK);
 });

@@ -18,30 +18,34 @@
 
 */
 
-const { ApolloServer } = require('apollo-server-koa');
+import { ApolloServer } from 'apollo-server-koa';
+import { createTestClient } from 'apollo-server-testing';
+import request from 'supertest';
 
-const dataSources = require('./dataSources');
-const resolvers = require('./resolvers');
-const schemas = require('./schemas');
+import configureApp from '../../src/server/app';
+import configureConfig from '../../src/server/config';
+import dataSources from '../../src/server/graphql/dataSources';
+import resolvers from '../../src/server/graphql/resolvers';
+import schemas from '../../src/server/graphql/schemas';
 
-const configureGraphQL = (app, config) => {
+const config = configureConfig({
+  TOKEN_SECRET: 'c3e2a70e-ba85-4120-ba4d-1adc9c3d64c9',
+  TOKEN_TIME: '10m',
+});
+
+const serverTestClient = () => {
   const apolloServer = new ApolloServer({
-    context({ ctx }) {
-      const configuredDataSources = dataSources(config);
-      return {
-        isAuthenticated: configuredDataSources()
-          .tokenDataSource
-          .isAuthenticated(ctx),
-      };
-    },
     dataSources: dataSources(config),
     resolvers,
     typeDefs: schemas,
   });
 
-  apolloServer.applyMiddleware({
-    app,
-  });
+  const app = configureApp(config);
+
+  return {
+    ...createTestClient(apolloServer),
+    request: request(app),
+  };
 };
 
-module.exports = configureGraphQL;
+export default serverTestClient;
