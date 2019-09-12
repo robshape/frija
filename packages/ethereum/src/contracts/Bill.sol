@@ -18,23 +18,33 @@
 
 */
 
-const config = {
-  collectCoverageFrom: [
-    './packages/**/*.{js,jsx}',
-    '!./packages/client/babel.config.js',
-    '!./packages/client/webpack.config.js',
-    '!./packages/client/src/index.jsx',
-    '!./packages/ethereum/**',
-    '!./packages/server/src/index.js',
-  ],
-  moduleNameMapper: {
-    '\\.scss$': 'identity-obj-proxy',
-  },
-  rootDir: '../',
-  setupFilesAfterEnv: [
-    '<rootDir>/tests/jest.setup.js',
-  ],
-  testRegex: './tests/packages/.+\\.spec\\.(js|jsx)$',
-};
 
-module.exports = config;
+pragma solidity 0.5.8;
+
+
+import "./Ownable.sol";
+
+
+contract Bill is Ownable {
+    struct Voter {
+        bool hasVoted;
+        bool voted;
+        address voter;
+    }
+
+    string public title;
+    mapping(address => Voter) voters;
+
+    function changeTitle(string calldata toTitle) external {
+        title = toTitle;
+    }
+
+    function vote(bool forBill) external {
+        Voter storage sender = voters[msg.sender];
+
+        require(sender.hasVoted == false, "sender.hasVoted does not equal false.");
+
+        sender.hasVoted = true;
+        sender.voted = forBill;
+    }
+}

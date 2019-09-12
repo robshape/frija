@@ -15,20 +15,6 @@
         "import/no-extraneous-dependencies": "off",
         "no-console": "off"
       }
-    },
-    {
-      "files": "./tests/**/*.jsx",
-      "rules": {
-        "import/no-unresolved": [
-          "error",
-          {
-            "ignore": [
-              "^react$",
-              "^react-router-dom$"
-            ]
-          }
-        ]
-      }
     }
   ],
   "plugins": [

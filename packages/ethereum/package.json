@@ -1,0 +1,12 @@
+{
+  "devDependencies": {
+    "truffle": "5.0.35"
+  },
+  "name": "@frija/ethereum",
+  "private": true,
+  "scripts": {
+    "build": "truffle compile --all",
+    "deploy": "truffle migrate --reset",
+    "start": "truffle develop"
+  }
+}

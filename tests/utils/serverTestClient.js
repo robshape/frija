@@ -22,11 +22,11 @@ import { ApolloServer } from 'apollo-server-koa';
 import { createTestClient } from 'apollo-server-testing';
 import request from 'supertest';
 
-import configureApp from '../../src/server/app';
-import configureConfig from '../../src/server/config';
-import dataSources from '../../src/server/graphql/dataSources';
-import resolvers from '../../src/server/graphql/resolvers';
-import schemas from '../../src/server/graphql/schemas';
+import configureApp from '../../packages/server/src/app';
+import configureConfig from '../../packages/server/src/config';
+import dataSources from '../../packages/server/src/graphql/dataSources';
+import resolvers from '../../packages/server/src/graphql/resolvers';
+import schemas from '../../packages/server/src/graphql/schemas';
 
 const config = configureConfig({
   TOKEN_SECRET: 'c3e2a70e-ba85-4120-ba4d-1adc9c3d64c9',

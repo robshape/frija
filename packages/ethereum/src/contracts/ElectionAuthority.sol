@@ -18,23 +18,30 @@
 
 */
 
-const config = {
-  collectCoverageFrom: [
-    './packages/**/*.{js,jsx}',
-    '!./packages/client/babel.config.js',
-    '!./packages/client/webpack.config.js',
-    '!./packages/client/src/index.jsx',
-    '!./packages/ethereum/**',
-    '!./packages/server/src/index.js',
-  ],
-  moduleNameMapper: {
-    '\\.scss$': 'identity-obj-proxy',
-  },
-  rootDir: '../',
-  setupFilesAfterEnv: [
-    '<rootDir>/tests/jest.setup.js',
-  ],
-  testRegex: './tests/packages/.+\\.spec\\.(js|jsx)$',
-};
 
-module.exports = config;
+pragma solidity 0.5.8;
+
+
+import "./Bill.sol";
+import "./Claimable.sol";
+import "./Election.sol";
+
+
+contract ElectionAuthority is Claimable {
+    Bill[] public bills;
+    Election[] public elections;
+
+    function createBill(string calldata withTitle) external {
+        Bill newBill = new Bill();
+        newBill.changeTitle(withTitle);
+
+        bills.push(newBill);
+    }
+
+    function createElection(uint8 numberOfParties) external onlyOwner {
+        Election newElection = new Election();
+        newElection.addParties(numberOfParties);
+
+        elections.push(newElection);
+    }
+}

@@ -1,7 +1,7 @@
 /*
 
   Frija - The Swedish general election and Riksdag on the Ethereum blockchain.
-  Copyright (C) 2018 Frija contributors.
+  Copyright (C) 2019 Frija contributors.
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -18,23 +18,17 @@
 
 */
 
-const config = {
-  collectCoverageFrom: [
-    './packages/**/*.{js,jsx}',
-    '!./packages/client/babel.config.js',
-    '!./packages/client/webpack.config.js',
-    '!./packages/client/src/index.jsx',
-    '!./packages/ethereum/**',
-    '!./packages/server/src/index.js',
-  ],
-  moduleNameMapper: {
-    '\\.scss$': 'identity-obj-proxy',
-  },
-  rootDir: '../',
-  setupFilesAfterEnv: [
-    '<rootDir>/tests/jest.setup.js',
-  ],
-  testRegex: './tests/packages/.+\\.spec\\.(js|jsx)$',
-};
+import React from 'react';
+import { render } from '@testing-library/react';
 
-module.exports = config;
+import HomeScene from '../../../../packages/client/src/scenes/HomeScene';
+
+const renderComponent = () => render(
+  <HomeScene />,
+);
+
+it('shows a welcome message', () => {
+  const { queryByText } = renderComponent();
+
+  expect(queryByText('Välkommen till Frija.')).toBeInTheDocument();
+});

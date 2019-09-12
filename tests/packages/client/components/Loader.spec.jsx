@@ -18,32 +18,33 @@
 
 */
 
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { MemoryRouter } from 'react-router-dom';
-import { MockedProvider } from '@apollo/react-testing';
+import merge from 'lodash.merge';
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import clientState from '../../packages/client/src/graphql/clientState';
-import resolvers from '../../packages/client/src/graphql/resolvers';
+import Loader from '../../../../packages/client/src/components/Loader';
 
-const renderWithProviders = (ui, {
-  mocks = [],
-  ...options
-} = {}) => {
-  const cache = new InMemoryCache();
-  cache.writeData({
-    data: clientState,
-  });
-
+const renderComponent = (testProps) => {
+  const props = merge({}, testProps);
   return render(
-    <MockedProvider cache={cache} mocks={mocks} resolvers={resolvers}>
-      <MemoryRouter>
-        {ui}
-      </MemoryRouter>
-    </MockedProvider>,
-    options,
+    <Loader>
+      {props.children}
+    </Loader>,
   );
 };
 
-export default renderWithProviders;
+it('shows a spinner without a message', () => {
+  const { queryByTestId } = renderComponent();
+
+  expect(queryByTestId('loader__spinner')).toHaveClass('loader__spinner');
+  expect(queryByTestId('loader__text')).toBeEmpty();
+});
+
+it('shows a spinner with a message', () => {
+  const { queryByTestId } = renderComponent({
+    children: 'Loading...',
+  });
+
+  expect(queryByTestId('loader__spinner')).toHaveClass('loader__spinner');
+  expect(queryByTestId('loader__text')).toHaveTextContent('Loading...');
+});

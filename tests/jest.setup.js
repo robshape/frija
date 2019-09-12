@@ -18,7 +18,7 @@
 
 */
 
-import '../src/client/polyfills';
+import '../packages/client/src/polyfills';
 
 import '@testing-library/jest-dom/extend-expect';
 

@@ -18,23 +18,26 @@
 
 */
 
-const config = {
-  collectCoverageFrom: [
-    './packages/**/*.{js,jsx}',
-    '!./packages/client/babel.config.js',
-    '!./packages/client/webpack.config.js',
-    '!./packages/client/src/index.jsx',
-    '!./packages/ethereum/**',
-    '!./packages/server/src/index.js',
-  ],
-  moduleNameMapper: {
-    '\\.scss$': 'identity-obj-proxy',
-  },
-  rootDir: '../',
-  setupFilesAfterEnv: [
-    '<rootDir>/tests/jest.setup.js',
-  ],
-  testRegex: './tests/packages/.+\\.spec\\.(js|jsx)$',
-};
 
-module.exports = config;
+pragma solidity 0.5.8;
+
+
+contract Ownable {
+    address public owner;
+
+    constructor() public {
+        owner = msg.sender;
+    }
+
+    modifier onlyOwner() {
+        require(msg.sender == owner, "msg.sender does not equal owner.");
+
+        _;
+    }
+
+    function transferOwnership(address newOwner) external onlyOwner {
+        require(newOwner != address(0), "newOwner does not equal address(0).");
+
+        owner = newOwner;
+    }
+}

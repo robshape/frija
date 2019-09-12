@@ -9,8 +9,8 @@ Install [Homebrew](https://brew.sh/) and run `brew install node`. Clone this rep
 ```
 GRAPHQL_PORT=3000
 GRAPHQL_URL=https://localhost:3000/graphql
-SSL_CERT=./server.crt
-SSL_KEY=./server.key
+SSL_CERT=../../server.crt
+SSL_KEY=../../server.key
 TOKEN_SECRET=c3e2a70e-ba85-4120-ba4d-1adc9c3d64c9
 TOKEN_TIME=10m
 ```
@@ -28,14 +28,7 @@ TOKEN_TIME=10m
 Run `npm run setup` inside the root directory.
 
 ### Start Project
-Run `npm run run:ethereum` inside the root directory. This will start the Truffle development blockchain. Open another shell and run the following commands inside the root directory:
-```shell
-npm run build:ethereum
-npm run deploy:ethereum
-npm start
-```
-
-Then complete the following steps:
+Run `npm start` inside the root directory. Then complete the following steps:
 1. Visit [https://localhost:3000/health/](https://localhost:3000/health/) using Google Chrome.
 2. Accept the self-signed SSL certificate (created by `npm run setup`).
 3. Visit [http://localhost:8080/](http://localhost:8080/) using Google Chrome.

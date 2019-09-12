@@ -19,24 +19,11 @@
 */
 
 const config = {
-  env: {
-    test: {
-      presets: [
-        ['@babel/preset-env', {
-          targets: {
-            node: 'current',
-          },
-        }],
-      ],
-    },
-  },
-  plugins: [
-    'react-hot-loader/babel',
-  ],
   presets: [
     ['@babel/preset-env', {
-      corejs: 3,
-      useBuiltIns: 'entry',
+      targets: {
+        node: 'current',
+      },
     }],
     '@babel/preset-react',
   ],

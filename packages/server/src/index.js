@@ -18,23 +18,20 @@
 
 */
 
-const config = {
-  collectCoverageFrom: [
-    './packages/**/*.{js,jsx}',
-    '!./packages/client/babel.config.js',
-    '!./packages/client/webpack.config.js',
-    '!./packages/client/src/index.jsx',
-    '!./packages/ethereum/**',
-    '!./packages/server/src/index.js',
-  ],
-  moduleNameMapper: {
-    '\\.scss$': 'identity-obj-proxy',
-  },
-  rootDir: '../',
-  setupFilesAfterEnv: [
-    '<rootDir>/tests/jest.setup.js',
-  ],
-  testRegex: './tests/packages/.+\\.spec\\.(js|jsx)$',
-};
+const https = require('https'); // https://github.com/apollographql/apollo-server/issues/1533/
 
-module.exports = config;
+const configureApp = require('./app');
+const configureConfig = require('./config');
+
+const config = configureConfig(process.env);
+const app = configureApp(config);
+
+https
+  .createServer({
+    cert: config.ssl.cert,
+    key: config.ssl.key,
+  }, app)
+  .listen(config.graphqlPort, () => {
+    console.log(`Server listening on port ${config.graphqlPort}`); // eslint-disable-line no-console
+    console.log(`GraphQL listening on :${config.graphqlPort}/graphql`); // eslint-disable-line no-console
+  });

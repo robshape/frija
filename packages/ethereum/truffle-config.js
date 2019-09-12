@@ -19,22 +19,16 @@
 */
 
 const config = {
-  collectCoverageFrom: [
-    './packages/**/*.{js,jsx}',
-    '!./packages/client/babel.config.js',
-    '!./packages/client/webpack.config.js',
-    '!./packages/client/src/index.jsx',
-    '!./packages/ethereum/**',
-    '!./packages/server/src/index.js',
-  ],
-  moduleNameMapper: {
-    '\\.scss$': 'identity-obj-proxy',
+  contracts_build_directory: './dist/',
+  contracts_directory: './src/contracts/',
+  migrations_directory: './src/migrations/',
+  networks: {
+    development: {
+      host: '127.0.0.1',
+      network_id: '*',
+      port: 9545,
+    },
   },
-  rootDir: '../',
-  setupFilesAfterEnv: [
-    '<rootDir>/tests/jest.setup.js',
-  ],
-  testRegex: './tests/packages/.+\\.spec\\.(js|jsx)$',
 };
 
 module.exports = config;

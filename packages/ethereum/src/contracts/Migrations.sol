@@ -18,23 +18,22 @@
 
 */
 
-const config = {
-  collectCoverageFrom: [
-    './packages/**/*.{js,jsx}',
-    '!./packages/client/babel.config.js',
-    '!./packages/client/webpack.config.js',
-    '!./packages/client/src/index.jsx',
-    '!./packages/ethereum/**',
-    '!./packages/server/src/index.js',
-  ],
-  moduleNameMapper: {
-    '\\.scss$': 'identity-obj-proxy',
-  },
-  rootDir: '../',
-  setupFilesAfterEnv: [
-    '<rootDir>/tests/jest.setup.js',
-  ],
-  testRegex: './tests/packages/.+\\.spec\\.(js|jsx)$',
-};
 
-module.exports = config;
+pragma solidity 0.5.8;
+
+
+import "./Ownable.sol";
+
+
+contract Migrations is Ownable {
+    uint public lastCompletedMigration;
+
+    function upgrade(address newAddress) external onlyOwner {
+        Migrations newMigrations = Migrations(newAddress);
+        newMigrations.setCompleted(lastCompletedMigration);
+    }
+
+    function setCompleted(uint completedMigration) public onlyOwner {
+        lastCompletedMigration = completedMigration;
+    }
+}
