@@ -6,7 +6,7 @@ npm ci
 echo
 
 echo "[*] BOOTSTRAPPING PACKAGES"
-npx lerna bootstrap --ci --hoist
+npx lerna bootstrap --hoist
 echo
 
 echo "[*] CREATING CERTIFICATE"
