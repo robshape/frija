@@ -21,17 +21,11 @@
 import './polyfills';
 
 import 'react-hot-loader'; // Import before 'react' and 'react-dom'.
-import { hot } from 'react-hot-loader/root';
 import React from 'react';
 import { render } from 'react-dom';
 
-import AppScene from './scenes/AppScene';
-import configureConfig from './config';
+import App from './app';
 
-const config = configureConfig({
-  GRAPHQL_URL: process.env.GRAPHQL_URL,
-});
-const App = hot(() => <AppScene config={config} />);
 const node = document.getElementById('index');
 render(<App />, node);
 

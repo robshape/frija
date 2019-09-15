@@ -3,9 +3,6 @@ set -euo pipefail
 
 echo "[*] INSTALLING DEPENDENCIES"
 npm ci
-echo
-
-echo "[*] BOOTSTRAPPING PACKAGES"
 npx lerna bootstrap --hoist
 echo
 

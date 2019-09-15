@@ -1,8 +1,5 @@
 # Testing
-The following section will help you set up the testing environment.
-
-## Automated Tests
-Run `npm test` inside the root directory.
+The following section will help you set up your testing environment.
 
 ## Credentials
 Use a [personal identity number](./CREDENTIALS.md) to log in.
@@ -12,3 +9,6 @@ Visit [https://localhost:3000/graphql](https://localhost:3000/graphql) to open G
 
 ## Linters
 Run `npm run lint` inside the root directory.
+
+## Tests
+Run `npm test` inside the root directory.
