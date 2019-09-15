@@ -70,7 +70,7 @@ it('shows a form if the user is not authenticated', () => {
   expect(queryByText('Fortsätt')).toBeInTheDocument();
 });
 
-it('allows number credentials only', () => {
+it('accepts number credentials only', () => {
   const { getByPlaceholderText, queryByTestId } = renderComponent();
 
   expect(queryByTestId('numberInput__input')).toHaveValue('');
