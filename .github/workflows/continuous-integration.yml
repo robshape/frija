@@ -35,5 +35,10 @@ jobs:
     - name: Run tests (with coverage report)
       run: npm run test:coverage
 
+    - name: Upload coverage report
+      uses: codecov/codecov-action@v1.0.2
+      with:
+        token: ${{secrets.CODECOV_TOKEN}}
+
     - name: Build Ethereum package
       run: npx lerna run --scope @frija/ethereum build
