@@ -33,6 +33,7 @@
   },
   "private": true,
   "scripts": {
+    "bootstrap": "lerna bootstrap --hoist",
     "lint": "npm run lint:js && npm run lint:sass && npm run lint:sol",
     "lint:js": "eslint --ext .js,.jsx ./",
     "lint:sass": "stylelint './packages/client/src/**/*.scss'",

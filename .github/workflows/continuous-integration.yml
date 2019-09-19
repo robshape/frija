@@ -1,0 +1,39 @@
+name: Continuous Integration
+
+on: push
+
+jobs:
+  integrate:
+    name: Integrate
+    runs-on: ubuntu-18.04
+    steps:
+
+    - name: Checkout repository
+      uses: actions/checkout@v1
+      with:
+        fetch-depth: 1
+
+    - name: Setup Node
+      uses: actions/setup-node@v1
+      with:
+        node-version: 10.x
+
+    - name: Install dependencies
+      run: |
+        npm ci
+        npm run bootstrap
+
+    - name: Lint Solidity
+      run: npm run lint:sol
+
+    - name: Lint Sass
+      run: npm run lint:sass
+
+    - name: Lint JavaScript
+      run: npm run lint:js
+
+    - name: Run tests (with coverage report)
+      run: npm run test:coverage
+
+    - name: Build Ethereum package
+      run: npx lerna run --scope @frija/ethereum build
