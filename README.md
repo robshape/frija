@@ -1,4 +1,4 @@
-# Frija &middot; ![Continuous Integration](https://github.com/robshape/frija/workflows/Continuous%20Integration/badge.svg) [![License](https://img.shields.io/github/license/robshape/frija.svg?label=License)](./LICENSE)
+# Frija &middot; [![Codecov](https://codecov.io/gh/robshape/frija/branch/master/graph/badge.svg)](https://codecov.io/gh/robshape/frija/) [![Continuous Integration](https://github.com/robshape/frija/workflows/Continuous%20Integration/badge.svg)](https://github.com/robshape/frija/actions/) [![License](https://img.shields.io/github/license/robshape/frija.svg)](./LICENSE)
 The Swedish general election and Riksdag on the Ethereum blockchain.
 
 ## Development
