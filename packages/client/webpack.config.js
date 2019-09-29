@@ -77,6 +77,7 @@ const config = {
 
   optimization: {
     removeEmptyChunks: false,
+    splitChunks: false,
   },
 
   output: {
