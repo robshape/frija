@@ -31,8 +31,6 @@ const config = {
 
   devtool: 'cheap-module-eval-source-map',
 
-  entry: path.resolve(__dirname, './src/index.jsx'),
-
   mode: 'development',
 
   module: {
@@ -47,6 +45,7 @@ const config = {
           {
             loader: 'babel-loader',
             options: {
+              cacheCompression: false,
               cacheDirectory: true,
             },
           },
@@ -77,9 +76,7 @@ const config = {
   },
 
   optimization: {
-    removeAvailableModules: false,
     removeEmptyChunks: false,
-    splitChunks: false,
   },
 
   output: {
