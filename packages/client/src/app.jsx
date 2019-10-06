@@ -19,7 +19,7 @@
 */
 
 import { hot } from 'react-hot-loader/root';
-import React from 'react';
+import React, { StrictMode } from 'react';
 
 import AppScene from './scenes/AppScene';
 import configureConfig from './config';
@@ -29,7 +29,9 @@ const config = configureConfig({
 });
 
 const App = hot(() => (
-  <AppScene config={config} />
+  <StrictMode>
+    <AppScene config={config} />
+  </StrictMode>
 ));
 
 export default App;
