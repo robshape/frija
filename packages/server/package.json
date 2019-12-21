@@ -13,7 +13,7 @@
     "node-forge": "0.9.1"
   },
   "devDependencies": {
-    "nodemon": "1.19.3"
+    "nodemon": "2.0.2"
   },
   "name": "@frija/server",
   "private": true,
