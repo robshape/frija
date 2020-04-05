@@ -7,7 +7,8 @@
   "extends": [
     "airbnb",
     "plugin:jest/recommended",
-    "plugin:jest/style"
+    "plugin:jest/style",
+    "plugin:react-hooks/recommended"
   ],
   "globals": {
     "artifacts": true
@@ -26,8 +27,6 @@
     "react-hooks"
   ],
   "rules": {
-    "react-hooks/exhaustive-deps": "warn",
-    "react-hooks/rules-of-hooks": "error",
     "react/jsx-props-no-spreading": [
       "error",
       {
