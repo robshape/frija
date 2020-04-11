@@ -20,7 +20,7 @@
 
 import merge from 'lodash.merge';
 import React from 'react';
-import { wait } from '@testing-library/react';
+import { waitFor } from '@testing-library/react';
 
 import AuthScene from '../../../../packages/client/src/scenes/AuthScene';
 import jwt from '../../../../packages/server/src/utils/jwt';
@@ -76,7 +76,7 @@ it('does not log in the user if their token is invalid', async () => {
   });
 
   expect(queryByTestId('loader__spinner')).toBeInTheDocument();
-  await wait(() => {
+  await waitFor(() => {
     expect(queryByTestId('loader__spinner'))
       .not
       .toBeInTheDocument();
@@ -110,7 +110,7 @@ it('logs in the user if their token is valid', async () => {
   });
 
   expect(queryByTestId('loader__spinner')).toBeInTheDocument();
-  await wait(() => {
+  await waitFor(() => {
     expect(queryByTestId('loader__spinner'))
       .not
       .toBeInTheDocument();

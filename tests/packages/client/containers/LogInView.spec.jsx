@@ -18,7 +18,7 @@
 
 */
 
-import { fireEvent, waitForDomChange } from '@testing-library/react';
+import { fireEvent, waitFor } from '@testing-library/react';
 import merge from 'lodash.merge';
 import React from 'react';
 
@@ -181,7 +181,7 @@ it('tries to authenticate valid credentials', async () => {
   });
   fireEvent.click(getByText('Fortsätt'));
 
-  await waitForDomChange(() => {
+  await waitFor(() => {
     expect(getByText('Väntar på svar från Mobilt BankID... Vänligen starta BankID-appen i din mobila enhet.')).toBeInTheDocument();
   });
   expect(mutateMock).toHaveBeenCalledWith({
