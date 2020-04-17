@@ -6,5 +6,6 @@ node_modules/
 .env.prod
 .env.stage
 .eslintcache
+.stylelintcache
 server.crt
 server.key
