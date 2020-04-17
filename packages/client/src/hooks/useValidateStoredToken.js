@@ -40,27 +40,32 @@ const useValidateStoredToken = ({ client }) => {
         return;
       }
 
-      const { data } = await client.query({
-        query: VALIDATE_QUERY,
-        variables: {
-          token,
-        },
-      });
-      if (!data.validate) {
-        removeStoredToken();
+      let isAuthenticated = false;
+      try {
+        const { data } = await client.query({
+          query: VALIDATE_QUERY,
+          variables: {
+            token,
+          },
+        });
+        if (!data.validate) {
+          removeStoredToken();
+          return;
+        }
+
+        isAuthenticated = true;
+      } catch (error) {
+        isAuthenticated = false;
+      } finally {
+        client.mutate({
+          mutation: IS_AUTHENTICATED_MUTATION,
+          variables: {
+            isAuthenticated,
+          },
+        });
 
         setIsValidating(false);
-        return;
       }
-
-      client.mutate({
-        mutation: IS_AUTHENTICATED_MUTATION,
-        variables: {
-          isAuthenticated: true,
-        },
-      });
-
-      setIsValidating(false);
     };
 
     validateStoredToken();

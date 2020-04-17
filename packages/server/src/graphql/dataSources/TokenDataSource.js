@@ -18,6 +18,7 @@
 
 */
 
+const { AuthenticationError } = require('apollo-server-koa');
 const { DataSource } = require('apollo-datasource');
 
 const jwt = require('../../utils/jwt');
@@ -51,15 +52,11 @@ class TokenDataSource extends DataSource {
   }
 
   validate(token) {
-    let isTokenValid = false;
-
     try {
-      isTokenValid = !!jwt.verify(token, this.tokenConfig);
+      return !!jwt.verify(token, this.tokenConfig);
     } catch (error) {
-      isTokenValid = false;
+      throw new AuthenticationError('Invalid token.');
     }
-
-    return isTokenValid;
   }
 }
 

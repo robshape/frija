@@ -18,30 +18,44 @@
 
 */
 
-import jwt from '../../../../packages/server/src/utils/jwt';
-import serverTestClient from '../../../utils/serverTestClient';
-import VALIDATE_QUERY from '../../../../packages/client/src/graphql/queries/VALIDATE_QUERY';
+import jwt from '../../../packages/server/src/utils/jwt';
+import serverTestClient from '../../utils/serverTestClient';
+import VALIDATE_QUERY from '../../../packages/client/src/graphql/queries/VALIDATE_QUERY';
 
-it('validates an expired token', async () => {
+it('does not validate a token that is invalid', async () => {
   const { query } = serverTestClient();
-  const { data } = await query({
+  const { data, errors } = await query({
+    query: VALIDATE_QUERY,
+    variables: {
+      token: 'invalid',
+    },
+  });
+
+  expect(data).toBeNull();
+  expect(errors[0].message).toEqual(expect.any(String));
+});
+
+it('does not validate a token that is expired', async () => {
+  const { query } = serverTestClient();
+  const { data, errors } = await query({
     query: VALIDATE_QUERY,
     variables: {
       token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiOFpycFhrQ1JTNWQwSlhnSGYreTdhaE9nUWtDaDFjbGp5MEVsQ1RLMVVCc3RmeGZGdkx1eC9CRExBZmVLcHoxby5TTURTdlZVYi9WR0xCRHRPalBMRmxRPT0uRXNkNkd3Zmg3S1oyZm9rQklvbGhpQT09IiwiaWF0IjoxNTY3ODQwNzk3LCJleHAiOjE1Njc4NDEzOTd9.VqWaRnxjD-1sw_eJT_IxpiRi_RpyAr4WxVepA7EoC3c',
     },
   });
 
-  expect(data.validate).toBe(false);
+  expect(data).toBeNull();
+  expect(errors[0].message).toEqual(expect.any(String));
 });
 
-it('validates a valid token', async () => {
+it('validates a token', async () => {
   const token = jwt.sign('190001012020', {
     secret: 'c3e2a70e-ba85-4120-ba4d-1adc9c3d64c9',
     time: '10m',
   });
 
   const { query } = serverTestClient();
-  const { data } = await query({
+  const { data, errors } = await query({
     query: VALIDATE_QUERY,
     variables: {
       token,
@@ -49,4 +63,5 @@ it('validates a valid token', async () => {
   });
 
   expect(data.validate).toBe(true);
+  expect(errors).toBeUndefined();
 });

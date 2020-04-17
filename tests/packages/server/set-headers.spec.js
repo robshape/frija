@@ -18,7 +18,7 @@
 
 */
 
-import serverTestClient from '../../../utils/serverTestClient';
+import serverTestClient from '../../utils/serverTestClient';
 
 it('sets security headers', async () => {
   const { request } = serverTestClient();

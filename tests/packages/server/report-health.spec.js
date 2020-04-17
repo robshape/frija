@@ -20,9 +20,9 @@
 
 import HttpStatus from 'http-status-codes';
 
-import serverTestClient from '../../../utils/serverTestClient';
+import serverTestClient from '../../utils/serverTestClient';
 
-it('reports health status', async () => {
+it('reports HTTP status', async () => {
   const { request } = serverTestClient();
   const { status } = await request.get('/health/');
 

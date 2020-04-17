@@ -18,68 +18,73 @@
 
 */
 
-import AUTHENTICATE_MUTATION from '../../../../packages/client/src/graphql/mutations/AUTHENTICATE_MUTATION';
-import isTokenDateValid from '../../../../packages/client/src/utils/token/isTokenValid';
-import serverTestClient from '../../../utils/serverTestClient';
+import AUTHENTICATE_MUTATION from '../../../packages/client/src/graphql/mutations/AUTHENTICATE_MUTATION';
+import isTokenDateValid from '../../../packages/client/src/utils/token/isTokenValid';
+import serverTestClient from '../../utils/serverTestClient';
 
-it('does not authenticate credentials with invalid length', async () => {
+it('does not authenticate credentials with an invalid length', async () => {
   const { mutate } = serverTestClient();
-  const { errors } = await mutate({
+  const { data, errors } = await mutate({
     mutation: AUTHENTICATE_MUTATION,
     variables: {
-      personalIdentityNumber: '112233',
+      personalIdentityNumber: '190001',
     },
   });
 
+  expect(data).toBeNull();
   expect(errors[0].message).toEqual(expect.any(String));
 });
 
-it('does not authenticate credentials with invalid date', async () => {
+it('does not authenticate credentials with an invalid date', async () => {
   const { mutate } = serverTestClient();
-  const { errors } = await mutate({
+  const { data, errors } = await mutate({
     mutation: AUTHENTICATE_MUTATION,
     variables: {
       personalIdentityNumber: '000000000000',
     },
   });
 
+  expect(data).toBeNull();
   expect(errors[0].message).toEqual(expect.any(String));
 });
 
-it('does not authenticate credentials with invalid checksum', async () => {
+it('does not authenticate credentials with an invalid checksum', async () => {
   const { mutate } = serverTestClient();
-  const { errors } = await mutate({
+  const { data, errors } = await mutate({
     mutation: AUTHENTICATE_MUTATION,
     variables: {
       personalIdentityNumber: '190001012021',
     },
   });
 
+  expect(data).toBeNull();
   expect(errors[0].message).toEqual(expect.any(String));
 });
 
 it('authenticates credentials', async () => {
   const { mutate } = serverTestClient();
-  const { data } = await mutate({
+  const { data, errors } = await mutate({
     mutation: AUTHENTICATE_MUTATION,
     variables: {
       personalIdentityNumber: '190001012020',
     },
   });
-  const isDateValid = isTokenDateValid(data.authenticate.token);
+  const isTokenValid = isTokenDateValid(data.authenticate.token);
 
-  expect(isDateValid).toBe(true);
+  expect(errors).toBeUndefined();
+  expect(isTokenValid).toBe(true);
 });
 
 it('authenticates shorthand credentials', async () => {
   const { mutate } = serverTestClient();
-  const { data } = await mutate({
+  const { data, errors } = await mutate({
     mutation: AUTHENTICATE_MUTATION,
     variables: {
       personalIdentityNumber: '0001012020',
     },
   });
-  const isDateValid = isTokenDateValid(data.authenticate.token);
+  const isTokenValid = isTokenDateValid(data.authenticate.token);
 
-  expect(isDateValid).toBe(true);
+  expect(errors).toBeUndefined();
+  expect(isTokenValid).toBe(true);
 });
