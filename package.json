@@ -43,6 +43,7 @@
     "start": "env-cmd --file ./.env.dev lerna run --parallel start",
     "test": "jest --config ./tests/jest.config.js",
     "test:coverage": "npm test -- --coverage",
+    "test:leaks": "node --expose-gc ./node_modules/.bin/jest --config ./tests/jest.config.js --logHeapUsage --runInBand",
     "test:watch": "npm test -- --watch"
   }
 }
