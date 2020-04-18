@@ -1,7 +1,9 @@
 # .env
+
 The following section will help you set up your environment variables.
 
 ## Environment Variables
+
 |VARIABLE|VALUE|
 |--------|-----|
 |GRAPHQL_PORT|GraphQL server listening port.|

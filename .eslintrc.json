@@ -27,14 +27,11 @@
     "react-hooks"
   ],
   "rules": {
-    "react/jsx-props-no-spreading": [
-      "error",
-      {
-        "exceptions": [
-          "Component",
-          "Route"
-        ]
-      }
-    ]
+    "react/jsx-props-no-spreading": ["error", {
+      "exceptions": [
+        "Component",
+        "Route"
+      ]
+    }]
   }
 }
