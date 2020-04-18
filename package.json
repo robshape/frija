@@ -38,7 +38,7 @@
     "bootstrap": "lerna bootstrap --hoist",
     "lint": "npm run lint:js && npm run lint:md && npm run lint:sass && npm run lint:sol",
     "lint:js": "eslint --cache --ext .js,.jsx ./",
-    "lint:md": "markdownlint **/*.md",
+    "lint:md": "markdownlint '**/*.md'",
     "lint:sass": "stylelint --cache './packages/client/src/**/*.scss'",
     "lint:sol": "solium --dir ./packages/ethereum/src/contracts/ --no-soliumignore",
     "setup": "./scripts/setup-project.sh",
