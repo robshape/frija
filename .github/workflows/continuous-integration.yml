@@ -2,26 +2,48 @@ name: Continuous Integration
 
 on: push
 
-jobs:
-  integrate:
-    name: Integrate
-    runs-on: ubuntu-18.04
-    steps:
+env:
+  NODE_VERSION: 12.16.2 # LTS
+  UBUNTU_VERSION: ubuntu-18.04 # LTS
 
+jobs:
+  build-packages:
+    name: Build packages
+    runs-on: ${{env.UBUNTU_VERSION}}
+    steps:
     - name: Checkout repository
-      uses: actions/checkout@v1
-      with:
-        fetch-depth: 1
+      uses: actions/checkout@v2.1.0
 
     - name: Setup Node
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v1.4.1
       with:
-        node-version: 10.x
+        node-version: ${{env.NODE_VERSION}}
 
     - name: Install dependencies
       run: |
         npm ci
         npm run bootstrap
+
+    - name: Build Ethereum package
+      run: npx lerna run --scope @frija/ethereum build
+
+  lint-files:
+    name: Lint files
+    runs-on: ${{env.UBUNTU_VERSION}}
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2.1.0
+
+    - name: Setup Node
+      uses: actions/setup-node@v1.4.1
+      with:
+        node-version: ${{env.NODE_VERSION}}
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Lint Markdown
+      run: npm run lint:md
 
     - name: Lint Solidity
       run: npm run lint:sol
@@ -32,13 +54,25 @@ jobs:
     - name: Lint JavaScript
       run: npm run lint:js
 
-    - name: Run tests (with coverage report)
+  run-tests-and-report-code-coverage:
+    name: Run tests and report code coverage
+    runs-on: ${{env.UBUNTU_VERSION}}
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2.1.0
+
+    - name: Setup Node
+      uses: actions/setup-node@v1.4.1
+      with:
+        node-version: ${{env.NODE_VERSION}}
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run tests (with code coverage report)
       run: npm run test:coverage
 
     - name: Upload coverage report
-      uses: codecov/codecov-action@v1.0.2
+      uses: codecov/codecov-action@v1.0.6
       with:
         token: ${{secrets.CODECOV_TOKEN}}
-
-    - name: Build Ethereum package
-      run: npx lerna run --scope @frija/ethereum build
