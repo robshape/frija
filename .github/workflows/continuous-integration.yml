@@ -4,12 +4,11 @@ on: push
 
 env:
   NODE_VERSION: 12.16.2 # LTS
-  UBUNTU_VERSION: ubuntu-18.04 # LTS
 
 jobs:
   build-packages:
     name: Build packages
-    runs-on: ${{env.UBUNTU_VERSION}}
+    runs-on: ubuntu-18.04 # LTS
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2.1.0
@@ -29,7 +28,7 @@ jobs:
 
   lint-files:
     name: Lint files
-    runs-on: ${{env.UBUNTU_VERSION}}
+    runs-on: ubuntu-18.04 # LTS
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2.1.0
@@ -56,7 +55,7 @@ jobs:
 
   run-tests-and-report-code-coverage:
     name: Run tests and report code coverage
-    runs-on: ${{env.UBUNTU_VERSION}}
+    runs-on: ubuntu-18.04 # LTS
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2.1.0
