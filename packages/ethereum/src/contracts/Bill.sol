@@ -33,7 +33,7 @@ contract Bill is Ownable {
     }
 
     string public title;
-    mapping(address => Voter) voters;
+    mapping(address => Voter) internal voters;
 
     function changeTitle(string calldata toTitle) external {
         title = toTitle;
