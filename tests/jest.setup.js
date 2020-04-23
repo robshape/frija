@@ -22,4 +22,4 @@ import '../packages/client/src/polyfills';
 
 import '@testing-library/jest-dom/extend-expect';
 
-import './mocks/fetchMock';
+import './mocks/fetch';
