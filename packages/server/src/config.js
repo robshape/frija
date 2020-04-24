@@ -18,8 +18,6 @@
 
 */
 
-const fs = require('fs');
-
 const configureConfig = (env) => ({
   graphqlPort: env.GRAPHQL_PORT,
   token: {
