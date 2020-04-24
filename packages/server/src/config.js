@@ -22,10 +22,6 @@ const fs = require('fs');
 
 const configureConfig = (env) => ({
   graphqlPort: env.GRAPHQL_PORT,
-  ssl: {
-    cert: env.SSL_CERT && fs.readFileSync(env.SSL_CERT),
-    key: env.SSL_KEY && fs.readFileSync(env.SSL_KEY),
-  },
   token: {
     secret: env.TOKEN_SECRET,
     time: env.TOKEN_TIME,

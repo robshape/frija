@@ -18,7 +18,8 @@
   "name": "@frija/server",
   "private": true,
   "scripts": {
-    "certificate": "openssl req -keyout server.key -new -nodes -out server.crt -subj '/CN=localhost' -x509",
-    "start": "nodemon --watch ./src/ ./src/index.js"
+    "build": "docker build --tag frija/server:latest .",
+    "start": "nodemon --watch ./src/ ./src/index.js",
+    "start:docker": "docker run --env-file .env --init --publish 3000:3000 --rm frija/server:latest"
   }
 }

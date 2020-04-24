@@ -20,9 +20,7 @@
 
 const config = {
   GRAPHQL_PORT: '3000',
-  GRAPHQL_URL: 'https://localhost:3000/graphql',
-  SSL_CERT: './server.crt',
-  SSL_KEY: './server.key',
+  GRAPHQL_URL: 'http://localhost:3000/graphql',
   TOKEN_SECRET: 'c3e2a70e-ba85-4120-ba4d-1adc9c3d64c9',
   TOKEN_TIME: '10m',
 };

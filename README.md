@@ -20,12 +20,8 @@ Run `npm run setup` inside the root directory.
 
 ### Start Project
 
-Run `npm start` inside the root directory. Then complete the following steps:
-
-1. Visit [https://localhost:3000/health/](https://localhost:3000/health/) using Google Chrome.
-2. Accept the self-signed SSL certificate (created by `npm run setup`).
-3. Visit [http://localhost:8080/](http://localhost:8080/) using Google Chrome.
-4. Use a [personal identity number](./docs/CREDENTIALS.md) to log in.
+Run `npm start` inside the root directory. Visit [http://localhost:8080/](http://localhost:8080/) using
+Google Chrome. Use a [personal identity number](./docs/CREDENTIALS.md) to log in.
 
 ## License
 

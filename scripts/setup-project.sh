@@ -9,7 +9,3 @@ echo
 echo "[*] BUILDING ETHEREUM PACKAGE"
 npx lerna run --scope @frija/ethereum build
 echo
-
-echo "[*] CREATING SERVER PACKAGE CERTIFICATE"
-npx lerna run --scope @frija/server certificate
-echo

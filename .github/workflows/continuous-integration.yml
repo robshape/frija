@@ -3,12 +3,12 @@ name: Continuous Integration
 on: push
 
 env:
-  NODE_VERSION: 12.16.2 # LTS
+  NODE_VERSION: 12.16.2 # Node LTS
 
 jobs:
   build-packages:
     name: Build packages
-    runs-on: ubuntu-18.04 # LTS
+    runs-on: ubuntu-18.04 # Ubuntu LTS
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2.1.0
@@ -26,9 +26,12 @@ jobs:
     - name: Build Ethereum package
       run: npx lerna run --scope @frija/ethereum build
 
+    - name: Build server package
+      run: npx lerna run --scope @frija/server build
+
   lint-files:
     name: Lint files
-    runs-on: ubuntu-18.04 # LTS
+    runs-on: ubuntu-18.04 # Ubuntu LTS
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2.1.0
@@ -57,7 +60,7 @@ jobs:
 
   run-tests-and-report-code-coverage:
     name: Run tests and report code coverage
-    runs-on: ubuntu-18.04 # LTS
+    runs-on: ubuntu-18.04 # Ubuntu LTS
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2.1.0

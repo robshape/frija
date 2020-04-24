@@ -18,7 +18,7 @@
 
 */
 
-const https = require('https'); // https://github.com/apollographql/apollo-server/issues/1533/
+const http = require('http'); // https://github.com/apollographql/apollo-server/issues/1533/
 
 const configureApp = require('./app');
 const configureConfig = require('./config');
@@ -26,11 +26,8 @@ const configureConfig = require('./config');
 const config = configureConfig(process.env);
 const app = configureApp(config);
 
-https
-  .createServer({
-    cert: config.ssl.cert,
-    key: config.ssl.key,
-  }, app)
+http
+  .createServer(app)
   .listen(config.graphqlPort, () => {
     console.log(`Server listening on port ${config.graphqlPort}`); // eslint-disable-line no-console
     console.log(`GraphQL listening on :${config.graphqlPort}/graphql`); // eslint-disable-line no-console

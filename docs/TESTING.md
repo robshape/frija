@@ -8,7 +8,7 @@ Use a [personal identity number](./CREDENTIALS.md) to log in.
 
 ## GraphQL Playground
 
-Visit [https://localhost:3000/graphql](https://localhost:3000/graphql) to open GraphQL Playground. Use
+Visit [http://localhost:3000/graphql](http://localhost:3000/graphql) to open GraphQL Playground. Use
 it to test mutations and queries.
 
 ## Linters
