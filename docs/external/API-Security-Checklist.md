@@ -59,7 +59,7 @@ Checklist of the most important security countermeasures when designing, testing
 - [x] Return the proper status code according to the operation completed. (e.g. `200 OK`, `400 Bad Request`, `401 Unauthorized`, `405 Method Not Allowed`, etc.).
 
 ## CI & CD
-- [ ] Audit your design and implementation with unit/integration tests coverage.
+- [x] Audit your design and implementation with unit/integration tests coverage.
 - [ ] Use a code review process and disregard self-approval.
 - [ ] Ensure that all components of your services are statically scanned by AV software before pushing to production, including vendor libraries and other dependencies.
 - [ ] Design a rollback solution for deployments.
