@@ -2,7 +2,7 @@
 
 The following section will help you set up your environment variables.
 
-## Environment Variables
+## Environment variables
 
 |VARIABLE|VALUE|
 |--------|-----|

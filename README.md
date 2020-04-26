@@ -14,11 +14,11 @@ The following section will help you set up your development environment.
 
 Install [Homebrew](https://brew.sh/) and run `brew install node`. Clone this repository.
 
-### Install Dependencies & Setup Project
+### Install dependencies and setup project
 
 Run `npm run setup` inside the root directory.
 
-### Start Project
+### Start project
 
 1. Run `npm start` inside the root directory.
 2. Visit [http://localhost:8080/](http://localhost:8080/) using Google Chrome.

@@ -114,7 +114,7 @@ const config = (env) => ({
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',
     }),
-    (env && env.ANALYZE) && new BundleAnalyzerPlugin(),
+    (env && env.ANALYZE_BUNDLE) && new BundleAnalyzerPlugin(),
   ].filter(Boolean),
 
   resolve: {

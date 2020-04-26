@@ -8,3 +8,4 @@ node_modules/
 .env.stage
 .eslintcache
 .stylelintcache
+lighthouse.report.html
