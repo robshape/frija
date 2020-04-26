@@ -29,6 +29,7 @@ import resolvers from '../../packages/server/src/graphql/resolvers';
 import schemas from '../../packages/server/src/graphql/schemas';
 
 const config = configureConfig({
+  GRAPHQL_PORT: 3000,
   TOKEN_SECRET: 'c3e2a70e-ba85-4120-ba4d-1adc9c3d64c9',
   TOKEN_TIME: '10m',
 });

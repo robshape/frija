@@ -18,8 +18,14 @@
 
 */
 
-const configureConfig = (env) => ({
-  graphqlUrl: env.GRAPHQL_URL,
-});
+const configureConfig = (env) => {
+  if (!env.GRAPHQL_URL) {
+    throw new Error('Missing environment variable: GRAPHQL_URL');
+  }
+
+  return {
+    graphqlUrl: env.GRAPHQL_URL,
+  };
+};
 
 export default configureConfig;

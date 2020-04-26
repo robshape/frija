@@ -35,7 +35,6 @@ const configureGraphQL = (app, config) => {
       };
     },
     dataSources: dataSources(config),
-    // debug: false,
     resolvers,
     typeDefs: schemas,
   });

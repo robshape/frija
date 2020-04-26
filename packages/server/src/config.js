@@ -18,12 +18,22 @@
 
 */
 
-const configureConfig = (env) => ({
-  graphqlPort: env.GRAPHQL_PORT,
-  token: {
-    secret: env.TOKEN_SECRET,
-    time: env.TOKEN_TIME,
-  },
-});
+const configureConfig = (env) => {
+  if (!env.GRAPHQL_PORT) {
+    throw new Error('Missing environment variable: GRAPHQL_PORT');
+  } else if (!env.TOKEN_SECRET) {
+    throw new Error('Missing environment variable: TOKEN_SECRET');
+  } else if (!env.TOKEN_TIME) {
+    throw new Error('Missing environment variable: TOKEN_TIME');
+  }
+
+  return {
+    graphqlPort: env.GRAPHQL_PORT,
+    token: {
+      secret: env.TOKEN_SECRET,
+      time: env.TOKEN_TIME,
+    },
+  };
+};
 
 module.exports = configureConfig;

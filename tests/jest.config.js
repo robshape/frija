@@ -21,22 +21,32 @@
 const config = {
   collectCoverageFrom: [
     './packages/**/*.{js,jsx}',
+
     // Excluding:
-    '!./packages/client/babel.config.js',
-    '!./packages/client/webpack.config.js',
+    '!./packages/client/dist/**',
     '!./packages/client/src/app.jsx',
+    '!./packages/client/configs/babel.config.js',
     '!./packages/client/src/index.jsx',
+    '!./packages/client/webpack.config.dev.js',
+    '!./packages/client/webpack.config.prod.js',
+
     '!./packages/ethereum/**',
+
     '!./packages/server/src/index.js',
   ],
+
   moduleNameMapper: {
     '\\.scss$': 'identity-obj-proxy',
   },
+
   rootDir: '../',
+
   setupFilesAfterEnv: [
     '<rootDir>/tests/jest.setup.js',
   ],
+
   testRegex: './tests/packages/.+\\.spec\\.(js|jsx)$',
+
   transform: {
     '\\.(js|jsx)$': ['babel-jest', {
       configFile: './tests/babel.config.js',

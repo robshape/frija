@@ -29,7 +29,7 @@ import renderWithProviders from '../../../utils/renderWithProviders';
 const renderComponent = (testProps) => {
   const props = merge({}, {
     config: configureConfig({
-      GRAPHQL_URL: '',
+      GRAPHQL_URL: 'http://localhost:3000/graphql',
     }),
   }, testProps);
   return renderWithProviders(

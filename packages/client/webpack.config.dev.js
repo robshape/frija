@@ -47,6 +47,7 @@ const config = {
             options: {
               cacheCompression: false,
               cacheDirectory: true,
+              configFile: './configs/babel.config.js',
             },
           },
         ],
@@ -86,6 +87,7 @@ const config = {
 
   plugins: [
     new HtmlWebpackPlugin({
+      scriptLoading: 'defer',
       template: './src/index.html',
     }),
     new webpack.DefinePlugin({

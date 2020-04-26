@@ -1,14 +1,16 @@
+# Use https://github.com/nektos/act/ to test locally.
 name: Continuous Integration
 
 on: push
 
 env:
-  NODE_VERSION: 12.16.2 # Node LTS
+  DOTENV_GRAPHQL_URL: http://localhost:3000/graphql
+  NODE_VERSION: 12.16.2 # Node LTS.
 
 jobs:
   build-packages:
     name: Build packages
-    runs-on: ubuntu-18.04 # Ubuntu LTS
+    runs-on: ubuntu-18.04 # Ubuntu LTS.
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2.1.0
@@ -23,6 +25,15 @@ jobs:
         npm ci
         npm run bootstrap
 
+    # ./docs/DOTENV.md
+    - name: Create .env
+      run: |
+        echo "GRAPHQL_URL=${{env.DOTENV_GRAPHQL_URL}}" >> ./.env.prod
+        cp ./.env.prod ./packages/client/configs/
+
+    - name: Build client package
+      run: npx lerna run --scope @frija/client build
+
     - name: Build Ethereum package
       run: npx lerna run --scope @frija/ethereum build
 
@@ -31,7 +42,7 @@ jobs:
 
   lint-files:
     name: Lint files
-    runs-on: ubuntu-18.04 # Ubuntu LTS
+    runs-on: ubuntu-18.04 # Ubuntu LTS.
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2.1.0
@@ -60,7 +71,7 @@ jobs:
 
   run-tests-and-report-code-coverage:
     name: Run tests and report code coverage
-    runs-on: ubuntu-18.04 # Ubuntu LTS
+    runs-on: ubuntu-18.04 # Ubuntu LTS.
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2.1.0

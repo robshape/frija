@@ -36,8 +36,9 @@ const config = {
     artifacts: true,
   },
 
+  // Include .dotfiles when linting!
   ignorePatterns: [
-    '!configs/.*.js', // Also lint .dotfiles!
+    '!configs/.*.js',
   ],
 
   overrides: [

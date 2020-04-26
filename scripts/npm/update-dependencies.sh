@@ -8,5 +8,5 @@ npm run bootstrap
 echo
 
 echo "[*] UPDATING PACKAGE-LOCKS"
-npx lerna exec --scope @frija/server -- npm install --only=production --package-lock-only
+npx lerna exec --scope '{@frija/client,@frija/server}' -- npm install --only=production --package-lock-only
 echo
