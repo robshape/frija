@@ -20,8 +20,9 @@ Run `npm run setup` inside the root directory.
 
 ### Start Project
 
-Run `npm start` inside the root directory. Visit [http://localhost:8080/](http://localhost:8080/) using
-Google Chrome. Use a [personal identity number](./docs/CREDENTIALS.md) to log in.
+1. Run `npm start` inside the root directory.
+2. Visit [http://localhost:8080/](http://localhost:8080/) using Google Chrome.
+3. Use a [personal identity number](./docs/CREDENTIALS.md) to log in.
 
 ## License
 
