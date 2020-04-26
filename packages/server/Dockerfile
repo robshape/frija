@@ -1,7 +1,7 @@
 # Node LTS.
 FROM node:12.16.2-alpine
-
 ENV NODE_ENV production
+WORKDIR /frija
 
 COPY ./package-lock.json ./
 COPY ./package.json ./

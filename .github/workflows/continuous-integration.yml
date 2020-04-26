@@ -25,7 +25,7 @@ jobs:
         npm ci
         npm run bootstrap
 
-    # ./docs/DOTENV.md
+    # /docs/DOTENV.md
     - name: Create .env
       run: |
         echo "GRAPHQL_URL=${{env.DOTENV_GRAPHQL_URL}}" >> ./.env.prod

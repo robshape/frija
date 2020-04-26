@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+  client:
+    build: ../packages/client
+    image: frija/client:latest
+    init: true
+    ports:
+      - 8080:8080
+
+  server:
+    build: ../packages/server
+    env_file:
+      - ./.env.dev
+    image: frija/server:latest
+    init: true
+    ports:
+      - 3000:3000
