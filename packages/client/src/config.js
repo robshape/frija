@@ -19,8 +19,12 @@
 */
 
 const configureConfig = (env) => {
-  if (!env.GRAPHQL_URL) {
-    throw new Error('Missing environment variable: GRAPHQL_URL');
+  const missingEnvironmentVariables = [
+    // Environment variables that are used.
+    'GRAPHQL_URL',
+  ].filter((ev) => !env[ev]);
+  if (missingEnvironmentVariables.length) {
+    throw new Error(`Missing environment variables: ${missingEnvironmentVariables.join(', ')}`);
   }
 
   return {

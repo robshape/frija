@@ -22,12 +22,12 @@ import merge from 'lodash.merge';
 import React from 'react';
 import { waitFor } from '@testing-library/react';
 
-import AuthScene from '../../../../packages/client/src/scenes/AuthScene';
-import jwt from '../../../../packages/server/src/utils/jwt';
-import removeStoredToken from '../../../../packages/client/src/utils/token/removeStoredToken';
-import renderWithProviders from '../../../utils/renderWithProviders';
-import setStoredToken from '../../../../packages/client/src/utils/token/setStoredToken';
-import VALIDATE_QUERY from '../../../../packages/client/src/graphql/queries/VALIDATE_QUERY';
+import AuthScene from '../../../../../packages/client/src/scenes/AuthScene';
+import jwt from '../../../../../packages/server/src/utils/jwt';
+import removeStoredToken from '../../../../../packages/client/src/utils/token/removeStoredToken';
+import renderWithProviders from '../../../../utils/renderWithProviders';
+import setStoredToken from '../../../../../packages/client/src/utils/token/setStoredToken';
+import VALIDATE_QUERY from '../../../../../packages/client/src/graphql/queries/VALIDATE_QUERY';
 
 const renderComponent = (testProps, testOptions) => {
   const options = merge({}, {

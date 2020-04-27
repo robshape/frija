@@ -18,24 +18,17 @@
 
 */
 
-const configureConfig = (env) => {
-  const missingEnvironmentVariables = [
-    // Environment variables that are used.
-    'GRAPHQL_PORT',
-    'TOKEN_SECRET',
-    'TOKEN_TIME',
-  ].filter((ev) => !env[ev]);
-  if (missingEnvironmentVariables.length) {
-    throw new Error(`Missing environment variables: ${missingEnvironmentVariables.join(', ')}`);
-  }
+import React from 'react';
+import { render } from '@testing-library/react';
 
-  return {
-    graphqlPort: env.GRAPHQL_PORT,
-    token: {
-      secret: env.TOKEN_SECRET,
-      time: env.TOKEN_TIME,
-    },
-  };
-};
+import HomeScene from '../../../../../packages/client/src/scenes/HomeScene';
 
-module.exports = configureConfig;
+const renderComponent = () => render(
+  <HomeScene />,
+);
+
+it('shows a welcome message', () => {
+  const { queryByText } = renderComponent();
+
+  expect(queryByText('Välkommen till Frija.')).toBeInTheDocument();
+});
