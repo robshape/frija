@@ -2,7 +2,7 @@
 set -euo pipefail
 
 echo "[*] ANALYZING LIGHTHOUSE"
-npx start-server-and-test start:docker http://localhost:8080/ analyze:lighthouse
+npx start-server-and-test start:cluster http://localhost:8080/ analyze:lighthouse
 echo
 
 echo "[*] ANALYZING BUNDLE"

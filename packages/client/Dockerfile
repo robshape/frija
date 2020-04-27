@@ -14,7 +14,7 @@ ENV NODE_ENV production
 COPY ./configs/ ./configs/
 COPY ./src/ ./src/
 COPY ./webpack.config.prod.js ./
-RUN npm run build:webpack
+RUN npm run build:bundle
 
 # SERVE (nginx LTS).
 FROM nginx:1.17.10-alpine

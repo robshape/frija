@@ -43,10 +43,10 @@
   "name": "@frija/client",
   "private": true,
   "scripts": {
-    "analyze:bundle": "npm run build:webpack -- --env.ANALYZE_BUNDLE=true --profile",
+    "analyze:bundle": "npm run build:bundle -- --env.ANALYZE_BUNDLE=true --profile",
     "build": "docker build --tag frija/client:latest .",
-    "build:webpack": "webpack --config ./webpack.config.prod.js --progress",
+    "build:bundle": "webpack --config ./webpack.config.prod.js --progress",
     "start": "webpack-dev-server --config ./webpack.config.dev.js --progress",
-    "start:docker": "docker run --init --publish 8080:8080 --rm frija/client:latest"
+    "start:container": "docker run --init --publish 8080:8080 --rm frija/client:latest"
   }
 }
