@@ -27,6 +27,7 @@ const config = {
 
   extends: [
     'airbnb',
+    'plugin:json/recommended',
     'plugin:react-hooks/recommended',
   ],
 
@@ -69,6 +70,7 @@ const config = {
   ],
 
   plugins: [
+    'json',
     'react-hooks',
   ],
 

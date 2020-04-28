@@ -60,6 +60,9 @@ jobs:
     - name: Lint Markdown
       run: npm run lint:md
 
+    - name: Lint JSON
+      run: npm run lint:json
+
     - name: Lint Solidity
       run: npm run lint:sol
 
@@ -86,6 +89,7 @@ jobs:
       with:
         browser: chrome
         config-file: ./tests/cypress.json
+        # headless: true
         start: npm run start:cluster
         wait-on: 'http://localhost:8080/'
         wait-on-timeout: 300 # Wait up to 5 minutes for cluster to start.
