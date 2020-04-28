@@ -27,8 +27,6 @@ const config = {
 
   extends: [
     'airbnb',
-    'plugin:jest/recommended',
-    'plugin:jest/style',
     'plugin:react-hooks/recommended',
   ],
 
@@ -43,16 +41,34 @@ const config = {
 
   overrides: [
     {
-      files: './scripts/*.js',
+      files: './scripts/**/*.js',
       rules: {
         'import/no-extraneous-dependencies': 'off',
         'no-console': 'off',
       },
     },
+    {
+      extends: [
+        'plugin:cypress/recommended',
+      ],
+      files: './tests/e2e/**/*.js',
+      plugins: [
+        'cypress',
+      ],
+    },
+    {
+      extends: [
+        'plugin:jest/recommended',
+        'plugin:jest/style',
+      ],
+      files: './tests/+(integration|unit)/**/*.{js,jsx}',
+      plugins: [
+        'jest',
+      ],
+    },
   ],
 
   plugins: [
-    'jest',
     'react-hooks',
   ],
 

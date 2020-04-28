@@ -10,8 +10,7 @@ services:
 
   server:
     build: ../packages/server
-    env_file:
-      - ./.env.dev
+    env_file: ./.env.dev
     image: frija/server:latest
     init: true
     ports:

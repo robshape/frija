@@ -22,11 +22,11 @@ import { ApolloServer } from 'apollo-server-koa';
 import { createTestClient } from 'apollo-server-testing';
 import request from 'supertest';
 
-import configureApp from '../../packages/server/src/app';
-import configureConfig from '../../packages/server/src/config';
-import dataSources from '../../packages/server/src/graphql/dataSources';
-import resolvers from '../../packages/server/src/graphql/resolvers';
-import schemas from '../../packages/server/src/graphql/schemas';
+import configureApp from '../../../packages/server/src/app';
+import configureConfig from '../../../packages/server/src/config';
+import dataSources from '../../../packages/server/src/graphql/dataSources';
+import resolvers from '../../../packages/server/src/graphql/resolvers';
+import schemas from '../../../packages/server/src/graphql/schemas';
 
 const config = configureConfig({
   GRAPHQL_PORT: 3000,

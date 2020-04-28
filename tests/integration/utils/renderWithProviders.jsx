@@ -24,8 +24,8 @@ import { MockedProvider } from '@apollo/react-testing';
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import clientState from '../../packages/client/src/graphql/clientState';
-import resolvers from '../../packages/client/src/graphql/resolvers';
+import clientState from '../../../packages/client/src/graphql/clientState';
+import resolvers from '../../../packages/client/src/graphql/resolvers';
 
 const renderWithProviders = (ui, {
   mocks = [],

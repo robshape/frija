@@ -18,33 +18,17 @@
 
 */
 
-import merge from 'lodash.merge';
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import Loader from '../../../../../packages/client/src/components/Loader';
+import HomeScene from '../../../../../../packages/client/src/scenes/HomeScene';
 
-const renderComponent = (testProps) => {
-  const props = merge({}, testProps);
-  return render(
-    <Loader>
-      {props.children}
-    </Loader>,
-  );
-};
+const renderComponent = () => render(
+  <HomeScene />,
+);
 
-it('shows a spinner without a message', () => {
-  const { queryByTestId } = renderComponent();
+it('shows a welcome message', () => {
+  const { queryByText } = renderComponent();
 
-  expect(queryByTestId('loader__spinner')).toHaveClass('loader__spinner');
-  expect(queryByTestId('loader__text')).toBeEmpty();
-});
-
-it('shows a spinner with a message', () => {
-  const { queryByTestId } = renderComponent({
-    children: 'Loading...',
-  });
-
-  expect(queryByTestId('loader__spinner')).toHaveClass('loader__spinner');
-  expect(queryByTestId('loader__text')).toHaveTextContent('Loading...');
+  expect(queryByText('Välkommen till Frija.')).toBeInTheDocument();
 });

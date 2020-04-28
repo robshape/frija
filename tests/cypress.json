@@ -1,0 +1,11 @@
+{
+  "baseUrl": "http://localhost:8080",
+  "fixturesFolder": false,
+  "integrationFolder": "./tests/e2e/",
+  "modifyObstructiveCode": false,
+  "pluginsFile": false,
+  "supportFile": false,
+  "testFiles": "**/*.spec.js",
+  "video": false,
+  "watchForFileChanges": false
+}

@@ -21,43 +21,38 @@
 import merge from 'lodash.merge';
 import React from 'react';
 
-import PrivateRoute from '../../../../../packages/client/src/containers/PrivateRoute/PrivateRoute';
+import AppScene from '../../../../../../packages/client/src/scenes/AppScene';
+import configureConfig from '../../../../../../packages/client/src/config';
+import * as configureGraphQL from '../../../../../../packages/client/src/graphql/index';
 import renderWithProviders from '../../../../utils/renderWithProviders';
 
 const renderComponent = (testProps) => {
   const props = merge({}, {
-    component: () => (
-      <div>
-        componentMock
-      </div>
-    ),
-    graphql: {
-      data: {
-        isAuthenticated: false,
-      },
-    },
+    config: configureConfig({
+      GRAPHQL_URL: 'http://localhost:3000/graphql',
+    }),
   }, testProps);
   return renderWithProviders(
-    <PrivateRoute component={props.component} graphql={props.graphql} />,
+    <AppScene config={props.config} />,
   );
 };
 
-it('does not show the route if the user is not authenticated', () => {
-  const { queryByText } = renderComponent();
+beforeEach(() => jest.restoreAllMocks());
 
-  expect(queryByText('componentMock'))
+it('does not load the app if the config is empty', () => {
+  jest
+    .spyOn(configureGraphQL, 'default')
+    .mockImplementation(() => ({}));
+
+  const { queryByTestId } = renderComponent();
+
+  expect(queryByTestId('app'))
     .not
     .toBeInTheDocument();
 });
 
-it('shows the route if the user is authenticated', () => {
-  const { queryByText } = renderComponent({
-    graphql: {
-      data: {
-        isAuthenticated: true,
-      },
-    },
-  });
+it('loads the app', () => {
+  const { queryByTestId } = renderComponent();
 
-  expect(queryByText('componentMock')).toBeInTheDocument();
+  expect(queryByTestId('app')).toBeInTheDocument();
 });

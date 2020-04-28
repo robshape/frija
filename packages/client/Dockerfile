@@ -1,6 +1,7 @@
 # BUILD (Node LTS).
 FROM node:12.16.2-alpine as builder
-WORKDIR /frija
+ENV CYPRESS_INSTALL_BINARY 0
+WORKDIR /app
 
 COPY ./package-lock.json ./
 COPY ./package.json ./
@@ -19,8 +20,8 @@ RUN npm run build:bundle
 # SERVE (nginx LTS).
 FROM nginx:1.17.10-alpine
 
-COPY --from=builder ./frija/configs/nginx.conf /etc/nginx/nginx.conf
-COPY --from=builder ./frija/dist/ /usr/share/nginx/html/
+COPY --from=builder ./app/configs/nginx.conf /etc/nginx/nginx.conf
+COPY --from=builder ./app/dist/ /usr/share/nginx/html/
 
 RUN touch /var/run/nginx.pid \
   && chown nginx /var/cache/nginx/ \

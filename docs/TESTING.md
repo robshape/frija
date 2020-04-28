@@ -10,11 +10,11 @@ Run `npm run analyze` inside the root directory.
 
 Use a [personal identity number](./CREDENTIALS.md) to log in.
 
-## Lint files
+## Lint all files
 
 Run `npm run lint` inside the root directory.
 
-## Run tests
+## Run all tests
 
 Run `npm test` inside the root directory.
 

@@ -45,7 +45,7 @@ const config = {
     '<rootDir>/tests/jest.setup.js',
   ],
 
-  testRegex: './tests/packages/.+\\.spec\\.(js|jsx)$',
+  testRegex: './tests/integration/packages/.+\\.spec\\.(js|jsx)$',
 
   transform: {
     '\\.(js|jsx)$': ['babel-jest', {

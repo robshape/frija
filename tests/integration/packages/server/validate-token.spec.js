@@ -18,9 +18,9 @@
 
 */
 
-import jwt from '../../../packages/server/src/utils/jwt';
+import jwt from '../../../../packages/server/src/utils/jwt';
 import serverTestClient from '../../utils/serverTestClient';
-import VALIDATE_QUERY from '../../../packages/client/src/graphql/queries/VALIDATE_QUERY';
+import VALIDATE_QUERY from '../../../../packages/client/src/graphql/queries/VALIDATE_QUERY';
 
 it('does not validate a token that is invalid', async () => {
   const { query } = serverTestClient();
