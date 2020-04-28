@@ -18,7 +18,7 @@
 
 */
 
-const http = require('http'); // https://github.com/apollographql/apollo-server/issues/1533/
+const http = require('http');
 
 const configureApp = require('./app');
 const configureConfig = require('./config');

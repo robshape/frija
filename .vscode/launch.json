@@ -1,7 +1,7 @@
 {
   "configurations": [
     {
-      "name": "Debug client in Chrome",
+      "name": "Debug client in Google Chrome",
       "request": "launch",
       "type": "chrome",
       "url": "http://localhost:8080/",
@@ -14,7 +14,7 @@
         "${file}",
       ],
       "disableOptimisticBPs": true,
-      "name": "Debug Jest test (currently open)",
+      "name": "Debug Jest test (currently open file)",
       "program": "${workspaceFolder}/node_modules/.bin/jest",
       "request": "launch",
       "type": "node"
