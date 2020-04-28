@@ -18,7 +18,7 @@
 
 */
 
-import configureConfig from '../../../../packages/client/src/config';
+import configureConfig from '../../../packages/server/src/config';
 
 it('validates environment variables', async () => {
   expect(() => {
@@ -31,13 +31,33 @@ it('validates environment variables', async () => {
 
   expect(() => {
     configureConfig({
-      GRAPHQL_URL: '',
+      GRAPHQL_PORT: 0,
+      TOKEN_SECRET: '',
+      TOKEN_TIME: '',
     });
   }).toThrow();
 
   expect(() => {
     configureConfig({
-      GRAPHQL_URL: 'http://localhost:3000/graphql',
+      GRAPHQL_PORT: 3000,
+      TOKEN_SECRET: '',
+      TOKEN_TIME: '',
+    });
+  }).toThrow();
+
+  expect(() => {
+    configureConfig({
+      GRAPHQL_PORT: 3000,
+      TOKEN_SECRET: 'c3e2a70e-ba85-4120-ba4d-1adc9c3d64c9',
+      TOKEN_TIME: '',
+    });
+  }).toThrow();
+
+  expect(() => {
+    configureConfig({
+      GRAPHQL_PORT: 3000,
+      TOKEN_SECRET: 'c3e2a70e-ba85-4120-ba4d-1adc9c3d64c9',
+      TOKEN_TIME: '10m',
     });
   })
     .not

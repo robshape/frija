@@ -86,8 +86,8 @@ jobs:
         npm ci
         npm run bootstrap
 
-    - name: Run integration tests (and create code coverage report)
-      run: npm run test:integration:coverage
+    - name: Run unit and integration tests (and create code coverage report)
+      run: npm run test:coverage
 
     - name: Report code coverage
       uses: codecov/codecov-action@v1.0.6

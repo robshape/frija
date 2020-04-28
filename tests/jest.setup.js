@@ -22,5 +22,5 @@ import '../packages/client/src/polyfills';
 
 import '@testing-library/jest-dom/extend-expect';
 
-import './integration/mocks/apollo-datasource-rest';
-import './integration/mocks/fetch';
+import './mocks/apollo-datasource-rest';
+import './mocks/fetch';
