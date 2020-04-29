@@ -21,7 +21,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import HomeScene from '../../../../../../packages/client/src/scenes/HomeScene';
+import HomeScene from '../../../../../packages/client/src/scenes/HomeScene';
 
 const renderComponent = () => render(
   <HomeScene />,

@@ -21,8 +21,8 @@
 import merge from 'lodash.merge';
 import React from 'react';
 
-import PrivateRoute from '../../../../../../packages/client/src/containers/PrivateRoute/PrivateRoute';
-import renderWithProviders from '../../../../utils/renderWithProviders';
+import PrivateRoute from '../../../../../packages/client/src/containers/PrivateRoute/PrivateRoute';
+import renderWithProviders from '../../../utils/renderWithProviders';
 
 const renderComponent = (testProps) => {
   const props = merge({}, {

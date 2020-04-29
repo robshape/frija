@@ -22,7 +22,7 @@ import merge from 'lodash.merge';
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import Loader from '../../../../../../packages/client/src/components/Loader';
+import Loader from '../../../../../packages/client/src/components/Loader';
 
 const renderComponent = (testProps) => {
   const props = merge({}, testProps);

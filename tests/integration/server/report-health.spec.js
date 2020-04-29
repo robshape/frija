@@ -20,7 +20,7 @@
 
 import HttpStatus from 'http-status-codes';
 
-import serverTestClient from '../../utils/serverTestClient';
+import serverTestClient from '../utils/serverTestClient';
 
 it('should report HTTP status', async () => {
   const { request } = serverTestClient();

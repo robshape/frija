@@ -21,10 +21,10 @@
 import merge from 'lodash.merge';
 import React from 'react';
 
-import AppScene from '../../../../../../packages/client/src/scenes/AppScene';
-import configureConfig from '../../../../../../packages/client/src/config';
-import * as configureGraphQL from '../../../../../../packages/client/src/graphql/index';
-import renderWithProviders from '../../../../utils/renderWithProviders';
+import AppScene from '../../../../../packages/client/src/scenes/AppScene';
+import configureConfig from '../../../../../packages/client/src/config';
+import * as configureGraphQL from '../../../../../packages/client/src/graphql/index';
+import renderWithProviders from '../../../utils/renderWithProviders';
 
 const renderComponent = (testProps) => {
   const props = merge({}, {

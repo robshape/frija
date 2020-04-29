@@ -18,9 +18,9 @@
 
 */
 
-import AUTHENTICATE_MUTATION from '../../../../packages/client/src/graphql/mutations/AUTHENTICATE_MUTATION';
-import isTokenDateValid from '../../../../packages/client/src/utils/token/isTokenValid';
-import serverTestClient from '../../utils/serverTestClient';
+import AUTHENTICATE_MUTATION from '../../../packages/client/src/graphql/mutations/AUTHENTICATE_MUTATION';
+import isTokenDateValid from '../../../packages/client/src/utils/token/isTokenValid';
+import serverTestClient from '../utils/serverTestClient';
 
 it('should not authenticate credentials with an invalid length', async () => {
   const { mutate } = serverTestClient();

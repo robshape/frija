@@ -22,9 +22,9 @@ import { fireEvent, waitFor } from '@testing-library/react';
 import merge from 'lodash.merge';
 import React from 'react';
 
-import AUTHENTICATE_MUTATION from '../../../../../../packages/client/src/graphql/mutations/AUTHENTICATE_MUTATION';
-import LogInView from '../../../../../../packages/client/src/containers/LogInView/LogInView';
-import renderWithProviders from '../../../../utils/renderWithProviders';
+import AUTHENTICATE_MUTATION from '../../../../../packages/client/src/graphql/mutations/AUTHENTICATE_MUTATION';
+import LogInView from '../../../../../packages/client/src/containers/LogInView/LogInView';
+import renderWithProviders from '../../../utils/renderWithProviders';
 
 const renderComponent = (testProps) => {
   const props = merge({}, {
