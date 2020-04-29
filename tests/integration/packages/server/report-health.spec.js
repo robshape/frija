@@ -22,7 +22,7 @@ import HttpStatus from 'http-status-codes';
 
 import serverTestClient from '../../utils/serverTestClient';
 
-it('reports HTTP status', async () => {
+it('should report HTTP status', async () => {
   const { request } = serverTestClient();
   const { status } = await request.get('/health/');
 

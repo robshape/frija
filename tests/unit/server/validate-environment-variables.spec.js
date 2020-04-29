@@ -20,7 +20,7 @@
 
 import configureConfig from '../../../packages/server/src/config';
 
-it('validates environment variables', async () => {
+it('should validate environment variables', async () => {
   expect(() => {
     configureConfig();
   }).toThrow();

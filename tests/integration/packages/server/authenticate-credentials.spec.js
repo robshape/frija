@@ -22,7 +22,7 @@ import AUTHENTICATE_MUTATION from '../../../../packages/client/src/graphql/mutat
 import isTokenDateValid from '../../../../packages/client/src/utils/token/isTokenValid';
 import serverTestClient from '../../utils/serverTestClient';
 
-it('does not authenticate credentials with an invalid length', async () => {
+it('should not authenticate credentials with an invalid length', async () => {
   const { mutate } = serverTestClient();
   const { data, errors } = await mutate({
     mutation: AUTHENTICATE_MUTATION,
@@ -35,7 +35,7 @@ it('does not authenticate credentials with an invalid length', async () => {
   expect(errors[0].message).toEqual(expect.any(String));
 });
 
-it('does not authenticate credentials with an invalid date', async () => {
+it('should not authenticate credentials with an invalid date', async () => {
   const { mutate } = serverTestClient();
   const { data, errors } = await mutate({
     mutation: AUTHENTICATE_MUTATION,
@@ -48,7 +48,7 @@ it('does not authenticate credentials with an invalid date', async () => {
   expect(errors[0].message).toEqual(expect.any(String));
 });
 
-it('does not authenticate credentials with an invalid checksum', async () => {
+it('should not authenticate credentials with an invalid checksum', async () => {
   const { mutate } = serverTestClient();
   const { data, errors } = await mutate({
     mutation: AUTHENTICATE_MUTATION,
@@ -61,7 +61,7 @@ it('does not authenticate credentials with an invalid checksum', async () => {
   expect(errors[0].message).toEqual(expect.any(String));
 });
 
-it('authenticates credentials', async () => {
+it('should authenticate credentials', async () => {
   const { mutate } = serverTestClient();
   const { data, errors } = await mutate({
     mutation: AUTHENTICATE_MUTATION,
@@ -75,7 +75,7 @@ it('authenticates credentials', async () => {
   expect(isTokenValid).toBe(true);
 });
 
-it('authenticates shorthand credentials', async () => {
+it('should authenticate shorthand credentials', async () => {
   const { mutate } = serverTestClient();
   const { data, errors } = await mutate({
     mutation: AUTHENTICATE_MUTATION,

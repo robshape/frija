@@ -24,7 +24,6 @@ const config = {
 
     // Excluding:
     '!./packages/client/dist/**',
-    '!./packages/client/src/app.jsx',
     '!./packages/client/configs/babel.config.js',
     '!./packages/client/src/index.jsx',
     '!./packages/client/webpack.config.dev.js',

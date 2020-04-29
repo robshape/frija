@@ -20,7 +20,7 @@
 
 import serverTestClient from '../../utils/serverTestClient';
 
-it('sets security headers', async () => {
+it('should set security headers', async () => {
   const { request } = serverTestClient();
   const { header } = await request.get('/');
 

@@ -18,28 +18,21 @@
 
 */
 
-import configureConfig from '../../../packages/client/src/config';
+import React from 'react';
+import { render } from '@testing-library/react';
 
-it('should validate environment variables', async () => {
-  expect(() => {
-    configureConfig();
-  }).toThrow();
+it('should load the app', () => {
+  global.process.env = {
+    ...global.process.env,
+    GRAPHQL_URL: 'http://localhost:3000/graphql',
+  };
+  const { default: App } = require('../../../../packages/client/src/app'); // eslint-disable-line global-require
 
-  expect(() => {
-    configureConfig({});
-  }).toThrow();
+  const { queryByTestId } = render(
+    <App />,
+  );
 
-  expect(() => {
-    configureConfig({
-      GRAPHQL_URL: '',
-    });
-  }).toThrow();
+  expect(queryByTestId('app')).toBeInTheDocument();
 
-  expect(() => {
-    configureConfig({
-      GRAPHQL_URL: 'http://localhost:3000/graphql',
-    });
-  })
-    .not
-    .toThrow();
+  delete global.process.env.GRAPHQL_URL;
 });

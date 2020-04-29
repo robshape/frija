@@ -6,6 +6,5 @@
   "pluginsFile": false,
   "supportFile": false,
   "testFiles": "**/*.spec.js",
-  "video": false,
-  "watchForFileChanges": false
+  "video": false
 }
