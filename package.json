@@ -54,10 +54,10 @@
     "start:cluster": "./scripts/start-cluster.sh",
     "test": "npm run test:unit && npm run test:integration && npm run test:e2e",
     "test:coverage": "jest --config ./tests/jest.config.js --coverage",
-    "test:leaks": "node --expose-gc ./node_modules/.bin/jest --config ./tests/jest.config.js --logHeapUsage --runInBand",
+    "test:leaks": "node --expose-gc ./node_modules/.bin/jest --config ./tests/jest.config.js --detectOpenHandles --logHeapUsage --runInBand",
     "test:watch": "jest --config ./tests/jest.config.js --watch",
-    "test:e2e": "start-server-and-test start:cluster http://localhost:8080/ test:e2e:ci",
-    "test:e2e:ci": "cypress run --config-file ./tests/cypress.json",
+    "test:e2e": "start-server-and-test start:cluster http://localhost:8080/ test:e2e:cli",
+    "test:e2e:cli": "cypress run --config-file ./tests/cypress.json",
     "test:e2e:gui": "cypress open --config-file ./tests/cypress.json",
     "test:integration": "jest --config ./tests/jest.config.js ./tests/integration/",
     "test:unit": "jest --config ./tests/jest.config.js ./tests/unit/"
