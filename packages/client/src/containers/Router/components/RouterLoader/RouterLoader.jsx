@@ -1,7 +1,7 @@
 /*
 
   Frija - The Swedish general election and Riksdag on the Ethereum blockchain.
-  Copyright (C) 2019 Frija contributors.
+  Copyright (C) 2020 Frija contributors.
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -21,12 +21,12 @@
 import React from 'react';
 
 import Loader from '../../../../components/Loader';
-import styles from './AuthSceneLoader.scss';
+import styles from './RouterLoader.scss';
 
-const AuthSceneLoader = () => (
-  <div className={styles.authSceneLoader}>
+const RouterLoader = () => (
+  <div className={styles.routerLoader}>
     <Loader />
   </div>
 );
 
-export default AuthSceneLoader;
+export default RouterLoader;

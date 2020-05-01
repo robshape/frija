@@ -18,9 +18,12 @@
 
 */
 
-.authSceneLoader {
-  align-items: center;
-  display: flex;
-  flex: 1;
-  justify-content: center;
-}
+import { gql } from '@apollo/client';
+
+const IS_AUTHENTICATED_CLIENT_QUERY = gql`
+  query IsAuthenticated {
+    isAuthenticated @client
+  }
+`;
+
+export default IS_AUTHENTICATED_CLIENT_QUERY;

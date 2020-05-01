@@ -18,22 +18,6 @@
 
 */
 
-import compose from 'lodash.flowright';
-import { graphql, withApollo } from 'react-apollo';
-
-import IS_AUTHENTICATED_QUERY from '../../graphql/queries/IS_AUTHENTICATED_QUERY';
 import LogInView from './LogInView';
 
-const LogInViewWithGraphQL = compose(
-  withApollo,
-  graphql(IS_AUTHENTICATED_QUERY, {
-    props: ({ data, ownProps }) => ({
-      graphql: {
-        ...ownProps,
-        data,
-      },
-    }),
-  }),
-)(LogInView);
-
-export default LogInViewWithGraphQL;
+export default LogInView;

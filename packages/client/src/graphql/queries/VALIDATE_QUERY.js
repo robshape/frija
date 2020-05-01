@@ -18,7 +18,7 @@
 
 */
 
-import { gql } from 'apollo-boost';
+import { gql } from '@apollo/client';
 
 const VALIDATE_QUERY = gql`
   query Validate($token: String!) {

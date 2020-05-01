@@ -21,12 +21,16 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
 
+import IS_AUTHENTICATED_CLIENT_QUERY from '../../graphql/queries/IS_AUTHENTICATED_CLIENT_QUERY';
 import ROUTER_PATH from '../../enums/ROUTER_PATH';
 
-const PrivateRoute = ({ component: Component, graphql, ...props }) => {
+const PrivateRoute = ({ component: Component, ...props }) => {
+  const { data } = useQuery(IS_AUTHENTICATED_CLIENT_QUERY);
+
   const onRouteRender = (routeProps) => {
-    if (!graphql.data.isAuthenticated) {
+    if (!data.isAuthenticated) {
       return (
         <Redirect to={ROUTER_PATH.AUTHENTICATE} />
       );
@@ -44,11 +48,6 @@ const PrivateRoute = ({ component: Component, graphql, ...props }) => {
 
 PrivateRoute.propTypes = {
   component: PropTypes.func.isRequired,
-  graphql: PropTypes.shape({
-    data: PropTypes.shape({
-      isAuthenticated: PropTypes.bool.isRequired,
-    }).isRequired,
-  }).isRequired,
 };
 
 export default PrivateRoute;

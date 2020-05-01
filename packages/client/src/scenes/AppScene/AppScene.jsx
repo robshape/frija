@@ -18,19 +18,15 @@
 
 */
 
-import { ApolloProvider } from 'react-apollo';
-import {
-  BrowserRouter,
-  Redirect,
-  Route,
-  Switch,
-} from 'react-router-dom';
+import { ApolloProvider } from '@apollo/client';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { Redirect, Route } from 'react-router-dom';
 
 import AuthScene from '../AuthScene';
 import HomeScene from '../HomeScene';
 import PrivateRoute from '../../containers/PrivateRoute';
+import Router from '../../containers/Router';
 import ROUTER_PATH from '../../enums/ROUTER_PATH';
 import styles from './AppScene.scss';
 import useConfigureGraphQL from '../../hooks/useConfigureGraphQL';
@@ -45,15 +41,13 @@ const App = ({ config }) => {
   return (
     <ApolloProvider client={client}>
       <div className={styles.app} data-testid="app">
-        <BrowserRouter>
-          <Switch>
+        <Router>
 
-            <PrivateRoute component={HomeScene} exact path={ROUTER_PATH.HOME} />
-            <Route component={AuthScene} exact path={ROUTER_PATH.AUTHENTICATE} />
-            <Redirect to={ROUTER_PATH.HOME} />
+          <PrivateRoute component={HomeScene} exact path={ROUTER_PATH.HOME} />
+          <Route component={AuthScene} exact path={ROUTER_PATH.AUTHENTICATE} />
+          <Redirect to={ROUTER_PATH.HOME} />
 
-          </Switch>
-        </BrowserRouter>
+        </Router>
       </div>
     </ApolloProvider>
   );

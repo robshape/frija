@@ -1,7 +1,7 @@
 /*
 
   Frija - The Swedish general election and Riksdag on the Ethereum blockchain.
-  Copyright (C) 2019 Frija contributors.
+  Copyright (C) 2020 Frija contributors.
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -18,10 +18,16 @@
 
 */
 
-import clientStateResolver from './clientStateResolver';
+import { gql } from '@apollo/client';
 
-const resolvers = [
-  clientStateResolver,
-];
+const setClientState = (location, key, value) => location
+  .writeQuery({
+    data: {
+      [key]: value,
+    },
+    query: gql`
+    { ${key} }
+    `,
+  });
 
-export default resolvers;
+export default setClientState;

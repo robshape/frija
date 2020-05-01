@@ -18,22 +18,6 @@
 
 */
 
-import compose from 'lodash.flowright';
-import { graphql, withApollo } from 'react-apollo';
-
 import AuthScene from './AuthScene';
-import IS_AUTHENTICATED_QUERY from '../../graphql/queries/IS_AUTHENTICATED_QUERY';
 
-const AuthSceneWithGraphQL = compose(
-  withApollo,
-  graphql(IS_AUTHENTICATED_QUERY, {
-    props: ({ data, ownProps }) => ({
-      graphql: {
-        ...ownProps,
-        data,
-      },
-    }),
-  }),
-)(AuthScene);
-
-export default AuthSceneWithGraphQL;
+export default AuthScene;

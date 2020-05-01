@@ -18,28 +18,21 @@
 
 */
 
-import PropTypes from 'prop-types';
 import React from 'react';
 import { Redirect } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
 
-import AuthSceneLoader from './components/AuthSceneLoader';
+import IS_AUTHENTICATED_CLIENT_QUERY from '../../graphql/queries/IS_AUTHENTICATED_CLIENT_QUERY';
 import LogInView from '../../containers/LogInView';
 import ROUTER_PATH from '../../enums/ROUTER_PATH';
 import styles from './AuthScene.scss';
-import useValidateStoredToken from '../../hooks/useValidateStoredToken';
 
-const AuthScene = ({ graphql }) => {
-  const isValidating = useValidateStoredToken(graphql);
+const AuthScene = () => {
+  const { data } = useQuery(IS_AUTHENTICATED_CLIENT_QUERY);
 
-  if (graphql.data.isAuthenticated) {
+  if (data.isAuthenticated) {
     return (
       <Redirect to={ROUTER_PATH.HOME} />
-    );
-  }
-
-  if (isValidating) {
-    return (
-      <AuthSceneLoader />
     );
   }
 
@@ -48,17 +41,6 @@ const AuthScene = ({ graphql }) => {
       <LogInView />
     </div>
   );
-};
-
-AuthScene.propTypes = {
-  graphql: PropTypes.shape({
-    client: PropTypes.shape({
-      query: PropTypes.func.isRequired,
-    }).isRequired,
-    data: PropTypes.shape({
-      isAuthenticated: PropTypes.bool.isRequired,
-    }).isRequired,
-  }).isRequired,
 };
 
 export default AuthScene;

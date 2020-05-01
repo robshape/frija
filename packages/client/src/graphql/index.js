@@ -18,14 +18,13 @@
 
 */
 
-import ApolloClient from 'apollo-boost';
+import { ApolloClient, InMemoryCache } from '@apollo/client';
 
-import clientState from './clientState';
 import getStoredToken from '../utils/token/getStoredToken';
 import isTokenValid from '../utils/token/isTokenValid';
-import resolvers from './resolvers';
+import setDefaultClientState from './clientState/setDefaultClientState';
 
-const addAuthorizationHeader = (operation) => {
+const authorizationHeaderWithStoredToken = () => {
   let authorization = '';
 
   const token = getStoredToken();
@@ -34,21 +33,22 @@ const addAuthorizationHeader = (operation) => {
     authorization = token;
   }
 
-  operation.setContext({
-    headers: {
-      accept: 'application/json',
-      authorization,
-    },
-  });
+  return {
+    accept: 'application/json',
+    authorization,
+  };
 };
 
-const configureGraphQL = ({ graphqlUrl }) => new ApolloClient({
-  clientState: {
-    defaults: clientState,
-    resolvers,
-  },
-  request: addAuthorizationHeader,
-  uri: graphqlUrl,
-});
+const configureGraphQL = ({ graphqlUrl }) => {
+  const apolloClient = new ApolloClient({
+    cache: new InMemoryCache(),
+    headers: authorizationHeaderWithStoredToken(),
+    uri: graphqlUrl,
+  });
+
+  setDefaultClientState(apolloClient);
+
+  return apolloClient;
+};
 
 export default configureGraphQL;

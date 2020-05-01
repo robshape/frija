@@ -1,7 +1,7 @@
 /*
 
   Frija - The Swedish general election and Riksdag on the Ethereum blockchain.
-  Copyright (C) 2019 Frija contributors.
+  Copyright (C) 2020 Frija contributors.
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -18,9 +18,6 @@
 
 */
 
-// Initial state for local state management @client.
-const clientState = {
-  isAuthenticated: false,
-};
+import Router from './Router';
 
-export default clientState;
+export default Router;

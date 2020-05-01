@@ -18,25 +18,22 @@
 
 */
 
-import PropTypes from 'prop-types';
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 
 import Form from './components/Form';
 import Heading from './components/Heading';
 import LogInViewLoader from './components/LogInViewLoader';
 import NumberInput from './components/NumberInput';
-import ROUTER_PATH from '../../enums/ROUTER_PATH';
 import Subheading from './components/Subheading';
-import useAuthenticatePersonalIdentityNumber from '../../hooks/useAuthenticatePersonalIdentityNumber';
+import useAuthenticatePersonalIdentityNumber from './hooks/useAuthenticatePersonalIdentityNumber';
 import useInputPersonalIdentityNumber from '../../hooks/useInputPersonalIdentityNumber';
 import VALIDATION_STATUS from '../../enums/VALIDATION_STATUS';
 
-const LogInView = ({ graphql }) => {
+const LogInView = () => {
   const {
     authenticatePersonalIdentityNumber,
     isAuthenticating,
-  } = useAuthenticatePersonalIdentityNumber(graphql);
+  } = useAuthenticatePersonalIdentityNumber();
   const {
     onBlur,
     onChange,
@@ -51,12 +48,6 @@ const LogInView = ({ graphql }) => {
 
     authenticatePersonalIdentityNumber(personalIdentityNumber);
   };
-
-  if (graphql.data.isAuthenticated) {
-    return (
-      <Redirect to={ROUTER_PATH.HOME} />
-    );
-  }
 
   if (isAuthenticating) {
     return (
@@ -86,17 +77,6 @@ const LogInView = ({ graphql }) => {
       </Form>
     </div>
   );
-};
-
-LogInView.propTypes = {
-  graphql: PropTypes.shape({
-    client: PropTypes.shape({
-      mutate: PropTypes.func.isRequired,
-    }).isRequired,
-    data: PropTypes.shape({
-      isAuthenticated: PropTypes.bool.isRequired,
-    }).isRequired,
-  }).isRequired,
 };
 
 export default LogInView;

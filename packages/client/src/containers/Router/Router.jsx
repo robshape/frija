@@ -18,23 +18,35 @@
 
 */
 
+import { BrowserRouter, Switch } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import React from 'react';
-import { render, waitFor } from '@testing-library/react';
+import { useQuery } from '@apollo/client';
 
-it('should load the app', async () => {
-  global.process.env = {
-    ...global.process.env,
-    GRAPHQL_URL: 'http://localhost:3000/graphql',
-  };
-  const { default: App } = require('../../../packages/client/src/app'); // eslint-disable-line global-require
+import IS_AUTHENTICATED_CLIENT_QUERY from '../../graphql/queries/IS_AUTHENTICATED_CLIENT_QUERY';
+import RouterLoader from './components/RouterLoader';
+import useValidateStoredToken from './hooks/useValidateStoredToken';
 
-  const { queryByTestId } = render(
-    <App />,
+const Router = ({ children }) => {
+  const { data } = useQuery(IS_AUTHENTICATED_CLIENT_QUERY);
+  const { isValidating } = useValidateStoredToken();
+
+  if (data.isAuthenticated === null
+  || isValidating) {
+    return <RouterLoader />;
+  }
+
+  return (
+    <BrowserRouter>
+      <Switch>
+        {children}
+      </Switch>
+    </BrowserRouter>
   );
+};
 
-  await waitFor(() => {
-    expect(queryByTestId('app')).toBeInTheDocument();
-  });
+Router.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
-  delete global.process.env.GRAPHQL_URL;
-});
+export default Router;
