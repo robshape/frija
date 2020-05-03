@@ -18,19 +18,28 @@
 
 */
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
-import configureGraphQL from '../graphql';
+import isNumber from '../../../utils/number/isNumber';
 
-const useConfigureGraphQL = (config) => {
-  const [client, setClient] = useState({});
+const useInputNumber = (onChangeCallback) => {
+  const [value, setValue] = useState('');
 
-  useEffect(() => {
-    const graphQLClient = configureGraphQL(config);
-    setClient(graphQLClient);
-  }, [config]);
+  const onChange = ({ target }) => {
+    if (target.value.length !== 0 // 0 length probably means that the user has cleared the input.
+    && !isNumber(target.value)) {
+      return;
+    }
 
-  return client;
+    setValue(target.value);
+
+    onChangeCallback(target.value);
+  };
+
+  return {
+    onChange,
+    value,
+  };
 };
 
-export default useConfigureGraphQL;
+export default useInputNumber;

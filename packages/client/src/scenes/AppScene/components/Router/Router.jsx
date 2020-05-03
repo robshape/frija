@@ -23,9 +23,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useQuery } from '@apollo/client';
 
-import IS_AUTHENTICATED_CLIENT_QUERY from '../../graphql/queries/IS_AUTHENTICATED_CLIENT_QUERY';
-import RouterLoader from './components/RouterLoader';
-import useValidateStoredToken from './hooks/useValidateStoredToken';
+import IS_AUTHENTICATED_CLIENT_QUERY from '../../../../graphql/queries/IS_AUTHENTICATED_CLIENT_QUERY';
+import RouterLoader from '../RouterLoader';
+import useValidateStoredToken from '../../hooks/useValidateStoredToken';
 
 const Router = ({ children }) => {
   const { data } = useQuery(IS_AUTHENTICATED_CLIENT_QUERY);

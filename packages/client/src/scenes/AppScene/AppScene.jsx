@@ -25,11 +25,11 @@ import { Redirect, Route } from 'react-router-dom';
 
 import AuthScene from '../AuthScene';
 import HomeScene from '../HomeScene';
-import PrivateRoute from '../../containers/PrivateRoute';
-import Router from '../../containers/Router';
+import PrivateRoute from './components/PrivateRoute';
+import Router from './components/Router';
 import ROUTER_PATH from '../../enums/ROUTER_PATH';
 import styles from './AppScene.scss';
-import useConfigureGraphQL from '../../hooks/useConfigureGraphQL';
+import useConfigureGraphQL from './hooks/useConfigureGraphQL';
 
 const App = ({ config }) => {
   const client = useConfigureGraphQL(config);

@@ -20,7 +20,7 @@
 
 const configureConfig = (env) => {
   const missingEnvironmentVariables = [
-    // Environment variables that are used.
+    // Environment variables that are used by the app.
     'GRAPHQL_URL',
   ].filter((ev) => !env[ev]);
   if (missingEnvironmentVariables.length) {

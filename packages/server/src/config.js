@@ -20,7 +20,7 @@
 
 const configureConfig = (env) => {
   const missingEnvironmentVariables = [
-    // Environment variables that are used.
+    // Environment variables that are used by the app.
     'GRAPHQL_PORT',
     'TOKEN_SECRET',
     'TOKEN_TIME',
