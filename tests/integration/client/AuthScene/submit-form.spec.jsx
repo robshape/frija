@@ -23,7 +23,7 @@ import { fireEvent, waitFor } from '@testing-library/react';
 import AUTHENTICATE_MUTATION from '../../../../packages/client/src/graphql/mutations/AUTHENTICATE_MUTATION';
 import renderComponent from './utils/renderComponent';
 
-it('should validate credentials', async () => {
+it('should validate the credentials', async () => {
   const { getByLabelText, getByRole, getByText } = renderComponent();
 
   await waitFor(() => {
@@ -114,7 +114,7 @@ it('should validate credentials', async () => {
     .toHaveClass('inputValidationVISIBLE');
 });
 
-it('should submit valid credentials', async () => {
+it('should submit the credentials if they are valid', async () => {
   const personalIdentityNumber = '190001012020';
   const resultMock = jest
     .fn()

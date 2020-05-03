@@ -39,7 +39,7 @@ const NumberInput = ({
   validationText,
 }) => {
   const id = useId();
-  const { onChange: onInputNumberChange, value } = useInputNumber(onChange);
+  const [value, onInputNumberChange] = useInputNumber(onChange);
 
   return (
     <div className={styles.numberInput}>

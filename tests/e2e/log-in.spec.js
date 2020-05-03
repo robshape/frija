@@ -18,7 +18,7 @@
 
 */
 
-it('should log in a user', () => {
+it('should log in the user', () => {
   cy.visitAndAssert('/', {
     onBeforeLoad: (w) => {
       w

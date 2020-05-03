@@ -29,7 +29,7 @@ import useValidateStoredToken from '../../hooks/useValidateStoredToken';
 
 const Router = ({ children }) => {
   const { data } = useQuery(IS_AUTHENTICATED_CLIENT_QUERY);
-  const { isValidating } = useValidateStoredToken();
+  const isValidating = useValidateStoredToken();
 
   if (data.isAuthenticated === null
   || isValidating) {

@@ -42,7 +42,7 @@ it('should show the Auth scene if there is no stored token', async () => {
   expect(global.sessionStorage.getItem('token')).toBeNull();
 });
 
-it('should show the Auth scene if the stored token is not valid (by the client)', async () => {
+it('should show the Auth scene if the stored token is not valid (client)', async () => {
   global.fetch = jest.fn();
   global
     .sessionStorage
@@ -66,7 +66,7 @@ it('should show the Auth scene if the stored token is not valid (by the client)'
   expect(global.sessionStorage.getItem('token')).toBeNull();
 });
 
-it('should show the Auth scene if the stored token is not valid (by the server)', async () => {
+it('should show the Auth scene if the stored token is not valid (server)', async () => {
   global.fetch = jest
     .fn()
     .mockResolvedValue({

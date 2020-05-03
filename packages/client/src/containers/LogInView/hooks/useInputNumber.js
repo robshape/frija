@@ -36,10 +36,10 @@ const useInputNumber = (onChangeCallback) => {
     onChangeCallback(target.value);
   };
 
-  return {
-    onChange,
+  return [
     value,
-  };
+    onChange,
+  ];
 };
 
 export default useInputNumber;

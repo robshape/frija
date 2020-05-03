@@ -60,9 +60,7 @@ const useValidateStoredToken = () => {
     }
   }, [apolloClient, data, error]);
 
-  return {
-    isValidating: loading,
-  };
+  return loading;
 };
 
 export default useValidateStoredToken;

@@ -23,7 +23,10 @@ const authenticate = async (obj, args, ctx) => {
     .dataSources
     .userDataSource
     .getByPersonalIdentityNumber(args.personalIdentityNumber);
-  return ctx.dataSources.tokenDataSource.authenticate(user);
+  return ctx
+    .dataSources
+    .tokenDataSource
+    .authenticate(user);
 };
 
 const validate = (obj, args, ctx) => ctx

@@ -24,9 +24,10 @@ import React, { StrictMode } from 'react';
 import AppScene from './scenes/AppScene';
 import configureConfig from './config';
 
-const config = configureConfig({
+const env = {
   GRAPHQL_URL: process.env.GRAPHQL_URL,
-});
+};
+const config = configureConfig(env);
 
 const App = hot(() => (
   <StrictMode>
