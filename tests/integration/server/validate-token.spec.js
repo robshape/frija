@@ -22,12 +22,12 @@ import jwt from '../../../packages/server/src/utils/jwt';
 import serverTestClient from '../utils/serverTestClient';
 import VALIDATE_QUERY from '../../../packages/client/src/graphql/queries/VALIDATE_QUERY';
 
-it('should not validate a token that is invalid', async () => {
+it('should not validate a token that is not valid', async () => {
   const { query } = serverTestClient();
   const { data, errors } = await query({
     query: VALIDATE_QUERY,
     variables: {
-      token: 'invalid',
+      token: 'notAValidToken',
     },
   });
 
@@ -48,7 +48,7 @@ it('should not validate a token that is expired', async () => {
   expect(errors[0].message).toEqual(expect.any(String));
 });
 
-it('should validate a token', async () => {
+it('should validate a token that is valid', async () => {
   const token = jwt.sign('190001012020', {
     secret: 'c3e2a70e-ba85-4120-ba4d-1adc9c3d64c9',
     time: '10m',

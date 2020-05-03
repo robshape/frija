@@ -21,7 +21,6 @@
 const config = {
   env: {
     browser: true,
-    jest: true,
     node: true,
   },
 
@@ -49,20 +48,31 @@ const config = {
       },
     },
     {
-      extends: [
-        'plugin:cypress/recommended',
+      env: {
+        'cypress/globals': true,
+      },
+      extends: 'plugin:cypress/recommended',
+      files: [
+        './tests/e2e/**/*.js',
+        './tests/cypress.setup.js',
       ],
-      files: './tests/e2e/**/*.js',
       plugins: [
         'cypress',
       ],
     },
     {
+      env: {
+        jest: true,
+      },
       extends: [
         'plugin:jest/recommended',
         'plugin:jest/style',
       ],
-      files: './tests/+(integration|unit)/**/*.{js,jsx}',
+      files: [
+        './tests/+(integration|unit)/**/*.{js,jsx}',
+        './tests/mocks/**/*.{js,jsx}',
+        './tests/jest.setup.js',
+      ],
       plugins: [
         'jest',
       ],

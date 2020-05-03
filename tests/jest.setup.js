@@ -24,3 +24,12 @@ import '@testing-library/jest-dom/extend-expect';
 
 import './mocks/apollo-datasource-rest';
 import './mocks/fetch';
+
+beforeEach(() => {
+  global
+    .sessionStorage
+    .clear();
+
+  jest.resetAllMocks();
+  jest.restoreAllMocks();
+});

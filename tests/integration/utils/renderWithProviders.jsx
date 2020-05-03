@@ -18,29 +18,39 @@
 
 */
 
+import { createMemoryHistory } from 'history';
 import { InMemoryCache } from 'apollo-cache-inmemory';
-import { MemoryRouter } from 'react-router-dom';
-import { MockedProvider } from '@apollo/client';
+import { MockedProvider } from '@apollo/client/testing';
 import React from 'react';
 import { render } from '@testing-library/react';
+import { Router } from 'react-router-dom';
 
 import setDefaultClientState from '../../../packages/client/src/graphql/clientState/setDefaultClientState';
 
 const renderWithProviders = (ui, {
   mocks = [],
+  path = '/',
   ...options
 } = {}) => {
   const cache = new InMemoryCache();
+  const history = createMemoryHistory({
+    initialEntries: [path],
+  });
+
   setDefaultClientState(cache);
 
-  return render(
-    <MockedProvider cache={cache} mocks={mocks}>
-      <MemoryRouter>
-        {ui}
-      </MemoryRouter>
-    </MockedProvider>,
-    options,
-  );
+  return {
+    ...render(
+      <MockedProvider cache={cache} mocks={mocks}>
+        <Router history={history}>
+          {ui}
+        </Router>
+      </MockedProvider>,
+      options,
+    ),
+    cache,
+    history,
+  };
 };
 
 export default renderWithProviders;

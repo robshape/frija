@@ -20,14 +20,13 @@
 
 import { gql } from '@apollo/client';
 
-const setClientState = (location, key, value) => location
-  .writeQuery({
-    data: {
-      [key]: value,
-    },
-    query: gql`
-    { ${key} }
-    `,
-  });
+const setClientState = (location, key, value) => location.writeQuery({
+  data: {
+    [key]: value,
+  },
+  query: gql`
+  { ${key} }
+  `,
+});
 
 export default setClientState;

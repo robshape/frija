@@ -1,7 +1,7 @@
 /*
 
   Frija - The Swedish general election and Riksdag on the Ethereum blockchain.
-  Copyright (C) 2019 Frija contributors.
+  Copyright (C) 2020 Frija contributors.
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -18,33 +18,20 @@
 
 */
 
-import merge from 'lodash.merge';
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import Loader from '../../../../../packages/client/src/components/Loader';
+import AppScene from '../../../../../packages/client/src/scenes/AppScene';
+import configureConfig from '../../../../../packages/client/src/config';
 
-const renderComponent = (testProps) => {
-  const props = merge({}, testProps);
+const renderComponent = () => {
+  const config = configureConfig({
+    GRAPHQL_URL: 'http://localhost:3000/graphql',
+  });
+
   return render(
-    <Loader>
-      {props.children}
-    </Loader>,
+    <AppScene config={config} />,
   );
 };
 
-it('shows a spinner without a message', () => {
-  const { queryByTestId } = renderComponent();
-
-  expect(queryByTestId('loader__spinner')).toHaveClass('loader__spinner');
-  expect(queryByTestId('loader__text')).toBeEmpty();
-});
-
-it('shows a spinner with a message', () => {
-  const { queryByTestId } = renderComponent({
-    children: 'Loading...',
-  });
-
-  expect(queryByTestId('loader__spinner')).toHaveClass('loader__spinner');
-  expect(queryByTestId('loader__text')).toHaveTextContent('Loading...');
-});
+export default renderComponent;

@@ -1,7 +1,7 @@
 /*
 
   Frija - The Swedish general election and Riksdag on the Ethereum blockchain.
-  Copyright (C) 2019 Frija contributors.
+  Copyright (C) 2020 Frija contributors.
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -18,46 +18,34 @@
 
 */
 
+import { gql } from '@apollo/client';
 import merge from 'lodash.merge';
 import React from 'react';
 
-import PrivateRoute from '../../../../../packages/client/src/containers/PrivateRoute/PrivateRoute';
+import AuthScene from '../../../../../packages/client/src/scenes/AuthScene';
 import renderWithProviders from '../../../utils/renderWithProviders';
 
-const renderComponent = (testProps) => {
-  const props = merge({}, {
-    component: () => (
-      <div>
-        componentMock
-      </div>
-    ),
-    graphql: {
+const renderComponent = (testProps, testOptions) => {
+  const options = merge({}, {
+    path: '/authenticate',
+  }, testOptions);
+
+  const renderResult = renderWithProviders(
+    <AuthScene />,
+    options,
+  );
+  renderResult
+    .cache
+    .writeQuery({
       data: {
         isAuthenticated: false,
       },
-    },
-  }, testProps);
-  return renderWithProviders(
-    <PrivateRoute component={props.component} graphql={props.graphql} />,
-  );
+      query: gql`
+      { isAuthenticated }
+      `,
+    }); // https://github.com/apollographql/react-apollo/issues/3642#issuecomment-568271001
+
+  return renderResult;
 };
 
-it('does not show the route if the user is not authenticated', () => {
-  const { queryByText } = renderComponent();
-
-  expect(queryByText('componentMock'))
-    .not
-    .toBeInTheDocument();
-});
-
-it('shows the route if the user is authenticated', () => {
-  const { queryByText } = renderComponent({
-    graphql: {
-      data: {
-        isAuthenticated: true,
-      },
-    },
-  });
-
-  expect(queryByText('componentMock')).toBeInTheDocument();
-});
+export default renderComponent;

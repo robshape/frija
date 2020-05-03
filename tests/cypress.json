@@ -4,7 +4,7 @@
   "integrationFolder": "./tests/e2e/",
   "modifyObstructiveCode": false,
   "pluginsFile": false,
-  "supportFile": false,
+  "supportFile": "./tests/cypress.setup.js",
   "testFiles": "**/*.spec.js",
   "video": false
 }

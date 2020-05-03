@@ -19,15 +19,53 @@
 */
 
 it('should load Frija', () => {
-  cy.visit('/');
-  cy.get('[data-testid="app"]')
-    .should('be.visible');
+  // Root path.
+  cy.visitAndAssert('/');
 
-  cy.title()
+  cy
+    .title()
     .should('equal', 'Frija');
 
-  cy.contains('h2', 'Hej,')
+  cy
+    .contains('h2', 'Hej,')
     .should('be.visible');
-  cy.contains('h3', 'identifiera dig med Mobilt BankID')
+
+  // Path with trailing slash.
+  cy.visitAndAssert('/authenticate/');
+
+  cy
+    .url()
+    .should('not.include', '/authenticate/');
+  cy
+    .url()
+    .should('include', '/authenticate');
+
+  cy
+    .contains('h2', 'Hej,')
+    .should('be.visible');
+
+  // Path that does not exist.
+  cy.visitAndAssert('/doesnotexist/doesnotexist');
+
+  cy
+    .url()
+    .should('not.include', 'doesnotexist');
+
+  cy
+    .contains('h2', 'Hej,')
+    .should('be.visible');
+
+  // File that does not exist.
+  cy.visitAndAssert('/doesnotexist/doesnotexist.png');
+
+  cy
+    .url()
+    .should('not.include', 'doesnotexist');
+  cy
+    .url()
+    .should('not.include', '.png');
+
+  cy
+    .contains('h2', 'Hej,')
     .should('be.visible');
 });

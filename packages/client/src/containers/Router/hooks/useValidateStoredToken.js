@@ -49,13 +49,9 @@ const useValidateStoredToken = () => {
   }, [apolloClient, validate]);
 
   useEffect(() => {
-    if (data) {
-      if (data.validate) {
-        setClientState(apolloClient, 'isAuthenticated', true);
-      } else {
-        setClientState(apolloClient, 'isAuthenticated', false);
-        removeStoredToken();
-      }
+    if (data
+    && data.validate) {
+      setClientState(apolloClient, 'isAuthenticated', true);
     }
 
     if (error) {

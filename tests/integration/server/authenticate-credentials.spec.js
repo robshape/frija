@@ -22,7 +22,7 @@ import AUTHENTICATE_MUTATION from '../../../packages/client/src/graphql/mutation
 import isTokenDateValid from '../../../packages/client/src/utils/token/isTokenValid';
 import serverTestClient from '../utils/serverTestClient';
 
-it('should not authenticate credentials with an invalid length', async () => {
+it('should not authenticate the credentials if their length is not valid', async () => {
   const { mutate } = serverTestClient();
   const { data, errors } = await mutate({
     mutation: AUTHENTICATE_MUTATION,
@@ -35,7 +35,7 @@ it('should not authenticate credentials with an invalid length', async () => {
   expect(errors[0].message).toEqual(expect.any(String));
 });
 
-it('should not authenticate credentials with an invalid date', async () => {
+it('should not authenticate the credentials if their date is not valid', async () => {
   const { mutate } = serverTestClient();
   const { data, errors } = await mutate({
     mutation: AUTHENTICATE_MUTATION,
@@ -48,7 +48,7 @@ it('should not authenticate credentials with an invalid date', async () => {
   expect(errors[0].message).toEqual(expect.any(String));
 });
 
-it('should not authenticate credentials with an invalid checksum', async () => {
+it('should not authenticate the credentials if their checksum is not valid', async () => {
   const { mutate } = serverTestClient();
   const { data, errors } = await mutate({
     mutation: AUTHENTICATE_MUTATION,
@@ -61,7 +61,7 @@ it('should not authenticate credentials with an invalid checksum', async () => {
   expect(errors[0].message).toEqual(expect.any(String));
 });
 
-it('should authenticate credentials', async () => {
+it('should authenticate the credentials if they are valid', async () => {
   const { mutate } = serverTestClient();
   const { data, errors } = await mutate({
     mutation: AUTHENTICATE_MUTATION,
@@ -75,7 +75,7 @@ it('should authenticate credentials', async () => {
   expect(isTokenValid).toBe(true);
 });
 
-it('should authenticate shorthand credentials', async () => {
+it('should authenticate the shorthand credentials if they are valid', async () => {
   const { mutate } = serverTestClient();
   const { data, errors } = await mutate({
     mutation: AUTHENTICATE_MUTATION,

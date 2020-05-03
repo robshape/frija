@@ -18,23 +18,10 @@
 
 */
 
-import React from 'react';
-import { render, waitFor } from '@testing-library/react';
+Cypress.Commands.add('visitAndAssert', (url, options) => {
+  cy.visit(url, options);
 
-it('should load the app', async () => {
-  global.process.env = {
-    ...global.process.env,
-    GRAPHQL_URL: 'http://localhost:3000/graphql',
-  };
-  const { default: App } = require('../../../packages/client/src/app'); // eslint-disable-line global-require
-
-  const { getByTestId } = render(
-    <App />,
-  );
-
-  await waitFor(() => {
-    expect(getByTestId('app')).toBeInTheDocument();
-  });
-
-  delete global.process.env.GRAPHQL_URL;
+  cy
+    .get('[data-testid="app"]')
+    .should('be.visible');
 });

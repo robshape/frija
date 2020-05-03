@@ -25,25 +25,25 @@ const options = {
   keyLength: 16, // 16 will use AES-128. 32 will use AES-256.
 };
 
-const decrypt = (data, password) => {
-  const [encodedCiphertext, encodedIv, encodedSalt] = data.split('.');
+// const decrypt = (data, password) => {
+//   const [encodedCiphertext, encodedIv, encodedSalt] = data.split('.');
 
-  const ciphertext = forge.util.decode64(encodedCiphertext);
-  const buffer = forge.util.createBuffer(ciphertext);
+//   const ciphertext = forge.util.decode64(encodedCiphertext);
+//   const buffer = forge.util.createBuffer(ciphertext);
 
-  const salt = forge.util.decode64(encodedSalt);
-  const key = forge.pkcs5.pbkdf2(password, salt, options.iterationCount, options.keyLength);
+//   const salt = forge.util.decode64(encodedSalt);
+//   const key = forge.pkcs5.pbkdf2(password, salt, options.iterationCount, options.keyLength);
 
-  const decipher = forge.cipher.createDecipher('AES-CBC', key);
-  const iv = forge.util.decode64(encodedIv);
-  decipher.start({
-    iv,
-  });
-  decipher.update(buffer);
-  decipher.finish();
+//   const decipher = forge.cipher.createDecipher('AES-CBC', key);
+//   const iv = forge.util.decode64(encodedIv);
+//   decipher.start({
+//     iv,
+//   });
+//   decipher.update(buffer);
+//   decipher.finish();
 
-  return decipher.output.toString('utf8');
-};
+//   return decipher.output.toString('utf8');
+// };
 
 const encrypt = (plaintext, password) => {
   const buffer = forge.util.createBuffer(plaintext, 'utf8');
@@ -68,7 +68,7 @@ const encrypt = (plaintext, password) => {
 };
 
 const aes = {
-  decrypt,
+  // decrypt,
   encrypt,
 };
 

@@ -19,18 +19,25 @@
 */
 
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
+import { useLazyQuery } from '@apollo/client';
 
 import IS_AUTHENTICATED_CLIENT_QUERY from '../../graphql/queries/IS_AUTHENTICATED_CLIENT_QUERY';
 import ROUTER_PATH from '../../enums/ROUTER_PATH';
 
 const PrivateRoute = ({ component: Component, ...props }) => {
-  const { data } = useQuery(IS_AUTHENTICATED_CLIENT_QUERY);
+  // https://github.com/apollographql/react-apollo/issues/3635/
+  const [isAuthenticated, { data }] = useLazyQuery(IS_AUTHENTICATED_CLIENT_QUERY);
+  useEffect(() => {
+    let isMounted = true;
+    if (isMounted) isAuthenticated();
+    return () => { isMounted = false; };
+  }, [isAuthenticated]);
 
   const onRouteRender = (routeProps) => {
-    if (!data.isAuthenticated) {
+    if (data
+    && !data.isAuthenticated) {
       return (
         <Redirect to={ROUTER_PATH.AUTHENTICATE} />
       );

@@ -19,35 +19,42 @@
 */
 
 it('should log in a user', () => {
-  cy.visit('/', {
-    onBeforeLoad: (win) => {
-      win.sessionStorage.clear();
+  cy.visitAndAssert('/', {
+    onBeforeLoad: (w) => {
+      w
+        .sessionStorage
+        .clear();
     },
   });
-  cy.get('[data-testid="app"]')
-    .should('be.visible');
 
-  cy.url()
+  cy
+    .url()
     .should('include', '/authenticate');
-  cy.contains('p', 'Välkommen till Frija')
+  cy
+    .contains('p', 'Välkommen till Frija')
     .should('not.exist');
 
-  cy.contains('label', 'Personnummer')
+  cy
+    .contains('label', 'Personnummer')
     .should('be.visible')
     .find('input[placeholder="ååååmmddxxxx"]')
     .should('be.visible')
     .should('have.value', '')
     .type('190001012020')
     .should('have.value', '190001012020');
-  cy.contains('button', 'Fortsätt')
+  cy
+    .contains('button', 'Fortsätt')
     .should('be.visible')
     .click();
 
-  cy.contains('div', 'Väntar på svar från Mobilt BankID... Vänligen starta BankID-appen i din mobila enhet.')
+  cy
+    .contains('div', 'Väntar på svar från Mobilt BankID... Vänligen starta BankID-appen i din mobila enhet.')
     .should('be.visible');
 
-  cy.url()
+  cy
+    .url()
     .should('not.include', '/authenticate');
-  cy.contains('p', 'Välkommen till Frija')
+  cy
+    .contains('p', 'Välkommen till Frija')
     .should('be.visible');
 });

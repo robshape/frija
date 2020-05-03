@@ -44,11 +44,6 @@ const config = {
     '<rootDir>/tests/jest.setup.js',
   ],
 
-  testPathIgnorePatterns: [
-    '/node_modules/',
-    '/OLD/',
-  ],
-
   testRegex: './tests/+(integration|unit)/.+\\.spec\\.(js|jsx)$',
 
   transform: {

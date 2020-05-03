@@ -24,10 +24,10 @@ import React from 'react';
 import styles from './Loader.scss';
 
 const Loader = ({ children }) => (
-  <div className={styles.loader}>
-    <div data-testid="loader__spinner" className={styles.loader__spinner} />
+  <div className={styles.loader} role="progressbar">
+    <div className={styles.loader__spinner} />
 
-    <p data-testid="loader__text" className={styles.loader__text}>
+    <p className={styles.loader__text}>
       {children}
     </p>
   </div>

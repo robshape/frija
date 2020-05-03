@@ -1,7 +1,7 @@
 /*
 
   Frija - The Swedish general election and Riksdag on the Ethereum blockchain.
-  Copyright (C) 2019 Frija contributors.
+  Copyright (C) 2020 Frija contributors.
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -18,28 +18,10 @@
 
 */
 
-import merge from 'lodash.merge';
-import React from 'react';
+import * as configureGraphQL from '../../../../packages/client/src/graphql/index';
+import renderComponent from './utils/renderComponent';
 
-import AppScene from '../../../../../packages/client/src/scenes/AppScene';
-import configureConfig from '../../../../../packages/client/src/config';
-import * as configureGraphQL from '../../../../../packages/client/src/graphql/index';
-import renderWithProviders from '../../../utils/renderWithProviders';
-
-const renderComponent = (testProps) => {
-  const props = merge({}, {
-    config: configureConfig({
-      GRAPHQL_URL: 'http://localhost:3000/graphql',
-    }),
-  }, testProps);
-  return renderWithProviders(
-    <AppScene config={props.config} />,
-  );
-};
-
-beforeEach(() => jest.restoreAllMocks());
-
-it('does not load the app if the config is empty', () => {
+it('should not show the scene if GraphQL is not configured', () => {
   jest
     .spyOn(configureGraphQL, 'default')
     .mockImplementation(() => ({}));
@@ -49,10 +31,4 @@ it('does not load the app if the config is empty', () => {
   expect(queryByTestId('app'))
     .not
     .toBeInTheDocument();
-});
-
-it('loads the app', () => {
-  const { queryByTestId } = renderComponent();
-
-  expect(queryByTestId('app')).toBeInTheDocument();
 });
