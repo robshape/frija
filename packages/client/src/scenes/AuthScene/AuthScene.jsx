@@ -24,7 +24,7 @@ import { useQuery } from '@apollo/client';
 
 import IS_AUTHENTICATED_CLIENT_QUERY from '../../graphql/queries/IS_AUTHENTICATED_CLIENT_QUERY';
 import LogInView from '../../containers/LogInView';
-import ROUTER_PATH from '../../enums/ROUTER_PATH';
+import ROUTER_PATH from '../../constants/ROUTER_PATH';
 import styles from './AuthScene.scss';
 
 const AuthScene = () => {

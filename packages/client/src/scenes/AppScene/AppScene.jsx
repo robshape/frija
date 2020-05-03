@@ -27,7 +27,7 @@ import AuthScene from '../AuthScene';
 import HomeScene from '../HomeScene';
 import PrivateRoute from './components/PrivateRoute';
 import Router from './components/Router';
-import ROUTER_PATH from '../../enums/ROUTER_PATH';
+import ROUTER_PATH from '../../constants/ROUTER_PATH';
 import styles from './AppScene.scss';
 import useConfigureGraphQL from './hooks/useConfigureGraphQL';
 

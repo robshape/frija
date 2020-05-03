@@ -18,7 +18,7 @@
 
 */
 
-import { SESSION_STORAGE_KEY_NAME } from '../constants';
+import { SESSION_STORAGE_KEY_NAME } from '../../constants';
 
 const setStoredToken = (token) => sessionStorage.setItem(SESSION_STORAGE_KEY_NAME, token);
 

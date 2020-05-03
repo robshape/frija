@@ -27,7 +27,7 @@ import NumberInput from './components/NumberInput';
 import Subheading from './components/Subheading';
 import useAuthenticatePersonalIdentityNumber from './hooks/useAuthenticatePersonalIdentityNumber';
 import useInputPersonalIdentityNumber from './hooks/useInputPersonalIdentityNumber';
-import VALIDATION_STATUS from '../../enums/VALIDATION_STATUS';
+import VALIDATION_STATUS from './constants/VALIDATION_STATUS';
 
 const LogInView = () => {
   const {

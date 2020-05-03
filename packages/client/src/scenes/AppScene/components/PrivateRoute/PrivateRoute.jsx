@@ -24,7 +24,7 @@ import { Redirect, Route } from 'react-router-dom';
 import { useLazyQuery } from '@apollo/client';
 
 import IS_AUTHENTICATED_CLIENT_QUERY from '../../../../graphql/queries/IS_AUTHENTICATED_CLIENT_QUERY';
-import ROUTER_PATH from '../../../../enums/ROUTER_PATH';
+import ROUTER_PATH from '../../../../constants/ROUTER_PATH';
 
 const PrivateRoute = ({ component: Component, ...props }) => {
   // https://github.com/apollographql/react-apollo/issues/3635/

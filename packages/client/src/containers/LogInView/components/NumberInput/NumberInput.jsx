@@ -27,7 +27,7 @@ import Label from '../Label';
 import styles from './NumberInput.scss';
 import useId from '../../hooks/useId';
 import useInputNumber from '../../hooks/useInputNumber';
-import VALIDATION_STATUS from '../../../../enums/VALIDATION_STATUS';
+import VALIDATION_STATUS from '../../constants/VALIDATION_STATUS';
 
 const NumberInput = ({
   labelText,
