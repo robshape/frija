@@ -18,7 +18,7 @@
 
 */
 
-import configureConfig from '../../../packages/client/src/config';
+import configureConfig from '../../../../packages/client/src/config';
 
 it('should validate environment variables', async () => {
   expect(() => {

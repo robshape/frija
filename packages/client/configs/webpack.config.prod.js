@@ -34,7 +34,7 @@ const config = (env) => ({
   module: {
     rules: [
       {
-        include: path.resolve(__dirname, './src/'),
+        include: path.resolve(process.cwd(), './src/'),
         test: /\.(js|jsx)$/,
         use: [
           {
@@ -46,7 +46,7 @@ const config = (env) => ({
         ],
       },
       {
-        include: path.resolve(__dirname, './src/'),
+        include: path.resolve(process.cwd(), './src/'),
         test: /\.scss$/,
         use: [
           {

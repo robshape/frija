@@ -36,7 +36,7 @@ const config = {
   module: {
     rules: [
       {
-        include: path.resolve(__dirname, './src/'),
+        include: path.resolve(process.cwd(), './src/'),
         test: /\.(js|jsx)$/,
         use: [
           {
@@ -53,7 +53,7 @@ const config = {
         ],
       },
       {
-        include: path.resolve(__dirname, './src/'),
+        include: path.resolve(process.cwd(), './src/'),
         test: /\.scss$/,
         use: [
           {

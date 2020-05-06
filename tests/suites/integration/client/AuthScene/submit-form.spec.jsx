@@ -20,7 +20,7 @@
 
 import { fireEvent, waitFor } from '@testing-library/react';
 
-import AUTHENTICATE_MUTATION from '../../../../packages/client/src/graphql/mutations/AUTHENTICATE_MUTATION';
+import AUTHENTICATE_MUTATION from '../../../../../packages/client/src/graphql/mutations/AUTHENTICATE_MUTATION';
 import renderComponent from './utils/renderComponent';
 
 it('should validate the credentials', async () => {

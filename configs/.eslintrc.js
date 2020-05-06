@@ -53,8 +53,8 @@ const config = {
       },
       extends: 'plugin:cypress/recommended',
       files: [
-        './tests/e2e/**/*.js',
-        './tests/cypress.setup.js',
+        './tests/suites/e2e/**/*.js',
+        './tests/configs/cypress.setup.js',
       ],
       plugins: [
         'cypress',
@@ -69,9 +69,10 @@ const config = {
         'plugin:jest/style',
       ],
       files: [
-        './tests/+(integration|unit)/**/*.{js,jsx}',
         './tests/mocks/**/*.{js,jsx}',
-        './tests/jest.setup.js',
+        './tests/suites/integration/**/*.{js,jsx}',
+        './tests/suites/unit/**/*.{js,jsx}',
+        './tests/configs/jest.setup.js',
       ],
       plugins: [
         'jest',

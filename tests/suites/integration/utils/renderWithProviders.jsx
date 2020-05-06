@@ -25,7 +25,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { Router } from 'react-router-dom';
 
-import setDefaultClientState from '../../../packages/client/src/graphql/clientState/setDefaultClientState';
+import setDefaultClientState from '../../../../packages/client/src/graphql/clientState/setDefaultClientState';
 
 const renderWithProviders = (ui, {
   mocks = [],

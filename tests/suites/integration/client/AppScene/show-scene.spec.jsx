@@ -18,15 +18,17 @@
 
 */
 
-import React from 'react';
-import { render } from '@testing-library/react';
+import * as configureGraphQL from '../../../../../packages/client/src/graphql/index';
+import renderComponent from './utils/renderComponent';
 
-import HomeScene from '../../../../packages/client/src/scenes/HomeScene';
+it('should not show the scene if GraphQL is not configured', () => {
+  jest
+    .spyOn(configureGraphQL, 'default')
+    .mockImplementation(() => ({}));
 
-it('should show a welcome message', () => {
-  const { getByText } = render(
-    <HomeScene />,
-  );
+  const { queryByTestId } = renderComponent();
 
-  expect(getByText('Välkommen till Frija.')).toBeInTheDocument();
+  expect(queryByTestId('app'))
+    .not
+    .toBeInTheDocument();
 });

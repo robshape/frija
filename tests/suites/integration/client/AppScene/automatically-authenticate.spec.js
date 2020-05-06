@@ -20,7 +20,7 @@
 
 import { waitFor } from '@testing-library/react';
 
-import jwt from '../../../../packages/server/src/utils/jwt';
+import jwt from '../../../../../packages/server/src/utils/jwt';
 import renderComponent from './utils/renderComponent';
 
 it('should show the Auth scene if there is no stored token', async () => {

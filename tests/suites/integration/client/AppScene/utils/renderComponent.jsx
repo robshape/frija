@@ -19,22 +19,19 @@
 */
 
 import React from 'react';
-import { render, waitFor } from '@testing-library/react';
+import { render } from '@testing-library/react';
 
-it('should load the app', async () => {
-  global.process.env = {
-    ...global.process.env,
+import AppScene from '../../../../../../packages/client/src/scenes/AppScene';
+import configureConfig from '../../../../../../packages/client/src/config';
+
+const renderComponent = () => {
+  const config = configureConfig({
     GRAPHQL_URL: 'http://localhost:3000/graphql',
-  };
-  const { default: App } = require('../../../packages/client/src/app'); // eslint-disable-line global-require
-
-  const { getByTestId } = render(
-    <App />,
-  );
-
-  await waitFor(() => {
-    expect(getByTestId('app')).toBeInTheDocument();
   });
 
-  delete global.process.env.GRAPHQL_URL;
-});
+  return render(
+    <AppScene config={config} />,
+  );
+};
+
+export default renderComponent;

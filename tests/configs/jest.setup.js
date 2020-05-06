@@ -1,7 +1,7 @@
 /*
 
   Frija - The Swedish general election and Riksdag on the Ethereum blockchain.
-  Copyright (C) 2020 Frija contributors.
+  Copyright (C) 2018 Frija contributors.
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -18,20 +18,18 @@
 
 */
 
-import React from 'react';
-import { render } from '@testing-library/react';
+import '../../packages/client/src/polyfills';
 
-import AppScene from '../../../../../packages/client/src/scenes/AppScene';
-import configureConfig from '../../../../../packages/client/src/config';
+import '@testing-library/jest-dom/extend-expect';
 
-const renderComponent = () => {
-  const config = configureConfig({
-    GRAPHQL_URL: 'http://localhost:3000/graphql',
-  });
+import '../mocks/apollo-datasource-rest';
+import '../mocks/fetch';
 
-  return render(
-    <AppScene config={config} />,
-  );
-};
+beforeEach(() => {
+  global
+    .sessionStorage
+    .clear();
 
-export default renderComponent;
+  jest.resetAllMocks();
+  jest.restoreAllMocks();
+});

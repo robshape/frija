@@ -38,17 +38,17 @@ const config = {
     '\\.scss$': 'identity-obj-proxy',
   },
 
-  rootDir: '../',
+  rootDir: '../../',
 
   setupFilesAfterEnv: [
-    '<rootDir>/tests/jest.setup.js',
+    '<rootDir>/tests/configs/jest.setup.js',
   ],
 
-  testRegex: './tests/+(integration|unit)/.+\\.spec\\.(js|jsx)$',
+  testRegex: '.+\\.spec\\.(js|jsx)$',
 
   transform: {
     '\\.(js|jsx)$': ['babel-jest', {
-      configFile: './tests/babel.config.js',
+      configFile: './tests/configs/babel.config.js',
     }],
   },
 };

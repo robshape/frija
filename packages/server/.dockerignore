@@ -1,5 +1,4 @@
 node_modules/
 
 .dockerignore
-.env.prod
 Dockerfile

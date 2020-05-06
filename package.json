@@ -58,9 +58,9 @@
     "test:leaks": "node --expose-gc ./node_modules/.bin/jest --config ./tests/jest.config.js --detectOpenHandles --logHeapUsage --runInBand",
     "test:watch": "jest --config ./tests/jest.config.js --watch",
     "test:e2e": "start-server-and-test start:cluster http://localhost:8080/ test:e2e:cli",
-    "test:e2e:cli": "cypress run --config-file ./tests/cypress.config.json",
-    "test:e2e:gui": "cypress open --config-file ./tests/cypress.config.json",
-    "test:integration": "jest --config ./tests/jest.config.js ./tests/integration/",
-    "test:unit": "jest --config ./tests/jest.config.js ./tests/unit/"
+    "test:e2e:cli": "cypress run --config-file ./tests/configs/cypress.config.json",
+    "test:e2e:gui": "cypress open --config-file ./tests/configs/cypress.config.json",
+    "test:integration": "jest --config ./tests/configs/jest.config.js ./tests/suites/integration/",
+    "test:unit": "jest --config ./tests/configs/jest.config.js ./tests/suites/unit/"
   }
 }

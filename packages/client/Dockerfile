@@ -14,7 +14,6 @@ ENV NODE_ENV production
 # /docs/DOTENV.md
 COPY ./configs/ ./configs/
 COPY ./src/ ./src/
-COPY ./webpack.config.prod.js ./
 RUN npm run build:bundle
 
 # SERVE (nginx LTS).

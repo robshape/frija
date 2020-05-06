@@ -18,34 +18,23 @@
 
 */
 
-import { gql } from '@apollo/client';
-import merge from 'lodash.merge';
 import React from 'react';
+import { render, waitFor } from '@testing-library/react';
 
-import AuthScene from '../../../../../packages/client/src/scenes/AuthScene';
-import renderWithProviders from '../../../utils/renderWithProviders';
+it('should load the app', async () => {
+  global.process.env = {
+    ...global.process.env,
+    GRAPHQL_URL: 'http://localhost:3000/graphql',
+  };
+  const { default: App } = require('../../../../packages/client/src/app'); // eslint-disable-line global-require
 
-const renderComponent = (testProps, testOptions) => {
-  const options = merge({}, {
-    path: '/authenticate',
-  }, testOptions);
-
-  const renderResult = renderWithProviders(
-    <AuthScene />,
-    options,
+  const { getByTestId } = render(
+    <App />,
   );
-  renderResult
-    .cache
-    .writeQuery({
-      data: {
-        isAuthenticated: false,
-      },
-      query: gql`
-      { isAuthenticated }
-      `,
-    }); // https://github.com/apollographql/react-apollo/issues/3642#issuecomment-568271001
 
-  return renderResult;
-};
+  await waitFor(() => {
+    expect(getByTestId('app')).toBeInTheDocument();
+  });
 
-export default renderComponent;
+  delete global.process.env.GRAPHQL_URL;
+});
