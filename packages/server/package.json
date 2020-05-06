@@ -1,8 +1,8 @@
 {
   "dependencies": {
     "apollo-datasource": "0.7.0",
-    "apollo-datasource-rest": "0.8.1",
-    "apollo-server-koa": "2.12.0",
+    "apollo-datasource-rest": "0.9.0",
+    "apollo-server-koa": "2.13.0",
     "graphql": "15.0.0",
     "http-status-codes": "1.4.0",
     "jsonwebtoken": "8.5.1",

@@ -20,10 +20,6 @@
 
 const config = {
   extends: 'solhint:recommended',
-
-  rules: {
-    'mark-callable-contracts': 'off',
-  },
 };
 
 module.exports = config;
