@@ -28,6 +28,25 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 
+const packageJSON = require('../package.json');
+
+const chunkedDependencies = () => Object
+  .keys(packageJSON.dependencies)
+  .map((dependency) => {
+    const dependencyName = dependency
+      .replace('@', '')
+      .replace('/', '-');
+    return {
+      [`vendors-${dependencyName}`]: {
+        test: new RegExp(`/node_modules/${dependency}/`),
+      },
+    };
+  })
+  .reduce((acc, cur) => ({
+    ...acc,
+    ...cur,
+  }));
+
 const config = (env) => ({
   mode: 'production',
 
@@ -80,14 +99,7 @@ const config = (env) => ({
     moduleIds: 'hashed',
     runtimeChunk: 'single',
     splitChunks: {
-      cacheGroups: {
-        'vendors-core-js': {
-          test: /node_modules[\\/](core-js)[\\/]/,
-        },
-        'vendors-react-dom': {
-          test: /node_modules[\\/](react-dom)[\\/]/,
-        },
-      },
+      cacheGroups: chunkedDependencies(),
       chunks: 'all',
       maxInitialRequests: Infinity,
     },
