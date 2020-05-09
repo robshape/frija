@@ -67,6 +67,9 @@ const config = {
       extends: [
         'plugin:jest/recommended',
         'plugin:jest/style',
+        'plugin:jest-dom/recommended',
+        'plugin:testing-library/react',
+        'plugin:testing-library/recommended',
       ],
       files: [
         './tests/mocks/**/*.{js,jsx}',
@@ -76,6 +79,8 @@ const config = {
       ],
       plugins: [
         'jest',
+        'jest-dom',
+        'testing-library',
       ],
     },
   ],

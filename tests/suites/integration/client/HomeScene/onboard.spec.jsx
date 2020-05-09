@@ -19,14 +19,14 @@
 */
 
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import HomeScene from '../../../../../packages/client/src/scenes/HomeScene';
 
 it('should show a welcome message', () => {
-  const { getByText } = render(
+  render(
     <HomeScene />,
   );
 
-  expect(getByText('Välkommen till Frija.')).toBeInTheDocument();
+  expect(screen.getByText('Välkommen till Frija.')).toBeInTheDocument();
 });

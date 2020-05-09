@@ -19,19 +19,15 @@
 */
 
 import { gql } from '@apollo/client';
-import { waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 
-import renderComponent from './utils/renderComponent';
+import renderComponent from './renderComponent';
 
 it('should redirect to the Home path if the user is authenticated', async () => {
-  const {
-    cache,
-    history,
-    queryByLabelText,
-    queryByRole,
-  } = renderComponent();
+  const { cache, history } = renderComponent();
 
   expect(history.location.pathname).toBe('/authenticate');
+  expect(screen.queryByRole('textbox', { name: 'Personnummer' })).toBeInTheDocument();
 
   cache.writeQuery({
     data: {
@@ -42,13 +38,8 @@ it('should redirect to the Home path if the user is authenticated', async () => 
     `,
   }); // https://github.com/apollographql/react-apollo/issues/3642#issuecomment-568271001
 
-  await waitFor(() => {
-    expect(history.location.pathname).toBe('/');
-  });
-  expect(queryByLabelText('Personnummer'))
-    .not
-    .toBeInTheDocument();
-  expect(queryByRole('button', { name: 'Fortsätt' }))
+  await waitFor(() => expect(history.location.pathname).toBe('/'));
+  expect(screen.queryByRole('textbox', { name: 'Personnummer' }))
     .not
     .toBeInTheDocument();
 });

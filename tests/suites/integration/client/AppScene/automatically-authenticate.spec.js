@@ -18,24 +18,23 @@
 
 */
 
-import { waitFor } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 
 import jwt from '../../../../../packages/server/src/utils/jwt';
-import renderComponent from './utils/renderComponent';
+import renderComponent from './renderComponent';
 
 it('should show the Auth scene if there is no stored token', async () => {
   global.fetch = jest.fn();
 
   expect(global.sessionStorage.getItem('token')).toBeNull();
 
-  const { getByRole, getByText } = renderComponent();
+  renderComponent();
 
-  await waitFor(() => {
-    expect(getByRole('progressbar')).toHaveClass('loader');
-  });
-  await waitFor(() => {
-    expect(getByText('identifiera dig med Mobilt BankID')).toBeInTheDocument();
-  });
+  expect(screen.getByRole('progressbar')).toHaveClass('loader');
+
+  const subheadingText = await screen.findByText('identifiera dig med Mobilt BankID');
+
+  expect(subheadingText).toBeInTheDocument();
   expect(global.fetch)
     .not
     .toHaveBeenCalled();
@@ -52,14 +51,13 @@ it('should show the Auth scene if the stored token is not valid (client)', async
     .not
     .toBeNull();
 
-  const { getByRole, getByText } = renderComponent();
+  renderComponent();
 
-  await waitFor(() => {
-    expect(getByRole('progressbar')).toHaveClass('loader');
-  });
-  await waitFor(() => {
-    expect(getByText('identifiera dig med Mobilt BankID')).toBeInTheDocument();
-  });
+  expect(screen.getByRole('progressbar')).toHaveClass('loader');
+
+  const subheadingText = await screen.findByText('identifiera dig med Mobilt BankID');
+
+  expect(subheadingText).toBeInTheDocument();
   expect(global.fetch)
     .not
     .toHaveBeenCalled();
@@ -83,14 +81,13 @@ it('should show the Auth scene if the stored token is not valid (server)', async
     .not
     .toBeNull();
 
-  const { getByRole, getByText } = renderComponent();
+  renderComponent();
 
-  await waitFor(() => {
-    expect(getByRole('progressbar')).toHaveClass('loader');
-  });
-  await waitFor(() => {
-    expect(getByText('identifiera dig med Mobilt BankID')).toBeInTheDocument();
-  });
+  expect(screen.getByRole('progressbar')).toHaveClass('loader');
+
+  const subheadingText = await screen.findByText('identifiera dig med Mobilt BankID');
+
+  expect(subheadingText).toBeInTheDocument();
   expect(global.fetch).toHaveBeenCalledTimes(1);
   expect(global.sessionStorage.getItem('token')).toBeNull();
 });
@@ -112,14 +109,13 @@ it('should show the Home scene if the stored token is valid', async () => {
     .not
     .toBeNull();
 
-  const { getByRole, getByText } = renderComponent();
+  renderComponent();
 
-  await waitFor(() => {
-    expect(getByRole('progressbar')).toHaveClass('loader');
-  });
-  await waitFor(() => {
-    expect(getByText('Välkommen till Frija.')).toBeInTheDocument();
-  });
+  expect(screen.getByRole('progressbar')).toHaveClass('loader');
+
+  const welcomeText = await screen.findByText('Välkommen till Frija.');
+
+  expect(welcomeText).toBeInTheDocument();
   expect(global.fetch).toHaveBeenCalledTimes(1);
   expect(global.sessionStorage.getItem('token'))
     .not

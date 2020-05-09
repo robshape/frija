@@ -18,17 +18,19 @@
 
 */
 
+import { screen } from '@testing-library/react';
+
 import * as configureGraphQL from '../../../../../packages/client/src/graphql/index';
-import renderComponent from './utils/renderComponent';
+import renderComponent from './renderComponent';
 
 it('should not show the scene if GraphQL is not configured', () => {
   jest
     .spyOn(configureGraphQL, 'default')
     .mockImplementation(() => ({}));
 
-  const { queryByTestId } = renderComponent();
+  renderComponent();
 
-  expect(queryByTestId('app'))
+  expect(screen.queryByTestId('app'))
     .not
     .toBeInTheDocument();
 });

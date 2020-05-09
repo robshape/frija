@@ -19,7 +19,7 @@
 */
 
 import React from 'react';
-import { render, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 it('should load the app', async () => {
   global.process.env = {
@@ -28,13 +28,12 @@ it('should load the app', async () => {
   };
   const { default: App } = require('../../../../packages/client/src/app'); // eslint-disable-line global-require
 
-  const { getByTestId } = render(
+  render(
     <App />,
   );
+  const app = await screen.findByTestId('app');
 
-  await waitFor(() => {
-    expect(getByTestId('app')).toBeInTheDocument();
-  });
+  expect(app).toBeInTheDocument();
 
   delete global.process.env.GRAPHQL_URL;
 });

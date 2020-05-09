@@ -18,111 +18,81 @@
 
 */
 
-import { fireEvent, waitFor } from '@testing-library/react';
+import { fireEvent, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import AUTHENTICATE_MUTATION from '../../../../../packages/client/src/graphql/mutations/AUTHENTICATE_MUTATION';
-import renderComponent from './utils/renderComponent';
+import renderComponent from './renderComponent';
 
 it('should validate the credentials', async () => {
-  const { getByLabelText, getByRole, getByText } = renderComponent();
-
-  await waitFor(() => {
-    expect(getByLabelText('Personnummer')).toBeInTheDocument();
-    expect(getByLabelText('Personnummer')).toHaveValue('');
-
-    expect(getByRole('button', { name: 'Fortsätt' })).toBeInTheDocument();
-
-    expect(getByText('Ange ett giltig personnummer.'))
-      .not
-      .toHaveClass('inputValidationVISIBLE');
-  });
+  renderComponent();
+  await screen.findByRole('textbox', { name: 'Personnummer' });
 
   // Only numbers can be entered.
-  fireEvent.change(getByLabelText('Personnummer'), {
-    target: {
-      value: 'abc',
-    },
-  });
+  expect(screen.getByRole('textbox', { name: 'Personnummer' })).toHaveValue('');
 
-  expect(getByLabelText('Personnummer')).toHaveValue('');
+  await userEvent.type(screen.getByRole('textbox', { name: 'Personnummer' }), 'abc');
 
-  fireEvent.change(getByLabelText('Personnummer'), {
-    target: {
-      value: '!@#',
-    },
-  });
+  expect(screen.getByRole('textbox', { name: 'Personnummer' })).toHaveValue('');
 
-  expect(getByLabelText('Personnummer')).toHaveValue('');
+  await userEvent.type(screen.getByRole('textbox', { name: 'Personnummer' }), '!@#');
 
-  fireEvent.change(getByLabelText('Personnummer'), {
-    target: {
-      value: '112233445566', // Numbers but not valid credentials.
-    },
-  });
+  expect(screen.getByRole('textbox', { name: 'Personnummer' })).toHaveValue('');
 
-  expect(getByLabelText('Personnummer')).toHaveValue('112233445566');
+  await userEvent.type(screen.getByRole('textbox', { name: 'Personnummer' }), '112233445566');
+
+  expect(screen.getByRole('textbox', { name: 'Personnummer' })).toHaveValue('112233445566');
 
   // Validates credentials.
-  fireEvent.blur(getByLabelText('Personnummer')); // Trigger validator.
+  // userEvent.click(screen.getByRole('button', { name: 'Fortsätt' })); // Does not work here???
+  fireEvent.blur(screen.getByRole('textbox', { name: 'Personnummer' })); // Trigger validator.
 
-  expect(getByLabelText('Personnummer')).toHaveValue('112233445566');
-  expect(getByText('Ange ett giltig personnummer.')).toHaveClass('inputValidationVISIBLE');
+  expect(screen.getByRole('textbox', { name: 'Personnummer' })).toHaveValue('112233445566');
+  expect(screen.getByText('Ange ett giltig personnummer.')).toHaveClass('inputValidationVISIBLE');
 
-  fireEvent.change(getByLabelText('Personnummer'), {
-    target: {
-      value: '19000101202', // Valid credentials with a missing a number.
-    },
-  });
-  fireEvent.blur(getByLabelText('Personnummer'));
+  userEvent.clear(screen.getByRole('textbox', { name: 'Personnummer' }));
+  await userEvent.type(screen.getByRole('textbox', { name: 'Personnummer' }), '19000101202'); // Valid credentials with a missing a number.
+  userEvent.click(screen.getByRole('button', { name: 'Fortsätt' })); // Trigger validator.
 
-  expect(getByLabelText('Personnummer')).toHaveValue('19000101202');
-  expect(getByText('Ange ett giltig personnummer.')).toHaveClass('inputValidationVISIBLE');
+  expect(screen.getByRole('textbox', { name: 'Personnummer' })).toHaveValue('19000101202');
+  expect(screen.getByText('Ange ett giltig personnummer.')).toHaveClass('inputValidationVISIBLE');
 
-  fireEvent.change(getByLabelText('Personnummer'), {
-    target: {
-      value: '190001012020', // Valid credentials.
-    },
-  });
-  fireEvent.blur(getByLabelText('Personnummer'));
+  userEvent.clear(screen.getByRole('textbox', { name: 'Personnummer' }));
+  await userEvent.type(screen.getByRole('textbox', { name: 'Personnummer' }), '190001012020'); // Valid credentials.
+  userEvent.click(screen.getByText('Personnummer')); // Trigger validator, without submit.
 
-  expect(getByLabelText('Personnummer')).toHaveValue('190001012020');
-  expect(getByText('Ange ett giltig personnummer.'))
+  expect(screen.getByRole('textbox', { name: 'Personnummer' })).toHaveValue('190001012020');
+  expect(screen.getByText('Ange ett giltig personnummer.'))
     .not
     .toHaveClass('inputValidationVISIBLE');
 
   // Validates shorthand credentials.
-  fireEvent.change(getByLabelText('Personnummer'), {
-    target: {
-      value: '0001012021', // Shorthand credentials with an invalid Luhn checksum.
-    },
-  });
-  fireEvent.blur(getByLabelText('Personnummer'));
+  userEvent.clear(screen.getByRole('textbox', { name: 'Personnummer' }));
+  await userEvent.type(screen.getByRole('textbox', { name: 'Personnummer' }), '0001012021'); // Shorthand credentials with an invalid Luhn checksum.
+  userEvent.click(screen.getByRole('button', { name: 'Fortsätt' })); // Trigger validator.
 
-  expect(getByLabelText('Personnummer')).toHaveValue('0001012021');
-  expect(getByText('Ange ett giltig personnummer.')).toHaveClass('inputValidationVISIBLE');
+  expect(screen.getByRole('textbox', { name: 'Personnummer' })).toHaveValue('0001012021');
+  expect(screen.getByText('Ange ett giltig personnummer.')).toHaveClass('inputValidationVISIBLE');
 
-  fireEvent.change(getByLabelText('Personnummer'), {
-    target: {
-      value: '0001012020', // Valid shorthand credentials
-    },
-  });
-  fireEvent.blur(getByLabelText('Personnummer'));
+  userEvent.clear(screen.getByRole('textbox', { name: 'Personnummer' }));
+  await userEvent.type(screen.getByRole('textbox', { name: 'Personnummer' }), '0001012020'); // Valid shorthand credentials
+  userEvent.click(screen.getByText('Personnummer')); // Trigger validator, without submit.
 
-  expect(getByLabelText('Personnummer')).toHaveValue('0001012020');
-  expect(getByText('Ange ett giltig personnummer.'))
+  expect(screen.getByRole('textbox', { name: 'Personnummer' })).toHaveValue('0001012020');
+  expect(screen.getByText('Ange ett giltig personnummer.'))
     .not
     .toHaveClass('inputValidationVISIBLE');
 });
 
 it('should submit the credentials if they are valid', async () => {
-  const personalIdentityNumber = '190001012020';
+  const personalIdentityNumber = '190001012020'; // Valid credentials.
   const resultMock = jest
     .fn()
     .mockReturnValue({
       data: {
         authenticate: {
           __typename: 'Token',
-          token: 'token',
+          token: 'validToken',
         },
       },
     });
@@ -138,49 +108,33 @@ it('should submit the credentials if they are valid', async () => {
     },
   ];
 
-  const {
-    getByLabelText,
-    getByRole,
-    getByText,
-    queryByText,
-  } = renderComponent({}, {
+  renderComponent({}, {
     mocks,
   });
+  await screen.findByRole('textbox', { name: 'Personnummer' });
 
-  await waitFor(() => {
-    expect(getByLabelText('Personnummer')).toBeInTheDocument();
-    expect(getByLabelText('Personnummer')).toHaveValue('');
+  // Invalid shorthand credentials should not be submitted.
+  await userEvent.type(screen.getByRole('textbox', { name: 'Personnummer' }), '0001012021'); // Shorthand credentials with an invalid Luhn checksum.
+  userEvent.click(screen.getByRole('button', { name: 'Fortsätt' }));
 
-    expect(getByRole('button', { name: 'Fortsätt' })).toBeInTheDocument();
-  });
-
-  // Invalid shorthand credentials with an invalid Luhn checksum.
-  fireEvent.change(getByLabelText('Personnummer'), {
-    target: {
-      value: '0001012021',
-    },
-  });
-  fireEvent.click(getByRole('button', { name: 'Fortsätt' }));
-
-  expect(queryByText('Väntar på svar från Mobilt BankID... Vänligen starta BankID-appen i din mobila enhet.'))
+  expect(screen.queryByRole('progressbar'))
     .not
     .toBeInTheDocument();
-  expect(global.sessionStorage.getItem('token')).toBeNull();
+  expect(screen.queryByText('Väntar på svar från Mobilt BankID... Vänligen starta BankID-appen i din mobila enhet.'))
+    .not
+    .toBeInTheDocument();
   expect(resultMock)
     .not
     .toHaveBeenCalled();
+  expect(global.sessionStorage.getItem('token')).toBeNull();
 
-  // Valid credentials.
-  fireEvent.change(getByLabelText('Personnummer'), {
-    target: {
-      value: personalIdentityNumber,
-    },
-  });
-  fireEvent.click(getByRole('button', { name: 'Fortsätt' }));
+  // Valid credentials should be submitted.
+  userEvent.clear(screen.getByRole('textbox', { name: 'Personnummer' }));
+  await userEvent.type(screen.getByRole('textbox', { name: 'Personnummer' }), personalIdentityNumber);
+  userEvent.click(screen.getByRole('button', { name: 'Fortsätt' }));
 
-  await waitFor(() => {
-    expect(getByText('Väntar på svar från Mobilt BankID... Vänligen starta BankID-appen i din mobila enhet.')).toBeInTheDocument();
-  });
-  expect(global.sessionStorage.getItem('token')).toBe('token');
-  expect(resultMock).toHaveBeenCalledTimes(1);
+  expect(screen.getByRole('progressbar')).toHaveClass('loader');
+  expect(screen.getByText('Väntar på svar från Mobilt BankID... Vänligen starta BankID-appen i din mobila enhet.')).toBeInTheDocument();
+  await waitFor(() => expect(resultMock).toHaveBeenCalledTimes(1));
+  expect(global.sessionStorage.getItem('token')).toBe('validToken');
 });

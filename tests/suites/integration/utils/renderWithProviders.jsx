@@ -19,7 +19,7 @@
 */
 
 import { createMemoryHistory } from 'history';
-import { InMemoryCache } from 'apollo-cache-inmemory';
+import { InMemoryCache } from '@apollo/client';
 import { MockedProvider } from '@apollo/client/testing';
 import React from 'react';
 import { render } from '@testing-library/react';
