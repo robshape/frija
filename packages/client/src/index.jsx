@@ -20,7 +20,7 @@
 
 import './polyfills';
 
-import 'react-hot-loader'; // Import before 'react' and 'react-dom'.
+import 'react-hot-loader'; // Import before `react` and `react-dom`.
 import React from 'react';
 import { render } from 'react-dom';
 

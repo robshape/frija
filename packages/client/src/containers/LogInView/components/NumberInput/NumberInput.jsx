@@ -47,7 +47,7 @@ const NumberInput = ({
 
         <Label forId={id} text={labelText}>
           <div className={styles.numberInput__icon}>
-            {/* type="text" renders a better looking input. */}
+            {/* `type="text"` renders a better looking input. */}
             <input
               className={styles.numberInput__input}
               id={id}

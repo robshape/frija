@@ -22,7 +22,7 @@ const forge = require('node-forge');
 
 const options = {
   iterationCount: 10000,
-  keyLength: 16, // 16 will use AES-128. 32 will use AES-256.
+  keyLength: 16, // `16` will use AES-128. `32` will use AES-256.
 };
 
 // const decrypt = (data, password) => {

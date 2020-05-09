@@ -92,7 +92,7 @@ jobs:
         # headless: true
         start: npm run start:cluster
         wait-on: 'http://localhost:8080/'
-        wait-on-timeout: 300 # Wait up to 5 minutes for cluster to start.
+        wait-on-timeout: 300 # Wait up to 300 seconds (5 minutes) for the cluster to start.
 
   run-unit-integration-tests-and-report-code-coverage:
     name: Run unit, integration tests and report code coverage
