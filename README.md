@@ -15,7 +15,7 @@ The following section will help you set up your development environment.
 Install [Docker Desktop](https://docker.com/products/docker-desktop/). Install [Homebrew](https://brew.sh/)
 and run `brew install node`. Clone this repository.
 
-### Install dependencies and setup project
+### Install dependencies and bootstrap project
 
 Run `npm run setup` inside the root directory.
 
