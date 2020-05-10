@@ -16,7 +16,8 @@ Run `npm run lint` inside the root directory.
 
 ## Run all tests
 
-Create a `.env.prod` file inside the `/configs/` directory. Run `npm test` inside the root directory.
+Create a production .env file (`.env.prod`) inside the `/configs/` directory. Run `npm test` inside the
+root directory.
 
 ## Try GraphQL queries
 

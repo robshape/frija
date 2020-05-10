@@ -23,11 +23,9 @@ const config = {
     './packages/**/*.{js,jsx}',
 
     // Excluding:
+    '!./packages/client/configs/**',
     '!./packages/client/dist/**',
-    '!./packages/client/configs/babel.config.js',
     '!./packages/client/src/index.jsx',
-    '!./packages/client/webpack.config.dev.js',
-    '!./packages/client/webpack.config.prod.js',
 
     '!./packages/ethereum/**',
 
@@ -44,7 +42,10 @@ const config = {
     '<rootDir>/tests/configs/jest.setup.js',
   ],
 
-  testRegex: '.+\\.spec\\.(js|jsx)$',
+  testRegex: [
+    './tests/suites/integration/.+\\.spec\\.(js|jsx)$',
+    './tests/suites/unit/.+\\.spec\\.(js|jsx)$',
+  ],
 
   transform: {
     '\\.(js|jsx)$': ['babel-jest', {
