@@ -32,12 +32,21 @@ it('should validate environment variables', async () => {
   expect(() => {
     configureConfig({
       GRAPHQL_URL: '',
+      NODE_ENV: '',
     });
   }).toThrow();
 
   expect(() => {
     configureConfig({
       GRAPHQL_URL: 'http://localhost:3000/graphql',
+      NODE_ENV: '',
+    });
+  }).toThrow();
+
+  expect(() => {
+    configureConfig({
+      GRAPHQL_URL: 'http://localhost:3000/graphql',
+      NODE_ENV: 'test',
     });
   })
     .not

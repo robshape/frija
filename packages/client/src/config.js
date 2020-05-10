@@ -22,12 +22,14 @@ const configureConfig = (env) => {
   const missingEnvironmentVariables = [
     // Environment variables that are used by the app.
     'GRAPHQL_URL',
+    'NODE_ENV',
   ].filter((ev) => !env[ev]);
   if (missingEnvironmentVariables.length) {
     throw new Error(`Missing environment variables: ${missingEnvironmentVariables.join(', ')}`);
   }
 
   return {
+    env: env.NODE_ENV,
     graphqlUrl: env.GRAPHQL_URL,
   };
 };

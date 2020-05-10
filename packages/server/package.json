@@ -22,5 +22,6 @@
     "build": "docker build --tag frija/server:latest .",
     "start": "nodemon --watch ./src/ ./src/index.js",
     "start:container": "docker run --env-file .env.prod --init --publish 3000:3000 --rm frija/server:latest"
-  }
+  },
+  "version": "0.1.0"
 }

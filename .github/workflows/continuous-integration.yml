@@ -4,7 +4,10 @@ name: Continuous Integration
 on: push
 
 env:
+  DOTENV_GRAPHQL_PORT: 3000
   DOTENV_GRAPHQL_URL: http://localhost:3000/graphql
+  DOTENV_NODE_ENV: production
+  DOTENV_TOKEN_TIME: 10m
   NODE_VERSION: 12.16.3 # Node LTS.
 
 jobs:
@@ -26,11 +29,13 @@ jobs:
     # /docs/DOTENV.md
     - name: Create .env
       run: |
-        echo "GRAPHQL_URL=${{env.DOTENV_GRAPHQL_URL}}" >> ./.env.prod
-        cp ./.env.prod ./packages/client/configs/
+        echo "GRAPHQL_URL=${{env.DOTENV_GRAPHQL_URL}}" >> ./configs/.env.prod
+        echo "NODE_ENV=${{env.DOTENV_NODE_ENV}}" >> ./configs/.env.prod
 
     - name: Build client package
-      run: npx lerna run --scope @frija/client build
+      run: |
+        cp ./configs/.env.prod ./packages/client/configs/
+        npx lerna run --scope @frija/client build
 
     - name: Build Ethereum package
       run: npx lerna run --scope @frija/ethereum build
@@ -82,6 +87,15 @@ jobs:
       uses: actions/setup-node@v1.4.2
       with:
         node-version: ${{env.NODE_VERSION}}
+
+    # /docs/DOTENV.md
+    - name: Create .env
+      run: |
+        echo "GRAPHQL_PORT=${{env.DOTENV_GRAPHQL_PORT}}" >> ./configs/.env.prod
+        echo "GRAPHQL_URL=${{env.DOTENV_GRAPHQL_URL}}" >> ./configs/.env.prod
+        echo "NODE_ENV=${{env.DOTENV_NODE_ENV}}" >> ./configs/.env.prod
+        echo "TOKEN_SECRET=${{secrets.DOTENV_TOKEN_SECRET}}" >> ./configs/.env.prod
+        echo "TOKEN_TIME=${{env.DOTENV_TOKEN_TIME}}" >> ./configs/.env.prod
 
     - name: Run e2e tests
       uses: cypress-io/github-action@v1.24.0

@@ -2,7 +2,7 @@
 set -euo pipefail
 
 echo "[*] STARTING CLUSTER"
-cp ./configs/.env.dev ./packages/client/configs/.env.prod
+cp ./configs/.env.prod ./packages/client/configs/.env.prod
 docker-compose --file ./configs/docker-compose.yml up --build
 echo
 

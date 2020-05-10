@@ -27,6 +27,7 @@ import configureConfig from '../../../../../packages/client/src/config';
 const renderComponent = () => {
   const config = configureConfig({
     GRAPHQL_URL: 'http://localhost:3000/graphql',
+    NODE_ENV: 'test',
   });
 
   return render(
