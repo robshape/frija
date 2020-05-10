@@ -101,7 +101,7 @@ jobs:
       uses: cypress-io/github-action@v1.24.0
       with:
         browser: chrome
-        config-file: ./tests/cypress.config.json
+        config-file: ./tests/configs/cypress.config.json
         # headless: true
         start: npm run start:cluster
         wait-on: 'http://localhost:8080/'

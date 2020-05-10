@@ -56,7 +56,7 @@
     "start": "env-cmd --file ./configs/.env.dev lerna run --parallel start",
     "start:cluster": "./scripts/start-cluster.sh",
     "test": "npm run test:unit && npm run test:integration && npm run test:e2e",
-    "test:coverage": "jest --config ./tests/jest.config.js --coverage",
+    "test:coverage": "jest --config ./tests/configs/jest.config.js --coverage",
     "test:leaks": "node --expose-gc ./node_modules/.bin/jest --config ./tests/jest.config.js --detectOpenHandles --logHeapUsage --runInBand",
     "test:watch": "jest --config ./tests/jest.config.js --watch",
     "test:e2e": "start-server-and-test start:cluster http://localhost:8080/ test:e2e:cli",
