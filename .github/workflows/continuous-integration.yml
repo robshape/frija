@@ -72,8 +72,8 @@ jobs:
     - name: Lint JavaScript
       run: npm run lint:js
 
-    - name: Find files without license
-      run: ./scripts/find-files-without-license.sh
+    - name: Lint license
+      run: npm run lint:license
 
   run-e2e-tests:
     name: Run e2e tests
