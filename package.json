@@ -46,7 +46,7 @@
     "analyze": "./scripts/analyze-project.sh",
     "analyze:lighthouse": "lighthouse --output-path=./lighthouse.report.html --view http://localhost:8080/",
     "bootstrap": "lerna bootstrap --hoist",
-    "lint": "npm run lint:md && npm run lint:json -- --cache && npm run lint:sol && npm run lint:sass -- --cache && npm run lint:js -- --cache && lint:license",
+    "lint": "npm run lint:md && npm run lint:json -- --cache && npm run lint:sol && npm run lint:sass -- --cache && npm run lint:js -- --cache && npm run lint:license",
     "lint:js": "eslint --config ./configs/.eslintrc.js --ext .js,.jsx ./",
     "lint:json": "eslint --config ./configs/.eslintrc.js --ext .json ./",
     "lint:license": "./scripts/find-files-without-license.sh",
