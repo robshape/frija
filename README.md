@@ -12,7 +12,8 @@ The following section will help you set up your development environment.
 
 ### Prerequisites
 
-Install [Homebrew](https://brew.sh/) and run `brew install node`. Clone this repository.
+Install [Docker Desktop](https://docker.com/products/docker-desktop/). Install [Homebrew](https://brew.sh/)
+and run `brew install node`. Clone this repository.
 
 ### Install dependencies and setup project
 

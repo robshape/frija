@@ -43,7 +43,7 @@
   },
   "private": true,
   "scripts": {
-    "analyze": "./scripts/analyze-project.sh",
+    "analyze": "start-server-and-test start:cluster http://localhost:8080/ analyze:lighthouse && lerna run --parallel --scope @frija/client analyze:bundle",
     "analyze:lighthouse": "lighthouse --output-path=./lighthouse.report.html --view http://localhost:8080/",
     "bootstrap": "lerna bootstrap --hoist",
     "lint": "npm run lint:md && npm run lint:json -- --cache && npm run lint:sol && npm run lint:sass -- --cache && npm run lint:js -- --cache && npm run lint:license",
@@ -53,7 +53,7 @@
     "lint:md": "markdownlint --config ./configs/.markdownlint.json '**/*.md'",
     "lint:sass": "stylelint --config ./configs/.stylelintrc.js --report-needless-disables './packages/client/src/**/*.scss'",
     "lint:sol": "solhint --config ./configs/.solhint.js './packages/ethereum/src/contracts/**/*.sol'",
-    "setup": "./scripts/setup-project.sh",
+    "setup": "npm ci && npm run bootstrap && lerna run --parallel build",
     "start": "env-cmd --file ./configs/.env.dev lerna run --parallel start",
     "start:cluster": "./scripts/start-cluster.sh",
     "test": "npm run test:unit && npm run test:integration && npm run test:e2e",
