@@ -24,11 +24,11 @@ const configureApp = require('./app');
 const configureConfig = require('./config');
 
 const config = configureConfig(process.env);
-const app = configureApp(config);
+const { app, logger } = configureApp(config);
 
 http
   .createServer(app)
   .listen(config.graphqlPort, () => {
-    console.log(`Server listening on port ${config.graphqlPort}`); // eslint-disable-line no-console
-    console.log(`GraphQL listening on :${config.graphqlPort}/graphql`); // eslint-disable-line no-console
+    logger.info(`Server listening on port ${config.graphqlPort}`);
+    logger.info(`GraphQL listening on :${config.graphqlPort}/graphql`);
   });

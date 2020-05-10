@@ -21,13 +21,19 @@
 const compress = require('koa-compress');
 const helmet = require('koa-helmet');
 const Koa = require('koa');
+const pino = require('koa-pino-logger');
 
 const configureGraphQL = require('./graphql');
 const configureRoutes = require('./routes');
 
 const configureApp = (config) => {
   const koa = new Koa();
+  const logger = pino({
+    enabled: config.env !== 'test',
+  });
 
+  // Order matters. Top middleware wraps subsequent middleware.
+  koa.use(logger);
   koa.use(helmet({
     dnsPrefetchControl: true,
     frameguard: {
@@ -43,13 +49,15 @@ const configureApp = (config) => {
     },
     xssFilter: true,
   }));
-
   koa.use(compress());
 
   configureGraphQL(koa, config);
   configureRoutes(koa);
 
-  return koa.callback();
+  return {
+    app: koa.callback(),
+    logger: logger.logger,
+  };
 };
 
 module.exports = configureApp;
