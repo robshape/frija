@@ -21,10 +21,10 @@
 import React from 'react';
 
 import Form from './components/Form';
-import Heading from './components/Heading';
+import Heading from '../../components/Heading';
 import LogInViewLoader from './components/LogInViewLoader';
 import NumberInput from './components/NumberInput';
-import Subheading from './components/Subheading';
+import Subheading from '../../components/Subheading';
 import useAuthenticatePersonalIdentityNumber from './hooks/useAuthenticatePersonalIdentityNumber';
 import useInputPersonalIdentityNumber from './hooks/useInputPersonalIdentityNumber';
 import VALIDATION_STATUS from './constants/VALIDATION_STATUS';

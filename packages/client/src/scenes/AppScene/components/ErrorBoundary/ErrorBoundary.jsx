@@ -1,7 +1,7 @@
 /*
 
   Frija - The Swedish general election and Riksdag on the Ethereum blockchain.
-  Copyright (C) 2018 Frija contributors.
+  Copyright (C) 2020 Frija contributors.
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -21,16 +21,39 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import styles from './Subheading.scss';
+import ErrorScene from '../../../ErrorScene';
 
-const Subheading = ({ children }) => (
-  <h3 className={styles.subheading}>
-    {children}
-  </h3>
-);
+class ErrorBoundary extends React.Component {
+  static getDerivedStateFromError() {
+    return {
+      hasError: true,
+    };
+  }
 
-Subheading.propTypes = {
-  children: PropTypes.string.isRequired,
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      hasError: false,
+    };
+  }
+
+  render() {
+    const { children } = this.props;
+    const { hasError } = this.state;
+
+    if (hasError) {
+      return (
+        <ErrorScene />
+      );
+    }
+
+    return children;
+  }
+}
+
+ErrorBoundary.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
-export default Subheading;
+export default ErrorBoundary;

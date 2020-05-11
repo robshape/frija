@@ -1,7 +1,7 @@
 /*
 
   Frija - The Swedish general election and Riksdag on the Ethereum blockchain.
-  Copyright (C) 2020 Frija contributors.
+  Copyright (C) 2018 Frija contributors.
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -18,37 +18,19 @@
 
 */
 
-import { BrowserRouter, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { useQuery } from '@apollo/client';
 
-import IS_AUTHENTICATED_CLIENT_QUERY from '../../../../graphql/queries/IS_AUTHENTICATED_CLIENT_QUERY';
-import RouterLoader from '../RouterLoader';
-import useValidateStoredToken from '../../hooks/useValidateStoredToken';
+import styles from './Subheading.scss';
 
-const Router = ({ children }) => {
-  const { data } = useQuery(IS_AUTHENTICATED_CLIENT_QUERY);
-  const isValidating = useValidateStoredToken();
+const Subheading = ({ children }) => (
+  <h3 className={styles.subheading}>
+    {children}
+  </h3>
+);
 
-  if (data.isAuthenticated === null
-  || isValidating) {
-    return (
-      <RouterLoader />
-    );
-  }
-
-  return (
-    <BrowserRouter>
-      <Switch>
-        {children}
-      </Switch>
-    </BrowserRouter>
-  );
-};
-
-Router.propTypes = {
+Subheading.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default Router;
+export default Subheading;

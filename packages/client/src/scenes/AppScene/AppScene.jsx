@@ -24,6 +24,7 @@ import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 
 import AuthScene from '../AuthScene';
+import ErrorBoundary from './components/ErrorBoundary';
 import HomeScene from '../HomeScene';
 import PrivateRoute from './components/PrivateRoute';
 import Router from './components/Router';
@@ -31,7 +32,7 @@ import ROUTER_PATH from '../../constants/ROUTER_PATH';
 import styles from './AppScene.scss';
 import useConfigureGraphQL from './hooks/useConfigureGraphQL';
 
-const App = ({ config }) => {
+const AppScene = ({ config }) => {
   const client = useConfigureGraphQL(config);
 
   if (!Object.keys(client).length) {
@@ -41,22 +42,24 @@ const App = ({ config }) => {
   return (
     <ApolloProvider client={client}>
       <div className={styles.app} data-testid="app">
-        <Router>
+        <ErrorBoundary>
+          <Router>
 
-          <PrivateRoute component={HomeScene} exact path={ROUTER_PATH.HOME} />
-          <Route component={AuthScene} exact path={ROUTER_PATH.AUTHENTICATE} />
-          <Redirect to={ROUTER_PATH.HOME} />
+            <PrivateRoute component={HomeScene} exact path={ROUTER_PATH.HOME} />
+            <Route component={AuthScene} exact path={ROUTER_PATH.AUTHENTICATE} />
+            <Redirect to={ROUTER_PATH.HOME} />
 
-        </Router>
+          </Router>
+        </ErrorBoundary>
       </div>
     </ApolloProvider>
   );
 };
 
-App.propTypes = {
+AppScene.propTypes = {
   config: PropTypes.shape({
     graphqlUrl: PropTypes.string.isRequired,
   }).isRequired,
 };
 
-export default App;
+export default AppScene;
