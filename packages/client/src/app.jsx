@@ -23,16 +23,12 @@ import React, { StrictMode } from 'react';
 
 import AppScene from './scenes/AppScene';
 import configureConfig from './config';
-import { version } from '../package.json';
 
 const env = {
   GRAPHQL_URL: process.env.GRAPHQL_URL,
   NODE_ENV: process.env.NODE_ENV,
 };
 const config = configureConfig(env);
-if (config.env !== 'test') {
-  console.log('VERSION', version, config.env); // eslint-disable-line no-console
-}
 
 const App = hot(() => (
   <StrictMode>

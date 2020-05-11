@@ -22,13 +22,10 @@ const http = require('http');
 
 const configureApp = require('./app');
 const configureConfig = require('./config');
-const { version } = require('../package.json');
 
 const config = configureConfig(process.env);
-const { app, logger } = configureApp(config);
+const { app } = configureApp(config);
 
 http
   .createServer(app)
-  .listen(config.graphqlPort, () => {
-    logger.info(`VERSION ${version} ${config.env} :${config.graphqlPort}/graphql`);
-  });
+  .listen(config.graphqlPort);
