@@ -21,6 +21,7 @@
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -114,6 +115,9 @@ const config = (env) => ({
       verbose: true,
     }),
     new CompressionPlugin(),
+    new CopyPlugin([
+      './src/assets/',
+    ]),
     new Dotenv({
       path: './configs/.env.prod',
       safe: './configs/.env.example',
