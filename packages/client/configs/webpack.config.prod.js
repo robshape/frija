@@ -114,7 +114,9 @@ const config = (env) => ({
     new CleanWebpackPlugin({
       verbose: true,
     }),
-    new CompressionPlugin(),
+    new CompressionPlugin({
+      cache: false,
+    }),
     new CopyPlugin([
       './src/assets/',
     ]),
