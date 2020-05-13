@@ -29,10 +29,10 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 
-const packageJSON = require('../package.json');
+const { dependencies } = require('../package.json');
 
 const chunkedDependencies = () => Object
-  .keys(packageJSON.dependencies)
+  .keys(dependencies)
   .map((dependency) => {
     const dependencyName = dependency
       .replace('@', '')

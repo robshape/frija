@@ -31,11 +31,10 @@ jobs:
       run: |
         echo "GRAPHQL_URL=${{env.DOTENV_GRAPHQL_URL}}" >> ./configs/.env.prod
         echo "NODE_ENV=${{env.DOTENV_NODE_ENV}}" >> ./configs/.env.prod
+        cp ./configs/.env.prod ./packages/client/configs/
 
     - name: Build client package
-      run: |
-        cp ./configs/.env.prod ./packages/client/configs/
-        npx lerna run --scope @frija/client build
+      run: npx lerna run --scope @frija/client build
 
     - name: Build Ethereum package
       run: npx lerna run --scope @frija/ethereum build

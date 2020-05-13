@@ -24,6 +24,7 @@ import { Redirect, Route } from 'react-router-dom';
 import { useLazyQuery } from '@apollo/client';
 
 import IS_AUTHENTICATED_CLIENT_QUERY from '../../../../graphql/queries/IS_AUTHENTICATED_CLIENT_QUERY';
+import RouterLoader from '../RouterLoader';
 import ROUTER_PATH from '../../../../constants/ROUTER_PATH';
 
 const PrivateRoute = ({ component: Component, ...props }) => {
@@ -38,7 +39,9 @@ const PrivateRoute = ({ component: Component, ...props }) => {
   const onRouteRender = (routeProps) => {
     // Prevent protected Component from rendering until query is done.
     if (!data) {
-      return null;
+      return (
+        <RouterLoader />
+      );
     }
 
     if (data
