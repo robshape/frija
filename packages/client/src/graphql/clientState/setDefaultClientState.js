@@ -20,8 +20,6 @@
 
 import setClientState from './setClientState';
 
-const setDefaultClientState = (location) => {
-  setClientState(location, 'isAuthenticated', null); // `null` means that authentication has not been done.
-};
+const setDefaultClientState = (location) => setClientState(location, 'isAuthenticated', null); // `null` means that authentication has not been done.
 
 export default setDefaultClientState;

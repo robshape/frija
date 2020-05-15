@@ -35,9 +35,7 @@ import useConfigureGraphQL from './hooks/useConfigureGraphQL';
 const AppScene = ({ config }) => {
   const client = useConfigureGraphQL(config);
 
-  if (!Object.keys(client).length) {
-    return null;
-  }
+  if (!Object.keys(client).length) return null;
 
   return (
     <ApolloProvider client={client}>

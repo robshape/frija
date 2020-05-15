@@ -60,9 +60,7 @@ it('should show the Error scene if a function is broken', () => {
   global.console.error = jest.fn();
 
   const onSetError = () => [].notAFunction();
-  render(
-    <ComponentWithError onSetError={onSetError} />,
-  );
+  render(<ComponentWithError onSetError={onSetError} />);
 
   expect(screen.queryByText('Hoppsan!'))
     .not
@@ -80,9 +78,7 @@ it('should show the Error scene if an error is thrown', () => {
   const onSetError = () => {
     throw new Error('💥');
   };
-  render(
-    <ComponentWithError onSetError={onSetError} />,
-  );
+  render(<ComponentWithError onSetError={onSetError} />);
 
   expect(screen.queryByText('Hoppsan!'))
     .not

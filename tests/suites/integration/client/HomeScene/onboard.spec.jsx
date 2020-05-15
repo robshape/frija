@@ -24,9 +24,7 @@ import { render, screen } from '@testing-library/react';
 import HomeScene from '../../../../../packages/client/src/scenes/HomeScene';
 
 it('should show a welcome message', () => {
-  render(
-    <HomeScene />,
-  );
+  render(<HomeScene />);
 
   expect(screen.getByText('Välkommen till Frija.')).toBeInTheDocument();
 });

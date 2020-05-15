@@ -25,7 +25,8 @@ const configureConfig = (env) => {
     'NODE_ENV',
   ].filter((ev) => !env[ev]);
   if (missingEnvironmentVariables.length) {
-    throw new Error(`Missing environment variables: ${missingEnvironmentVariables.join(', ')}`);
+    const missingEnvironmentVariablesString = missingEnvironmentVariables.join(', ');
+    throw new Error(`Missing environment variables: ${missingEnvironmentVariablesString}`);
   }
 
   return {

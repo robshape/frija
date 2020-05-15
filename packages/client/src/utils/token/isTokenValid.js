@@ -27,22 +27,16 @@ const decodeTokenPayload = (token) => {
 const isTokenDateValid = (token) => {
   const date = Date.now() / 1000;
   const { exp } = decodeTokenPayload(token);
-  if (date > exp) {
-    return false;
-  }
+  if (date > exp) return false;
 
   return true;
 };
 
 const isTokenValid = (token) => {
-  if (!token) {
-    return false;
-  }
+  if (!token) return false;
 
   const isDateValid = isTokenDateValid(token);
-  if (!isDateValid) {
-    return false;
-  }
+  if (!isDateValid) return false;
 
   return true;
 };

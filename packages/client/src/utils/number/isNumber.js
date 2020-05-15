@@ -21,9 +21,7 @@
 const isNumber = (value) => {
   const lastCharacter = value.charAt(value.length - 1);
   const digit = Number.parseInt(lastCharacter, 10);
-  if (Number.isNaN(digit)) {
-    return false;
-  }
+  if (Number.isNaN(digit)) return false;
 
   return true;
 };

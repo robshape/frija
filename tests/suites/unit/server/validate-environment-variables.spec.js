@@ -21,58 +21,44 @@
 import configureConfig from '../../../../packages/server/src/config';
 
 it('should validate environment variables', async () => {
-  expect(() => {
-    configureConfig();
-  }).toThrow();
+  expect(() => configureConfig()).toThrow();
 
-  expect(() => {
-    configureConfig({});
-  }).toThrow();
+  expect(() => configureConfig({})).toThrow();
 
-  expect(() => {
-    configureConfig({
-      GRAPHQL_PORT: 0,
-      NODE_ENV: '',
-      TOKEN_SECRET: '',
-      TOKEN_TIME: '',
-    });
-  }).toThrow();
+  expect(() => configureConfig({
+    GRAPHQL_PORT: 0,
+    NODE_ENV: '',
+    TOKEN_SECRET: '',
+    TOKEN_TIME: '',
+  })).toThrow();
 
-  expect(() => {
-    configureConfig({
-      GRAPHQL_PORT: 3000,
-      NODE_ENV: '',
-      TOKEN_SECRET: '',
-      TOKEN_TIME: '',
-    });
-  }).toThrow();
+  expect(() => configureConfig({
+    GRAPHQL_PORT: 3000,
+    NODE_ENV: '',
+    TOKEN_SECRET: '',
+    TOKEN_TIME: '',
+  })).toThrow();
 
-  expect(() => {
-    configureConfig({
-      GRAPHQL_PORT: 3000,
-      NODE_ENV: 'test',
-      TOKEN_SECRET: '',
-      TOKEN_TIME: '',
-    });
-  }).toThrow();
+  expect(() => configureConfig({
+    GRAPHQL_PORT: 3000,
+    NODE_ENV: 'test',
+    TOKEN_SECRET: '',
+    TOKEN_TIME: '',
+  })).toThrow();
 
-  expect(() => {
-    configureConfig({
-      GRAPHQL_PORT: 3000,
-      NODE_ENV: 'test',
-      TOKEN_SECRET: 'c3e2a70e-ba85-4120-ba4d-1adc9c3d64c9',
-      TOKEN_TIME: '',
-    });
-  }).toThrow();
+  expect(() => configureConfig({
+    GRAPHQL_PORT: 3000,
+    NODE_ENV: 'test',
+    TOKEN_SECRET: 'c3e2a70e-ba85-4120-ba4d-1adc9c3d64c9',
+    TOKEN_TIME: '',
+  })).toThrow();
 
-  expect(() => {
-    configureConfig({
-      GRAPHQL_PORT: 3000,
-      NODE_ENV: 'test',
-      TOKEN_SECRET: 'c3e2a70e-ba85-4120-ba4d-1adc9c3d64c9',
-      TOKEN_TIME: '10m',
-    });
-  })
+  expect(() => configureConfig({
+    GRAPHQL_PORT: 3000,
+    NODE_ENV: 'test',
+    TOKEN_SECRET: 'c3e2a70e-ba85-4120-ba4d-1adc9c3d64c9',
+    TOKEN_TIME: '10m',
+  }))
     .not
     .toThrow();
 });

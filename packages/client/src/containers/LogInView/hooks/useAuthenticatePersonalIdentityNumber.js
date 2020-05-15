@@ -30,9 +30,7 @@ const useAuthenticatePersonalIdentityNumber = () => {
   const [authenticate, { data, loading }] = useMutation(AUTHENTICATE_MUTATION);
 
   useEffect(() => {
-    if (!data) {
-      return;
-    }
+    if (!data) return;
 
     setStoredToken(data.authenticate.token);
     setClientState(apolloClient, 'isAuthenticated', true);

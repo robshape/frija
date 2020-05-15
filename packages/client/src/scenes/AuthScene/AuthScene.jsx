@@ -30,11 +30,7 @@ import styles from './AuthScene.scss';
 const AuthScene = () => {
   const { data } = useQuery(IS_AUTHENTICATED_CLIENT_QUERY);
 
-  if (data.isAuthenticated) {
-    return (
-      <Redirect to={ROUTER_PATH.HOME} />
-    );
-  }
+  if (data.isAuthenticated) return <Redirect to={ROUTER_PATH.HOME} />;
 
   return (
     <div className={styles.authScene}>

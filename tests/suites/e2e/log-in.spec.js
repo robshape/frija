@@ -20,11 +20,9 @@
 
 it('should log in the user', () => {
   cy.visitAndAssert('/', {
-    onBeforeLoad: (w) => {
-      w
-        .sessionStorage
-        .clear();
-    },
+    onBeforeLoad: (win) => win
+      .sessionStorage
+      .clear(),
   });
 
   cy

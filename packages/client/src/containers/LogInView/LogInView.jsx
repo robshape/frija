@@ -42,18 +42,12 @@ const LogInView = () => {
   } = useInputPersonalIdentityNumber();
 
   const onSubmit = () => {
-    if (validationStatus !== VALIDATION_STATUS.SUCCESS) {
-      return;
-    }
+    if (validationStatus !== VALIDATION_STATUS.SUCCESS) return;
 
     authenticatePersonalIdentityNumber(personalIdentityNumber);
   };
 
-  if (isAuthenticating) {
-    return (
-      <LogInViewLoader />
-    );
-  }
+  if (isAuthenticating) return <LogInViewLoader />;
 
   return (
     <div>

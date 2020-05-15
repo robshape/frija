@@ -33,14 +33,10 @@ const ICON = Object.freeze({
 const Icon = ({ icon }) => {
   switch (icon) {
     case ICON.ERROR:
-      return (
-        <FontAwesomeIcon className={styles.icon__error} icon={faExclamation} />
-      );
+      return <FontAwesomeIcon className={styles.icon__error} icon={faExclamation} />;
 
     case ICON.SUCCESS:
-      return (
-        <FontAwesomeIcon className={styles.icon__success} icon={faCheck} />
-      );
+      return <FontAwesomeIcon className={styles.icon__success} icon={faCheck} />;
 
     default:
       return null;

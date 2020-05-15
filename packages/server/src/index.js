@@ -29,6 +29,4 @@ const { app, logger } = configureApp(config);
 
 http
   .createServer(app)
-  .listen(config.graphqlPort, () => {
-    logger.info(`Server listening on :${config.graphqlPort}/graphql (${version} ${config.env})`);
-  });
+  .listen(config.graphqlPort, () => logger.info(`Server listening on :${config.graphqlPort}/graphql (${version} ${config.env})`));

@@ -30,10 +30,7 @@ const renderComponent = (testProps, testOptions) => {
     path: '/authenticate',
   }, testOptions);
 
-  const renderResult = renderWithProviders(
-    <AuthScene />,
-    options,
-  );
+  const renderResult = renderWithProviders(<AuthScene />, options);
   renderResult
     .cache
     .writeQuery({

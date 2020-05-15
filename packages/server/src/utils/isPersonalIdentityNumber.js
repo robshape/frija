@@ -26,10 +26,7 @@ const isLuhnChecksumValid = (number) => {
   const lastDigit = digits.splice(0, 1)[0];
 
   const sum = digits.reduce((acc, cur, idx) => {
-    if (idx % 2 !== 0) {
-      return acc + cur;
-    }
-
+    if (idx % 2 !== 0) return acc + cur;
     return acc + ((cur * 2) % 9) || 9;
   }, 0);
 
@@ -39,9 +36,7 @@ const isLuhnChecksumValid = (number) => {
 const isPersonalIdentityNumber = (number) => {
   // Is it 10 (yymmddxxxx) or 12 (yyyymmddxxxx) digits?
   if (number.length !== 10
-  && number.length !== 12) {
-    return false;
-  }
+  && number.length !== 12) return false;
 
   // Is the date valid?
   const dateNumber = number.length === 12 // yymmdd.
@@ -49,17 +44,13 @@ const isPersonalIdentityNumber = (number) => {
     : number.substring(0, 6);
   const dateFormat = `${dateNumber.substring(0, 2)}-${dateNumber.substring(2, 4)}-${dateNumber.substring(4, 6)}`; // yy-mm-dd.
   const date = Date.parse(dateFormat);
-  if (Number.isNaN(date)) {
-    return false;
-  }
+  if (Number.isNaN(date)) return false;
 
   // Is the Luhn checksum valid?
   const luhnNumber = number.length === 12 // yymmddxxxx.
     ? number.substring(2)
     : number;
-  if (!isLuhnChecksumValid(luhnNumber)) {
-    return false;
-  }
+  if (!isLuhnChecksumValid(luhnNumber)) return false;
 
   return true;
 };

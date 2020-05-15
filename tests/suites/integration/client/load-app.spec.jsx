@@ -28,9 +28,7 @@ it('should load the app', async () => {
   };
   const { default: App } = require('../../../../packages/client/src/app'); // eslint-disable-line global-require
 
-  render(
-    <App />,
-  );
+  render(<App />);
   const app = await screen.findByTestId('app');
 
   expect(app).toBeInTheDocument();

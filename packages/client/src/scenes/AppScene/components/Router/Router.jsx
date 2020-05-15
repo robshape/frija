@@ -32,11 +32,7 @@ const Router = ({ children }) => {
   const isValidating = useValidateStoredToken();
 
   if (data.isAuthenticated === null
-  || isValidating) {
-    return (
-      <RouterLoader />
-    );
-  }
+  || isValidating) return <RouterLoader />;
 
   return (
     <BrowserRouter>

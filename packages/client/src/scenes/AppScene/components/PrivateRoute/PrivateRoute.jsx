@@ -38,27 +38,15 @@ const PrivateRoute = ({ component: Component, ...props }) => {
 
   const onRouteRender = (routeProps) => {
     // Prevent protected Component from rendering until query is done.
-    if (!data) {
-      return (
-        <RouterLoader />
-      );
-    }
+    if (!data) return <RouterLoader />;
 
     if (data
-    && !data.isAuthenticated) {
-      return (
-        <Redirect to={ROUTER_PATH.AUTHENTICATE} />
-      );
-    }
+    && !data.isAuthenticated) return <Redirect to={ROUTER_PATH.AUTHENTICATE} />;
 
-    return (
-      <Component {...routeProps} />
-    );
+    return <Component {...routeProps} />;
   };
 
-  return (
-    <Route {...props} render={onRouteRender} />
-  );
+  return <Route {...props} render={onRouteRender} />;
 };
 
 PrivateRoute.propTypes = {

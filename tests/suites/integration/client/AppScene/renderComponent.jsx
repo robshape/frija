@@ -30,9 +30,7 @@ const renderComponent = () => {
     NODE_ENV: 'test',
   });
 
-  return render(
-    <AppScene config={config} />,
-  );
+  return render(<AppScene config={config} />);
 };
 
 export default renderComponent;
