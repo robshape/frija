@@ -4,10 +4,6 @@ name: Continuous Integration
 on: push
 
 env:
-  DOTENV_GRAPHQL_PORT: 3000
-  DOTENV_GRAPHQL_URL: http://localhost:3000/graphql
-  DOTENV_NODE_ENV: production
-  DOTENV_TOKEN_TIME: 10m
   NODE_VERSION: 12.16.3 # Node LTS.
 
 jobs:
@@ -25,13 +21,6 @@ jobs:
 
     - name: Install dependencies
       run: npm run setup
-
-    # /docs/DOTENV.md
-    - name: Create .env
-      run: |
-        echo "GRAPHQL_URL=${{env.DOTENV_GRAPHQL_URL}}" >> ./configs/.env.prod
-        echo "NODE_ENV=${{env.DOTENV_NODE_ENV}}" >> ./configs/.env.prod
-        cp ./configs/.env.prod ./packages/client/configs/
 
     - name: Build client package
       run: npx lerna run --scope @frija/client build
@@ -87,15 +76,6 @@ jobs:
       with:
         node-version: ${{env.NODE_VERSION}}
 
-    # /docs/DOTENV.md
-    - name: Create .env
-      run: |
-        echo "GRAPHQL_PORT=${{env.DOTENV_GRAPHQL_PORT}}" >> ./configs/.env.prod
-        echo "GRAPHQL_URL=${{env.DOTENV_GRAPHQL_URL}}" >> ./configs/.env.prod
-        echo "NODE_ENV=${{env.DOTENV_NODE_ENV}}" >> ./configs/.env.prod
-        echo "TOKEN_SECRET=${{secrets.DOTENV_TOKEN_SECRET}}" >> ./configs/.env.prod
-        echo "TOKEN_TIME=${{env.DOTENV_TOKEN_TIME}}" >> ./configs/.env.prod
-
     - name: Run e2e tests
       uses: cypress-io/github-action@v1.24.0
       with:
@@ -103,7 +83,7 @@ jobs:
         config-file: ./tests/configs/cypress.config.json
         # headless: true
         start: npm run start:cluster
-        wait-on: 'http://localhost:8080/'
+        wait-on: 'http://localhost/'
         wait-on-timeout: 300 # Wait up to 300 seconds (5 minutes) for the cluster to start.
 
   run-unit-integration-tests-and-report-code-coverage:

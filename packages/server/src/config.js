@@ -21,8 +21,6 @@
 const configureConfig = (env) => {
   const missingEnvironmentVariables = [
     // Environment variables that are used by the app.
-    'GRAPHQL_PORT',
-    'NODE_ENV',
     'TOKEN_SECRET',
     'TOKEN_TIME',
   ].filter((ev) => !env[ev]);
@@ -32,12 +30,8 @@ const configureConfig = (env) => {
   }
 
   return {
-    env: env.NODE_ENV,
-    graphqlPort: env.GRAPHQL_PORT,
-    token: {
-      secret: env.TOKEN_SECRET,
-      time: env.TOKEN_TIME,
-    },
+    tokenSecret: env.TOKEN_SECRET,
+    tokenTime: env.TOKEN_TIME,
   };
 };
 

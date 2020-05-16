@@ -22,17 +22,10 @@ import { hot } from 'react-hot-loader/root';
 import React, { StrictMode } from 'react';
 
 import AppScene from './scenes/AppScene';
-import configureConfig from './config';
-
-const env = {
-  GRAPHQL_URL: process.env.GRAPHQL_URL,
-  NODE_ENV: process.env.NODE_ENV,
-};
-const config = configureConfig(env);
 
 const App = hot(() => (
   <StrictMode>
-    <AppScene config={config} />
+    <AppScene />
   </StrictMode>
 ));
 

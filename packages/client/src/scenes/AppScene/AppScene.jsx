@@ -19,7 +19,6 @@
 */
 
 import { ApolloProvider } from '@apollo/client';
-import PropTypes from 'prop-types';
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 
@@ -32,8 +31,8 @@ import ROUTER_PATH from '../../constants/ROUTER_PATH';
 import styles from './AppScene.scss';
 import useConfigureGraphQL from './hooks/useConfigureGraphQL';
 
-const AppScene = ({ config }) => {
-  const client = useConfigureGraphQL(config);
+const AppScene = () => {
+  const client = useConfigureGraphQL();
 
   if (!Object.keys(client).length) return null;
 
@@ -52,12 +51,6 @@ const AppScene = ({ config }) => {
       </div>
     </ApolloProvider>
   );
-};
-
-AppScene.propTypes = {
-  config: PropTypes.shape({
-    graphqlUrl: PropTypes.string.isRequired,
-  }).isRequired,
 };
 
 export default AppScene;

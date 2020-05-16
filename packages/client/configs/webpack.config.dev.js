@@ -27,6 +27,14 @@ const config = {
     historyApiFallback: true,
     hot: true,
     port: 8080,
+    proxy: {
+      '/api': {
+        pathRewrite: {
+          '^/api': '', // The object key is a RegExp.
+        },
+        target: 'http://localhost:3000',
+      },
+    },
   },
 
   devtool: 'cheap-module-eval-source-map',

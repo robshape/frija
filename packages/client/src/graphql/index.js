@@ -39,11 +39,11 @@ const authorizationHeaderWithStoredToken = () => {
   };
 };
 
-const configureGraphQL = ({ graphqlUrl }) => {
+const configureGraphQL = () => {
   const apolloClient = new ApolloClient({
     cache: new InMemoryCache(),
     headers: authorizationHeaderWithStoredToken(),
-    uri: graphqlUrl,
+    uri: '/api/graphql',
   });
 
   setDefaultClientState(apolloClient);

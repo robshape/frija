@@ -14,14 +14,14 @@
     "node-forge": "0.9.1"
   },
   "devDependencies": {
-    "nodemon": "2.0.3"
+    "nodemon": "2.0.4"
   },
   "name": "@frija/server",
   "private": true,
   "scripts": {
     "build": "docker build --tag frija/server:latest .",
     "start": "nodemon --watch ./src/ ./src/index.js",
-    "start:container": "docker run --env-file .env.prod --init --publish 3000:3000 --rm frija/server:latest"
+    "start:container": "docker run --env-file .env.dev --init --publish 3000:3000 --rm frija/server:latest"
   },
   "version": "0.1.0"
 }

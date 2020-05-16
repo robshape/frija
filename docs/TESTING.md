@@ -2,10 +2,6 @@
 
 The following section will help you set up your testing environment.
 
-## Prerequisites
-
-Create a production .env file (`.env.prod`) inside the `/configs/` directory.
-
 ## Analyze accessibility, best practices, bundle content, performance, SEO, and more
 
 Run `npm run analyze` inside the root directory.

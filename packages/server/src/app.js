@@ -29,7 +29,7 @@ const configureRoutes = require('./routes');
 const configureApp = (config) => {
   const koa = new Koa();
   const logger = pino({
-    enabled: config.env !== 'test',
+    enabled: process.env.NODE_ENV !== 'test',
   });
 
   // Order matters. Top middleware wraps subsequent middleware.

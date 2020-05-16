@@ -22,16 +22,10 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 
 it('should load the app', async () => {
-  global.process.env = {
-    ...global.process.env,
-    GRAPHQL_URL: 'http://localhost:3000/graphql',
-  };
   const { default: App } = require('../../../../packages/client/src/app'); // eslint-disable-line global-require
 
   render(<App />);
   const app = await screen.findByTestId('app');
 
   expect(app).toBeInTheDocument();
-
-  delete global.process.env.GRAPHQL_URL;
 });

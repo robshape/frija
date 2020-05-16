@@ -24,15 +24,18 @@ const { DataSource } = require('apollo-datasource');
 const jwt = require('../../utils/jwt');
 
 class TokenDataSource extends DataSource {
-  constructor({ token }) {
+  constructor({ tokenSecret, tokenTime }) {
     super();
 
-    this.tokenConfig = token;
+    this.jwtOptions = {
+      secret: tokenSecret,
+      time: tokenTime,
+    };
   }
 
   authenticate(user) {
     return {
-      token: jwt.sign(user.personalIdentityNumber, this.tokenConfig),
+      token: jwt.sign(user.personalIdentityNumber, this.jwtOptions),
     };
   }
 
@@ -42,7 +45,7 @@ class TokenDataSource extends DataSource {
     const token = ctx.header.authorization;
     if (token) {
       try {
-        isTokenValid = !!jwt.verify(token, this.tokenConfig);
+        isTokenValid = !!jwt.verify(token, this.jwtOptions);
       } catch (error) {
         isTokenValid = false;
       }
@@ -53,7 +56,7 @@ class TokenDataSource extends DataSource {
 
   validate(token) {
     try {
-      return !!jwt.verify(token, this.tokenConfig);
+      return !!jwt.verify(token, this.jwtOptions);
     } catch (error) {
       throw new AuthenticationError('Invalid token.');
     }

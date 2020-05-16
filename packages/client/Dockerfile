@@ -8,11 +8,8 @@ COPY ./package.json ./
 RUN apk add --no-cache g++ make python
 RUN npm ci
 
-# Needed, in addition to .env, for Babel, etc.
 ENV NODE_ENV production
 
-# /.github/workflows/continuous-integration.yml
-# /docs/DOTENV.md
 COPY ./configs/ ./configs/
 COPY ./src/ ./src/
 RUN npm run build:bundle
