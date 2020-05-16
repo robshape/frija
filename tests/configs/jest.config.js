@@ -42,9 +42,9 @@ const config = {
     '<rootDir>/tests/configs/jest.setup.js',
   ],
 
-  testRegex: [
-    './tests/suites/integration/.+\\.spec\\.(js|jsx)$',
-    './tests/suites/unit/.+\\.spec\\.(js|jsx)$',
+  testMatch: [
+    '<rootDir>/tests/suites/integration/**/*.spec.{js,jsx}',
+    '<rootDir>/tests/suites/unit/**/*.spec.{js,jsx}',
   ],
 
   transform: {
