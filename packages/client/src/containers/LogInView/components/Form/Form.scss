@@ -19,11 +19,9 @@
 */
 
 .form {
-  margin-top: 32px;
-
   &__submit {
     display: flex;
     justify-content: flex-end;
-    margin-top: 12px;
+    margin-top: 0.5rem;
   }
 }

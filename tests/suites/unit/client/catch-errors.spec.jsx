@@ -62,13 +62,13 @@ it('should show the Error scene if a function is broken', () => {
   const onSetError = () => [].notAFunction();
   render(<ComponentWithError onSetError={onSetError} />);
 
-  expect(screen.queryByText('Hoppsan!'))
+  expect(screen.queryByText(/Något blev fel/))
     .not
     .toBeInTheDocument();
 
   userEvent.click(screen.getByRole('button', { name: 'Set error' }));
 
-  expect(screen.getByText('Hoppsan!')).toBeInTheDocument();
+  expect(screen.getByText(/Något blev fel/)).toBeInTheDocument();
   expect(global.console.error).toHaveBeenCalledTimes(2);
 });
 
@@ -80,12 +80,12 @@ it('should show the Error scene if an error is thrown', () => {
   };
   render(<ComponentWithError onSetError={onSetError} />);
 
-  expect(screen.queryByText('Hoppsan!'))
+  expect(screen.queryByText(/Något blev fel/))
     .not
     .toBeInTheDocument();
 
   userEvent.click(screen.getByRole('button', { name: 'Set error' }));
 
-  expect(screen.getByText('Hoppsan!')).toBeInTheDocument();
+  expect(screen.getByText(/Något blev fel/)).toBeInTheDocument();
   expect(global.console.error).toHaveBeenCalledTimes(2);
 });

@@ -23,3 +23,7 @@ $color-gray: #9ca4b8;
 $color-green: #4caf50;
 $color-red: #f44336;
 $color-white: #fff;
+
+$grid-size: 8px;
+$root-font-size: $grid-size * 2;
+$root-line-height: $root-font-size * 1.5;

@@ -21,10 +21,9 @@
 import React from 'react';
 
 import Form from './components/Form';
-import Heading from '../../components/Heading';
 import LogInViewLoader from './components/LogInViewLoader';
 import NumberInput from './components/NumberInput';
-import Subheading from '../../components/Subheading';
+import styles from './LogInView.scss';
 import useAuthenticatePersonalIdentityNumber from './hooks/useAuthenticatePersonalIdentityNumber';
 import useInputPersonalIdentityNumber from './hooks/useInputPersonalIdentityNumber';
 import VALIDATION_STATUS from './constants/VALIDATION_STATUS';
@@ -50,13 +49,15 @@ const LogInView = () => {
   if (isAuthenticating) return <LogInViewLoader />;
 
   return (
-    <div>
-      <Heading>
-        Hej,
-      </Heading>
-      <Subheading>
-        identifiera dig med Mobilt BankID
-      </Subheading>
+    <div className={styles.logInView}>
+      <div className={styles.logInView__text}>
+        <h2>
+          Hej,
+        </h2>
+        <h3>
+          identifiera dig med Mobilt BankID
+        </h3>
+      </div>
 
       <Form buttonText="Fortsätt" onSubmit={onSubmit}>
         <NumberInput

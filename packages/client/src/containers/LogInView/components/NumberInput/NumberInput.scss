@@ -26,7 +26,7 @@
     @include animation-transition;
 
     border-bottom: 2px solid $color-gray;
-    padding-bottom: 12px;
+    padding-bottom: 0.5rem;
 
     &:focus-within {
       border-color: $color-black;
@@ -35,12 +35,13 @@
 
   &__icon {
     display: flex;
-    margin-top: 12px;
+    margin-top: 0.5rem;
   }
 
   &__input {
     border: 0;
     font-size: 1rem;
+    line-height: 1.5rem;
     font-weight: 500;
     outline: 0;
     width: 100%;

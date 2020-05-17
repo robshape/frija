@@ -22,26 +22,20 @@ import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 
-import Heading from '../../components/Heading';
 import ROUTER_PATH from '../../constants/ROUTER_PATH';
 import styles from './ErrorScene.scss';
-import Subheading from '../../components/Subheading';
 
 const ErrorScene = () => (
   <div className={styles.errorScene}>
     <FontAwesomeIcon className={styles.errorScene__icon} icon={faExclamationTriangle} />
 
-    <Heading>
-      Hoppsan!
-    </Heading>
-
-    <Subheading>
+    <p>
       Något blev fel. Kan du&nbsp;
       <a className={styles.errorScene__link} href={ROUTER_PATH.HOME}>
         försöka igen
       </a>
       ?
-    </Subheading>
+    </p>
   </div>
 );
 

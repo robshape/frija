@@ -29,16 +29,16 @@
   &__spinner {
     @include animation-spin;
 
-    border: 12px solid $color-white;
+    border: 1rem solid $color-white;
     border-radius: 50%;
     border-top-color: $color-black;
-    height: 32px;
-    width: 32px;
+    height: 4rem;
+    width: 4rem;
   }
 
   &__text {
-    font-size: 0.875rem;
-    margin-top: 16px;
+    font-weight: 100;
+    margin-top: 2rem;
     text-align: center;
   }
 }
