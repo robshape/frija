@@ -37,7 +37,6 @@ const PrivateRoute = ({ component: Component, ...props }) => {
   }, [isAuthenticated]);
 
   const onRouteRender = (routeProps) => {
-    // Prevent protected Component from rendering until query is done.
     if (!data) return <RouterLoader />;
 
     if (data

@@ -22,7 +22,7 @@ const config = {
   collectCoverageFrom: [
     './packages/**/*.{js,jsx}',
 
-    // Excluding:
+    // Do not collect coverage from:
     '!./packages/client/configs/**',
     '!./packages/client/dist/**',
     '!./packages/client/src/index.jsx',

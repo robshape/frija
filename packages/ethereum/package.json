@@ -8,5 +8,6 @@
     "build": "truffle compile --all",
     "deploy": "truffle migrate --reset",
     "start": "truffle develop"
-  }
+  },
+  "version": "0.1.0"
 }

@@ -18,6 +18,10 @@ Run `npm run lint` inside the root directory.
 
 Run `npm test` inside the root directory.
 
+## Run GitHub Actions locally
+
+Use [https://github.com/nektos/act/](https://github.com/nektos/act/).
+
 ## Try GraphQL queries
 
 Visit [http://localhost:3000/graphql](http://localhost:3000/graphql) to open GraphQL Playground. Use

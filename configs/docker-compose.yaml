@@ -8,6 +8,9 @@ services:
 
   ingress:
     build: ../packages/ingress
+    depends_on:
+      - client
+      - server
     image: frija/ingress:latest
     init: true
     ports:

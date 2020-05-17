@@ -1,5 +1,3 @@
-node_modules/
-
 .dockerignore
-.env.dev
 Dockerfile
+package.json

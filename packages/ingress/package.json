@@ -1,0 +1,8 @@
+{
+  "name": "@frija/ingress",
+  "private": true,
+  "scripts": {
+    "build": "docker build --tag frija/ingress:latest ."
+  },
+  "version": "0.1.0"
+}
