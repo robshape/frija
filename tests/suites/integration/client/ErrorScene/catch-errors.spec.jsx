@@ -23,7 +23,7 @@ import React, { useState } from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import ErrorBoundary from '../../../../packages/client/src/scenes/AppScene/components/ErrorBoundary';
+import ErrorBoundary from '../../../../../packages/client/src/scenes/AppScene/components/ErrorBoundary';
 
 const ComponentWithError = ({ onSetError }) => {
   const [error, setError] = useState(false);
@@ -37,9 +37,7 @@ const ComponentWithError = ({ onSetError }) => {
 
   return (
     <ErrorBoundary>
-      {!!error && (
-        <ErrorComponent />
-      )}
+      {!!error && <ErrorComponent />}
 
       <button onClick={onClick} type="button">
         Set error
