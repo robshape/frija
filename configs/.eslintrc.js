@@ -85,6 +85,9 @@ const config = {
     },
   ],
 
+  // Lint experimental and non-standard syntax.
+  parser: 'babel-eslint',
+
   plugins: [
     'json',
     'react-hooks',

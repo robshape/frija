@@ -19,7 +19,7 @@
 */
 
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { Suspense, useState } from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
@@ -36,13 +36,15 @@ const ComponentWithError = ({ onSetError }) => {
   const onClick = () => setError(true);
 
   return (
-    <ErrorBoundary>
-      {!!error && <ErrorComponent />}
+    <Suspense fallback={null}>
+      <ErrorBoundary>
+        {!!error && <ErrorComponent />}
 
-      <button onClick={onClick} type="button">
-        Set error
-      </button>
-    </ErrorBoundary>
+        <button onClick={onClick} type="button">
+          Set error
+        </button>
+      </ErrorBoundary>
+    </Suspense>
   );
 };
 
@@ -54,7 +56,7 @@ ComponentWithError.propTypes = {
   onSetError: PropTypes.func,
 };
 
-it('should show the Error scene if a function is broken', () => {
+it('should show the Error scene if a function is broken', async () => {
   global.console.error = jest.fn();
 
   const onSetError = () => [].notAFunction();
@@ -65,12 +67,13 @@ it('should show the Error scene if a function is broken', () => {
     .toBeInTheDocument();
 
   userEvent.click(screen.getByRole('button', { name: 'Set error' }));
+  const messageText = await screen.findByText(/Något blev fel/);
 
-  expect(screen.getByText(/Något blev fel/)).toBeInTheDocument();
+  expect(messageText).toBeInTheDocument();
   expect(global.console.error).toHaveBeenCalledTimes(2);
 });
 
-it('should show the Error scene if an error is thrown', () => {
+it('should show the Error scene if an error is thrown', async () => {
   global.console.error = jest.fn();
 
   const onSetError = () => {
@@ -83,7 +86,8 @@ it('should show the Error scene if an error is thrown', () => {
     .toBeInTheDocument();
 
   userEvent.click(screen.getByRole('button', { name: 'Set error' }));
+  const messageText = await screen.findByText(/Något blev fel/);
 
-  expect(screen.getByText(/Något blev fel/)).toBeInTheDocument();
+  expect(messageText).toBeInTheDocument();
   expect(global.console.error).toHaveBeenCalledTimes(2);
 });

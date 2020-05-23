@@ -19,17 +19,18 @@
 */
 
 import { ApolloProvider } from '@apollo/client';
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 
-import AuthScene from '../AuthScene';
 import ErrorBoundary from './components/ErrorBoundary';
-import HomeScene from '../HomeScene';
 import PrivateRoute from './components/PrivateRoute';
 import Router from './components/Router';
 import ROUTER_PATH from '../../constants/ROUTER_PATH';
 import styles from './AppScene.scss';
 import useConfigureGraphQL from './hooks/useConfigureGraphQL';
+
+const AuthScene = lazy(() => import(/* webpackChunkName: "AuthScene" */'../AuthScene'));
+const HomeScene = lazy(() => import(/* webpackChunkName: "HomeScene" */'../HomeScene'));
 
 const AppScene = () => {
   const client = useConfigureGraphQL();
@@ -39,15 +40,18 @@ const AppScene = () => {
   return (
     <ApolloProvider client={client}>
       <div className={styles.app} data-testid="app">
-        <ErrorBoundary>
-          <Router>
+        {/* Suspense, with a fallback, is necessary for code splitting / lazy loading. */}
+        <Suspense fallback={null}>
+          <ErrorBoundary>
+            <Router>
 
-            <PrivateRoute component={HomeScene} exact path={ROUTER_PATH.HOME} />
-            <Route component={AuthScene} exact path={ROUTER_PATH.AUTHENTICATE} />
-            <Redirect to={ROUTER_PATH.HOME} />
+              <PrivateRoute component={HomeScene} exact path={ROUTER_PATH.HOME} />
+              <Route component={AuthScene} exact path={ROUTER_PATH.AUTHENTICATE} />
+              <Redirect to={ROUTER_PATH.HOME} />
 
-          </Router>
-        </ErrorBoundary>
+            </Router>
+          </ErrorBoundary>
+        </Suspense>
       </div>
     </ApolloProvider>
   );
