@@ -30,6 +30,17 @@ it('should load Frija', () => {
     .contains('h2', 'Hej,')
     .should('be.visible');
 
+  // Path without trailing slash.
+  cy.visitAndAssert('/authenticate');
+
+  cy
+    .url()
+    .should('include', '/authenticate');
+
+  cy
+    .contains('h2', 'Hej,')
+    .should('be.visible');
+
   // Path with trailing slash.
   cy.visitAndAssert('/authenticate/');
 
@@ -50,6 +61,9 @@ it('should load Frija', () => {
   cy
     .url()
     .should('not.include', 'doesnotexist');
+  cy
+    .url()
+    .should('include', '/authenticate');
 
   cy
     .contains('h2', 'Hej,')
@@ -64,6 +78,9 @@ it('should load Frija', () => {
   cy
     .url()
     .should('not.include', '.png');
+  cy
+    .url()
+    .should('include', '/authenticate');
 
   cy
     .contains('h2', 'Hej,')
