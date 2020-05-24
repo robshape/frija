@@ -1,0 +1,6 @@
+{
+  "main": "./lib/index.js",
+  "name": "@frija/utils",
+  "private": true,
+  "version": "0.1.0"
+}

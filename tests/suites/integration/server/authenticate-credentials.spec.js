@@ -19,7 +19,7 @@
 */
 
 import AUTHENTICATE_MUTATION from '../../../../packages/client/src/graphql/mutations/AUTHENTICATE_MUTATION';
-import isTokenDateValid from '../../../../packages/client/src/utils/token/isTokenValid';
+import isTokenValid from '../../../../packages/client/src/utils/token/isTokenValid';
 import serverTestClient from '../utils/serverTestClient';
 
 it('should not authenticate the credentials if their length is not valid', async () => {
@@ -69,10 +69,10 @@ it('should authenticate the credentials if they are valid', async () => {
       personalIdentityNumber: '190001012020',
     },
   });
-  const isTokenValid = isTokenDateValid(data.authenticate.token);
+  const isValidToken = isTokenValid(data.authenticate.token);
 
   expect(errors).toBeUndefined();
-  expect(isTokenValid).toBe(true);
+  expect(isValidToken).toBe(true);
 });
 
 it('should authenticate the shorthand credentials if they are valid', async () => {
@@ -83,8 +83,8 @@ it('should authenticate the shorthand credentials if they are valid', async () =
       personalIdentityNumber: '0001012020',
     },
   });
-  const isTokenValid = isTokenDateValid(data.authenticate.token);
+  const isValidToken = isTokenValid(data.authenticate.token);
 
   expect(errors).toBeUndefined();
-  expect(isTokenValid).toBe(true);
+  expect(isValidToken).toBe(true);
 });
