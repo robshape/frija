@@ -19,28 +19,20 @@
 */
 
 import PropTypes from 'prop-types';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import { useLazyQuery } from '@apollo/client';
 
-import IS_AUTHENTICATED_CLIENT_QUERY from '../../../../graphql/queries/IS_AUTHENTICATED_CLIENT_QUERY';
-import RouterLoader from '../RouterLoader';
 import ROUTER_PATH from '../../../../constants/ROUTER_PATH';
+import SceneLoader from '../../../../components/SceneLoader';
+import useIsAuthenticatedClientQuery from '../../../../hooks/useIsAuthenticatedClientQuery';
 
 const PrivateRoute = ({ component: Component, ...props }) => {
-  // https://github.com/apollographql/react-apollo/issues/3635/
-  const [isAuthenticated, { data }] = useLazyQuery(IS_AUTHENTICATED_CLIENT_QUERY);
-  useEffect(() => {
-    let isMounted = true;
-    if (isMounted) isAuthenticated();
-    return () => { isMounted = false; };
-  }, [isAuthenticated]);
+  const { data, loading } = useIsAuthenticatedClientQuery();
 
   const onRouteRender = (routeProps) => {
-    if (!data) return <RouterLoader />;
+    if (loading) return <SceneLoader />;
 
-    if (data
-    && !data.isAuthenticated) return <Redirect to={ROUTER_PATH.AUTHENTICATE} />;
+    if (!data.isAuthenticated) return <Redirect to={ROUTER_PATH.AUTHENTICATE} />;
 
     return <Component {...routeProps} />;
   };

@@ -18,32 +18,30 @@
 
 */
 
-import { BrowserRouter, Switch } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import React from 'react';
+import { useEffect } from 'react';
+import { useLazyQuery } from '@apollo/client';
 
-import SceneLoader from '../../../../components/SceneLoader';
-import useIsAuthenticatedClientQuery from '../../../../hooks/useIsAuthenticatedClientQuery';
-import useValidateStoredToken from '../../hooks/useValidateStoredToken';
+import IS_AUTHENTICATED_CLIENT_QUERY from '../graphql/queries/IS_AUTHENTICATED_CLIENT_QUERY';
 
-const Router = ({ children }) => {
-  const isValidating = useValidateStoredToken();
-  const { loading } = useIsAuthenticatedClientQuery();
+const useIsAuthenticatedClientQuery = () => {
+  const [isAuthenticated, { data }] = useLazyQuery(IS_AUTHENTICATED_CLIENT_QUERY);
+  const definedData = data === undefined
+    ? {}
+    : data;
+  const loading = data === undefined
+    || data.isAuthenticated === null;
 
-  if (isValidating
-  || loading) return <SceneLoader />;
+  // https://github.com/apollographql/react-apollo/issues/3635/
+  useEffect(() => {
+    let isMounted = true;
+    if (isMounted) isAuthenticated();
+    return () => { isMounted = false; };
+  }, [isAuthenticated]);
 
-  return (
-    <BrowserRouter>
-      <Switch>
-        {children}
-      </Switch>
-    </BrowserRouter>
-  );
+  return {
+    data: definedData,
+    loading,
+  };
 };
 
-Router.propTypes = {
-  children: PropTypes.node.isRequired,
-};
-
-export default Router;
+export default useIsAuthenticatedClientQuery;

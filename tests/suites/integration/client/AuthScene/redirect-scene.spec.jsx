@@ -26,8 +26,12 @@ import renderComponent from './renderComponent';
 it('should redirect to the Home path if the user is authenticated', async () => {
   const { cache, history } = renderComponent();
 
+  expect(screen.getByRole('progressbar')).toHaveClass('loader');
+
+  const credentialsInput = await screen.findByRole('textbox', { name: 'Personnummer' });
+
+  expect(credentialsInput).toBeInTheDocument();
   expect(history.location.pathname).toBe('/authenticate');
-  expect(screen.queryByRole('textbox', { name: 'Personnummer' })).toBeInTheDocument();
 
   cache.writeQuery({
     data: {

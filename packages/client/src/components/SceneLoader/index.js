@@ -18,15 +18,6 @@
 
 */
 
-import React from 'react';
+import SceneLoader from './SceneLoader';
 
-import Loader from '../../../../components/Loader';
-import styles from './RouterLoader.scss';
-
-const RouterLoader = () => (
-  <div className={styles.routerLoader}>
-    <Loader />
-  </div>
-);
-
-export default RouterLoader;
+export default SceneLoader;

@@ -20,15 +20,17 @@
 
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
 
-import IS_AUTHENTICATED_CLIENT_QUERY from '../../graphql/queries/IS_AUTHENTICATED_CLIENT_QUERY';
 import LogInView from '../../containers/LogInView';
 import ROUTER_PATH from '../../constants/ROUTER_PATH';
+import SceneLoader from '../../components/SceneLoader';
 import styles from './AuthScene.scss';
+import useIsAuthenticatedClientQuery from '../../hooks/useIsAuthenticatedClientQuery';
 
 const AuthScene = () => {
-  const { data } = useQuery(IS_AUTHENTICATED_CLIENT_QUERY);
+  const { data, loading } = useIsAuthenticatedClientQuery();
+
+  if (loading) return <SceneLoader />;
 
   if (data.isAuthenticated) return <Redirect to={ROUTER_PATH.HOME} />;
 

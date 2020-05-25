@@ -29,9 +29,6 @@ it('should show the Auth scene if there is no stored token', async () => {
   expect(global.sessionStorage.getItem('token')).toBeNull();
 
   renderComponent();
-
-  expect(screen.getByRole('progressbar')).toHaveClass('loader');
-
   const subheadingText = await screen.findByText('identifiera dig med Mobilt BankID');
 
   expect(subheadingText).toBeInTheDocument();
@@ -52,9 +49,6 @@ it('should show the Auth scene if the stored token is not valid (client)', async
     .toBeNull();
 
   renderComponent();
-
-  expect(screen.getByRole('progressbar')).toHaveClass('loader');
-
   const subheadingText = await screen.findByText('identifiera dig med Mobilt BankID');
 
   expect(subheadingText).toBeInTheDocument();
