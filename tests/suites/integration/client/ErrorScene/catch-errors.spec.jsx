@@ -67,9 +67,8 @@ it('should show the Error scene if a function is broken', async () => {
     .toBeInTheDocument();
 
   userEvent.click(screen.getByRole('button', { name: 'Set error' }));
-  const messageText = await screen.findByText(/Något blev fel/);
 
-  expect(messageText).toBeInTheDocument();
+  expect(await screen.findByText(/Något blev fel/)).toBeInTheDocument();
   expect(global.console.error).toHaveBeenCalledTimes(2);
 });
 
@@ -86,8 +85,7 @@ it('should show the Error scene if an error is thrown', async () => {
     .toBeInTheDocument();
 
   userEvent.click(screen.getByRole('button', { name: 'Set error' }));
-  const messageText = await screen.findByText(/Något blev fel/);
 
-  expect(messageText).toBeInTheDocument();
+  expect(await screen.findByText(/Något blev fel/)).toBeInTheDocument();
   expect(global.console.error).toHaveBeenCalledTimes(2);
 });

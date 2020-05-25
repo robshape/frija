@@ -29,9 +29,8 @@ it('should show the Auth scene if there is no stored token', async () => {
   expect(global.sessionStorage.getItem('token')).toBeNull();
 
   renderComponent();
-  const subheadingText = await screen.findByText('identifiera dig med Mobilt BankID');
 
-  expect(subheadingText).toBeInTheDocument();
+  expect(await screen.findByText('identifiera dig med Mobilt BankID')).toBeInTheDocument();
   expect(global.fetch)
     .not
     .toHaveBeenCalled();
@@ -49,9 +48,8 @@ it('should show the Auth scene if the stored token is not valid (client)', async
     .toBeNull();
 
   renderComponent();
-  const subheadingText = await screen.findByText('identifiera dig med Mobilt BankID');
 
-  expect(subheadingText).toBeInTheDocument();
+  expect(await screen.findByText('identifiera dig med Mobilt BankID')).toBeInTheDocument();
   expect(global.fetch)
     .not
     .toHaveBeenCalled();
@@ -78,10 +76,7 @@ it('should show the Auth scene if the stored token is not valid (server)', async
   renderComponent();
 
   expect(screen.getByRole('progressbar')).toHaveClass('loader');
-
-  const subheadingText = await screen.findByText('identifiera dig med Mobilt BankID');
-
-  expect(subheadingText).toBeInTheDocument();
+  expect(await screen.findByText('identifiera dig med Mobilt BankID')).toBeInTheDocument();
   expect(global.fetch).toHaveBeenCalledTimes(1);
   expect(global.sessionStorage.getItem('token')).toBeNull();
 });
@@ -106,10 +101,7 @@ it('should show the Home scene if the stored token is valid', async () => {
   renderComponent();
 
   expect(screen.getByRole('progressbar')).toHaveClass('loader');
-
-  const welcomeText = await screen.findByText('Välkommen till Frija.');
-
-  expect(welcomeText).toBeInTheDocument();
+  expect(await screen.findByText('Välkommen till Frija.')).toBeInTheDocument();
   expect(global.fetch).toHaveBeenCalledTimes(1);
   expect(global.sessionStorage.getItem('token'))
     .not

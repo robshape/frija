@@ -26,9 +26,8 @@ import renderComponent from './renderComponent';
 
 it('should validate the credentials', async () => {
   renderComponent();
-  const credentialsInput = await screen.findByRole('textbox', { name: 'Personnummer' });
 
-  expect(credentialsInput).toBeInTheDocument();
+  expect(await screen.findByRole('textbox', { name: 'Personnummer' })).toBeInTheDocument();
 
   // Only numbers can be entered.
   expect(screen.getByRole('textbox', { name: 'Personnummer' })).toHaveValue('');
@@ -113,9 +112,8 @@ it('should submit the credentials if they are valid', async () => {
   renderComponent({}, {
     mocks,
   });
-  const credentialsInput = await screen.findByRole('textbox', { name: 'Personnummer' });
 
-  expect(credentialsInput).toBeInTheDocument();
+  expect(await screen.findByRole('textbox', { name: 'Personnummer' })).toBeInTheDocument();
 
   // Invalid shorthand credentials should not be submitted.
   await userEvent.type(screen.getByRole('textbox', { name: 'Personnummer' }), '0001012021'); // Shorthand credentials with an invalid Luhn checksum.
