@@ -22,10 +22,12 @@ import { hot } from 'react-hot-loader/root';
 import React, { StrictMode } from 'react';
 
 import AppScene from './scenes/AppScene';
+import configureGraphQL from './graphql';
 
+const client = configureGraphQL();
 const App = hot(() => (
   <StrictMode>
-    <AppScene />
+    <AppScene client={client} />
   </StrictMode>
 ));
 

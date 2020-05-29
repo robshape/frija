@@ -20,31 +20,19 @@
 
 import React from 'react';
 
-import Form from './components/Form';
+import CredentialsForm from './components/CredentialsForm';
 import LogInViewLoader from './components/LogInViewLoader';
-import NumberInput from './components/NumberInput';
+
 import styles from './LogInView.scss';
 import useAuthenticatePersonalIdentityNumber from './hooks/useAuthenticatePersonalIdentityNumber';
-import useInputPersonalIdentityNumber from './hooks/useInputPersonalIdentityNumber';
-import VALIDATION_STATUS from './constants/VALIDATION_STATUS';
 
 const LogInView = () => {
   const {
     authenticatePersonalIdentityNumber,
     isAuthenticating,
   } = useAuthenticatePersonalIdentityNumber();
-  const {
-    onBlur,
-    onChange,
-    personalIdentityNumber,
-    validationStatus,
-  } = useInputPersonalIdentityNumber();
 
-  const onSubmit = () => {
-    if (validationStatus !== VALIDATION_STATUS.SUCCESS) return;
-
-    authenticatePersonalIdentityNumber(personalIdentityNumber);
-  };
+  const onSubmit = (credentials) => authenticatePersonalIdentityNumber(credentials);
 
   if (isAuthenticating) return <LogInViewLoader />;
 
@@ -59,17 +47,7 @@ const LogInView = () => {
         </h3>
       </div>
 
-      <Form buttonText="Fortsätt" onSubmit={onSubmit}>
-        <NumberInput
-          labelText="Personnummer"
-          maxLength={12}
-          onBlur={onBlur}
-          onChange={onChange}
-          placeholder="ååååmmddxxxx"
-          validationStatus={validationStatus}
-          validationText="Ange ett giltig personnummer."
-        />
-      </Form>
+      <CredentialsForm onSubmit={onSubmit} />
     </div>
   );
 };

@@ -21,17 +21,27 @@
 import { useApolloClient, useLazyQuery } from '@apollo/client';
 import { useEffect } from 'react';
 
-import getStoredToken from '../../../utils/token/getStoredToken';
-import isTokenValid from '../../../utils/token/isTokenValid';
-import removeStoredToken from '../../../utils/token/removeStoredToken';
-import setClientState from '../../../graphql/clientState/setClientState';
-import VALIDATE_QUERY from '../../../graphql/queries/VALIDATE_QUERY';
+import getStoredToken from '../utils/token/getStoredToken';
+import isTokenValid from '../utils/token/isTokenValid';
+import removeStoredToken from '../utils/token/removeStoredToken';
+import setClientState from '../graphql/clientState/setClientState';
+import VALIDATE_QUERY from '../graphql/queries/VALIDATE_QUERY';
 
 const useValidateStoredToken = () => {
   const apolloClient = useApolloClient();
   const [validate, { data, error, loading }] = useLazyQuery(VALIDATE_QUERY);
 
   useEffect(() => {
+    if (data
+    && data.validate) setClientState(apolloClient, 'isAuthenticated', true);
+
+    if (error) {
+      setClientState(apolloClient, 'isAuthenticated', false);
+      removeStoredToken();
+    }
+  }, [apolloClient, data, error]);
+
+  const validateStoredToken = async () => {
     const token = getStoredToken();
 
     const isValidToken = isTokenValid(token);
@@ -46,19 +56,12 @@ const useValidateStoredToken = () => {
         token,
       },
     });
-  }, [apolloClient, validate]);
+  };
 
-  useEffect(() => {
-    if (data
-    && data.validate) setClientState(apolloClient, 'isAuthenticated', true);
-
-    if (error) {
-      setClientState(apolloClient, 'isAuthenticated', false);
-      removeStoredToken();
-    }
-  }, [apolloClient, data, error]);
-
-  return loading;
+  return {
+    loading,
+    validateStoredToken,
+  };
 };
 
 export default useValidateStoredToken;

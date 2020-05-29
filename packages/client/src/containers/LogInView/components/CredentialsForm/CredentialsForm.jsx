@@ -21,33 +21,51 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import styles from './Form.scss';
+import NumberInput from '../NumberInput';
+import styles from './CredentialsForm.scss';
 import SubmitButton from '../SubmitButton';
+import useInputPersonalIdentityNumber from '../../hooks/useInputPersonalIdentityNumber';
+import VALIDATION_STATUS from '../../constants/VALIDATION_STATUS';
 
-const Form = ({ buttonText, children, onSubmit }) => {
+const CredentialsForm = ({ onSubmit }) => {
+  const {
+    onBlur,
+    onChange,
+    personalIdentityNumber,
+    validationStatus,
+  } = useInputPersonalIdentityNumber();
+
   const onFormSubmit = (e) => {
     e.preventDefault();
 
-    onSubmit();
+    if (validationStatus !== VALIDATION_STATUS.SUCCESS) return;
+
+    onSubmit(personalIdentityNumber);
   };
 
   return (
-    <form className={styles.form} onSubmit={onFormSubmit}>
-      {children}
+    <form className={styles.credentialsForm} onSubmit={onFormSubmit}>
+      <NumberInput
+        labelText="Personnummer"
+        maxLength={12}
+        onBlur={onBlur}
+        onChange={onChange}
+        placeholder="ååååmmddxxxx"
+        validationStatus={validationStatus}
+        validationText="Ange ett giltig personnummer."
+      />
 
-      <div className={styles.form__submit}>
+      <div className={styles.credentialsForm__submit}>
         <SubmitButton>
-          {buttonText}
+          Fortsätt
         </SubmitButton>
       </div>
     </form>
   );
 };
 
-Form.propTypes = {
-  buttonText: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
+CredentialsForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };
 
-export default Form;
+export default CredentialsForm;

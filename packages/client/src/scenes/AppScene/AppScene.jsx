@@ -19,42 +19,46 @@
 */
 
 import { ApolloProvider } from '@apollo/client';
+import {
+  BrowserRouter,
+  Redirect,
+  Route,
+  Switch,
+} from 'react-router-dom';
+import PropTypes from 'prop-types';
 import React, { lazy, Suspense } from 'react';
-import { Redirect, Route } from 'react-router-dom';
 
 import ErrorBoundary from './components/ErrorBoundary';
 import PrivateRoute from './components/PrivateRoute';
-import Router from './components/Router';
 import ROUTER_PATH from '../../constants/ROUTER_PATH';
 import styles from './AppScene.scss';
-import useConfigureGraphQL from './hooks/useConfigureGraphQL';
 
 const AuthScene = lazy(() => import(/* webpackChunkName: "AuthScene" */'../AuthScene'));
 const HomeScene = lazy(() => import(/* webpackChunkName: "HomeScene" */'../HomeScene'));
 
-const AppScene = () => {
-  const client = useConfigureGraphQL();
-
-  if (!Object.keys(client).length) return null;
-
-  return (
-    <ApolloProvider client={client}>
-      <div className={styles.app} data-testid="app">
-        {/* Suspense, with a fallback, is necessary for code splitting / lazy loading. */}
-        <Suspense fallback={null}>
-          <ErrorBoundary>
-            <Router>
+const AppScene = ({ client }) => (
+  <ApolloProvider client={client}>
+    <div className={styles.app} data-testid="app">
+      {/* Suspense, with a fallback, is necessary for code splitting / lazy loading. */}
+      <Suspense fallback={null}>
+        <ErrorBoundary>
+          <BrowserRouter>
+            <Switch>
 
               <PrivateRoute component={HomeScene} exact path={ROUTER_PATH.HOME} />
               <Route component={AuthScene} exact path={ROUTER_PATH.AUTHENTICATE} />
               <Redirect to={ROUTER_PATH.HOME} />
 
-            </Router>
-          </ErrorBoundary>
-        </Suspense>
-      </div>
-    </ApolloProvider>
-  );
+            </Switch>
+          </BrowserRouter>
+        </ErrorBoundary>
+      </Suspense>
+    </div>
+  </ApolloProvider>
+);
+
+AppScene.propTypes = {
+  client: PropTypes.shape({}).isRequired,
 };
 
 export default AppScene;

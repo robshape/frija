@@ -18,19 +18,6 @@
 
 */
 
-import { useEffect, useState } from 'react';
+import CredentialsForm from './CredentialsForm';
 
-import configureGraphQL from '../../../graphql';
-
-const useConfigureGraphQL = (config) => {
-  const [client, setClient] = useState({});
-
-  useEffect(() => {
-    const graphQLClient = configureGraphQL(config);
-    setClient(graphQLClient);
-  }, [config]);
-
-  return client;
-};
-
-export default useConfigureGraphQL;
+export default CredentialsForm;

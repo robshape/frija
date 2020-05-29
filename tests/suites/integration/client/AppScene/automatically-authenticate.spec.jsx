@@ -18,10 +18,17 @@
 
 */
 
-import { screen } from '@testing-library/react';
+import React from 'react';
+import { render, screen } from '@testing-library/react';
 
+import AppScene from '../../../../../packages/client/src/scenes/AppScene';
+import configureGraphQL from '../../../../../packages/client/src/graphql';
 import jwt from '../../../../../packages/server/src/utils/jwt';
-import renderComponent from './renderComponent';
+
+const renderComponent = () => {
+  const client = configureGraphQL();
+  return render(<AppScene client={client} />);
+};
 
 it('should show the Auth scene if there is no stored token', async () => {
   global.fetch = jest.fn();
