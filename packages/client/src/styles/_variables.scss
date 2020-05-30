@@ -25,5 +25,11 @@ $color-red: #f44336;
 $color-white: #fff;
 
 $grid-size: 8px;
-$root-font-size: $grid-size * 2;
-$root-line-height: $root-font-size * 1.5;
+
+$root-font-size: $grid-size * 2; // 16px.
+$root-line-height: $root-font-size * 1.5; // 24px.
+
+$space-s: 0.5rem; // 8px.
+$space-m: 1rem; // 16px.
+$space-l: 1.5rem; // 24px.
+$space-xl: 2rem; // 32px.

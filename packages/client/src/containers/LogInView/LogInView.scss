@@ -18,8 +18,10 @@
 
 */
 
+@import '../../styles/variables';
+
 .logInView {
   &__text {
-    margin-bottom: 2rem;
+    margin-bottom: $space-xl;
   }
 }
