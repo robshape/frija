@@ -24,6 +24,7 @@
 .submitButton {
   @include animation-transition;
 
+  background-color: $color-white;
   border: 1px solid $color-black;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
   color: $color-black;

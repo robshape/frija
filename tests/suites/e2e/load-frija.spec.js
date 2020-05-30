@@ -35,6 +35,9 @@ it('should load Frija', () => {
 
   cy
     .url()
+    .should('not.include', '/authenticate/');
+  cy
+    .url()
     .should('include', '/authenticate');
 
   cy

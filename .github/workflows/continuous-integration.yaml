@@ -18,7 +18,7 @@ jobs:
       with:
         node-version: ${{env.NODE_VERSION}}
 
-    - name: Install dependencies
+    - name: Install dependencies and bootstrap project
       run: npm run setup
 
     - name: Build client package
@@ -45,7 +45,7 @@ jobs:
       with:
         node-version: ${{env.NODE_VERSION}}
 
-    - name: Install dependencies
+    - name: Install dependencies and bootstrap project
       run: npm run setup
 
     - name: Lint Markdown
@@ -100,7 +100,7 @@ jobs:
       with:
         node-version: ${{env.NODE_VERSION}}
 
-    - name: Install dependencies
+    - name: Install dependencies and bootstrap project
       run: npm run setup
 
     - name: Run unit, integration tests (and create code coverage report)

@@ -6,6 +6,8 @@
 
 The Swedish general election and Riksdag on the Ethereum blockchain.
 
+![Frija](./docs/frija.png)
+
 ## Development
 
 The following section will help you set up your development environment.

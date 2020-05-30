@@ -43,6 +43,7 @@
     "supertest": "4.0.2",
     "uuid": "8.1.0"
   },
+  "name": "frija",
   "private": true,
   "scripts": {
     "analyze": "start-server-and-test start:cluster http://localhost/ analyze:lighthouse && lerna run --parallel --scope @frija/client analyze:bundle",
@@ -66,5 +67,6 @@
     "test:e2e:gui": "cypress open --config-file ./tests/configs/cypress.config.json",
     "test:integration": "jest --config ./tests/configs/jest.config.js ./tests/suites/integration/",
     "test:unit": "jest --config ./tests/configs/jest.config.js ./tests/suites/unit/"
-  }
+  },
+  "version": "0.1.0"
 }
