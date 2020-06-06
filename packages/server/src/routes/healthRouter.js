@@ -19,7 +19,7 @@
 */
 
 const HttpStatus = require('http-status-codes');
-const Router = require('koa-router');
+const Router = require('@koa/router');
 
 const healthRouter = new Router({
   prefix: '/health',

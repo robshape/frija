@@ -1,5 +1,5 @@
 # BUILD (Node LTS).
-FROM node:12.16.3-alpine as builder
+FROM node:12.18.0-alpine3.11 as builder
 ENV CYPRESS_INSTALL_BINARY 0
 WORKDIR /app
 
@@ -15,7 +15,7 @@ COPY ./src/ ./src/
 RUN npm run build:bundle
 
 # SERVE (nginx LTS).
-FROM nginx:1.17.10-alpine
+FROM nginx:1.18.0-alpine
 
 COPY --from=builder ./app/configs/nginx.conf /etc/nginx/nginx.conf
 COPY --from=builder ./app/dist/ /usr/share/nginx/html/

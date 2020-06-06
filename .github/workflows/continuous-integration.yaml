@@ -3,7 +3,7 @@ name: Continuous Integration
 on: push
 
 env:
-  NODE_VERSION: 12.16.3 # Node LTS.
+  NODE_VERSION: 12.18.0 # Node LTS.
 
 jobs:
   build-packages:
@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-18.04 # Ubuntu LTS.
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2.1.0
+      uses: actions/checkout@v2.2.0
 
     - name: Setup Node
       uses: actions/setup-node@v1.4.2
@@ -45,7 +45,7 @@ jobs:
     runs-on: ubuntu-18.04 # Ubuntu LTS.
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2.1.0
+      uses: actions/checkout@v2.2.0
 
     - name: Setup Node
       uses: actions/setup-node@v1.4.2
@@ -85,7 +85,7 @@ jobs:
     runs-on: ubuntu-18.04 # Ubuntu LTS.
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2.1.0
+      uses: actions/checkout@v2.2.0
 
     - name: Setup Node
       uses: actions/setup-node@v1.4.2
@@ -100,7 +100,7 @@ jobs:
         restore-keys: ${{runner.os}}-node-
 
     - name: Run e2e tests
-      uses: cypress-io/github-action@v1.24.0
+      uses: cypress-io/github-action@v1.25.2
       with:
         browser: chrome
         config-file: ./tests/configs/cypress.config.json
@@ -114,7 +114,7 @@ jobs:
     runs-on: ubuntu-18.04 # Ubuntu LTS.
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2.1.0
+      uses: actions/checkout@v2.2.0
 
     - name: Setup Node
       uses: actions/setup-node@v1.4.2
@@ -135,6 +135,6 @@ jobs:
       run: npm run test:coverage
 
     - name: Report code coverage
-      uses: codecov/codecov-action@v1.0.6
+      uses: codecov/codecov-action@v1.0.7
       with:
         token: ${{secrets.CODECOV_TOKEN}}
