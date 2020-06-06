@@ -26,7 +26,6 @@ const config = {
   devServer: {
     historyApiFallback: true,
     hot: true,
-    port: 8080,
     proxy: {
       '/api': {
         pathRewrite: {
@@ -37,7 +36,7 @@ const config = {
     },
   },
 
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'eval-cheap-module-source-map',
 
   mode: 'development',
 
@@ -47,9 +46,6 @@ const config = {
         include: path.resolve(process.cwd(), './src/'),
         test: /\.(js|jsx)$/,
         use: [
-          {
-            loader: 'cache-loader',
-          },
           {
             loader: 'babel-loader',
             options: {

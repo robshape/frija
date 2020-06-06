@@ -28,42 +28,74 @@ const options = {
 // const decrypt = (data, password) => {
 //   const [encodedCiphertext, encodedIv, encodedSalt] = data.split('.');
 
-//   const ciphertext = forge.util.decode64(encodedCiphertext);
-//   const buffer = forge.util.createBuffer(ciphertext);
+//   const ciphertext = forge
+//     .util
+//     .decode64(encodedCiphertext);
+//   const buffer = forge
+//     .util
+//     .createBuffer(ciphertext);
 
-//   const salt = forge.util.decode64(encodedSalt);
-//   const key = forge.pkcs5.pbkdf2(password, salt, options.iterationCount, options.keyLength);
+//   const salt = forge
+//     .util
+//     .decode64(encodedSalt);
+//   const key = forge
+//     .pkcs5
+//     .pbkdf2(password, salt, options.iterationCount, options.keyLength);
 
-//   const decipher = forge.cipher.createDecipher('AES-CBC', key);
-//   const iv = forge.util.decode64(encodedIv);
+//   const decipher = forge
+//     .cipher
+//     .createDecipher('AES-CBC', key);
+//   const iv = forge
+//     .util
+//     .decode64(encodedIv);
 //   decipher.start({
 //     iv,
 //   });
 //   decipher.update(buffer);
 //   decipher.finish();
 
-//   return decipher.output.toString('utf8');
+//   return decipher
+//     .output
+//     .toString('utf8');
 // };
 
 const encrypt = (plaintext, password) => {
-  const buffer = forge.util.createBuffer(plaintext, 'utf8');
+  const buffer = forge
+    .util
+    .createBuffer(plaintext, 'utf8');
 
-  const salt = forge.random.getBytesSync(16);
-  const key = forge.pkcs5.pbkdf2(password, salt, options.iterationCount, options.keyLength);
+  const salt = forge
+    .random
+    .getBytesSync(16);
+  const key = forge
+    .pkcs5
+    .pbkdf2(password, salt, options.iterationCount, options.keyLength);
 
-  const cipher = forge.cipher.createCipher('AES-CBC', key);
-  const iv = forge.random.getBytesSync(16);
+  const cipher = forge
+    .cipher
+    .createCipher('AES-CBC', key);
+  const iv = forge
+    .random
+    .getBytesSync(16);
   cipher.start({
     iv,
   });
   cipher.update(buffer);
   cipher.finish();
 
-  const ciphertext = cipher.output.getBytes();
+  const ciphertext = cipher
+    .output
+    .getBytes();
 
-  const encodedCiphertext = forge.util.encode64(ciphertext);
-  const encodedIv = forge.util.encode64(iv);
-  const encodedSalt = forge.util.encode64(salt);
+  const encodedCiphertext = forge
+    .util
+    .encode64(ciphertext);
+  const encodedIv = forge
+    .util
+    .encode64(iv);
+  const encodedSalt = forge
+    .util
+    .encode64(salt);
   return `${encodedCiphertext}.${encodedIv}.${encodedSalt}`;
 };
 

@@ -43,7 +43,7 @@
   "scripts": {
     "analyze:bundle": "npm run build:bundle -- --env.ANALYZE_BUNDLE=true --profile",
     "build": "docker build --tag frija/client:latest .",
-    "build:bundle": "webpack --config ./configs/webpack.config.prod.js --progress",
+    "build:bundle": "NODE_ENV=production webpack --config ./configs/webpack.config.prod.js --progress",
     "start": "webpack-dev-server --config ./configs/webpack.config.dev.js --progress",
     "start:container": "docker run --init --publish 8080:8080 --rm frija/client:latest"
   },

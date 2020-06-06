@@ -18,6 +18,13 @@ jobs:
       with:
         node-version: ${{env.NODE_VERSION}}
 
+    - name: Setup cache
+      uses: actions/cache@v2.0.0
+      with:
+        key: ${{runner.os}}-node-${{hashFiles('**/package-lock.json')}}
+        path: ~/.npm/
+        restore-keys: ${{runner.os}}-node-
+
     - name: Install dependencies and bootstrap project
       run: npm run setup
 
@@ -44,6 +51,13 @@ jobs:
       uses: actions/setup-node@v1.4.2
       with:
         node-version: ${{env.NODE_VERSION}}
+
+    - name: Setup cache
+      uses: actions/cache@v2.0.0
+      with:
+        key: ${{runner.os}}-node-${{hashFiles('**/package-lock.json')}}
+        path: ~/.npm/
+        restore-keys: ${{runner.os}}-node-
 
     - name: Install dependencies and bootstrap project
       run: npm run setup
@@ -78,6 +92,13 @@ jobs:
       with:
         node-version: ${{env.NODE_VERSION}}
 
+    - name: Setup cache
+      uses: actions/cache@v2.0.0
+      with:
+        key: ${{runner.os}}-node-${{hashFiles('**/package-lock.json')}}
+        path: ~/.npm/
+        restore-keys: ${{runner.os}}-node-
+
     - name: Run e2e tests
       uses: cypress-io/github-action@v1.24.0
       with:
@@ -99,6 +120,13 @@ jobs:
       uses: actions/setup-node@v1.4.2
       with:
         node-version: ${{env.NODE_VERSION}}
+
+    - name: Setup cache
+      uses: actions/cache@v2.0.0
+      with:
+        key: ${{runner.os}}-node-${{hashFiles('**/package-lock.json')}}
+        path: ~/.npm/
+        restore-keys: ${{runner.os}}-node-
 
     - name: Install dependencies and bootstrap project
       run: npm run setup

@@ -42,9 +42,9 @@ const chunkedDependencies = () => Object
       },
     };
   })
-  .reduce((acc, cur) => ({
-    ...acc,
-    ...cur,
+  .reduce((accumulator, currentValue) => ({
+    ...accumulator,
+    ...currentValue,
   }));
 
 const config = (env) => ({
@@ -123,6 +123,24 @@ const config = (env) => ({
     }),
     new HtmlWebpackPlugin({
       cache: false,
+      minify: {
+        collapseBooleanAttributes: true,
+        collapseInlineTagWhitespace: true,
+        collapseWhitespace: true,
+        decodeEntities: true,
+        minifyURLs: true,
+        quoteCharacter: "'",
+        removeAttributeQuotes: true,
+        removeComments: true,
+        removeEmptyAttributes: true,
+        removeOptionalTags: true,
+        removeRedundantAttributes: true,
+        removeScriptTypeAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        sortAttributes: true,
+        sortClassName: true,
+        useShortDoctype: true,
+      },
       scriptLoading: 'defer',
       template: './src/index.html',
     }),

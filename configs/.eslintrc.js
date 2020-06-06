@@ -26,8 +26,9 @@ const config = {
 
   extends: [
     'airbnb',
+    'airbnb/hooks',
+    'airbnb/whitespace',
     'plugin:json/recommended',
-    'plugin:react-hooks/recommended',
   ],
 
   globals: {
@@ -56,9 +57,6 @@ const config = {
         './tests/suites/e2e/**/*.js',
         './tests/configs/cypress.setup.js',
       ],
-      plugins: [
-        'cypress',
-      ],
     },
     {
       env: {
@@ -77,21 +75,11 @@ const config = {
         './tests/suites/unit/**/*.{js,jsx}',
         './tests/configs/jest.setup.js',
       ],
-      plugins: [
-        'jest',
-        'jest-dom',
-        'testing-library',
-      ],
     },
   ],
 
   // Lint experimental and non-standard syntax.
   parser: 'babel-eslint',
-
-  plugins: [
-    'json',
-    'react-hooks',
-  ],
 
   rules: {
     'react/jsx-props-no-spreading': ['error', {
