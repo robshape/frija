@@ -37,7 +37,7 @@ it('should show the Auth scene if there is no stored token', async () => {
 
   renderComponent();
 
-  expect(await screen.findByText('identifiera dig med Mobilt BankID')).toBeInTheDocument();
+  expect(await screen.findByRole('textbox', { name: 'Personnummer' })).toBeInTheDocument();
   expect(global.fetch)
     .not
     .toHaveBeenCalled();
@@ -56,7 +56,7 @@ it('should show the Auth scene if the stored token is not valid (client)', async
 
   renderComponent();
 
-  expect(await screen.findByText('identifiera dig med Mobilt BankID')).toBeInTheDocument();
+  expect(await screen.findByRole('textbox', { name: 'Personnummer' })).toBeInTheDocument();
   expect(global.fetch)
     .not
     .toHaveBeenCalled();
@@ -83,7 +83,7 @@ it('should show the Auth scene if the stored token is not valid (server)', async
   renderComponent();
 
   expect(screen.getByRole('progressbar')).toHaveClass('loader');
-  expect(await screen.findByText('identifiera dig med Mobilt BankID')).toBeInTheDocument();
+  expect(await screen.findByRole('textbox', { name: 'Personnummer' })).toBeInTheDocument();
   expect(global.fetch).toHaveBeenCalledTimes(1);
   expect(global.sessionStorage.getItem('token')).toBeNull();
 });

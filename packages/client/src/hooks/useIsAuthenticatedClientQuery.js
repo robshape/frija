@@ -25,13 +25,7 @@ import IS_AUTHENTICATED_CLIENT_QUERY from '../graphql/queries/IS_AUTHENTICATED_C
 import useValidateStoredToken from './useValidateStoredToken';
 
 const useIsAuthenticatedClientQuery = () => {
-  const [
-    isAuthenticated,
-    {
-      data,
-      loading: isAuthenticatedLoading,
-    },
-  ] = useLazyQuery(IS_AUTHENTICATED_CLIENT_QUERY);
+  const [isAuthenticated, { data }] = useLazyQuery(IS_AUTHENTICATED_CLIENT_QUERY);
   const { loading: validateStoredTokenLoading, validateStoredToken } = useValidateStoredToken();
 
   const definedData = data === undefined
@@ -39,7 +33,6 @@ const useIsAuthenticatedClientQuery = () => {
     : data;
   const loading = data === undefined
     || data.isAuthenticated === null
-    || isAuthenticatedLoading
     || validateStoredTokenLoading;
 
   // https://github.com/apollographql/react-apollo/issues/3635/
@@ -51,11 +44,10 @@ const useIsAuthenticatedClientQuery = () => {
 
   useEffect(() => {
     if (definedData.isAuthenticated !== null) return;
-    if (isAuthenticatedLoading) return;
     if (validateStoredTokenLoading) return;
 
     validateStoredToken();
-  }, [definedData, isAuthenticatedLoading, validateStoredToken, validateStoredTokenLoading]);
+  }, [definedData, validateStoredToken, validateStoredTokenLoading]);
 
   return {
     data: definedData,
