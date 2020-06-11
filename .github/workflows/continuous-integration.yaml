@@ -8,7 +8,7 @@ env:
 jobs:
   build-packages:
     name: Build packages
-    runs-on: ubuntu-18.04 # Ubuntu LTS.
+    runs-on: ubuntu-20.04 # Ubuntu LTS.
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2.2.0
@@ -42,7 +42,7 @@ jobs:
 
   lint-files:
     name: Lint files
-    runs-on: ubuntu-18.04 # Ubuntu LTS.
+    runs-on: ubuntu-20.04 # Ubuntu LTS.
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2.2.0
@@ -82,7 +82,7 @@ jobs:
 
   run-e2e-tests:
     name: Run e2e tests
-    runs-on: ubuntu-18.04 # Ubuntu LTS.
+    runs-on: ubuntu-20.04 # Ubuntu LTS.
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2.2.0
@@ -111,7 +111,7 @@ jobs:
 
   run-unit-integration-tests-and-report-code-coverage:
     name: Run unit, integration tests and report code coverage
-    runs-on: ubuntu-18.04 # Ubuntu LTS.
+    runs-on: ubuntu-20.04 # Ubuntu LTS.
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2.2.0

@@ -47,6 +47,8 @@ const config = {
     '<rootDir>/tests/suites/unit/**/*.spec.{js,jsx}',
   ],
 
+  testTimeout: 10000, // Update to `@testing-library/user-event` causes timeouts.
+
   transform: {
     '\\.(js|jsx)$': ['babel-jest', {
       configFile: './tests/configs/babel.config.js',
