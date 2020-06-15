@@ -27,10 +27,12 @@ import styles from './ErrorScene.scss';
 
 const ErrorScene = () => (
   <div className={styles.errorScene}>
-    <FontAwesomeIcon className={styles.errorScene__icon} icon={faExclamationTriangle} />
+    <p className={styles.errorScene__icon}>
+      <FontAwesomeIcon icon={faExclamationTriangle} />
+    </p>
 
     <p>
-      Något blev fel. Kan du&nbsp;
+      {'Något blev fel. Kan du '}
       <a className={styles.errorScene__link} href={ROUTER_PATH.HOME}>
         försöka igen
       </a>
