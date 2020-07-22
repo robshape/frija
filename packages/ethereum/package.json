@@ -1,6 +1,6 @@
 {
   "devDependencies": {
-    "truffle": "5.1.29"
+    "truffle": "5.1.35"
   },
   "name": "@frija/ethereum",
   "private": true,

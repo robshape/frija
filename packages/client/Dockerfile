@@ -1,11 +1,11 @@
 # BUILD (Node LTS).
-FROM node:12.18.0-alpine3.11 as builder
+FROM node:12.18.2-alpine3.12 as builder
 ENV CYPRESS_INSTALL_BINARY 0
 WORKDIR /app
 
 COPY ./package-lock.json ./
 COPY ./package.json ./
-RUN apk add --no-cache g++ make python
+RUN apk add --no-cache g++ make python3
 RUN npm ci
 
 ENV NODE_ENV production
