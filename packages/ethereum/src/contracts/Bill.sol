@@ -42,7 +42,7 @@ contract Bill is Ownable {
     function vote(bool forBill) external {
         Voter storage sender = voters[msg.sender];
 
-        require(sender.hasVoted == false, "sender.hasVoted does not equal false.");
+        require(sender.hasVoted == false, "sender has already voted");
 
         sender.hasVoted = true;
         sender.voted = forBill;

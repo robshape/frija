@@ -41,15 +41,15 @@ contract Election {
     }
 
     function numberOfVotes(uint8 forParty) external view returns (uint256) {
-        require(forParty < parties.length, "forParty is not less than parties.length.");
+        require(forParty < parties.length, "party does not exist");
 
         return parties[forParty].numberOfVotes;
     }
 
     function vote(uint8 forParty) external {
-        require(forParty < parties.length, "forParty is not less than parties.length.");
+        require(forParty < parties.length, "party does not exist");
         Voter storage sender = voters[msg.sender];
-        require(sender.hasVoted == false, "sender.hasVoted does not equal false.");
+        require(sender.hasVoted == false, "sender has already voted");
 
         parties[forParty].numberOfVotes += 1;
 
