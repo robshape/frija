@@ -55,7 +55,7 @@
     "lint:js": "eslint --config ./configs/.eslintrc.js --ext .js,.jsx ./",
     "lint:json": "eslint --config ./configs/.eslintrc.js --ext .json ./",
     "lint:license": "./scripts/find-files-without-license.sh",
-    "lint:md": "markdownlint --config ./configs/.markdownlint.js '**/*.md'",
+    "lint:md": "markdownlint --config ./configs/.markdownlint.js './**/*.md' './.*/**/*.md'",
     "lint:prettier": "prettier --check --config ./configs/.prettierrc.js ./",
     "lint:sass": "stylelint --config ./configs/.stylelintrc.js --report-needless-disables './packages/client/src/**/*.scss'",
     "lint:sol": "solhint --config ./configs/.solhint.js './packages/ethereum/src/contracts/**/*.sol'",
