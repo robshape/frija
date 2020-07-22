@@ -29,6 +29,9 @@ const config = {
     'airbnb/hooks',
     'airbnb/whitespace',
     'plugin:json/recommended',
+    // Prettier is last because it overrides previous configs!
+    'prettier',
+    'prettier/react',
   ],
 
   globals: {
