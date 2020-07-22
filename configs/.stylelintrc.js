@@ -19,7 +19,11 @@
 */
 
 const config = {
-  extends: 'stylelint-config-standard',
+  extends: [
+    'stylelint-config-standard',
+    // Prettier is last because it overrides previous configs!
+    'stylelint-config-prettier',
+  ],
 
   plugins: [
     'stylelint-scss',
