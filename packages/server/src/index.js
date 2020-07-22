@@ -30,4 +30,6 @@ const { app, logger } = configureApp(config);
 const port = 3000;
 http
   .createServer(app)
-  .listen(port, () => logger.info(`Server listening on :${port}/graphql (${version} ${process.env.NODE_ENV})`));
+  .listen(port, () =>
+    logger.info(`Server listening on :${port}/graphql (${version} ${process.env.NODE_ENV})`)
+  );

@@ -38,47 +38,39 @@ it('should show the Auth scene if there is no stored token', async () => {
   renderComponent();
 
   expect(await screen.findByRole('textbox', { name: 'Personnummer' })).toBeInTheDocument();
-  expect(global.fetch)
-    .not
-    .toHaveBeenCalled();
+  expect(global.fetch).not.toHaveBeenCalled();
   expect(global.sessionStorage.getItem('token')).toBeNull();
 });
 
 it('should show the Auth scene if the stored token is not valid (client)', async () => {
   global.fetch = jest.fn();
-  global
-    .sessionStorage
-    .setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiOFpycFhrQ1JTNWQwSlhnSGYreTdhaE9nUWtDaDFjbGp5MEVsQ1RLMVVCc3RmeGZGdkx1eC9CRExBZmVLcHoxby5TTURTdlZVYi9WR0xCRHRPalBMRmxRPT0uRXNkNkd3Zmg3S1oyZm9rQklvbGhpQT09IiwiaWF0IjoxNTY3ODQwNzk3LCJleHAiOjE1Njc4NDEzOTd9.VqWaRnxjD-1sw_eJT_IxpiRi_RpyAr4WxVepA7EoC3c'); // Expired token.
+  global.sessionStorage.setItem(
+    'token',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiOFpycFhrQ1JTNWQwSlhnSGYreTdhaE9nUWtDaDFjbGp5MEVsQ1RLMVVCc3RmeGZGdkx1eC9CRExBZmVLcHoxby5TTURTdlZVYi9WR0xCRHRPalBMRmxRPT0uRXNkNkd3Zmg3S1oyZm9rQklvbGhpQT09IiwiaWF0IjoxNTY3ODQwNzk3LCJleHAiOjE1Njc4NDEzOTd9.VqWaRnxjD-1sw_eJT_IxpiRi_RpyAr4WxVepA7EoC3c'
+  ); // Expired token.
 
-  expect(global.sessionStorage.getItem('token'))
-    .not
-    .toBeNull();
+  expect(global.sessionStorage.getItem('token')).not.toBeNull();
 
   renderComponent();
 
   expect(await screen.findByRole('textbox', { name: 'Personnummer' })).toBeInTheDocument();
-  expect(global.fetch)
-    .not
-    .toHaveBeenCalled();
+  expect(global.fetch).not.toHaveBeenCalled();
   expect(global.sessionStorage.getItem('token')).toBeNull();
 });
 
 it('should show the Auth scene if the stored token is not valid (server)', async () => {
-  global.fetch = jest
-    .fn()
-    .mockResolvedValue({
-      text: async () => '{"errors":[{"message":"Invalid token."}]}',
-    });
-  global
-    .sessionStorage
-    .setItem('token', jwt.sign('190001012020', {
+  global.fetch = jest.fn().mockResolvedValue({
+    text: async () => '{"errors":[{"message":"Invalid token."}]}',
+  });
+  global.sessionStorage.setItem(
+    'token',
+    jwt.sign('190001012020', {
       secret: 'c3e2a70e-ba85-4120-ba4d-1adc9c3d64c9',
       time: '10m',
-    }));
+    })
+  );
 
-  expect(global.sessionStorage.getItem('token'))
-    .not
-    .toBeNull();
+  expect(global.sessionStorage.getItem('token')).not.toBeNull();
 
   renderComponent();
 
@@ -89,28 +81,23 @@ it('should show the Auth scene if the stored token is not valid (server)', async
 });
 
 it('should show the Home scene if the stored token is valid', async () => {
-  global.fetch = jest
-    .fn()
-    .mockResolvedValue({
-      text: async () => '{"data":{"validate":true}}',
-    });
-  global
-    .sessionStorage
-    .setItem('token', jwt.sign('190001012020', {
+  global.fetch = jest.fn().mockResolvedValue({
+    text: async () => '{"data":{"validate":true}}',
+  });
+  global.sessionStorage.setItem(
+    'token',
+    jwt.sign('190001012020', {
       secret: 'c3e2a70e-ba85-4120-ba4d-1adc9c3d64c9',
       time: '10m',
-    }));
+    })
+  );
 
-  expect(global.sessionStorage.getItem('token'))
-    .not
-    .toBeNull();
+  expect(global.sessionStorage.getItem('token')).not.toBeNull();
 
   renderComponent();
 
   expect(screen.getByRole('progressbar')).toHaveClass('loader');
   expect(await screen.findByText('Välkommen till Frija.')).toBeInTheDocument();
   expect(global.fetch).toHaveBeenCalledTimes(1);
-  expect(global.sessionStorage.getItem('token'))
-    .not
-    .toBeNull();
+  expect(global.sessionStorage.getItem('token')).not.toBeNull();
 });

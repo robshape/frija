@@ -29,20 +29,22 @@ const sign = (id, options) => {
   });
   const encryptedData = aes.encrypt(data, options.secret);
 
-  const token = jsonWebToken.sign({
-    data: encryptedData,
-  }, options.secret, {
-    expiresIn: options.time,
-  });
+  const token = jsonWebToken.sign(
+    {
+      data: encryptedData,
+    },
+    options.secret,
+    {
+      expiresIn: options.time,
+    }
+  );
 
   return token;
 };
 
 const verify = (token, options) => {
   const payload = jsonWebToken.verify(token, options.secret, {
-    algorithms: [
-      'HS256',
-    ],
+    algorithms: ['HS256'],
     maxAge: options.time,
   });
   // const decryptedData = aes.decrypt(payload.data, secret);

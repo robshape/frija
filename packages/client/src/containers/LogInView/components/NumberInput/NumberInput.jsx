@@ -44,7 +44,6 @@ const NumberInput = ({
   return (
     <div className={styles.numberInput}>
       <div className={styles.numberInput__field}>
-
         <Label forId={id} text={labelText}>
           <div className={styles.numberInput__icon}>
             {/* `type="text"` renders a better looking input. */}
@@ -62,12 +61,9 @@ const NumberInput = ({
             <Icon icon={validationStatus} />
           </div>
         </Label>
-
       </div>
 
-      <InputValidation status={validationStatus}>
-        {validationText}
-      </InputValidation>
+      <InputValidation status={validationStatus}>{validationText}</InputValidation>
     </div>
   );
 };

@@ -25,9 +25,7 @@ const config = {
     'stylelint-config-prettier',
   ],
 
-  plugins: [
-    'stylelint-scss',
-  ],
+  plugins: ['stylelint-scss'],
 
   rules: {
     'at-rule-no-unknown': null,

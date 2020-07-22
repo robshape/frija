@@ -31,7 +31,8 @@ class UserDataSource extends RESTDataSource {
   }
 
   async getByPersonalIdentityNumber(personalIdentityNumber) {
-    if (!isPersonalIdentityNumber(personalIdentityNumber)) throw new UserInputError('Invalid personal identity number.');
+    if (!isPersonalIdentityNumber(personalIdentityNumber))
+      throw new UserInputError('Invalid personal identity number.');
 
     await this.get('');
     return {

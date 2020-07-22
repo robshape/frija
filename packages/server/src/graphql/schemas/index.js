@@ -21,9 +21,6 @@
 const rootSchema = require('./rootSchema');
 const tokenSchema = require('./tokenSchema');
 
-const schemas = [
-  rootSchema,
-  tokenSchema,
-];
+const schemas = [rootSchema, tokenSchema];
 
 module.exports = schemas;

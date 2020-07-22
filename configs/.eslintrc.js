@@ -39,9 +39,7 @@ const config = {
   },
 
   // Include .dotfiles when linting.
-  ignorePatterns: [
-    '!configs/.*.js',
-  ],
+  ignorePatterns: ['!configs/.*.js'],
 
   overrides: [
     {
@@ -56,10 +54,7 @@ const config = {
         'cypress/globals': true,
       },
       extends: 'plugin:cypress/recommended',
-      files: [
-        './tests/suites/e2e/**/*.js',
-        './tests/configs/cypress.setup.js',
-      ],
+      files: ['./tests/suites/e2e/**/*.js', './tests/configs/cypress.setup.js'],
     },
     {
       env: {
@@ -85,12 +80,12 @@ const config = {
   parser: 'babel-eslint',
 
   rules: {
-    'react/jsx-props-no-spreading': ['error', {
-      exceptions: [
-        'Component',
-        'Route',
-      ],
-    }],
+    'react/jsx-props-no-spreading': [
+      'error',
+      {
+        exceptions: ['Component', 'Route'],
+      },
+    ],
   },
 };
 

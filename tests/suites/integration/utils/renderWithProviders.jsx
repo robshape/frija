@@ -27,11 +27,7 @@ import { Router } from 'react-router-dom';
 
 import setDefaultClientState from '../../../../packages/client/src/graphql/clientState/setDefaultClientState';
 
-const renderWithProviders = (ui, {
-  mocks = [],
-  path = '/',
-  ...options
-} = {}) => {
+const renderWithProviders = (ui, { mocks = [], path = '/', ...options } = {}) => {
   const cache = new InMemoryCache();
   const history = createMemoryHistory({
     initialEntries: [path],
@@ -42,11 +38,9 @@ const renderWithProviders = (ui, {
   return {
     ...render(
       <MockedProvider cache={cache} mocks={mocks}>
-        <Router history={history}>
-          {ui}
-        </Router>
+        <Router history={history}>{ui}</Router>
       </MockedProvider>,
-      options,
+      options
     ),
     cache,
     history,

@@ -30,22 +30,20 @@ const TerserPlugin = require('terser-webpack-plugin');
 
 const { dependencies } = require('../package.json');
 
-const chunkedDependencies = () => Object
-  .keys(dependencies)
-  .map((dependency) => {
-    const dependencyName = dependency
-      .replace('@', '')
-      .replace('/', '-');
-    return {
-      [`vendors-${dependencyName}`]: {
-        test: new RegExp(`/node_modules/${dependency}/`),
-      },
-    };
-  })
-  .reduce((accumulator, currentValue) => ({
-    ...accumulator,
-    ...currentValue,
-  }));
+const chunkedDependencies = () =>
+  Object.keys(dependencies)
+    .map((dependency) => {
+      const dependencyName = dependency.replace('@', '').replace('/', '-');
+      return {
+        [`vendors-${dependencyName}`]: {
+          test: new RegExp(`/node_modules/${dependency}/`),
+        },
+      };
+    })
+    .reduce((accumulator, currentValue) => ({
+      ...accumulator,
+      ...currentValue,
+    }));
 
 const config = (env) => ({
   mode: 'production',
@@ -117,9 +115,7 @@ const config = (env) => ({
       cache: false,
     }),
     new CopyPlugin({
-      patterns: [
-        './src/assets/',
-      ],
+      patterns: ['./src/assets/'],
     }),
     new HtmlWebpackPlugin({
       cache: false,
@@ -147,14 +143,11 @@ const config = (env) => ({
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',
     }),
-    (env && env.ANALYZE_BUNDLE) && new BundleAnalyzerPlugin(),
+    env && env.ANALYZE_BUNDLE && new BundleAnalyzerPlugin(),
   ].filter(Boolean),
 
   resolve: {
-    extensions: [
-      '.js',
-      '.jsx',
-    ],
+    extensions: ['.js', '.jsx'],
   },
 });
 

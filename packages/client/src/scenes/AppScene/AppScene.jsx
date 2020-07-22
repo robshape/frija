@@ -19,12 +19,7 @@
 */
 
 import { ApolloProvider } from '@apollo/client';
-import {
-  BrowserRouter,
-  Redirect,
-  Route,
-  Switch,
-} from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import React, { lazy, Suspense } from 'react';
 
@@ -33,8 +28,8 @@ import PrivateRoute from './components/PrivateRoute';
 import ROUTER_PATH from '../../constants/ROUTER_PATH';
 import styles from './AppScene.scss';
 
-const AuthScene = lazy(() => import(/* webpackChunkName: "AuthScene" */'../AuthScene'));
-const HomeScene = lazy(() => import(/* webpackChunkName: "HomeScene" */'../HomeScene'));
+const AuthScene = lazy(() => import(/* webpackChunkName: "AuthScene" */ '../AuthScene'));
+const HomeScene = lazy(() => import(/* webpackChunkName: "HomeScene" */ '../HomeScene'));
 
 const AppScene = ({ client }) => (
   <ApolloProvider client={client}>
@@ -44,11 +39,9 @@ const AppScene = ({ client }) => (
         <ErrorBoundary>
           <BrowserRouter>
             <Switch>
-
               <PrivateRoute component={HomeScene} exact path={ROUTER_PATH.HOME} />
               <Route component={AuthScene} exact path={ROUTER_PATH.AUTHENTICATE} />
               <Redirect to={ROUTER_PATH.HOME} />
-
             </Switch>
           </BrowserRouter>
         </ErrorBoundary>

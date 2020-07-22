@@ -24,9 +24,7 @@ import styles from './HomeScene.scss';
 
 const HomeScene = () => (
   <div className={styles.homeScene}>
-    <p>
-      Välkommen till Frija.
-    </p>
+    <p>Välkommen till Frija.</p>
   </div>
 );
 

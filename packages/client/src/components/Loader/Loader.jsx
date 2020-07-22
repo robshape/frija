@@ -27,9 +27,7 @@ const Loader = ({ children }) => (
   <div className={styles.loader} role="progressbar">
     <div className={styles.loader__spinner} />
 
-    <p className={styles.loader__text}>
-      {children}
-    </p>
+    <p className={styles.loader__text}>{children}</p>
   </div>
 );
 

@@ -60,42 +60,24 @@ const options = {
 // };
 
 const encrypt = (plaintext, password) => {
-  const buffer = forge
-    .util
-    .createBuffer(plaintext, 'utf8');
+  const buffer = forge.util.createBuffer(plaintext, 'utf8');
 
-  const salt = forge
-    .random
-    .getBytesSync(16);
-  const key = forge
-    .pkcs5
-    .pbkdf2(password, salt, options.iterationCount, options.keyLength);
+  const salt = forge.random.getBytesSync(16);
+  const key = forge.pkcs5.pbkdf2(password, salt, options.iterationCount, options.keyLength);
 
-  const cipher = forge
-    .cipher
-    .createCipher('AES-CBC', key);
-  const iv = forge
-    .random
-    .getBytesSync(16);
+  const cipher = forge.cipher.createCipher('AES-CBC', key);
+  const iv = forge.random.getBytesSync(16);
   cipher.start({
     iv,
   });
   cipher.update(buffer);
   cipher.finish();
 
-  const ciphertext = cipher
-    .output
-    .getBytes();
+  const ciphertext = cipher.output.getBytes();
 
-  const encodedCiphertext = forge
-    .util
-    .encode64(ciphertext);
-  const encodedIv = forge
-    .util
-    .encode64(iv);
-  const encodedSalt = forge
-    .util
-    .encode64(salt);
+  const encodedCiphertext = forge.util.encode64(ciphertext);
+  const encodedIv = forge.util.encode64(iv);
+  const encodedSalt = forge.util.encode64(salt);
   return `${encodedCiphertext}.${encodedIv}.${encodedSalt}`;
 };
 

@@ -26,18 +26,18 @@ const useInputNumber = (onChangeCallback) => {
   const [value, setValue] = useState('');
 
   const onChange = ({ target }) => {
-    if (target.value.length !== 0 // `0` likely means that the user has cleared the input.
-    && !isNumber(target.value)) return;
+    if (
+      target.value.length !== 0 && // `0` likely means that the user has cleared the input.
+      !isNumber(target.value)
+    )
+      return;
 
     setValue(target.value);
 
     onChangeCallback(target.value);
   };
 
-  return [
-    value,
-    onChange,
-  ];
+  return [value, onChange];
 };
 
 export default useInputNumber;

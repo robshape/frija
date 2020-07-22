@@ -26,9 +26,7 @@ import '../mocks/apollo-datasource-rest';
 import '../mocks/fetch';
 
 beforeEach(() => {
-  global
-    .sessionStorage
-    .clear();
+  global.sessionStorage.clear();
 
   jest.resetAllMocks();
   jest.restoreAllMocks();

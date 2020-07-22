@@ -26,21 +26,25 @@ import AuthScene from '../../../../../packages/client/src/scenes/AuthScene';
 import renderWithProviders from '../../utils/renderWithProviders';
 
 const renderComponent = (testProps, testOptions) => {
-  const options = merge({}, {
-    path: '/authenticate',
-  }, testOptions);
+  const options = merge(
+    {},
+    {
+      path: '/authenticate',
+    },
+    testOptions
+  );
 
   const renderResult = renderWithProviders(<AuthScene />, options);
-  renderResult
-    .cache
-    .writeQuery({
-      data: {
-        isAuthenticated: false,
-      },
-      query: gql`
-      { isAuthenticated }
-      `,
-    }); // https://github.com/apollographql/react-apollo/issues/3642#issuecomment-568271001
+  renderResult.cache.writeQuery({
+    data: {
+      isAuthenticated: false,
+    },
+    query: gql`
+      {
+        isAuthenticated
+      }
+    `,
+  }); // https://github.com/apollographql/react-apollo/issues/3642#issuecomment-568271001
 
   return renderResult;
 };

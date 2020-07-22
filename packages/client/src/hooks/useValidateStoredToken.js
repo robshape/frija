@@ -32,8 +32,7 @@ const useValidateStoredToken = () => {
   const [validate, { data, error, loading }] = useLazyQuery(VALIDATE_QUERY);
 
   useEffect(() => {
-    if (data
-    && data.validate) setClientState(apolloClient, 'isAuthenticated', true);
+    if (data && data.validate) setClientState(apolloClient, 'isAuthenticated', true);
 
     if (error) {
       setClientState(apolloClient, 'isAuthenticated', false);

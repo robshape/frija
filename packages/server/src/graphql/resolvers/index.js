@@ -20,8 +20,6 @@
 
 const tokenResolver = require('./tokenResolver');
 
-const resolvers = [
-  tokenResolver,
-];
+const resolvers = [tokenResolver];
 
 module.exports = resolvers;

@@ -38,9 +38,7 @@ const config = {
 
   rootDir: '../../',
 
-  setupFilesAfterEnv: [
-    '<rootDir>/tests/configs/jest.setup.js',
-  ],
+  setupFilesAfterEnv: ['<rootDir>/tests/configs/jest.setup.js'],
 
   testMatch: [
     '<rootDir>/tests/suites/integration/**/*.spec.{js,jsx}',
@@ -50,9 +48,12 @@ const config = {
   testTimeout: 10000, // Update to `@testing-library/user-event` causes timeouts.
 
   transform: {
-    '\\.(js|jsx)$': ['babel-jest', {
-      configFile: './tests/configs/babel.config.js',
-    }],
+    '\\.(js|jsx)$': [
+      'babel-jest',
+      {
+        configFile: './tests/configs/babel.config.js',
+      },
+    ],
   },
 };
 

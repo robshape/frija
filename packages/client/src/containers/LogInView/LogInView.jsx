@@ -39,12 +39,8 @@ const LogInView = () => {
   return (
     <div className={styles.logInView}>
       <div className={styles.logInView__text}>
-        <h2>
-          Hej,
-        </h2>
-        <h3>
-          identifiera dig med Mobilt BankID
-        </h3>
+        <h2>Hej,</h2>
+        <h3>identifiera dig med Mobilt BankID</h3>
       </div>
 
       <CredentialsForm onSubmit={onSubmit} />

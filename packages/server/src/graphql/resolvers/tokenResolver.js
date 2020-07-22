@@ -19,20 +19,13 @@
 */
 
 const authenticate = async (obj, args, ctx) => {
-  const user = await ctx
-    .dataSources
-    .userDataSource
-    .getByPersonalIdentityNumber(args.personalIdentityNumber);
-  return ctx
-    .dataSources
-    .tokenDataSource
-    .authenticate(user);
+  const user = await ctx.dataSources.userDataSource.getByPersonalIdentityNumber(
+    args.personalIdentityNumber
+  );
+  return ctx.dataSources.tokenDataSource.authenticate(user);
 };
 
-const validate = (obj, args, ctx) => ctx
-  .dataSources
-  .tokenDataSource
-  .validate(args.token);
+const validate = (obj, args, ctx) => ctx.dataSources.tokenDataSource.validate(args.token);
 
 const tokenResolver = {
   Mutation: {

@@ -8,11 +8,7 @@
       "webRoot": "${workspaceFolder}"
     },
     {
-      "args": [
-        "--config",
-        "./tests/jest.config.js",
-        "${file}",
-      ],
+      "args": ["--config", "./tests/jest.config.js", "${file}"],
       "disableOptimisticBPs": true,
       "name": "Debug Jest test (currently open file)",
       "program": "${workspaceFolder}/node_modules/.bin/jest",
@@ -23,9 +19,7 @@
       "name": "Debug server",
       "processId": "${command:PickProcess}",
       "request": "attach",
-      "skipFiles": [
-        "<node_internals>/**"
-      ],
+      "skipFiles": ["<node_internals>/**"],
       "type": "node"
     }
   ],

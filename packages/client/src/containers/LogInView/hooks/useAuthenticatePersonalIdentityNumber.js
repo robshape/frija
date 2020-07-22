@@ -36,11 +36,12 @@ const useAuthenticatePersonalIdentityNumber = () => {
     setClientState(apolloClient, 'isAuthenticated', true);
   }, [apolloClient, data]);
 
-  const authenticatePersonalIdentityNumber = async (personalIdentityNumber) => authenticate({
-    variables: {
-      personalIdentityNumber,
-    },
-  });
+  const authenticatePersonalIdentityNumber = async (personalIdentityNumber) =>
+    authenticate({
+      variables: {
+        personalIdentityNumber,
+      },
+    });
 
   return {
     authenticatePersonalIdentityNumber,

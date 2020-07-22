@@ -56,9 +56,7 @@ const CredentialsForm = ({ onSubmit }) => {
       />
 
       <div className={styles.credentialsForm__submit}>
-        <SubmitButton>
-          Fortsätt
-        </SubmitButton>
+        <SubmitButton>Fortsätt</SubmitButton>
       </div>
     </form>
   );

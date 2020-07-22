@@ -34,21 +34,23 @@ const configureApp = (config) => {
 
   // Order matters. Top middleware wraps subsequent middleware.
   koa.use(logger);
-  koa.use(helmet({
-    dnsPrefetchControl: true,
-    frameguard: {
-      action: 'deny',
-    },
-    hidePoweredBy: true,
-    hsts: true,
-    ieNoOpen: true,
-    noSniff: true,
-    permittedCrossDomainPolicies: true,
-    referrerPolicy: {
-      policy: 'no-referrer',
-    },
-    xssFilter: true,
-  }));
+  koa.use(
+    helmet({
+      dnsPrefetchControl: true,
+      frameguard: {
+        action: 'deny',
+      },
+      hidePoweredBy: true,
+      hsts: true,
+      ieNoOpen: true,
+      noSniff: true,
+      permittedCrossDomainPolicies: true,
+      referrerPolicy: {
+        policy: 'no-referrer',
+      },
+      xssFilter: true,
+    })
+  );
   koa.use(compress());
 
   configureGraphQL(koa, config);

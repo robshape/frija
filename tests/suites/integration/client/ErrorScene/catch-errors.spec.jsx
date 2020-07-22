@@ -62,9 +62,7 @@ it('should show the Error scene if a function is broken', async () => {
   const onSetError = () => [].notAFunction();
   render(<ComponentWithError onSetError={onSetError} />);
 
-  expect(screen.queryByText(/Något blev fel/))
-    .not
-    .toBeInTheDocument();
+  expect(screen.queryByText(/Något blev fel/)).not.toBeInTheDocument();
 
   userEvent.click(screen.getByRole('button', { name: 'Set error' }));
 
@@ -80,9 +78,7 @@ it('should show the Error scene if an error is thrown', async () => {
   };
   render(<ComponentWithError onSetError={onSetError} />);
 
-  expect(screen.queryByText(/Något blev fel/))
-    .not
-    .toBeInTheDocument();
+  expect(screen.queryByText(/Något blev fel/)).not.toBeInTheDocument();
 
   userEvent.click(screen.getByRole('button', { name: 'Set error' }));
 

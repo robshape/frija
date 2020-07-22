@@ -22,9 +22,7 @@ import { isPersonalIdentityNumber } from '../../../../packages/utils';
 
 it('should validate the type', () => {
   expect(() => isPersonalIdentityNumber(190001012020)).toThrow();
-  expect(() => isPersonalIdentityNumber('190001012020'))
-    .not
-    .toThrow();
+  expect(() => isPersonalIdentityNumber('190001012020')).not.toThrow();
 });
 
 it('should validate the length', () => {

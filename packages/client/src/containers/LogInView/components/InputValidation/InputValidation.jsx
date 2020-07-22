@@ -29,10 +29,11 @@ const InputValidation = ({ children, status }) => {
   const isVisible = status === VALIDATION_STATUS.ERROR;
 
   return (
-    <p className={classNames({
-      [`${styles.inputValidation}`]: true,
-      [`${styles.inputValidationVISIBLE}`]: isVisible,
-    })}
+    <p
+      className={classNames({
+        [`${styles.inputValidation}`]: true,
+        [`${styles.inputValidationVISIBLE}`]: isVisible,
+      })}
     >
       {children}
     </p>

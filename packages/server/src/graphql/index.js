@@ -29,9 +29,7 @@ const configureGraphQL = (app, config) => {
     context({ ctx }) {
       const configuredDataSources = dataSources(config);
       return {
-        isAuthenticated: configuredDataSources()
-          .tokenDataSource
-          .isAuthenticated(ctx),
+        isAuthenticated: configuredDataSources().tokenDataSource.isAuthenticated(ctx),
       };
     },
     dataSources: dataSources(config),

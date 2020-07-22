@@ -40,7 +40,8 @@ it('should not validate the token if it is expired', async () => {
   const { data, errors } = await query({
     query: VALIDATE_QUERY,
     variables: {
-      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiOFpycFhrQ1JTNWQwSlhnSGYreTdhaE9nUWtDaDFjbGp5MEVsQ1RLMVVCc3RmeGZGdkx1eC9CRExBZmVLcHoxby5TTURTdlZVYi9WR0xCRHRPalBMRmxRPT0uRXNkNkd3Zmg3S1oyZm9rQklvbGhpQT09IiwiaWF0IjoxNTY3ODQwNzk3LCJleHAiOjE1Njc4NDEzOTd9.VqWaRnxjD-1sw_eJT_IxpiRi_RpyAr4WxVepA7EoC3c', // Expired token.
+      token:
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiOFpycFhrQ1JTNWQwSlhnSGYreTdhaE9nUWtDaDFjbGp5MEVsQ1RLMVVCc3RmeGZGdkx1eC9CRExBZmVLcHoxby5TTURTdlZVYi9WR0xCRHRPalBMRmxRPT0uRXNkNkd3Zmg3S1oyZm9rQklvbGhpQT09IiwiaWF0IjoxNTY3ODQwNzk3LCJleHAiOjE1Njc4NDEzOTd9.VqWaRnxjD-1sw_eJT_IxpiRi_RpyAr4WxVepA7EoC3c', // Expired token.
     },
   });
 

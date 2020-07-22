@@ -10,134 +10,134 @@ jobs:
     name: Build packages
     runs-on: ubuntu-20.04 # Ubuntu LTS.
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2.3.1
+      - name: Checkout repository
+        uses: actions/checkout@v2.3.1
 
-    - name: Setup Node
-      uses: actions/setup-node@v1.4.2
-      with:
-        node-version: ${{env.NODE_VERSION}}
+      - name: Setup Node
+        uses: actions/setup-node@v1.4.2
+        with:
+          node-version: ${{env.NODE_VERSION}}
 
-    - name: Setup cache
-      uses: actions/cache@v2.1.0
-      with:
-        key: ${{runner.os}}-node-${{hashFiles('**/package-lock.json')}}
-        path: ~/.npm/
-        restore-keys: ${{runner.os}}-node-
+      - name: Setup cache
+        uses: actions/cache@v2.1.0
+        with:
+          key: ${{runner.os}}-node-${{hashFiles('**/package-lock.json')}}
+          path: ~/.npm/
+          restore-keys: ${{runner.os}}-node-
 
-    - name: Install dependencies and bootstrap project
-      run: npm run setup
+      - name: Install dependencies and bootstrap project
+        run: npm run setup
 
-    - name: Build client package
-      run: npx lerna run --scope @frija/client build
+      - name: Build client package
+        run: npx lerna run --scope @frija/client build
 
-    - name: Build Ethereum package
-      run: npx lerna run --scope @frija/ethereum build
+      - name: Build Ethereum package
+        run: npx lerna run --scope @frija/ethereum build
 
-    - name: Build ingress package
-      run: npx lerna run --scope @frija/ingress build
+      - name: Build ingress package
+        run: npx lerna run --scope @frija/ingress build
 
-    - name: Build server package
-      run: npx lerna run --scope @frija/server build
+      - name: Build server package
+        run: npx lerna run --scope @frija/server build
 
   lint-files:
     name: Lint files
     runs-on: ubuntu-20.04 # Ubuntu LTS.
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2.3.1
+      - name: Checkout repository
+        uses: actions/checkout@v2.3.1
 
-    - name: Setup Node
-      uses: actions/setup-node@v1.4.2
-      with:
-        node-version: ${{env.NODE_VERSION}}
+      - name: Setup Node
+        uses: actions/setup-node@v1.4.2
+        with:
+          node-version: ${{env.NODE_VERSION}}
 
-    - name: Setup cache
-      uses: actions/cache@v2.1.0
-      with:
-        key: ${{runner.os}}-node-${{hashFiles('**/package-lock.json')}}
-        path: ~/.npm/
-        restore-keys: ${{runner.os}}-node-
+      - name: Setup cache
+        uses: actions/cache@v2.1.0
+        with:
+          key: ${{runner.os}}-node-${{hashFiles('**/package-lock.json')}}
+          path: ~/.npm/
+          restore-keys: ${{runner.os}}-node-
 
-    - name: Install dependencies and bootstrap project
-      run: npm run setup
+      - name: Install dependencies and bootstrap project
+        run: npm run setup
 
-    - name: Lint Markdown
-      run: npm run lint:md
+      - name: Lint Markdown
+        run: npm run lint:md
 
-    - name: Lint JSON
-      run: npm run lint:json
+      - name: Lint JSON
+        run: npm run lint:json
 
-    - name: Lint Solidity
-      run: npm run lint:sol
+      - name: Lint Solidity
+        run: npm run lint:sol
 
-    - name: Lint Sass
-      run: npm run lint:sass
+      - name: Lint Sass
+        run: npm run lint:sass
 
-    - name: Lint JavaScript
-      run: npm run lint:js
+      - name: Lint JavaScript
+        run: npm run lint:js
 
-    - name: Lint Prettier
-      run: npm run lint:prettier
+      - name: Lint Prettier
+        run: npm run lint:prettier
 
-    - name: Lint license
-      run: npm run lint:license
+      - name: Lint license
+        run: npm run lint:license
 
   run-e2e-tests:
     name: Run e2e tests
     runs-on: ubuntu-20.04 # Ubuntu LTS.
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2.3.1
+      - name: Checkout repository
+        uses: actions/checkout@v2.3.1
 
-    - name: Setup Node
-      uses: actions/setup-node@v1.4.2
-      with:
-        node-version: ${{env.NODE_VERSION}}
+      - name: Setup Node
+        uses: actions/setup-node@v1.4.2
+        with:
+          node-version: ${{env.NODE_VERSION}}
 
-    - name: Setup cache
-      uses: actions/cache@v2.1.0
-      with:
-        key: ${{runner.os}}-node-${{hashFiles('**/package-lock.json')}}
-        path: ~/.npm/
-        restore-keys: ${{runner.os}}-node-
+      - name: Setup cache
+        uses: actions/cache@v2.1.0
+        with:
+          key: ${{runner.os}}-node-${{hashFiles('**/package-lock.json')}}
+          path: ~/.npm/
+          restore-keys: ${{runner.os}}-node-
 
-    - name: Run e2e tests
-      uses: cypress-io/github-action@v2.2.2
-      with:
-        browser: chrome
-        config-file: ./tests/configs/cypress.config.json
-        # headless: true
-        start: npm run start:cluster
-        wait-on: 'http://localhost/'
-        wait-on-timeout: 300 # Wait up to 300 seconds (5 minutes) for the cluster to start.
+      - name: Run e2e tests
+        uses: cypress-io/github-action@v2.2.2
+        with:
+          browser: chrome
+          config-file: ./tests/configs/cypress.config.json
+          # headless: true
+          start: npm run start:cluster
+          wait-on: 'http://localhost/'
+          wait-on-timeout: 300 # Wait up to 300 seconds (5 minutes) for the cluster to start.
 
   run-unit-integration-tests-and-report-code-coverage:
     name: Run unit, integration tests and report code coverage
     runs-on: ubuntu-20.04 # Ubuntu LTS.
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2.3.1
+      - name: Checkout repository
+        uses: actions/checkout@v2.3.1
 
-    - name: Setup Node
-      uses: actions/setup-node@v1.4.2
-      with:
-        node-version: ${{env.NODE_VERSION}}
+      - name: Setup Node
+        uses: actions/setup-node@v1.4.2
+        with:
+          node-version: ${{env.NODE_VERSION}}
 
-    - name: Setup cache
-      uses: actions/cache@v2.1.0
-      with:
-        key: ${{runner.os}}-node-${{hashFiles('**/package-lock.json')}}
-        path: ~/.npm/
-        restore-keys: ${{runner.os}}-node-
+      - name: Setup cache
+        uses: actions/cache@v2.1.0
+        with:
+          key: ${{runner.os}}-node-${{hashFiles('**/package-lock.json')}}
+          path: ~/.npm/
+          restore-keys: ${{runner.os}}-node-
 
-    - name: Install dependencies and bootstrap project
-      run: npm run setup
+      - name: Install dependencies and bootstrap project
+        run: npm run setup
 
-    - name: Run unit, integration tests (and create code coverage report)
-      run: npm run test:coverage
+      - name: Run unit, integration tests (and create code coverage report)
+        run: npm run test:coverage
 
-    - name: Report code coverage
-      uses: codecov/codecov-action@v1.0.11
-      with:
-        token: ${{secrets.CODECOV_TOKEN}}
+      - name: Report code coverage
+        uses: codecov/codecov-action@v1.0.11
+        with:
+          token: ${{secrets.CODECOV_TOKEN}}

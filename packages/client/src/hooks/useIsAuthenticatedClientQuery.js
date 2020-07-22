@@ -28,18 +28,16 @@ const useIsAuthenticatedClientQuery = () => {
   const [isAuthenticated, { data }] = useLazyQuery(IS_AUTHENTICATED_CLIENT_QUERY);
   const { loading: validateStoredTokenLoading, validateStoredToken } = useValidateStoredToken();
 
-  const definedData = data === undefined
-    ? {}
-    : data;
-  const loading = data === undefined
-    || data.isAuthenticated === null
-    || validateStoredTokenLoading;
+  const definedData = data === undefined ? {} : data;
+  const loading = data === undefined || data.isAuthenticated === null || validateStoredTokenLoading;
 
   // https://github.com/apollographql/react-apollo/issues/3635/
   useEffect(() => {
     let isMounted = true;
     if (isMounted) isAuthenticated();
-    return () => { isMounted = false; };
+    return () => {
+      isMounted = false;
+    };
   }, [isAuthenticated]);
 
   useEffect(() => {

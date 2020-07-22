@@ -21,7 +21,5 @@
 Cypress.Commands.add('visitAndAssert', (url, options) => {
   cy.visit(url, options);
 
-  cy
-    .get('[data-testid="app"]')
-    .should('be.visible');
+  cy.get('[data-testid="app"]').should('be.visible');
 });
