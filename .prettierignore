@@ -1,3 +1,5 @@
 coverage/
 dist/
 docs/external/
+
+package-lock.json
