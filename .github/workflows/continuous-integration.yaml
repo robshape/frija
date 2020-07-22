@@ -77,6 +77,9 @@ jobs:
     - name: Lint JavaScript
       run: npm run lint:js
 
+    - name: Lint Prettier
+      run: npm run lint:prettier
+
     - name: Lint license
       run: npm run lint:license
 
