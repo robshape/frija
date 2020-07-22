@@ -47,7 +47,7 @@ const verify = (token, options) => {
     algorithms: ['HS256'],
     maxAge: options.time,
   });
-  // const decryptedData = aes.decrypt(payload.data, secret);
+  // const decryptedData = aes.decrypt(payload.data, options.secret);
 
   return payload;
 };

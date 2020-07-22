@@ -31,7 +31,7 @@ const useIsAuthenticatedClientQuery = () => {
   const definedData = data === undefined ? {} : data;
   const loading = data === undefined || data.isAuthenticated === null || validateStoredTokenLoading;
 
-  // https://github.com/apollographql/react-apollo/issues/3635/
+  // TODO: https://github.com/apollographql/react-apollo/issues/3635/
   useEffect(() => {
     let isMounted = true;
     if (isMounted) isAuthenticated();

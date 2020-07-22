@@ -44,7 +44,7 @@ const renderComponent = (testProps, testOptions) => {
         isAuthenticated
       }
     `,
-  }); // https://github.com/apollographql/react-apollo/issues/3642#issuecomment-568271001
+  }); // TODO: https://github.com/apollographql/react-apollo/issues/3642#issuecomment-568271001
 
   return renderResult;
 };

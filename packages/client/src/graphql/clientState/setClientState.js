@@ -26,8 +26,10 @@ const setClientState = (location, key, value) =>
       [key]: value,
     },
     query: gql`
-  { ${key} }
-  `,
+      {
+        ${key}
+      }
+    `,
   });
 
 export default setClientState;

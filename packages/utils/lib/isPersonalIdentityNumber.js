@@ -43,22 +43,15 @@ const isPersonalIdentityNumber = (number) => {
   if (number.length !== 10 && number.length !== 12) return false;
 
   // Is the date valid?
-  const dateNumber =
-    number.length === 12 // yymmdd.
-      ? number.substring(2, 8)
-      : number.substring(0, 6);
-  const dateFormat = `${dateNumber.substring(0, 2)}-${dateNumber.substring(
-    2,
-    4
-  )}-${dateNumber.substring(4, 6)}`; // yy-mm-dd.
-  const date = Date.parse(dateFormat);
+  const dateNumber = number.length === 12 ? number.substring(2, 8) : number.substring(0, 6); // yymmdd.
+  const yy = dateNumber.substring(0, 2);
+  const mm = dateNumber.substring(2, 4);
+  const dd = dateNumber.substring(4, 6);
+  const date = Date.parse(`${yy}-${mm}-${dd}`);
   if (Number.isNaN(date)) return false;
 
   // Is the Luhn checksum valid?
-  const luhnNumber =
-    number.length === 12 // yymmddxxxx.
-      ? number.substring(2)
-      : number;
+  const luhnNumber = number.length === 12 ? number.substring(2) : number; // yymmddxxxx.
   if (!isLuhnChecksumValid(luhnNumber)) return false;
 
   return true;

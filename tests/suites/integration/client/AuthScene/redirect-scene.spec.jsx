@@ -39,7 +39,7 @@ it('should redirect to the Home path if the user is authenticated', async () => 
         isAuthenticated
       }
     `,
-  }); // https://github.com/apollographql/react-apollo/issues/3642#issuecomment-568271001
+  }); // TODO: https://github.com/apollographql/react-apollo/issues/3642#issuecomment-568271001
 
   await waitFor(() => expect(history.location.pathname).toBe('/'));
   expect(screen.queryByRole('textbox', { name: 'Personnummer' })).not.toBeInTheDocument();

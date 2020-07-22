@@ -26,11 +26,7 @@ const useInputNumber = (onChangeCallback) => {
   const [value, setValue] = useState('');
 
   const onChange = ({ target }) => {
-    if (
-      target.value.length !== 0 && // `0` likely means that the user has cleared the input.
-      !isNumber(target.value)
-    )
-      return;
+    if (target.value.length !== 0 && !isNumber(target.value)) return; // `0` likely means that the user has cleared the input.
 
     setValue(target.value);
 
