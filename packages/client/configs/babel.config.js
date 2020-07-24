@@ -20,6 +20,7 @@
 
 const config = {
   plugins: ['react-hot-loader/babel'],
+
   presets: [
     [
       '@babel/preset-env',
