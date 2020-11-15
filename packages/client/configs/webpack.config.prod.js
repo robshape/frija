@@ -87,14 +87,8 @@ const config = (env) => ({
   },
 
   optimization: {
-    minimizer: [
-      new OptimizeCssAssetsPlugin(),
-      new TerserPlugin({
-        cache: false,
-      }),
-    ],
-    // https://webpack.js.org/guides/caching/
-    moduleIds: 'hashed',
+    chunkIds: env?.ANALYZE_BUNDLE ? 'named' : 'deterministic',
+    minimizer: [new OptimizeCssAssetsPlugin(), new TerserPlugin()],
     runtimeChunk: 'single',
     splitChunks: {
       cacheGroups: chunkedDependencies(),
@@ -105,6 +99,7 @@ const config = (env) => ({
 
   output: {
     filename: '[name].[contenthash].js',
+    path: path.resolve(process.cwd(), './dist/'), // Required by CleanWebpackPlugin.
   },
 
   plugins: [
@@ -143,7 +138,7 @@ const config = (env) => ({
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',
     }),
-    env && env.ANALYZE_BUNDLE && new BundleAnalyzerPlugin(),
+    env?.ANALYZE_BUNDLE && new BundleAnalyzerPlugin(),
   ].filter(Boolean),
 
   resolve: {

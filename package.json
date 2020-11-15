@@ -49,7 +49,7 @@
   "name": "frija",
   "private": true,
   "scripts": {
-    "analyze": "start-server-and-test start:cluster http://localhost/ analyze:lighthouse && lerna run --parallel --scope @frija/client analyze:bundle",
+    "analyze": "WAIT_ON_TIMEOUT=600000 start-server-and-test start:cluster http://localhost/ analyze:lighthouse && lerna run --parallel --scope @frija/client analyze:bundle",
     "analyze:lighthouse": "lighthouse --output-path=./lighthouse.report.html --view http://localhost/",
     "lint": "npm run lint:md && npm run lint:json -- --cache && npm run lint:sol && npm run lint:sass -- --cache && npm run lint:js -- --cache && npm run lint:prettier && npm run lint:license",
     "lint:js": "eslint --config ./configs/.eslintrc.js --ext .js,.jsx ./",
@@ -66,7 +66,7 @@
     "test:coverage": "jest --config ./tests/configs/jest.config.js --coverage",
     "test:leaks": "node --expose-gc ./node_modules/.bin/jest --config ./tests/configs/jest.config.js --detectOpenHandles --logHeapUsage --runInBand",
     "test:watch": "jest --config ./tests/jest.config.js --watch",
-    "test:e2e": "start-server-and-test start:cluster http://localhost/ test:e2e:cli",
+    "test:e2e": "WAIT_ON_TIMEOUT=600000 start-server-and-test start:cluster http://localhost/ test:e2e:cli",
     "test:e2e:cli": "cypress run --config-file ./tests/configs/cypress.config.json",
     "test:e2e:gui": "cypress open --config-file ./tests/configs/cypress.config.json",
     "test:integration": "jest --config ./tests/configs/jest.config.js ./tests/suites/integration/",

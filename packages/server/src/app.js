@@ -36,19 +36,10 @@ const configureApp = (config) => {
   koa.use(logger);
   koa.use(
     helmet({
-      dnsPrefetchControl: true,
+      contentSecurityPolicy: false,
       frameguard: {
         action: 'deny',
       },
-      hidePoweredBy: true,
-      hsts: true,
-      ieNoOpen: true,
-      noSniff: true,
-      permittedCrossDomainPolicies: true,
-      referrerPolicy: {
-        policy: 'no-referrer',
-      },
-      xssFilter: true,
     })
   );
   koa.use(compress());

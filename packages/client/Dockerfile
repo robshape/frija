@@ -1,5 +1,5 @@
 # BUILD (Node LTS).
-FROM node:12.18.2-alpine3.12 as builder
+FROM node:14.15.0-alpine3.12 as builder
 ENV CYPRESS_INSTALL_BINARY 0
 WORKDIR /app
 

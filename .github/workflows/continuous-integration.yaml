@@ -3,7 +3,7 @@ name: Continuous Integration
 on: push
 
 env:
-  NODE_VERSION: 12.18.2 # Node LTS.
+  NODE_VERSION: 14.15.0 # Node LTS.
 
 jobs:
   build-packages:
@@ -107,10 +107,9 @@ jobs:
         with:
           browser: chrome
           config-file: ./tests/configs/cypress.config.json
-          # headless: true
           start: npm run start:cluster
           wait-on: 'http://localhost/'
-          wait-on-timeout: 300 # Wait up to 300 seconds (5 minutes) for the cluster to start.
+          wait-on-timeout: 600 # Wait up to 600 seconds (10 minutes) for the cluster to start.
 
   run-unit-integration-tests-and-report-code-coverage:
     name: Run unit, integration tests and report code coverage

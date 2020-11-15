@@ -25,11 +25,11 @@ import React from 'react';
 import { render } from 'react-dom';
 
 import App from './app';
-import { version } from '../package.json';
+import packageJson from '../package.json';
 
 const node = document.getElementById('index');
 render(<App />, node);
 
 if (process.env.NODE_ENV === 'development') module.hot.accept();
 
-console.log(`Client loaded (${version} ${process.env.NODE_ENV})`); // eslint-disable-line no-console
+console.log(`Client loaded (${packageJson.version} ${process.env.NODE_ENV})`); // eslint-disable-line no-console

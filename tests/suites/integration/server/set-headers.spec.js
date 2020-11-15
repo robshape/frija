@@ -24,6 +24,7 @@ it('should set security headers', async () => {
   const { request } = serverTestClient();
   const { header } = await request.get('/');
 
+  expect(header['expect-ct']).toBe('max-age=0');
   expect(header['referrer-policy']).toBe('no-referrer');
   expect(header['strict-transport-security']).toBe('max-age=15552000; includeSubDomains');
   expect(header['x-content-type-options']).toBe('nosniff');
@@ -31,5 +32,5 @@ it('should set security headers', async () => {
   expect(header['x-download-options']).toBe('noopen');
   expect(header['x-frame-options']).toBe('DENY');
   expect(header['x-permitted-cross-domain-policies']).toBe('none');
-  expect(header['x-xss-protection']).toBe('1; mode=block');
+  expect(header['x-xss-protection']).toBe('0');
 });
