@@ -29,7 +29,7 @@ const config = {
     proxy: {
       '/api': {
         pathRewrite: {
-          '^/api': '', // Object key is a RegExp.
+          '^/api': '', // RegExp.
         },
         target: 'http://localhost:3000',
       },

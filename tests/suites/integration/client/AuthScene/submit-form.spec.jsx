@@ -18,7 +18,7 @@
 
 */
 
-import { fireEvent, screen, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import AUTHENTICATE_MUTATION from '../../../../../packages/client/src/graphql/mutations/AUTHENTICATE_MUTATION';
@@ -45,8 +45,7 @@ it('should validate the credentials', async () => {
   expect(screen.getByRole('textbox', { name: 'Personnummer' })).toHaveValue('112233445566');
 
   // Validates credentials.
-  // userEvent.click(screen.getByRole('button', { name: 'Fortsätt' })); // Does not work here???
-  fireEvent.blur(screen.getByRole('textbox', { name: 'Personnummer' })); // Trigger validator.
+  userEvent.click(screen.getByRole('button', { name: 'Fortsätt' })); // Trigger validator.
 
   expect(screen.getByRole('textbox', { name: 'Personnummer' })).toHaveValue('112233445566');
   expect(screen.getByText('Ange ett giltig personnummer.')).toHaveClass('inputValidationVISIBLE');

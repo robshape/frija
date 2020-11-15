@@ -18,7 +18,6 @@
 
 */
 
-import { gql } from '@apollo/client';
 import merge from 'lodash.merge';
 import React from 'react';
 
@@ -33,20 +32,7 @@ const renderComponent = (testProps, testOptions) => {
     },
     testOptions
   );
-
-  const renderResult = renderWithProviders(<AuthScene />, options);
-  renderResult.cache.writeQuery({
-    data: {
-      isAuthenticated: false,
-    },
-    query: gql`
-      {
-        isAuthenticated
-      }
-    `,
-  }); // TODO: https://github.com/apollographql/react-apollo/issues/3642#issuecomment-568271001
-
-  return renderResult;
+  return renderWithProviders(<AuthScene />, options);
 };
 
 export default renderComponent;
