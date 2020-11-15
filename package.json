@@ -35,7 +35,7 @@
     "markdownlint-cli": "0.24.0",
     "prettier": "2.1.2",
     "prop-types": "15.7.2",
-    "react": "16.14.0",
+    "react": "17.0.1",
     "react-router-dom": "5.2.0",
     "solhint": "3.3.2",
     "start-server-and-test": "1.11.5",
