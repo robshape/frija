@@ -2,9 +2,9 @@
 set -euo pipefail
 
 echo "[*] STARTING CLUSTER"
-docker-compose --file ./configs/docker-compose.yaml up --build
+docker-compose up --build
 echo
 
 echo "[*] STOPPING CLUSTER"
-docker-compose --file ./configs/docker-compose.yaml down
+docker-compose down
 echo

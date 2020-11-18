@@ -2,12 +2,12 @@ version: '3.8'
 
 services:
   client:
-    build: ../packages/client
+    build: ./packages/client
     image: frija/client:latest
     init: true
 
   ingress:
-    build: ../packages/ingress
+    build: ./packages/ingress
     depends_on:
       - client
       - server
@@ -17,7 +17,7 @@ services:
       - 80:80
 
   server:
-    build: ../packages/server
+    build: ./packages/server
     env_file: ./.env.dev
     image: frija/server:latest
     init: true
