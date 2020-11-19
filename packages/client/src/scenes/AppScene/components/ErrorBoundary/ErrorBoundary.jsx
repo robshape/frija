@@ -21,7 +21,7 @@
 import PropTypes from 'prop-types';
 import React, { lazy } from 'react';
 
-const ErrorScene = lazy(() => import(/* webpackChunkName: "ErrorScene" */ '../../../ErrorScene'));
+const ErrorScene = lazy(() => import('../../../ErrorScene'));
 
 class ErrorBoundary extends React.Component {
   static getDerivedStateFromError() {

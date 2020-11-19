@@ -1,4 +1,7 @@
 {
+  "browserslist": [
+    "defaults"
+  ],
   "dependencies": {
     "@apollo/client": "3.2.5",
     "@fortawesome/fontawesome-svg-core": "1.2.32",

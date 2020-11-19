@@ -28,8 +28,8 @@ import PrivateRoute from './components/PrivateRoute';
 import ROUTER_PATH from '../../constants/ROUTER_PATH';
 import styles from './AppScene.scss';
 
-const AuthScene = lazy(() => import(/* webpackChunkName: "AuthScene" */ '../AuthScene'));
-const HomeScene = lazy(() => import(/* webpackChunkName: "HomeScene" */ '../HomeScene'));
+const AuthScene = lazy(() => import('../AuthScene'));
+const HomeScene = lazy(() => import('../HomeScene'));
 
 const AppScene = ({ client }) => (
   <ApolloProvider client={client}>
