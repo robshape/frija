@@ -103,7 +103,7 @@ jobs:
           restore-keys: ${{runner.os}}-node-
 
       - name: Run e2e tests
-        uses: cypress-io/github-action@v2.2.2
+        uses: cypress-io/github-action@v2.6.1
         with:
           browser: chrome
           config-file: ./tests/configs/cypress.config.json
