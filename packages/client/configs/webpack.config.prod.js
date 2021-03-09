@@ -106,9 +106,7 @@ const config = (env) => ({
     new CleanWebpackPlugin({
       verbose: true,
     }),
-    new CompressionPlugin({
-      cache: false,
-    }),
+    new CompressionPlugin(),
     new CopyPlugin({
       patterns: ['./src/assets/'],
     }),
@@ -132,7 +130,6 @@ const config = (env) => ({
         sortClassName: true,
         useShortDoctype: true,
       },
-      scriptLoading: 'defer',
       template: './src/index.html',
     }),
     new MiniCssExtractPlugin({

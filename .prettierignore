@@ -1,5 +1,6 @@
 coverage/
 dist/
 docs/external/
+packages/charts/
 
 package-lock.json

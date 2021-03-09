@@ -30,7 +30,6 @@ const config = {
     'plugin:json/recommended',
     // Prettier is last because it overrides previous configs!
     'prettier',
-    'prettier/react',
   ],
 
   globals: {
