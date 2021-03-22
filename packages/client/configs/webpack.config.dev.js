@@ -47,11 +47,16 @@ const config = {
         test: /\.(js|jsx)$/,
         use: [
           {
-            loader: 'babel-loader',
+            // loader: 'babel-loader',
+            // options: {
+            //   cacheCompression: false,
+            //   cacheDirectory: true,
+            //   configFile: './configs/babel.config.js',
+            // },
+            loader: 'esbuild-loader',
             options: {
-              cacheCompression: false,
-              cacheDirectory: true,
-              configFile: './configs/babel.config.js',
+              loader: 'jsx',
+              target: 'es2015',
             },
           },
         ],

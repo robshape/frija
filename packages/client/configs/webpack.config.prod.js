@@ -22,11 +22,12 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const { ESBuildMinifyPlugin } = require('esbuild-loader');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const path = require('path');
-const TerserPlugin = require('terser-webpack-plugin');
+// const TerserPlugin = require('terser-webpack-plugin');
 
 const { dependencies } = require('../package.json');
 
@@ -55,9 +56,14 @@ const config = (env) => ({
         test: /\.(js|jsx)$/,
         use: [
           {
-            loader: 'babel-loader',
+            // loader: 'babel-loader',
+            // options: {
+            //   configFile: './configs/babel.config.js',
+            // },
+            loader: 'esbuild-loader',
             options: {
-              configFile: './configs/babel.config.js',
+              loader: 'jsx',
+              target: 'es2015',
             },
           },
         ],
@@ -88,7 +94,13 @@ const config = (env) => ({
 
   optimization: {
     chunkIds: env?.ANALYZE_BUNDLE ? 'named' : 'deterministic',
-    minimizer: [new OptimizeCssAssetsPlugin(), new TerserPlugin()],
+    minimizer: [
+      new ESBuildMinifyPlugin({
+        target: 'es2015',
+      }),
+      new OptimizeCssAssetsPlugin(),
+      // new TerserPlugin(),
+    ],
     runtimeChunk: 'single',
     splitChunks: {
       cacheGroups: chunkedDependencies(),
