@@ -3,7 +3,7 @@ name: Continuous Integration
 on: push
 
 env:
-  NODE_VERSION: 14.16.0 # Node LTS.
+  NODE_VERSION: 14.17.0 # Node LTS.
 
 jobs:
   build-packages:
@@ -19,7 +19,7 @@ jobs:
           node-version: ${{env.NODE_VERSION}}
 
       - name: Setup cache
-        uses: actions/cache@v2.1.4
+        uses: actions/cache@v2.1.6
         with:
           key: ${{runner.os}}-node-${{hashFiles('**/package-lock.json')}}
           path: ~/.npm/
@@ -53,7 +53,7 @@ jobs:
           node-version: ${{env.NODE_VERSION}}
 
       - name: Setup cache
-        uses: actions/cache@v2.1.4
+        uses: actions/cache@v2.1.6
         with:
           key: ${{runner.os}}-node-${{hashFiles('**/package-lock.json')}}
           path: ~/.npm/
@@ -96,14 +96,14 @@ jobs:
           node-version: ${{env.NODE_VERSION}}
 
       - name: Setup cache
-        uses: actions/cache@v2.1.4
+        uses: actions/cache@v2.1.6
         with:
           key: ${{runner.os}}-node-${{hashFiles('**/package-lock.json')}}
           path: ~/.npm/
           restore-keys: ${{runner.os}}-node-
 
       - name: Run e2e tests
-        uses: cypress-io/github-action@v2.9.1
+        uses: cypress-io/github-action@v2.11.0
         with:
           browser: chrome
           config-file: ./tests/configs/cypress.config.json
@@ -124,7 +124,7 @@ jobs:
           node-version: ${{env.NODE_VERSION}}
 
       - name: Setup cache
-        uses: actions/cache@v2.1.4
+        uses: actions/cache@v2.1.6
         with:
           key: ${{runner.os}}-node-${{hashFiles('**/package-lock.json')}}
           path: ~/.npm/
@@ -137,6 +137,6 @@ jobs:
         run: npm run test:coverage
 
       - name: Report code coverage
-        uses: codecov/codecov-action@v1.2.1
+        uses: codecov/codecov-action@v1.5.2
         with:
           token: ${{secrets.CODECOV_TOKEN}}

@@ -1,5 +1,5 @@
 # Node LTS.
-FROM node:14.16.0-alpine3.13
+FROM node:14.17.0-alpine3.13
 ENV NODE_ENV production
 WORKDIR /app
 
