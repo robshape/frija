@@ -40,6 +40,8 @@ const config = {
 
   setupFilesAfterEnv: ['<rootDir>/tests/configs/jest.setup.js'],
 
+  testEnvironment: 'jsdom',
+
   testMatch: [
     '<rootDir>/tests/suites/integration/**/*.spec.{js,jsx}',
     '<rootDir>/tests/suites/unit/**/*.spec.{js,jsx}',

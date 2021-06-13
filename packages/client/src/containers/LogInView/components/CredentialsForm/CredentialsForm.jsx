@@ -28,12 +28,8 @@ import useInputPersonalIdentityNumber from '../../hooks/useInputPersonalIdentity
 import VALIDATION_STATUS from '../../constants/VALIDATION_STATUS';
 
 const CredentialsForm = ({ onSubmit }) => {
-  const {
-    onBlur,
-    onChange,
-    personalIdentityNumber,
-    validationStatus,
-  } = useInputPersonalIdentityNumber();
+  const { onBlur, onChange, personalIdentityNumber, validationStatus } =
+    useInputPersonalIdentityNumber();
 
   const onFormSubmit = (e) => {
     e.preventDefault();

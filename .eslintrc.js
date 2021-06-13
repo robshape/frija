@@ -62,8 +62,8 @@ const config = {
         'plugin:jest/recommended',
         'plugin:jest/style',
         'plugin:jest-dom/recommended',
+        'plugin:testing-library/dom',
         'plugin:testing-library/react',
-        'plugin:testing-library/recommended',
       ],
       files: [
         './tests/mocks/**/*.{js,jsx}',

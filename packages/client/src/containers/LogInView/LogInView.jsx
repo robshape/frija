@@ -27,10 +27,8 @@ import styles from './LogInView.scss';
 import useAuthenticatePersonalIdentityNumber from './hooks/useAuthenticatePersonalIdentityNumber';
 
 const LogInView = () => {
-  const {
-    authenticatePersonalIdentityNumber,
-    isAuthenticating,
-  } = useAuthenticatePersonalIdentityNumber();
+  const { authenticatePersonalIdentityNumber, isAuthenticating } =
+    useAuthenticatePersonalIdentityNumber();
 
   const onSubmit = (credentials) => authenticatePersonalIdentityNumber(credentials);
 
